@@ -32,7 +32,12 @@
       "Bash(mkdir -p public/fonts)",
       "Bash(curl -s -L -o public/fonts/DanaYad.woff \"https://fonts.cdnfonts.com/s/48483/DanaYadNormal.woff\" -A \"Mozilla/5.0\")",
       "Bash(curl -s -o /dev/null -w \"app: %{http_code}\\\\n\" http://localhost:5175/)",
-      "Bash(git config *)"
+      "Bash(git config *)",
+      "Bash(git -c user.name=hanit-library -c user.email=local@hanit.library commit -q -m 'Premium hero, handwriting title, genre colors, 2 themes, stats fix' -m '- Hero: centered masthead, Dana Yad handwriting title \\(self-hosted\\), open-book logo, mobile-first; fix dropdown clipping \\(overflow/z-index\\) *)",
+      "Bash(tar tzf *)",
+      "Bash(gh auth *)",
+      "Bash(xargs -0 du -h)",
+      "Bash(gh api *)"
     ]
   }
 }
