@@ -43,11 +43,20 @@ async function download(url, dest) {
 }
 
 const books = JSON.parse(readFileSync(BOOKS, 'utf8'));
-const idx = books.findIndex((b) => b.id === key || b.title === key || b.title.includes(key));
-if (idx < 0) {
-    console.error('לא נמצא ספר עבור:', key);
+// התאמה מדויקת בלבד (id או כותרת מלאה) — substring חיפש בעבר ספר שגוי
+const matches = books
+    .map((b, i) => ({ b, i }))
+    .filter(({ b }) => b.id === key || b.title === key);
+if (matches.length === 0) {
+    console.error('לא נמצא ספר (התאמה מדויקת) עבור:', key);
     process.exit(1);
 }
+if (matches.length > 1) {
+    console.error(`נמצאו ${matches.length} ספרים עם אותה כותרת — ציין/י id מדויק:`);
+    matches.forEach(({ b }) => console.error('  -', b.id, '|', b.author));
+    process.exit(1);
+}
+const idx = matches[0].i;
 const book = books[idx];
 mkdirSync(COVERS_DIR, { recursive: true });
 const file = `m-${createHash('sha1').update(book.id).digest('hex').slice(0, 10)}.jpg`;
