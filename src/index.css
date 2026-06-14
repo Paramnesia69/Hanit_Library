@@ -479,15 +479,13 @@ h3,
   will-change: transform;
 }
 
-/* בידוד פריסה לכרטיסים — ביצועים חלקים ל-793 ספרים.
-   הערה: בעבר היה כאן content-visibility: auto. הוא גרם לחיתוך/דריסה של
-   העטיפות בגלילה איטית בסלולר: content-visibility מוסיף paint-containment
-   שחותך את הטיית התלת-ממד לגבולות התיבה, ו-overflow-clip-margin אינו חל על
-   חיתוך שמקורו ב-containment ב-Safari — ולכן ה"מרווח" של 40px לא עזר.
-   במצב יציב (Wi-Fi) הפריסה תקינה, אז משאירים רק contain: layout שמבודד
-   reflow בלי לחתוך paint. */
+/* דילוג עיבוד לכרטיסים מחוץ למסך — קריטי לביצועים חלקים ל-793 ספרים
+   (כל כרטיס הוא ספר תלת-ממד; בלי זה כולם מרונדרים בבת אחת והגלילה נתקעת). */
 .cv-auto {
-  contain: layout style;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 320px;
+  /* מרווח דליפה — שההטיה התלת-ממד לא תיגזר בקצה העליון/בצדדים */
+  overflow-clip-margin: 40px;
 }
 
 /* הפאות חולקות מרכז משותף */
