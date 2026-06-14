@@ -22,7 +22,17 @@
       "Bash(node scripts/resolve-missing-covers.mjs --limit=12 --resolve-only)",
       "Bash(node scripts/resolve-missing-covers.mjs)",
       "Bash(node scripts/resolve-missing-covers.mjs --limit=6 --resolve-only)",
-      "Bash(git -c user.name=hanit-library -c user.email=local@hanit.library commit -q -m 'BookDetail: series strip — all owned books in the series, current centered + clickable *)"
+      "Bash(git -c user.name=hanit-library -c user.email=local@hanit.library commit -q -m 'BookDetail: series strip — all owned books in the series, current centered + clickable *)",
+      "Bash(git -c user.name=hanit-library -c user.email=local@hanit.library commit -q -m 'Update active-work.md handoff \\(covers 793/793, series strip\\) *)",
+      "Bash(grep -vE '\\\\.\\(jpg|png|json\\)$')",
+      "Bash(timeout 25 npx vite build)",
+      "Bash(npx vite *)",
+      "Bash(npx eslint *)",
+      "Bash(curl -s -L \"https://fonts.cdnfonts.com/css/dana-yad\" -A \"Mozilla/5.0\")",
+      "Bash(mkdir -p public/fonts)",
+      "Bash(curl -s -L -o public/fonts/DanaYad.woff \"https://fonts.cdnfonts.com/s/48483/DanaYadNormal.woff\" -A \"Mozilla/5.0\")",
+      "Bash(curl -s -o /dev/null -w \"app: %{http_code}\\\\n\" http://localhost:5175/)",
+      "Bash(git config *)"
     ]
   }
 }

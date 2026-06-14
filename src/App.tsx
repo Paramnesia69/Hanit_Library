@@ -101,6 +101,9 @@ export default function App() {
                 physicalCount={physicalCount}
                 digitalCount={digitalCount}
                 onLibraryChange={switchLibrary}
+                floor={filters.floor}
+                floors={facets.floors}
+                onFloorChange={(floor) => patch({ floor })}
                 theme={theme}
                 onThemeChange={setTheme}
                 showStats={showStats}

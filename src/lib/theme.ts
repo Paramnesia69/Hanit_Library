@@ -1,4 +1,4 @@
-export type ThemeId = 'light' | 'copilot' | 'noir' | 'pinkdesert' | 'amethyst';
+export type ThemeId = 'light' | 'pearl' | 'cream' | 'copilot' | 'noir' | 'pinkdesert' | 'amethyst';
 
 export interface ThemeDef {
     id: ThemeId;
@@ -16,6 +16,22 @@ export const THEMES: ThemeDef[] = [
         label: 'Paper',
         blurb: 'נייר חם, אלגנטי — בהשראת Apple Books',
         swatch: ['#faf8f4', '#1b1714', '#c79a3a'],
+        dark: false,
+    },
+    {
+        id: 'pearl',
+        attr: 'pearl',
+        label: 'Pearl',
+        blurb: 'פנינה וכסף — לבן קריר ונוצץ',
+        swatch: ['#f6f7f9', '#4b566d', '#aeb6c3'],
+        dark: false,
+    },
+    {
+        id: 'cream',
+        attr: 'cream',
+        label: 'Cream',
+        blurb: "בז' וקרם עם חום — חמים וקלאסי",
+        swatch: ['#f7f1e7', '#744a25', '#b8862b'],
         dark: false,
     },
     {

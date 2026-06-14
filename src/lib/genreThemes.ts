@@ -13,6 +13,8 @@ export interface GenreTheme {
     /** רדיד מתכתי לכותרת (foil) */
     foil: string;
     foil2: string;
+    /** צבע הסימון בשבב הז'אנר — תואם לתוכן הז'אנר */
+    dot: string;
     /** צבע טקסט על העטיפה */
     ink: string;
     /** זוהר סביבתי (rgba) לכרטיס התלת-ממד */
@@ -30,6 +32,7 @@ export const GENRE_THEMES: Record<string, GenreTheme> = {
         grad: ['#1b3a5c', '#0e2138', '#05080f'],
         foil: '#dce7f5',
         foil2: '#8295b0',
+        dot: '#15161a',
         ink: '#eaf1fb',
         glow: 'rgba(70, 120, 200, 0.45)',
         spine: '#0a1626',
@@ -41,6 +44,7 @@ export const GENRE_THEMES: Record<string, GenreTheme> = {
         grad: ['#6e1438', '#46091f', '#1f0410'],
         foil: '#f4d98a',
         foil2: '#c08a2e',
+        dot: '#7a1228',
         ink: '#fbe7ee',
         glow: 'rgba(190, 30, 80, 0.5)',
         spine: '#2c0712',
@@ -52,6 +56,7 @@ export const GENRE_THEMES: Record<string, GenreTheme> = {
         grad: ['#f4a9c2', '#e06d96', '#b6446e'],
         foil: '#fff3ea',
         foil2: '#e6a98f',
+        dot: '#c2185b',
         ink: '#ffffff',
         glow: 'rgba(232, 120, 160, 0.5)',
         spine: '#a33a62',
@@ -63,6 +68,7 @@ export const GENRE_THEMES: Record<string, GenreTheme> = {
         grad: ['#f0a8b8', '#d76a8e', '#a83d68'],
         foil: '#fff2ec',
         foil2: '#e3a18c',
+        dot: '#c2185b',
         ink: '#ffffff',
         glow: 'rgba(225, 110, 150, 0.5)',
         spine: '#9c3a60',
@@ -74,6 +80,7 @@ export const GENRE_THEMES: Record<string, GenreTheme> = {
         grad: ['#46327e', '#2a1a55', '#140d2e'],
         foil: '#e9d8ff',
         foil2: '#a988e0',
+        dot: '#6d28d9',
         ink: '#f1e9ff',
         glow: 'rgba(140, 90, 220, 0.5)',
         spine: '#1c1140',
@@ -85,6 +92,7 @@ export const GENRE_THEMES: Record<string, GenreTheme> = {
         grad: ['#7a5a2e', '#503619', '#2a1c0d'],
         foil: '#f3dca0',
         foil2: '#c79a3a',
+        dot: '#c79a3a',
         ink: '#f6ecd6',
         glow: 'rgba(170, 130, 60, 0.45)',
         spine: '#352106',
@@ -96,6 +104,7 @@ export const GENRE_THEMES: Record<string, GenreTheme> = {
         grad: ['#0c4a57', '#062c37', '#02151b'],
         foil: '#a6f0ff',
         foil2: '#3fb6cc',
+        dot: '#0e7490',
         ink: '#e0fbff',
         glow: 'rgba(40, 180, 210, 0.45)',
         spine: '#03222b',
@@ -107,6 +116,7 @@ export const GENRE_THEMES: Record<string, GenreTheme> = {
         grad: ['#4a1212', '#2a0808', '#0c0303'],
         foil: '#e8d3c0',
         foil2: '#9a4a3a',
+        dot: '#991b1b',
         ink: '#f3ddd6',
         glow: 'rgba(150, 30, 30, 0.5)',
         spine: '#1c0505',
@@ -115,20 +125,22 @@ export const GENRE_THEMES: Record<string, GenreTheme> = {
     ביוגרפיה: {
         id: 'bio',
         label: 'ביוגרפיה',
-        grad: ['#36444f', '#222d37', '#121820'],
-        foil: '#e8edf2',
-        foil2: '#9aa7b4',
-        ink: '#eef2f6',
-        glow: 'rgba(110, 130, 150, 0.4)',
-        spine: '#161d24',
+        grad: ['#4a3522', '#302214', '#1a120a'],
+        foil: '#ecdcc4',
+        foil2: '#b88f5e',
+        dot: '#6b4423',
+        ink: '#f3e7d6',
+        glow: 'rgba(150, 110, 60, 0.42)',
+        spine: '#241608',
         ornament: 'minimal',
     },
     פרוזה: {
         id: 'prose',
         label: 'פרוזה',
-        grad: ['#24604f', '#15402f', '#0a201a'],
+        grad: ['#1d5a44', '#103b2b', '#08231a'],
         foil: '#f3e2b8',
         foil2: '#c79a3a',
+        dot: '#0f5132',
         ink: '#f0ece0',
         glow: 'rgba(40, 130, 100, 0.4)',
         spine: '#0c241c',

@@ -1,4 +1,5 @@
 import type { Book } from '../types/book';
+import { effectiveGenre, GENRE_THEMES } from './genreThemes';
 
 export interface CountItem {
     name: string;
@@ -56,7 +57,7 @@ export function computeStats(books: Book[]): LibraryStats {
             8,
         ),
         topGenres: topCounts(
-            books.flatMap((b) => b.genres),
+            books.map((b) => GENRE_THEMES[effectiveGenre(b)]?.label ?? effectiveGenre(b)),
             10,
         ),
         byYear: topCounts(

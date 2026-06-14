@@ -3,11 +3,14 @@ import type { Book, BookDraft, ReadingStatus, SortField } from '../types/book';
 import { loadBooks, saveBooks } from '../lib/storage';
 import { effectiveGenre, genresWithCounts } from '../lib/genreThemes';
 import type { GenreCount } from '../lib/genreThemes';
+import { parseShelf } from '../lib/shelf';
 
 export interface Filters {
     search: string;
     status: ReadingStatus | 'all';
     genre: string;
+    /** סינון לפי קומת מדף פיזית (1–5), null = כל המדפים */
+    floor: number | null;
     author: string;
     publisher: string;
     yearMin: number | null;
@@ -24,6 +27,7 @@ export const DEFAULT_FILTERS: Filters = {
     search: '',
     status: 'all',
     genre: '',
+    floor: null,
     author: '',
     publisher: '',
     yearMin: null,
@@ -42,6 +46,7 @@ export function activeFilterCount(f: Filters): number {
     if (f.search.trim()) n++;
     if (f.status !== 'all') n++;
     if (f.genre) n++;
+    if (f.floor !== null) n++;
     if (f.author) n++;
     if (f.publisher) n++;
     if (f.yearMin !== null || f.yearMax !== null) n++;
@@ -53,6 +58,7 @@ export function activeFilterCount(f: Filters): number {
 
 export interface Facets {
     genres: GenreCount[];
+    floors: Array<{ floor: number; count: number }>;
     authors: Array<{ name: string; count: number }>;
     publishers: Array<{ name: string; count: number }>;
     years: number[];
@@ -80,8 +86,17 @@ function countBy(values: string[]): Array<{ name: string; count: number }> {
 export function computeFacets(books: Book[]): Facets {
     const years = [...new Set(books.map((b) => b.year).filter((y): y is number => !!y))].sort((a, b) => b - a);
     const pages = books.map((b) => b.pageCount).filter((p): p is number => !!p);
+    const floorCounts = new Map<number, number>();
+    for (const b of books) {
+        const { floor } = parseShelf(b.shelf);
+        if (floor !== null) floorCounts.set(floor, (floorCounts.get(floor) ?? 0) + 1);
+    }
+    const floors = [...floorCounts.entries()]
+        .map(([floor, count]) => ({ floor, count }))
+        .sort((a, b) => a.floor - b.floor);
     return {
         genres: genresWithCounts(books),
+        floors,
         authors: countBy(books.map((b) => b.author)),
         publishers: countBy(books.map((b) => b.publisher)),
         years,
@@ -142,6 +157,7 @@ export function filterAndSort(books: Book[], f: Filters): Book[] {
     let list = books.filter((b) => {
         if (f.status !== 'all' && b.status !== f.status) return false;
         if (f.genre && effectiveGenre(b) !== f.genre) return false;
+        if (f.floor !== null && parseShelf(b.shelf).floor !== f.floor) return false;
         if (f.author && b.author !== f.author) return false;
         if (f.publisher && b.publisher !== f.publisher) return false;
         if (f.favoritesOnly && !b.favorite) return false;

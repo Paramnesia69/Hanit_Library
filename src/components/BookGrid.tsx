@@ -46,7 +46,7 @@ function GenreBand({ band, onOpen, onToggleFavorite }: { band: Band } & Omit<Pro
         <section className="px-0.5 py-6">
             {/* בלי שום רקע מאחורי הספרים — הכריכות יושבות על הדף הנקי */}
             <header className="mb-5 flex items-center gap-2.5">
-                <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: theme.foil2 }} aria-hidden />
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: theme.dot }} aria-hidden />
                 <h2 className="font-display text-xl font-extrabold text-ink">{label}</h2>
                 <span className="rounded-full bg-ink/[0.06] px-2.5 py-0.5 text-[12px] font-semibold text-ink-soft">
                     {books.length}

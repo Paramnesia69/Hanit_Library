@@ -5,86 +5,84 @@ interface Props {
     className?: string;
 }
 
-/** צבעי שדרות לפי הז'אנרים האהובים (מתח, ארוטיקה, רומנטיקה, היסטורי, פרוזה, פנטזיה) */
-const SPINES: Array<{ c1: string; c2: string }> = [
-    { c1: '#e06d96', c2: '#a8315f' }, // רומנטיקה
-    { c1: '#6e1438', c2: '#3a0a1d' }, // ארוטיקה
-    { c1: '#1b3a5c', c2: '#0e2138' }, // מתח
-    { c1: '#7a5a2e', c2: '#3c2712' }, // היסטורי
-    { c1: '#24604f', c2: '#0e2c1b' }, // פרוזה
-    { c1: '#46327e', c2: '#241043' }, // פנטזיה
-];
-
 /**
- * אמבלם הספרייה — מדליון עם מניפת שדרות ספרים בצבעי הז'אנרים האהובים,
- * כותרת זהב ונצנוץ. משקף את היקף האוסף והטעם של חנית.
+ * אמבלם הספרייה של חנית — ספר פתוח מרודד זהב על מדליון יין עמוק,
+ * עם סימנייה, ניצוץ עדין וזוהר. יוקרתי, אישי וקשור ישירות לספרים.
  */
 export function Logo({ size = 60, count, className = '' }: Props) {
-    const fan = SPINES.length;
-    const spread = 54; // מעלות סך הכל
-    const step = spread / (fan - 1);
-    const start = -spread / 2;
-
     return (
         <div className={`relative ${className}`} style={{ width: size, height: size }}>
             <svg viewBox="0 0 100 100" width={size} height={size} aria-label="הספרייה של חנית">
                 <defs>
                     <linearGradient id="logo-bg" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0" stopColor="#241528" />
-                        <stop offset="0.5" stopColor="#160d1a" />
-                        <stop offset="1" stopColor="#0c0710" />
+                        <stop offset="0" stopColor="#3a1228" />
+                        <stop offset="0.5" stopColor="#230d1a" />
+                        <stop offset="1" stopColor="#120610" />
                     </linearGradient>
-                    <linearGradient id="logo-foil" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0" stopColor="#f7e6bd" />
-                        <stop offset="0.5" stopColor="#c79a3a" />
+                    <linearGradient id="logo-foil" x1="0" y1="0" x2="0.3" y2="1">
+                        <stop offset="0" stopColor="#fff4d2" />
+                        <stop offset="0.4" stopColor="#e9c45f" />
+                        <stop offset="0.72" stopColor="#c79a3a" />
                         <stop offset="1" stopColor="#a8761f" />
                     </linearGradient>
-                    <radialGradient id="logo-glow" cx="0.5" cy="0.32" r="0.7">
-                        <stop offset="0" stopColor="rgba(255,255,255,0.18)" />
-                        <stop offset="1" stopColor="rgba(255,255,255,0)" />
+                    <linearGradient id="logo-foil-soft" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stopColor="#f7e6bd" />
+                        <stop offset="1" stopColor="#c79a3a" />
+                    </linearGradient>
+                    <linearGradient id="logo-ribbon" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stopColor="#e25c92" />
+                        <stop offset="1" stopColor="#a81f57" />
+                    </linearGradient>
+                    <radialGradient id="logo-glow" cx="0.5" cy="0.3" r="0.75">
+                        <stop offset="0" stopColor="rgba(255,236,200,0.28)" />
+                        <stop offset="1" stopColor="rgba(255,236,200,0)" />
                     </radialGradient>
                 </defs>
 
-                {/* רקע מדליון */}
-                <rect x="3" y="3" width="94" height="94" rx="26" fill="url(#logo-bg)" />
+                {/* מדליון */}
+                <rect x="3" y="3" width="94" height="94" rx="27" fill="url(#logo-bg)" />
+                <rect x="3" y="3" width="94" height="94" rx="27" fill="url(#logo-glow)" />
                 <rect
-                    x="3"
-                    y="3"
-                    width="94"
-                    height="94"
-                    rx="26"
-                    fill="none"
-                    stroke="url(#logo-foil)"
-                    strokeWidth="2"
-                    opacity="0.85"
+                    x="4.5" y="4.5" width="91" height="91" rx="24.5"
+                    fill="none" stroke="url(#logo-foil)" strokeWidth="1.6" opacity="0.85"
                 />
-                <rect x="3" y="3" width="94" height="94" rx="26" fill="url(#logo-glow)" />
 
-                {/* מניפת שדרות ספרים */}
-                <g transform="translate(50 70)">
-                    {SPINES.map((s, i) => {
-                        const angle = start + step * i;
-                        const id = `sp-${i}`;
-                        return (
-                            <g key={i} transform={`rotate(${angle})`}>
-                                <defs>
-                                    <linearGradient id={id} x1="0" y1="0" x2="1" y2="0">
-                                        <stop offset="0" stopColor={s.c1} />
-                                        <stop offset="1" stopColor={s.c2} />
-                                    </linearGradient>
-                                </defs>
-                                <rect x="-5.5" y="-50" width="11" height="50" rx="2.5" fill={`url(#${id})`} />
-                                {/* כותרת זהב על השדרה */}
-                                <rect x="-5.5" y="-46" width="11" height="3" rx="1" fill="url(#logo-foil)" opacity="0.9" />
-                                <rect x="-3.4" y="-32" width="1.4" height="14" rx="0.7" fill="url(#logo-foil)" opacity="0.55" />
-                            </g>
-                        );
-                    })}
+                {/* סימנייה יורדת מאחורי הספר */}
+                <path d="M50 30 L50 84 L46 79 L42 84 L42 30 Z" fill="url(#logo-ribbon)" opacity="0.95" />
+
+                {/* ספר פתוח — דף ימין */}
+                <path
+                    d="M50 41 C 64 33, 79 32, 90 37 L 88 71 C 77 67, 62 69, 50 76 Z"
+                    fill="url(#logo-foil)"
+                    stroke="#7a5512" strokeWidth="0.6" strokeOpacity="0.45"
+                />
+                {/* ספר פתוח — דף שמאל */}
+                <path
+                    d="M50 41 C 36 33, 21 32, 10 37 L 12 71 C 23 67, 38 69, 50 76 Z"
+                    fill="url(#logo-foil-soft)"
+                    stroke="#7a5512" strokeWidth="0.6" strokeOpacity="0.45"
+                />
+
+                {/* שורות טקסט עדינות על הדפים */}
+                <g stroke="#7a5512" strokeOpacity="0.4" strokeWidth="1.1" strokeLinecap="round">
+                    <path d="M55 47 C 66 42, 76 41, 84 43" />
+                    <path d="M55 53 C 66 48, 76 47, 84 49" />
+                    <path d="M55 59 C 66 55, 76 54, 84 56" />
+                    <path d="M45 47 C 34 42, 24 41, 16 43" />
+                    <path d="M45 53 C 34 48, 24 47, 16 49" />
+                    <path d="M45 59 C 34 55, 24 54, 16 56" />
                 </g>
 
-                {/* נצנוץ עליון */}
-                <g transform="translate(50 22)" fill="url(#logo-foil)">
-                    <path d="M0 -8 L1.7 -1.7 L8 0 L1.7 1.7 L0 8 L-1.7 1.7 L-8 0 L-1.7 -1.7 Z" />
+                {/* כריכה תחתונה + שדרה מרכזית */}
+                <path d="M50 76 L50 41" stroke="#8a5f17" strokeWidth="1.4" strokeOpacity="0.6" />
+                <path
+                    d="M50 76 C 38 69, 23 67, 12 71 L 12 74 C 23 70, 38 72, 50 79 C 62 72, 77 70, 88 74 L 88 71 C 77 67, 62 69, 50 76 Z"
+                    fill="#a8761f" opacity="0.85"
+                />
+
+                {/* ניצוץ עליון */}
+                <g transform="translate(50 20)" fill="url(#logo-foil)">
+                    <path d="M0 -7 L1.5 -1.5 L7 0 L1.5 1.5 L0 7 L-1.5 1.5 L-7 0 L-1.5 -1.5 Z" />
                 </g>
             </svg>
 

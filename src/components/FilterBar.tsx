@@ -115,10 +115,19 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                             key={g.key}
                             type="button"
                             onClick={() => onChange({ genre: selected ? '' : g.key })}
-                            className={`flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-[13px] font-medium transition ${selected ? 'border-transparent bg-ink text-paper' : 'border-line bg-card text-ink-soft hover:text-ink'
+                            className={`flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-[13px] font-medium transition ${selected
+                                ? 'border-transparent text-white shadow-sm'
+                                : 'border-line bg-card text-ink-soft hover:text-ink'
                                 }`}
+                            style={selected
+                                ? { background: g.theme.dot, boxShadow: `0 6px 16px -6px ${g.theme.dot}` }
+                                : undefined}
                         >
-                            <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: g.theme.foil2 }} aria-hidden />
+                            <span
+                                className="h-2 w-2 shrink-0 rounded-full ring-1 ring-black/5"
+                                style={{ background: selected ? '#fff' : g.theme.dot }}
+                                aria-hidden
+                            />
                             {g.label}
                             <span className="opacity-60">{g.count}</span>
                         </button>

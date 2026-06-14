@@ -49,7 +49,7 @@ export function BookCard({ book, onOpen, onToggleFavorite }: Props) {
                 <div className="flex items-center gap-1.5">
                     <span
                         className="inline-block h-2 w-2 shrink-0 rounded-full"
-                        style={{ background: theme.foil2 }}
+                        style={{ background: theme.dot }}
                         aria-hidden
                     />
                     <span className="truncate text-[11px] font-medium tracking-wide text-ink-soft/80">

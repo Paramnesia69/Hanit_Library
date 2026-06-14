@@ -3,6 +3,12 @@ import { BookOpen, Heart, Star, Layers, FileText, Sparkles } from 'lucide-react'
 import type { Book } from '../types/book';
 import { computeStats } from '../lib/stats';
 import type { CountItem } from '../lib/stats';
+import { GENRE_THEMES } from '../lib/genreThemes';
+
+/** מיפוי תווית ז'אנר → צבע הסימון של אותו ז'אנר */
+const GENRE_DOT_BY_LABEL = new Map(
+    Object.values(GENRE_THEMES).map((t) => [t.label, t.dot]),
+);
 
 function StatCard({
     icon,
@@ -88,8 +94,13 @@ export function StatsPanel({ books }: { books: Book[] }) {
                         {s.topGenres.map((g) => (
                             <span
                                 key={g.name}
-                                className="rounded-full bg-accent-50 px-3 py-1 text-[13px] text-accent-700"
+                                className="flex items-center gap-1.5 rounded-full border border-line bg-paper-2 px-3 py-1 text-[13px] font-medium text-ink"
                             >
+                                <span
+                                    className="h-2 w-2 shrink-0 rounded-full"
+                                    style={{ background: GENRE_DOT_BY_LABEL.get(g.name) ?? 'var(--color-accent-500)' }}
+                                    aria-hidden
+                                />
                                 {g.name} · {g.count}
                             </span>
                         ))}

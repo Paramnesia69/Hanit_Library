@@ -1,6 +1,6 @@
 # Active Work — hanit-library
 
-> Handoff notes for resuming after `/clear`. Last updated: 2026-06-14.
+> Handoff notes for resuming after `/clear`. Last updated: 2026-06-14 (hero + themes + stats session).
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
 > Data: 793 books in `src/data/books.json`. Persistence = localStorage only (no backend wired up yet).
 
@@ -33,11 +33,52 @@ All 166 previously-missing covers were recovered. Coverage is now **793/793**.
 - Centering uses a relative `scrollLeft += delta` (getBoundingClientRect) so it works in RTL without scrolling the panel vertically.
 
 ## Earlier design polish (done in a prior session)
-Removed garish genre backgrounds; clean page bg; 5 flat themes (Paper/Copilot Dark/Noir/Pink Desert/Amethyst) in `src/lib/theme.ts` + `index.css`; kept 3D cover tilt; rounded cover corners; contrast fixes in `FilterBar.tsx` / `BookCard.tsx`.
+Removed garish genre backgrounds; clean page bg; flat themes in `src/lib/theme.ts` + `index.css`; kept 3D cover tilt; rounded cover corners; contrast fixes in `FilterBar.tsx` / `BookCard.tsx`.
+
+## DONE — this session (premium hero, fonts, genre colors, themes, stats fix)
+Changes are in the working tree, **not yet committed**. tsc + `vite build` pass.
+- **Premium hero** (`Header.tsx` + `.hero-shell` in `index.css`): centered masthead — emblem logo + handwriting title + count, all centered. Below: actions row (add/stats/theme/⋮) then filter row (`מהדורה` physical/kindle toggle + `מדף` floor dropdown). Mobile-first (Samsung), everything wraps + centers.
+  - **CRITICAL bug fixed twice**: `.hero-shell` must stay `overflow: visible` AND its content children must NOT have `z-index` — either one clips/covers the ThemePicker + ⋮ dropdowns (the sticky filter bar is `z-30`; menus are `z-40`). Decoration lives in a separate clipped `.hero-shell__decor` layer.
+- **Handwriting font**: self-hosted **Dana Yad** at `public/fonts/DanaYad.woff` → `--font-script` + `.font-script` + `.signature-foil`. (Gveret Levin was rejected as too scribbly; user's reference was "דנה יד", which isn't on Google Fonts.) Title "הספרייה של חנית" uses it.
+  - `.signature-foil`: deep **antique-gold** gradient on light themes (readable on white), **bright gold foil** override only on dark themes (copilot/noir/amethyst). Pearl theme overrides it to **platinum/silver**. NOTE: dark-theme overrides MUST use `background-image:` not `background:` shorthand, or `background-clip:text` resets and the title renders as a solid gold block.
+- **New logo** (`Logo.tsx`): premium gold open-book emblem on a wine medallion (replaced the old book-spine fan).
+- **Genre chip colors** (`genreThemes.ts`): added a `dot` field per genre to match content — romance=ורוד כהה `#c2185b`, erotica=בורדו `#7a1228`, thriller=שחור, prose=ירוק בקבוק `#0f5132`, bio=חום `#6b4423` (whole bio theme retinted brown), historical=זהב, fantasy=סגול. Used in `FilterBar`/`BookGrid`/`BookCard`/`StatsPanel`. `theme.foil2` is ONLY for cover SVGs now.
+- **Shelf/floor filter**: `filters.floor` added to `useBooks.ts` (Filters + DEFAULT_FILTERS + activeFilterCount + computeFacets `floors` + filterAndSort, via `parseShelf`). Surfaced as the `מדף` dropdown in the hero.
+- **Two new themes** added (`theme.ts` + `index.css`): **Pearl** (פנינה/כסף — cool white + platinum) and **Cream** (בז'/קרם עם חום — warm cream + brown). Both light. Now 7 themes total.
+- **Cover corner fix**: the "sharp corner" artifact (bottom-right on light, top-left on dark) was the `.book3d__sheen` having `border-radius: inherit` (→0, a square) whose gradient corners poked past the rounded cover. Fixed = `.book3d__sheen { border-radius: 7px }`. Cover geometry/animation otherwise untouched (sacred).
+- **Stats genre bug**: `lib/stats.ts` `topGenres` was counting the raw `book.genres` field (empty for ~all books → showed only "ביוגרפיה·1"). Now uses `effectiveGenre(b)` + genre label, and chips show genre dot colors in `StatsPanel.tsx`.
+
+## DATA REALITY (verified this session — informs which stats are worth building)
+793 books. Populated: author/publisher/status 100%, shelf 93%, **communityRating 79% (628 books, avg 3.99)**, year 79% (624, range 1995–2025), pageCount 75% (594, avg 386, range 98–941), series 46% (364 books / 165 distinct series), translator 38% (301). **EMPTY (0%): rating, dateRead, review, library; favorite all false; status all 'read'.** So personal/reading-activity stats render blank — defer them.
+
+## PENDING DECISION — stats page + page design (ASK USER STEP BY STEP, one at a time, show how each will look)
+User wants to go through these interactively and pick. Suggestions presented (all grounded in populated data above):
+**New statistics:**
+1. Community rating distribution (1–5 histogram) — richest unused data. `recharts` already installed.
+2. Top-rated "gems" (highest communityRating, gated by communityRatingCount).
+3. Most popular (by communityRatingCount / communityReviewCount).
+4. Publication-year timeline (by year or decade).
+5. Page-count distribution + longest/shortest callouts.
+6. Series vs standalone split + top series by book count (165 series).
+7. **Shelf map** — floors 1–5 × depth (front/middle/back) grid; unique physical-library viz.
+8. Top translators (301 books).
+9. Defer (0% data, show "unlocks when you rate/date books"): my-rating dist, books-read-per-month, streak, favorites.
+**Whole-page design enhancements (KEEP COVERS EXACTLY — `Cover3D` byte-for-byte):**
+1. Real recharts donut/histograms in stats (replace hand-rolled bar lists).
+2. Genre-colored accent border/underline on stat panels + genre bands.
+3. Consistent premium section headers (display serif + icon + count pill + hairline).
+4. Stat-card hover lift + staggered fade-in.
+5. Compact sticky header on scroll (shrink hero) for mobile.
+6. Active-filter chips row with clear-all.
+7. Mobile bottom action bar (view/filter/add, thumb-reachable).
+8. Back-to-top floating button.
+9. Spotlight / random-pick featured strip (reuses existing cover comp).
+10. Vertical rhythm + hairline dividers between sections.
 
 ## State
-- Dev server: `npm run dev` (was on http://localhost:5174/). `npx tsc -b --noEmit` passes; `npm run build` works.
-- Latest commit: series strip (`01554d0`).
+- Dev server: `npm run dev` (currently on http://localhost:5175/). `npx tsc -b` passes; `npm run build` works.
+- Latest commit: series strip (`01554d0`). **This session's work is UNCOMMITTED in the working tree.**
+- Pre-existing lint error in `BookForm.tsx:62` (setState in effect) — NOT from this session.
 
 ## Backlog (discussed, NOT started) — goal: usable on Hanit's phone
 - **BookDetail contrast pass** — header/description box/rating badge still use old genre `grad`/`glow` colors; not yet verified against the 5 new themes.
