@@ -44,13 +44,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-d83cb606e4.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "תחרה-שירלי-קונרן",
@@ -65,8 +66,8 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "high",
+    "coverUrl": "/covers/m-5d05bfbb0a.jpg",
+    "coverConfidence": "manual",
     "isbn": "965",
     "pageCount": null,
     "year": null,
@@ -82,7 +83,8 @@
     "communityRatingCount": 5,
     "communityReviewCount": 0,
     "simaniaId": 122838,
-    "sourceUrl": "https://simania.co.il/bookdetails.php?item_id=122838"
+    "sourceUrl": "https://simania.co.il/bookdetails.php?item_id=122838",
+    "coverSource": "steimatzky"
   },
   {
     "id": "דמדומים-סטפני-מאייר",
@@ -481,13 +483,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-1f3ef6c7e0.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "השיר-העשירי-נעמי-רגן",
@@ -598,13 +601,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-205a113633.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "בידך-אפקיד-רוחי-נעמי-רגן",
@@ -971,13 +975,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
-    "isbn": null,
+    "coverUrl": "/covers/m-c3693a74d5.jpg",
+    "coverConfidence": "manual",
+    "isbn": "20-52541",
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "להציל-את-פיית-לינווד-ברקלי",
@@ -993,13 +998,13 @@
     "favorite": false,
     "review": "",
     "coverUrl": "/covers/m-55453c6c69.jpg",
-    "coverConfidence": "high",
+    "coverConfidence": "manual",
     "isbn": "978-0446608893",
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
     "updatedAt": "2026-06-13T21:02:16.424Z",
-    "coverSource": "openlibrary"
+    "coverSource": "web"
   },
   {
     "id": "טוב-מראה-עיניים-לינווד-ברקלי",
@@ -1110,13 +1115,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-b01dddc851.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "תנו-לשד-לישון-ג-ון-ורדון",
@@ -1579,13 +1585,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-936e1b8992.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "חשופה-לעינייך-סילביה-דיי",
@@ -1600,13 +1607,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-3e5e6723af.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "משתקפת-בך-סילביה-דיי",
@@ -1653,13 +1661,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-ae10e736ea.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "שבויה-בידייך-סילביה-דיי",
@@ -1674,13 +1683,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-8eca2e1897.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "האחת-שאיתך-סילביה-דיי",
@@ -1727,13 +1737,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-40231c76a0.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "בלי-להשאיר-עקבות-ג-יימס-פטרסון",
@@ -1908,13 +1919,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-b00d938eab.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "אל-הפינה-האפלה-ביותר-אליזבת-היינס",
@@ -2239,13 +2251,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-96344ae9ef.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הגן-הנשכח-קייט-מורטון",
@@ -2420,13 +2433,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-32e0ef7490.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "אשתו-של-הנוסע-בזמן-אודרי-ניפנגר",
@@ -3145,13 +3159,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-a25372545f.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "לפני-שהתחלנו-דנה-לוי-אלגרוד",
@@ -3742,13 +3757,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-04fb211060.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "אביר-שבור-ליהי-שן",
@@ -3785,13 +3801,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-2ecb13311e.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "במקרה-הלא-סביר-ליהי-שן",
@@ -3892,13 +3909,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-5a13eee8b4.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "התשוקה-האפלה-שלי-ליהי-שן",
@@ -3913,13 +3931,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-7e91a27513.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "להתאהב-ולהישאר-בחיים-שרון-צוהר",
@@ -4286,13 +4305,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-6040386951.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "הזמנה-אחרונה-אמה-ארט",
@@ -4435,13 +4455,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-d00927b291.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "אהבה-פצועה-ה-מ-וורד",
@@ -4552,13 +4573,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-0198df4587.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "נסיך-אכזר-אשלי-ג-ייד",
@@ -4733,13 +4755,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-9d71781540.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "רסיסים-של-אושר-איילת-סווטיצקי",
@@ -4754,13 +4777,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-452c81f3da.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "לעיני-בלבד-איילת-סווטיצקי",
@@ -4775,13 +4799,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-ff2e0f65fe.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "לעיניי-בלבד-2-איילת-סווטיצקי",
@@ -4796,13 +4821,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-232c4e95b5.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "להציל-את-מרגו-איילת-סווטיצקי",
@@ -4817,13 +4843,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-03f19965af.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "שקרים-ותקוות-איילת-סווטיצקי",
@@ -4838,13 +4865,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-a277d79477.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "לב-בקופסא-איילת-סווטיצקי",
@@ -4859,13 +4887,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-af3b1fb669.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "ביום-שתעז-לאהוב-איילת-סווטיצקי",
@@ -4880,13 +4909,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-63814890db.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "גנבת-החלומות-איילת-סווטיצקי",
@@ -4901,13 +4931,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-fb084cb188.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "אין-כמו-הבית-טילי-קול",
@@ -5178,13 +5209,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-8333312bcb.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "לכבוש-את-13-קלואי-וולש",
@@ -5551,13 +5583,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-d7998fe233.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "מזכרת-ממנו-קולין-הובר",
@@ -6010,13 +6043,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-88d53d1764.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "הרס-מושלם-קתרין-קאוולז",
@@ -6415,13 +6449,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-cf7c07c39c.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "לרמות-את-הלב-וילה-נאש",
@@ -6436,13 +6471,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-8cc8fd45ef.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "להגן-על-הלב-וילה-נאש",
@@ -6457,13 +6493,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-3ba7d5b9a0.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "להילחם-על-הלב-דבני-פרי",
@@ -6510,13 +6547,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-74b6264ee1.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "ממלכה-קפואה-לוסי-סמוק",
@@ -6883,13 +6921,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-50a8efabe5.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הסיפור-של-מגנוליה-קייט-קנטרבי",
@@ -6904,13 +6943,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-af427bbde3.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "פוטנציאל-לאהבה-קיילי-לורינג",
@@ -6957,13 +6997,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-c4f49a0002.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "חופשה-צרפתית-שרה-רדי",
@@ -7010,13 +7051,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-f280c40d61.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "הלביאה-הלוחמת-2-שרון-חיות-גינת",
@@ -7031,13 +7073,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-d798261920.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "האריה-האגדי-1-שרון-חיות-גינת",
@@ -7052,13 +7095,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-2d221c47d6.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "האריה-האגדי-2-שרון-חיות-גינת",
@@ -7073,13 +7117,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-8e82fdfba5.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "סטילר-שרון-חיות-גינת",
@@ -8728,13 +8773,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-fc1f40fc87.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "אלכס-ולוקאס-מוניקה-רובינסון",
@@ -9443,13 +9489,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-bf65335e50.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "חבר-לדוגמא-ג-יין-הארוויבריק-וסטיוארט-רירדון",
@@ -9464,13 +9511,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-9182449d67.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "משחק-פראי-מקס-מונרו",
@@ -9549,13 +9597,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-938dee31b0.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הקצב-סמנטה-כריסטי",
@@ -9570,13 +9619,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-815afe3723.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "המילים-סמנטה-כריסטי",
@@ -9591,13 +9641,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-d546c007c4.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הלחן-סמנטה-כריסטי",
@@ -9612,13 +9663,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-b685d65f09.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "גן-השמש-יהודית-ציפורי",
@@ -9633,13 +9685,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-ac40b778cc.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "נפשות-תאומות-יהודית-ציפורי",
@@ -9654,13 +9707,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-c3b7b2ac76.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הכחול-שבעינייך-יהודית-ציפורי",
@@ -9675,13 +9729,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-8d03d696c3.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "קווים-אדומים-יהודית-ציפורי",
@@ -9696,13 +9751,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-8ec63e4099.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "אבודה-בזמן-יהודית-ציפורי",
@@ -9717,13 +9773,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-99aa31c84c.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "זמן-שנשאר-יהודית-ציפורי",
@@ -9738,13 +9795,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-d3e4d10e01.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "זה-לא-אני-בייב-טילי-קול",
@@ -9855,13 +9913,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-da0987b8d2.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "המפתח-לליבו-מריאנה-זפאטה",
@@ -10282,13 +10341,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-7556f6a498.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "מתכון-לאסון-ג-יי-טי-גייסינגר",
@@ -10591,13 +10651,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-bba9f64049.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "להעיר-את-אוליביה-אליזבת-או-רואק",
@@ -10612,13 +10673,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-0c3107f695.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "חוזה-עם-השטן-אליזבת-או-רואק",
@@ -10633,13 +10695,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-54c9cb785a.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "השטן-והים-הכחול-העמוק-אליזבת-או-רואק",
@@ -10654,13 +10717,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-a62efd132f.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "השטן-שאת-מכירה-אליזבת-או-רואק",
@@ -10675,13 +10739,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-c26fed82ea.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "נפילתו-של-השטן-אליזבת-או-רואק",
@@ -10696,13 +10761,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-e0c10dd2be.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "ממפיס-ג-ינג-ר-סקוט",
@@ -10845,13 +10911,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-110202cf0e.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "קוורטרבק-סניק-קנדי-סטיינר",
@@ -10930,13 +10997,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-9e6140a589.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "שחק-בי-שוב-בקה-סטיל",
@@ -11431,13 +11499,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-d69abaa556.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "שריפה-יפייפיה-ג-יימי-מקגוויר",
@@ -11473,13 +11542,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-837c0f25bc.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "אסון-יפייפה-ג-יימי-מקגוויר",
@@ -11494,13 +11564,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-fbca8c30fe.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "הקרבה-יפייפיה-ג-יימי-מקגוויר",
@@ -11515,13 +11586,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-7d7fbd9242.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "שיכרון-יפייפה-ג-יימי-מקגוויר",
@@ -11536,13 +11608,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-7fa855a0a3.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "אסון-מהלך-ג-יימי-מקגוויר",
@@ -11653,13 +11726,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-ee2f226006.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "אהבה-בדרך-לונדון-סמנתה-יאנג",
@@ -11898,13 +11972,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-4dafacd4ad.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "להילחם-או-לברוח-סמנתה-יאנג",
@@ -12004,13 +12079,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-b6dfbb74b8.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "מטרה-על-גבנו-ג-יי-אם-דרהאוור",
@@ -12025,13 +12101,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-ba4da6fdbb.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "עינוי-לנשמתה-ג-יי-אם-דרהאוור",
@@ -12688,13 +12765,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-8c082b0dfc.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "אול-אין-אמה-סקוט",
@@ -13735,13 +13813,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-2b1bdfc73a.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "מקום-שכולו-אשמה-קלואי-וולש",
@@ -14258,13 +14337,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-ff7a780744.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "לא-הולם-וי-קילנד",
@@ -14311,13 +14391,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-66bf53ece4.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "יהיר-בחליפה-וי-ויקלנד-פנלופה-וורד",
@@ -14332,13 +14413,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-d492a7feea.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "אח-חורג-יקר-פנלופה-וורד",
@@ -14353,13 +14435,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-6223c98565.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "מכתבים-מלוכלכים-וי-ויקלנד-פנלופה-וורד",
@@ -14374,13 +14457,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-909ca8bd7a.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "ממזר-שחצן-וי-ויקלנד-פנלופה-וורד",
@@ -14395,13 +14479,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-e60b2c0144.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הצעת-קיץ-וי-ויקלנד-פנלופה-וורד",
@@ -14416,13 +14501,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-4d9ffc0360.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "חוקי-הדייטינג-וי-ויקלנד-פנלופה-וורד",
@@ -14437,13 +14523,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-fad4817ee7.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "חוקיי-הדייטינג-2-וי-ויקלנד-פנלופה-וורד",
@@ -14458,13 +14545,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-ffed7094eb.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "האריסטוקרט-פנלופה-וורד",
@@ -14479,13 +14567,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-3e121d68af.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "סקיילר-שלי-פנלופה-וורד",
@@ -14500,13 +14589,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-ba093e0652.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "יורש-מורד-וי-ויקלנד-פנלופה-וורד",
@@ -14521,13 +14611,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-5c0c85b1f1.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "לב-מורד-וי-ויקלנד-פנלופה-וורד",
@@ -14542,13 +14633,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-7b76fe23dc.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הלב-הלא-נכון-ג-ניפר-הארטמן",
@@ -14755,13 +14847,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-0cf8270fd2.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "מעל-ומעבר-ג-ול-אי-אן",
@@ -15064,13 +15157,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
-    "isbn": null,
+    "coverUrl": "/covers/m-e14263d310.jpg",
+    "coverConfidence": "manual",
+    "isbn": "978-965-7648-55-1",
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "חלומות-מתוקים-קריסטין-אשלי",
@@ -15085,13 +15179,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-f9b53c37a2.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "הזמן-שחלף-בינתיים-קריסטין-אשלי",
@@ -15106,13 +15201,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-b6e0a19006.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "נוסקת-קריסטין-אשלי",
@@ -15127,13 +15223,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-2d032d0cc9.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הצוואה-קריסטין-אשלי",
@@ -15148,13 +15245,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-df73749d54.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "החיבור-קריסטין-אשלי",
@@ -15169,13 +15267,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-49ab8a9fb2.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "היפה-והגבר-עם-הזקן-פני-ריד",
@@ -15873,13 +15972,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-7b69586b1f.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "חיים-ללא-גבולות-נעמה-סכר",
@@ -15926,13 +16026,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-dcbaf02916.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "יהלום-מיכל-אדלר",
@@ -15979,13 +16080,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-e95ba9d751.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "ליפול-לתוכך-ג-סינדה-ויילדר",
@@ -16406,13 +16508,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-886224668f.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "מוטרפים-מלידה-טרישה-וולף",
@@ -16715,13 +16818,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-e6fdb63262.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "אמבר-אל-קייסי",
@@ -16800,13 +16904,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-586e16bc51.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "אמת-אליתיה-רומינג",
@@ -16822,13 +16927,13 @@
     "favorite": false,
     "review": "",
     "coverUrl": "/covers/m-d45e3f661c.jpg",
-    "coverConfidence": "high",
+    "coverConfidence": "manual",
     "isbn": "978",
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
     "updatedAt": "2026-06-13T21:02:16.424Z",
-    "coverSource": "openlibrary"
+    "coverSource": "simania"
   },
   {
     "id": "הרשעה-אליתיה-רומינג",
@@ -16843,13 +16948,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-185d66829f.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הימלטות-מהחשכה-אליתיה-רומינג",
@@ -16864,13 +16970,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-6c949f0ace.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הדרך-אל-האור-אליתיה-רומינג",
@@ -16885,13 +16992,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-2e0aa3bb03.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "שורשים-ליאנה-אורו-הארלי",
@@ -16992,13 +17100,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-0e6571d2c9.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "אנגלי-מלוכלך-אילזה-מאדן-מילס",
@@ -17173,13 +17282,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-67ffcc41da.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "הנסיך-של-פארק-אווניו-לואיז-ביי",
@@ -17952,13 +18062,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-b0c8a5a29a.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "לפני-שאת-הולכת-סנדרה-הבה",
@@ -18197,13 +18308,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-c0f893c7ac.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "אימפריית-השקרים-וויטני-ג-י",
@@ -18698,13 +18810,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-dba4cb11af.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הגבר-הזה-ג-ודי-אלן-מלפיס",
@@ -18861,13 +18974,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-70d0d57030.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "להבקיע-עם-ויילדר-ר-ס-גריי",
@@ -19746,13 +19860,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-c3bf35946d.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "אנטי-אח-חורג-טיז-אן",
@@ -20055,13 +20170,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-e7daea6b36.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "מנוול-יפייפה-כריסטינה-לורן",
@@ -20076,13 +20192,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-fa84dc7118.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "זר-יפייפה-כריסטינה-לורן",
@@ -20097,13 +20214,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-8c3954d459.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "אוייב-יקר-קריסטן-קאליהן",
@@ -20118,13 +20236,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-19d3b89e01.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "המנהל-קריסטן-קאליהן",
@@ -20299,13 +20418,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-0169a7c575.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "מאחורי-הרשת-סטפני-ארצ-ר",
@@ -20693,13 +20813,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-ddb785dbdb.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "נישואים-גנובים-דאיין-צ-מברליין",
@@ -20810,13 +20931,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-a9af1e596b.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "מסע-אל-החיים-גיום-מוסוו",
@@ -20831,13 +20953,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-cd826a7ebd.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "גאולה-עמוקה-טילי-קול",
@@ -20916,13 +21039,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-cd37741f00.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "שבורה-ג-יי-אל-דרייק",
@@ -21033,13 +21157,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-051ae90db0.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "משאלה-לשנינו-טילי-קול",
@@ -21182,13 +21307,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-63e28e95a5.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "steimatzky"
   },
   {
     "id": "להפיל-את-הדוכס-אייוי-דאנמור",
@@ -21203,13 +21329,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-9463967bfb.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "צ-רי-ביטס-ויקי-ג-יימס",
@@ -21608,13 +21735,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-8ab9c037ee.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "תגידי-שאני-האחד-שיבון-דיוויס",
@@ -21779,13 +21907,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-d0d05228d9.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "לפני-שהיינו-ג-ול-אי-אן",
@@ -21864,13 +21993,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-2e9630e52d.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "לבבות-פראיים-ג-יי-טי-גייסינגר",
@@ -21949,13 +22079,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-e3f802e2c9.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "הרופא-עם-הזקן-פני-ריד",
@@ -22280,13 +22411,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-c05ea51331.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "מדריך-הפסימיסטית-לאהבה-ג-ניפר-הארטמן",
@@ -22493,13 +22625,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-f72f67df47.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "נדרים-אכזריים-ג-יי-טי-גייסינגר",
@@ -23016,13 +23149,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-d17de9a457.jpg",
+    "coverConfidence": "manual",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "web"
   },
   {
     "id": "הייט-מייל-דונה-מרקטי",
