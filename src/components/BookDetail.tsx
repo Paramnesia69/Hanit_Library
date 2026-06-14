@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { X, Pencil, Trash2, Heart, BookOpen, Calendar, Building2, Hash, Layers, Star, Users, Languages, Library, ExternalLink } from 'lucide-react';
 import type { Book, ReadingStatus } from '../types/book';
@@ -9,14 +10,89 @@ import { Stars } from './Stars';
 
 interface Props {
     book: Book;
+    allBooks: Book[];
     onClose: () => void;
     onUpdate: (id: string, patch: Partial<Book>) => void;
     onEdit: (book: Book) => void;
     onDelete: (id: string) => void;
     onToggleFavorite: (id: string) => void;
+    onOpen: (book: Book) => void;
 }
 
 const STATUSES: ReadingStatus[] = ['read', 'reading', 'want'];
+
+/** מספר הספר בסדרה כמספר למיון ("6.5" → 6.5, ריק → אינסוף בסוף) */
+function seriesIndex(b: Book): number {
+    const m = String(b.seriesNumber ?? '').match(/[\d.]+/);
+    return m ? parseFloat(m[0]) : Number.POSITIVE_INFINITY;
+}
+
+/** רצועת הסדרה: כל ספרי הסדרה שברשותנו, הנוכחי מודגש וממורכז, השאר לחיצים */
+function SeriesStrip({ book, allBooks, onOpen }: { book: Book; allBooks: Book[]; onOpen: (b: Book) => void }) {
+    const series = (book.series ?? '').trim();
+    const siblings = useMemo(() => {
+        if (!series) return [];
+        return allBooks
+            .filter((b) => (b.series ?? '').trim() === series)
+            .sort((a, b) => seriesIndex(a) - seriesIndex(b) || a.title.localeCompare(b.title, 'he'));
+    }, [allBooks, series]);
+
+    const stripRef = useRef<HTMLDivElement>(null);
+    const activeRef = useRef<HTMLButtonElement>(null);
+    // מרכוז הספר הנוכחי ברצועה (התאמה יחסית — עובד גם ב-RTL, בלי לגלול את הפאנל אנכית)
+    useEffect(() => {
+        const strip = stripRef.current;
+        const item = activeRef.current;
+        if (!strip || !item) return;
+        const s = strip.getBoundingClientRect();
+        const i = item.getBoundingClientRect();
+        strip.scrollLeft += i.left + i.width / 2 - (s.left + s.width / 2);
+    }, [book.id, siblings.length]);
+
+    if (siblings.length < 2) return null;
+
+    return (
+        <div className="mt-6">
+            <h3 className="mb-2 flex items-center gap-2 font-display text-base font-bold text-ink">
+                <Library size={17} className="text-accent-500" />
+                הסדרה: {series}
+                <span className="text-[12px] font-normal text-ink-soft">({siblings.length} בספרייה)</span>
+            </h3>
+            <div ref={stripRef} className="-mx-5 flex gap-3 overflow-x-auto scroll-smooth px-5 pb-2">
+                {siblings.map((b) => {
+                    const isCurrent = b.id === book.id;
+                    const num = String(b.seriesNumber ?? '').match(/[\d.]+/)?.[0];
+                    return (
+                        <button
+                            key={b.id}
+                            ref={isCurrent ? activeRef : undefined}
+                            type="button"
+                            onClick={() => !isCurrent && onOpen(b)}
+                            disabled={isCurrent}
+                            aria-current={isCurrent}
+                            className={`group w-[68px] shrink-0 text-right ${isCurrent ? 'cursor-default' : 'opacity-75 hover:opacity-100'}`}
+                        >
+                            <div
+                                className={`relative aspect-[2/3] overflow-hidden rounded-lg ring-offset-2 ring-offset-paper transition ${isCurrent ? 'ring-2 ring-accent-500' : 'ring-1 ring-line group-hover:ring-accent-300'
+                                    }`}
+                            >
+                                <img src={resolveCover(b)} alt={b.title} loading="lazy" className="h-full w-full object-cover" />
+                                {num && (
+                                    <span className="absolute right-1 top-1 grid h-5 min-w-[20px] place-items-center rounded-full bg-ink/80 px-1 text-[11px] font-bold text-paper">
+                                        {num}
+                                    </span>
+                                )}
+                            </div>
+                            <p className={`mt-1 line-clamp-2 text-[11px] leading-tight ${isCurrent ? 'font-bold text-ink' : 'text-ink-soft'}`}>
+                                {b.title}
+                            </p>
+                        </button>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
 
 function MetaRow({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
     return (
@@ -27,7 +103,7 @@ function MetaRow({ icon, children }: { icon: React.ReactNode; children: React.Re
     );
 }
 
-export function BookDetail({ book, onClose, onUpdate, onEdit, onDelete, onToggleFavorite }: Props) {
+export function BookDetail({ book, allBooks, onClose, onUpdate, onEdit, onDelete, onToggleFavorite, onOpen }: Props) {
     const theme = getBookTheme(book);
     const cover = resolveCover(book);
     return (
@@ -149,6 +225,9 @@ export function BookDetail({ book, onClose, onUpdate, onEdit, onDelete, onToggle
                             <Star size={20} className="text-gold" fill="currentColor" />
                         </div>
                     )}
+
+                    {/* רצועת הסדרה */}
+                    <SeriesStrip book={book} allBooks={allBooks} onOpen={onOpen} />
 
                     {/* על הספר — טקסט הכריכה האחורית */}
                     {book.description && (

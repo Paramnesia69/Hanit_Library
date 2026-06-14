@@ -175,11 +175,13 @@ export default function App() {
                 {selected && (
                     <BookDetail
                         book={selected}
+                        allBooks={books}
                         onClose={() => setSelectedId(null)}
                         onUpdate={updateBook}
                         onEdit={openEdit}
                         onDelete={removeBook}
                         onToggleFavorite={toggleFavorite}
+                        onOpen={(b) => setSelectedId(b.id)}
                     />
                 )}
             </AnimatePresence>

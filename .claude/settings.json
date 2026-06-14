@@ -21,7 +21,8 @@
       "Bash(node --input-type=module)",
       "Bash(node scripts/resolve-missing-covers.mjs --limit=12 --resolve-only)",
       "Bash(node scripts/resolve-missing-covers.mjs)",
-      "Bash(node scripts/resolve-missing-covers.mjs --limit=6 --resolve-only)"
+      "Bash(node scripts/resolve-missing-covers.mjs --limit=6 --resolve-only)",
+      "Bash(git -c user.name=hanit-library -c user.email=local@hanit.library commit -q -m 'BookDetail: series strip — all owned books in the series, current centered + clickable *)"
     ]
   }
 }
