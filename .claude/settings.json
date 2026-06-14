@@ -16,7 +16,12 @@
       "Bash(node -e ' *)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git -c user.name=hanit-library -c user.email=local@hanit.library commit -q -m 'Checkpoint: clean minimalist design + 793 books \\(covers, themes, 3D\\) *)"
+      "Bash(git -c user.name=hanit-library -c user.email=local@hanit.library commit -q -m 'Checkpoint: clean minimalist design + 793 books \\(covers, themes, 3D\\) *)",
+      "Bash(git tag *)",
+      "Bash(node --input-type=module)",
+      "Bash(node scripts/resolve-missing-covers.mjs --limit=12 --resolve-only)",
+      "Bash(node scripts/resolve-missing-covers.mjs)",
+      "Bash(node scripts/resolve-missing-covers.mjs --limit=6 --resolve-only)"
     ]
   }
 }

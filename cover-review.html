@@ -1,0 +1,727 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
+<title>ביקורת עטיפות — hanit-library</title>
+<style>
+  body{font-family:Heebo,system-ui,sans-serif;background:#faf8f5;color:#1c1917;margin:0;padding:24px}
+  h1{font-size:20px} .hint{color:#78716c;margin-bottom:16px;font-size:14px;line-height:1.6}
+  .book{display:grid;grid-template-columns:200px 1fr;gap:16px;padding:16px;border-bottom:1px solid #e7e5e4;align-items:start}
+  .book.high{background:#f0fdf4} .book.low{background:#fffbeb}
+  .ot{font-weight:700;margin-top:6px} .oa{color:#78716c;font-size:13px}
+  .badge{display:inline-block;margin-top:6px;font-size:11px;padding:2px 8px;border-radius:99px;background:#e7e5e4}
+  .cands{display:flex;gap:12px;flex-wrap:wrap}
+  .cand{width:120px;cursor:pointer;border:2px solid transparent;border-radius:8px;padding:6px}
+  .cand:has(input:checked){border-color:#0ea5e9;background:#fff}
+  .cand img{width:108px;height:160px;object-fit:cover;border-radius:4px;background:#eee;display:block}
+  .cand img.broken{outline:2px dashed #ef4444}
+  .meta{font-size:11px;color:#57534e;margin-top:4px} .ct{font-weight:600;color:#1c1917} .ca{}
+  .keep{font-weight:700;display:flex;gap:6px;align-items:center;cursor:pointer}
+  .bar{position:sticky;top:0;background:#1c1917;color:#fff;padding:12px 16px;margin:-24px -24px 16px;display:flex;gap:12px;align-items:center;z-index:9}
+  button{font:inherit;background:#0ea5e9;color:#fff;border:0;border-radius:8px;padding:8px 16px;cursor:pointer;font-weight:700}
+  code{background:#000;color:#0f0;padding:2px 6px;border-radius:4px}
+</style></head><body>
+<div class="bar">
+  <button onclick="exportApprovals()">⬇ הורד cover-approvals.json</button>
+  <span>סמן/י את העטיפה הנכונה (radio), בטל/י סימון "אשר/י" למה שלא טוב, ואז הורד.</span>
+</div>
+<h1>ביקורת עטיפות שנמצאו (12)</h1>
+<div class="hint">ירוק = ביטחון גבוה (יוחל אוטומטית). צהוב = דורש אישור.<br>
+לאחר ההורדה הריצי: <code>node scripts/resolve-missing-covers.mjs --apply</code></div>
+
+      <div class="book low" data-id="צילה-של-הרוח-קרלוס-רואיס-סאפון">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" > אשר/י</label>
+          <div class="ot">צילה של הרוח</div>
+          <div class="oa">קרלוס רואיס סאפון</div>
+          <div class="badge">low</div>
+        </div>
+        <div class="cands">
+        <label class="cand low">
+          <input type="radio" name="pick-צילה-של-הרוח-קרלוס-רואיס-סאפון" value="0" checked>
+          <img loading="lazy" src="https://bunny-wp-pullzone-prdv1ypdxh.b-cdn.net/wp-content/uploads/2025/09/1000086363.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">צלה של הרוח / קרלוס רואיס סאפון - החתול החכם</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-צילה-של-הרוח-קרלוס-רואיס-סאפון" value="1" >
+          <img loading="lazy" src="https://www.findabook.co.il/assets/images/detail/294175_1_det.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">צלה של הרוח (צילה של הרוח) / קרלוס רואיס סאפון- קרלוס רואיס סאפון ...</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-צילה-של-הרוח-קרלוס-רואיס-סאפון" value="2" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011371950-17773575741229419.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=0.5 a=0
+            <div class="ct">צלה של הרוח</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-צילה-של-הרוח-קרלוס-רואיס-סאפון" value="3" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011372386-1635758335569531.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0.2 a=0
+            <div class="ct">יומנו של חנון</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-צילה-של-הרוח-קרלוס-רואיס-סאפון" value="4" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מתיר אסורים</div>
+            <div class="ca">יאיר מירון</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-צילה-של-הרוח-קרלוס-רואיס-סאפון" value="5" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מה שאפשר לדעת</div>
+            <div class="ca">איאן מקיואן</div>
+          </div>
+        </label></div>
+      </div>
+      <div class="book low" data-id="תחרה-שירלי-קונרן">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" > אשר/י</label>
+          <div class="ot">תחרה</div>
+          <div class="oa">שירלי קונרן</div>
+          <div class="badge">low</div>
+        </div>
+        <div class="cands">
+        <label class="cand low">
+          <input type="radio" name="pick-תחרה-שירלי-קונרן" value="0" checked>
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010030637-17373781151524371.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=1 a=0
+            <div class="ct">תחרה</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-תחרה-שירלי-קונרן" value="1" >
+          <img loading="lazy" src="https://static.wixstatic.com/media/967877_81faa4345949442aa08a4e75cfeeabd1~mv2.jpg/v1/fill/w_1080,h_1716,al_c,q_85,enc_avif,quality_auto/967877_81faa4345949442aa08a4e75cfeeabd1~mv2.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">שירלי קונרן - תחרה | The Last Word Books</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-תחרה-שירלי-קונרן" value="2" >
+          <img loading="lazy" src="https://static.wixstatic.com/media/967877_7239476a8a404e7c92e96d8e9db10268~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">שירלי קונרן - תחרה 2 | The Last Word Books</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-תחרה-שירלי-קונרן" value="3" >
+          <img loading="lazy" src="https://cdn.simania.co.il/bookimages/covers97/970728.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>simania</b> · low · t=0.5 a=0
+            <div class="ct">תחרה וצבע</div>
+            <div class="ca">אילת סווטיצקי</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-תחרה-שירלי-קונרן" value="4" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011250647-173737832616932.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0.333 a=0
+            <div class="ct">תחרה וצבע 1 תחרה וצבע 1</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-תחרה-שירלי-קונרן" value="5" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מתיר אסורים</div>
+            <div class="ca">יאיר מירון</div>
+          </div>
+        </label></div>
+      </div>
+      <div class="book low" data-id="סיפור-שמתחיל-מהסוף-תמי-ארד">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" > אשר/י</label>
+          <div class="ot">סיפור שמתחיל מהסוף</div>
+          <div class="oa">תמי ארד</div>
+          <div class="badge">low</div>
+        </div>
+        <div class="cands">
+        <label class="cand low">
+          <input type="radio" name="pick-סיפור-שמתחיל-מהסוף-תמי-ארד" value="0" checked>
+          <img loading="lazy" src="https://images-evrit.yit.co.il/Images/Products/ebooks2/a_story_that_begins_at_an_end_master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">סיפור שמתחיל בסוף - תמי ארד | עברית - חנות ספרים</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-סיפור-שמתחיל-מהסוף-תמי-ארד" value="1" >
+          <img loading="lazy" src="https://www.booksefer.co.il/files/catalog/media/445f2fa7a555b4ba04ca13bd2e49c2a2.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">סיפור שמתחיל בסוף תמי ארד</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-סיפור-שמתחיל-מהסוף-תמי-ארד" value="2" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010072935-173565389227355.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=0.5 a=0
+            <div class="ct">סיפור שמתחיל בסוף</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-סיפור-שמתחיל-מהסוף-תמי-ארד" value="3" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010072539-173737815915072.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=0.5 a=0
+            <div class="ct">סיפור שמתחיל בדמעות</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-סיפור-שמתחיל-מהסוף-תמי-ארד" value="4" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מתיר אסורים</div>
+            <div class="ca">יאיר מירון</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-סיפור-שמתחיל-מהסוף-תמי-ארד" value="5" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מה שאפשר לדעת</div>
+            <div class="ca">איאן מקיואן</div>
+          </div>
+        </label></div>
+      </div>
+      <div class="book low" data-id="עקידת-תמר-נעמי-רגן">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" > אשר/י</label>
+          <div class="ot">עקידת תמר</div>
+          <div class="oa">נעמי רגן</div>
+          <div class="badge">low</div>
+        </div>
+        <div class="cands">
+        <label class="cand low">
+          <input type="radio" name="pick-עקידת-תמר-נעמי-רגן" value="0" checked>
+          <img loading="lazy" src="https://www.booknet.co.il/Images/Site/Products/1002752812.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">נעמי רגן</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-עקידת-תמר-נעמי-רגן" value="1" >
+          <img loading="lazy" src="https://smartcat.co.il/wp-content/uploads/2024/11/1000113850-scaled.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">עקדת תמר / נעמי רגן - החתול החכם</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-עקידת-תמר-נעמי-רגן" value="2" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010074113-175758429123780.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0.333 a=0
+            <div class="ct">עקדת תמר</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-עקידת-תמר-נעמי-רגן" value="3" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010073846-173737817853949.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0.333 a=0
+            <div class="ct">ציר תמר</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-עקידת-תמר-נעמי-רגן" value="4" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מתיר אסורים</div>
+            <div class="ca">יאיר מירון</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-עקידת-תמר-נעמי-רגן" value="5" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מה שאפשר לדעת</div>
+            <div class="ca">איאן מקיואן</div>
+          </div>
+        </label></div>
+      </div>
+      <div class="book low" data-id="נאמנות-כחולה-לינווד-ברקלי">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" > אשר/י</label>
+          <div class="ot">נאמנות כחולה</div>
+          <div class="oa">לינווד ברקלי</div>
+          <div class="badge">low</div>
+        </div>
+        <div class="cands">
+        <label class="cand low">
+          <input type="radio" name="pick-נאמנות-כחולה-לינווד-ברקלי" value="0" checked>
+          <img loading="lazy" src="https://cdn.simania.co.il/bookimages/covers95/955961.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>simania</b> · low · t=1 a=0
+            <div class="ct">נאמנות כחולה</div>
+            <div class="ca">דיוויד באלדאצ'י</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-נאמנות-כחולה-לינווד-ברקלי" value="1" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011413658-173737865510897.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=1 a=0
+            <div class="ct">נאמנות כחולה</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-נאמנות-כחולה-לינווד-ברקלי" value="2" >
+          <img loading="lazy" src="https://www.booknet.co.il/Images/Site/Products/20-52541.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">נאמנות כחולה | צומת ספרים</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-נאמנות-כחולה-לינווד-ברקלי" value="3" >
+          <img loading="lazy" src="https://master.library.org.il/ext_image.php?q=http://www.icl-catalog.org.il/multimedia/2011/11-2135-11-2233/11-2199f.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">דף הבית - ספריית אלון מורה</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-נאמנות-כחולה-לינווד-ברקלי" value="4" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011325056-1737378499105724.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=0.5 a=0
+            <div class="ct">נאמנות</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-נאמנות-כחולה-לינווד-ברקלי" value="5" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מתיר אסורים</div>
+            <div class="ca">יאיר מירון</div>
+          </div>
+        </label></div>
+      </div>
+      <div class="book high" data-id="להציל-את-פיית-לינווד-ברקלי">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" checked> אשר/י</label>
+          <div class="ot">להציל את פיית</div>
+          <div class="oa">לינווד ברקלי</div>
+          <div class="badge">high</div>
+        </div>
+        <div class="cands">
+        <label class="cand high">
+          <input type="radio" name="pick-להציל-את-פיית-לינווד-ברקלי" value="0" checked>
+          <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/978-0446608893-L.jpg?default=false" onerror="this.classList.add('broken')">
+          <div class="meta"><b>openlibrary</b> · high · t=1 a=1
+            <div class="ct">להציל את פיית</div>
+            <div class="ca">לינווד ברקלי</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-להציל-את-פיית-לינווד-ברקלי" value="1" >
+          <img loading="lazy" src="https://cdn.simania.co.il/bookimages/covers21/217796.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>simania</b> · low · t=1 a=0
+            <div class="ct">להציל את פיית</div>
+            <div class="ca">דיוויד באלדאצ'י</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-להציל-את-פיית-לינווד-ברקלי" value="2" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011413852-173737865827740.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=1 a=0
+            <div class="ct">להציל את פיית</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-להציל-את-פיית-לינווד-ברקלי" value="3" >
+          <img loading="lazy" src="https://rebooks.org.il/wp-content/uploads/2023/10/mVxiLvbLAS3q7g5i.jpeg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">להציל את פיית - סיפור חוזר</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-להציל-את-פיית-לינווד-ברקלי" value="4" >
+          <img loading="lazy" src="https://www.modan.co.il/Media/Uploads/%D7%9C%D7%94%D7%A6%D7%99%D7%9C_%D7%90%D7%AA_%D7%A4%D7%99%D7%99%D7%AA_jpg.webp" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">להציל את פיית | מודן הוצאה לאור</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-להציל-את-פיית-לינווד-ברקלי" value="5" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/012200001-173737892834143.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=0.5 a=0
+            <div class="ct">להציל את ריין</div>
+            <div class="ca">—</div>
+          </div>
+        </label></div>
+      </div>
+      <div class="book low" data-id="פיור-פן-חייב-למות-ג-ון-ורדון">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" > אשר/י</label>
+          <div class="ot">פיור פן חייב למות</div>
+          <div class="oa">ג'ון ורדון</div>
+          <div class="badge">low</div>
+        </div>
+        <div class="cands">
+        <label class="cand low">
+          <input type="radio" name="pick-פיור-פן-חייב-למות-ג-ון-ורדון" value="0" checked>
+          <img loading="lazy" src="https://www.sivanreads.co.il/wp-content/uploads/2024/08/%D7%94%D7%A1%D7%A4%D7%A8-%D7%A4%D7%99%D7%98%D7%A8-%D7%A4%D7%9F-%D7%97%D7%99%D7%99%D7%91-%D7%9C%D7%9E%D7%95%D7%AA-%D7%9E%D7%90%D7%AA-%D7%92%D7%95%D7%9F-%D7%95%D7%A8%D7%93%D7%95%D7%9F-%D7%9B%D7%AA%D7%A8-2014.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">ספר מתח וריגול "פיטר פן חייב למות" מאת ג'ון ורדון | כתר, 2014 - סיון קוראת</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-פיור-פן-חייב-למות-ג-ון-ורדון" value="1" >
+          <img loading="lazy" src="https://pashoshim.com/cdn/shop/products/Peter_Pan_Must_Die_-_hebrew_book_back_600x.jpg?v=1571268636" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">Peter Pan Must Die(Book in Hebrew) - John Verdon - Pashoshim.com</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-פיור-פן-חייב-למות-ג-ון-ורדון" value="2" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010073240-173737816249398.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=0.6 a=0
+            <div class="ct">פיטר פן חייב למות</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-פיור-פן-חייב-למות-ג-ון-ורדון" value="3" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011321213-1659848011833821.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0.167 a=0
+            <div class="ct">פיטר פן דיסני</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-פיור-פן-חייב-למות-ג-ון-ורדון" value="4" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מתיר אסורים</div>
+            <div class="ca">יאיר מירון</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-פיור-פן-חייב-למות-ג-ון-ורדון" value="5" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מה שאפשר לדעת</div>
+            <div class="ca">איאן מקיואן</div>
+          </div>
+        </label></div>
+      </div>
+      <div class="book low" data-id="הנערכה-מכיכר-טיימס-פאולינה-סיימונס">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" > אשר/י</label>
+          <div class="ot">הנערכה מכיכר טיימס</div>
+          <div class="oa">פאולינה סיימונס</div>
+          <div class="badge">low</div>
+        </div>
+        <div class="cands">
+        <label class="cand low">
+          <input type="radio" name="pick-הנערכה-מכיכר-טיימס-פאולינה-סיימונס" value="0" checked>
+          <img loading="lazy" src="https://images-evrit.yit.co.il/Images/Products/ModanMasters/hanaramikikartimes_master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">הנערה מכיכר טיימס - פאולינה סיימונס | עברית - חנות ספרים</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-הנערכה-מכיכר-טיימס-פאולינה-סיימונס" value="1" >
+          <img loading="lazy" src="https://simania.co.il/108x160/bookimages/covers98/980996.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">הנערה מכיכר טיימס - סיפור על אהבה ושקרים, חיים ומוות - פאולינה סיימונס</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-הנערכה-מכיכר-טיימס-פאולינה-סיימונס" value="2" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011413581-1635769419252578.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=0.5 a=0
+            <div class="ct">הנערה מכיכר טיימס</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-הנערכה-מכיכר-טיימס-פאולינה-סיימונס" value="3" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מתיר אסורים</div>
+            <div class="ca">יאיר מירון</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-הנערכה-מכיכר-טיימס-פאולינה-סיימונס" value="4" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מה שאפשר לדעת</div>
+            <div class="ca">איאן מקיואן</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-הנערכה-מכיכר-טיימס-פאולינה-סיימונס" value="5" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/013760125-173737906114886.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0 a=0
+            <div class="ct">יצירת המופת הנעלמה הנערה שעיניה זהב אדון קרונליוס</div>
+            <div class="ca">—</div>
+          </div>
+        </label></div>
+      </div>
+      <div class="book low" data-id="חשופה-לעינייך-סילביה-דיי">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" > אשר/י</label>
+          <div class="ot">חשופה לעינייך</div>
+          <div class="oa">סילביה דיי</div>
+          <div class="badge">low</div>
+        </div>
+        <div class="cands">
+        <label class="cand low">
+          <input type="radio" name="pick-חשופה-לעינייך-סילביה-דיי" value="0" checked>
+          <img loading="lazy" src="https://static.wixstatic.com/media/967877_66dc23968c6b4f318ddd6bb948295668~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">סילביה דיי - חשופה לעיניך | The Last Word Books</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-חשופה-לעינייך-סילביה-דיי" value="1" >
+          <img loading="lazy" src="https://sfarimvemetzilim.co.il/wp-content/uploads/2024/08/%D7%97%D7%A9%D7%95%D7%A4%D7%94-%D7%9C%D7%A2%D7%99%D7%A0%D7%99%D7%9A-%D7%A7%D7%A8%D7%95%D7%A1%D7%A4%D7%99%D7%99%D7%A8-%D7%A1%D7%A4%D7%A8-1_%D7%A1%D7%99%D7%9C%D7%91%D7%99%D7%94-%D7%93%D7%99%D7%99.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">חשופה לעיניך - קרוספייר, ספר 1 - עמותת ספרים ומצילים</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-חשופה-לעינייך-סילביה-דיי" value="2" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010140860-1711620726181518.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=0.5 a=0
+            <div class="ct">חשופה</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-חשופה-לעינייך-סילביה-דיי" value="3" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/013620782-173737902015726.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0.333 a=0
+            <div class="ct">חשופה לעיניך</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-חשופה-לעינייך-סילביה-דיי" value="4" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מתיר אסורים</div>
+            <div class="ca">יאיר מירון</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-חשופה-לעינייך-סילביה-דיי" value="5" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מה שאפשר לדעת</div>
+            <div class="ca">איאן מקיואן</div>
+          </div>
+        </label></div>
+      </div>
+      <div class="book low" data-id="מחוברת-אלייך-סילביה-דיי">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" > אשר/י</label>
+          <div class="ot">מחוברת אלייך</div>
+          <div class="oa">סילביה דיי</div>
+          <div class="badge">low</div>
+        </div>
+        <div class="cands">
+        <label class="cand low">
+          <input type="radio" name="pick-מחוברת-אלייך-סילביה-דיי" value="0" checked>
+          <img loading="lazy" src="https://cdn.simania.co.il/bookimages/covers96/968321.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">מחוברת אליך מאת סילביה דיי | סימניה - ספרים, סופרים וחברים</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-מחוברת-אלייך-סילביה-דיי" value="1" >
+          <img loading="lazy" src="https://static.wixstatic.com/media/967877_9e3ff7835cf6435191b2aad67b358570~mv2.jpg/v1/fill/w_720,h_960,al_c,q_85,enc_avif,quality_auto/967877_9e3ff7835cf6435191b2aad67b358570~mv2.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">סילביה דיי - שבויה בידיך | The Last Word Books</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-מחוברת-אלייך-סילביה-דיי" value="2" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011400135-173737863979244.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · low · t=0.5 a=0
+            <div class="ct">אלייך</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-מחוברת-אלייך-סילביה-דיי" value="3" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/013620825-173737902118614.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0.333 a=0
+            <div class="ct">מחוברת אליך</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-מחוברת-אלייך-סילביה-דיי" value="4" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מתיר אסורים</div>
+            <div class="ca">יאיר מירון</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-מחוברת-אלייך-סילביה-דיי" value="5" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מה שאפשר לדעת</div>
+            <div class="ca">איאן מקיואן</div>
+          </div>
+        </label></div>
+      </div>
+      <div class="book low" data-id="שבויה-בידייך-סילביה-דיי">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" > אשר/י</label>
+          <div class="ot">שבויה בידייך</div>
+          <div class="oa">סילביה דיי</div>
+          <div class="badge">low</div>
+        </div>
+        <div class="cands">
+        <label class="cand low">
+          <input type="radio" name="pick-שבויה-בידייך-סילביה-דיי" value="0" checked>
+          <img loading="lazy" src="https://indiebook.co.il/Images/Site/Products/36250.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">שבויה בידיך מאת סילביה דיי | אינדיבוק - ספרים דיגיטליים להורדה בעברית</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-שבויה-בידייך-סילביה-דיי" value="1" >
+          <img loading="lazy" src="https://smartcat.co.il/wp-content/uploads/2024/10/1000107814-600x927.webp" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">שבויה בידיך / סילביה דיי - החתול החכם</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-שבויה-בידייך-סילביה-דיי" value="2" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/013620913-1737379022267981.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0.333 a=0
+            <div class="ct">שבויה בידיך</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-שבויה-בידייך-סילביה-דיי" value="3" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011325621-1768204740417796.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0.333 a=0
+            <div class="ct">שבויה במשימה</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-שבויה-בידייך-סילביה-דיי" value="4" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מתיר אסורים</div>
+            <div class="ca">יאיר מירון</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-שבויה-בידייך-סילביה-דיי" value="5" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מה שאפשר לדעת</div>
+            <div class="ca">איאן מקיואן</div>
+          </div>
+        </label></div>
+      </div>
+      <div class="book low" data-id="סיפור-אהבתם-של-ג-קסון-וג-יה-סילביה-דיי">
+        <div class="ours">
+          <label class="keep"><input type="checkbox" class="approve" > אשר/י</label>
+          <div class="ot">סיפור אהבתם של ג'קסון וג'יה</div>
+          <div class="oa">סילביה דיי</div>
+          <div class="badge">low</div>
+        </div>
+        <div class="cands">
+        <label class="cand low">
+          <input type="radio" name="pick-סיפור-אהבתם-של-ג-קסון-וג-יה-סילביה-דיי" value="0" checked>
+          <img loading="lazy" src="https://images-evrit.yit.co.il/Images/Products/newcovers/ls_sylviaday_master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">סיפור אהבתם של ג'קסון וג'ייה - סילביה דיי | עברית - חנות ספרים</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand low">
+          <input type="radio" name="pick-סיפור-אהבתם-של-ג-קסון-וג-יה-סילביה-דיי" value="1" >
+          <img loading="lazy" src="https://rebooks.org.il/wp-content/uploads/2023/10/vLMLbjYPU5qFbhsv.jpeg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>web</b> · low · t=0 a=0
+            <div class="ct">שבויה בידיך - סיפור חוזר</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-סיפור-אהבתם-של-ג-קסון-וג-יה-סילביה-דיי" value="2" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/013620973-173737902548647.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0.333 a=0
+            <div class="ct">סיפור אהבתם של ג’קסון וג’ייה</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-סיפור-אהבתם-של-ג-קסון-וג-יה-סילביה-דיי" value="3" >
+          <img loading="lazy" src="https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011374527-173737860320068.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>steimatzky</b> · none · t=0.286 a=0
+            <div class="ct">סיפור האהבה של המהפנטת</div>
+            <div class="ca">—</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-סיפור-אהבתם-של-ג-קסון-וג-יה-סילביה-דיי" value="4" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מתיר אסורים</div>
+            <div class="ca">יאיר מירון</div>
+          </div>
+        </label>
+        <label class="cand none">
+          <input type="radio" name="pick-סיפור-אהבתם-של-ג-קסון-וג-יה-סילביה-דיי" value="5" >
+          <img loading="lazy" src="https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg" onerror="this.classList.add('broken')">
+          <div class="meta"><b>evrit</b> · none · t=0 a=0
+            <div class="ct">מה שאפשר לדעת</div>
+            <div class="ca">איאן מקיואן</div>
+          </div>
+        </label></div>
+      </div>
+<script>
+function exportApprovals(){
+  const out={approve:[]};
+  document.querySelectorAll('.book').forEach(el=>{
+    const id=el.dataset.id;
+    const on=el.querySelector('.approve').checked;
+    if(!on) return;
+    const pick=el.querySelector('input[type=radio]:checked');
+    out.approve.push({id, alt: pick?Number(pick.value):0});
+  });
+  const blob=new Blob([JSON.stringify(out,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='cover-approvals.json';a.click();
+}
+</script>
+</body></html>

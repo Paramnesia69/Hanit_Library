@@ -1,0 +1,1004 @@
+{
+  "צילה-של-הרוח-קרלוס-רואיס-סאפון": {
+    "done": true,
+    "isbn": null,
+    "best": {
+      "source": "web",
+      "coverUrl": "https://bunny-wp-pullzone-prdv1ypdxh.b-cdn.net/wp-content/uploads/2025/09/1000086363.jpg",
+      "candTitle": "צלה של הרוח / קרלוס רואיס סאפון - החתול החכם",
+      "candAuthor": "",
+      "score": 0.55,
+      "confidence": "low",
+      "conflict": false,
+      "ts": 0,
+      "as": 0
+    },
+    "alts": [
+      {
+        "source": "web",
+        "coverUrl": "https://bunny-wp-pullzone-prdv1ypdxh.b-cdn.net/wp-content/uploads/2025/09/1000086363.jpg",
+        "candTitle": "צלה של הרוח / קרלוס רואיס סאפון - החתול החכם",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://www.findabook.co.il/assets/images/detail/294175_1_det.jpg",
+        "candTitle": "צלה של הרוח (צילה של הרוח) / קרלוס רואיס סאפון- קרלוס רואיס סאפון ...",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011371950-17773575741229419.jpg",
+        "candTitle": "צלה של הרוח",
+        "candAuthor": "",
+        "score": 0.3,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0.5,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011372386-1635758335569531.jpg",
+        "candTitle": "יומנו של חנון",
+        "candAuthor": "",
+        "score": 0.12,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0.2,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg",
+        "candTitle": "מתיר אסורים",
+        "candAuthor": "יאיר מירון",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg",
+        "candTitle": "מה שאפשר לדעת",
+        "candAuthor": "איאן מקיואן",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      }
+    ]
+  },
+  "תחרה-שירלי-קונרן": {
+    "done": true,
+    "isbn": "965",
+    "best": {
+      "source": "steimatzky",
+      "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010030637-17373781151524371.jpg",
+      "candTitle": "תחרה",
+      "candAuthor": "",
+      "score": 0.6,
+      "confidence": "low",
+      "conflict": false,
+      "ts": 1,
+      "as": 0
+    },
+    "alts": [
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010030637-17373781151524371.jpg",
+        "candTitle": "תחרה",
+        "candAuthor": "",
+        "score": 0.6,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 1,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://static.wixstatic.com/media/967877_81faa4345949442aa08a4e75cfeeabd1~mv2.jpg/v1/fill/w_1080,h_1716,al_c,q_85,enc_avif,quality_auto/967877_81faa4345949442aa08a4e75cfeeabd1~mv2.jpg",
+        "candTitle": "שירלי קונרן - תחרה | The Last Word Books",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://static.wixstatic.com/media/967877_7239476a8a404e7c92e96d8e9db10268~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "candTitle": "שירלי קונרן - תחרה 2 | The Last Word Books",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "simania",
+        "coverUrl": "https://cdn.simania.co.il/bookimages/covers97/970728.jpg",
+        "candTitle": "תחרה וצבע",
+        "candAuthor": "אילת סווטיצקי",
+        "isbn": "978-1-62154-5",
+        "score": 0.3,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0.5,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011250647-173737832616932.jpg",
+        "candTitle": "תחרה וצבע 1 תחרה וצבע 1",
+        "candAuthor": "",
+        "score": 0.2,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0.333,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg",
+        "candTitle": "מתיר אסורים",
+        "candAuthor": "יאיר מירון",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      }
+    ]
+  },
+  "סיפור-שמתחיל-מהסוף-תמי-ארד": {
+    "done": true,
+    "isbn": null,
+    "best": {
+      "source": "web",
+      "coverUrl": "https://images-evrit.yit.co.il/Images/Products/ebooks2/a_story_that_begins_at_an_end_master.jpg",
+      "candTitle": "סיפור שמתחיל בסוף - תמי ארד | עברית - חנות ספרים",
+      "candAuthor": "",
+      "score": 0.55,
+      "confidence": "low",
+      "conflict": false,
+      "ts": 0,
+      "as": 0
+    },
+    "alts": [
+      {
+        "source": "web",
+        "coverUrl": "https://images-evrit.yit.co.il/Images/Products/ebooks2/a_story_that_begins_at_an_end_master.jpg",
+        "candTitle": "סיפור שמתחיל בסוף - תמי ארד | עברית - חנות ספרים",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://www.booksefer.co.il/files/catalog/media/445f2fa7a555b4ba04ca13bd2e49c2a2.jpg",
+        "candTitle": "סיפור שמתחיל בסוף תמי ארד",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010072935-173565389227355.jpg",
+        "candTitle": "סיפור שמתחיל בסוף",
+        "candAuthor": "",
+        "score": 0.3,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0.5,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010072539-173737815915072.jpg",
+        "candTitle": "סיפור שמתחיל בדמעות",
+        "candAuthor": "",
+        "score": 0.3,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0.5,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg",
+        "candTitle": "מתיר אסורים",
+        "candAuthor": "יאיר מירון",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg",
+        "candTitle": "מה שאפשר לדעת",
+        "candAuthor": "איאן מקיואן",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      }
+    ]
+  },
+  "עקידת-תמר-נעמי-רגן": {
+    "done": true,
+    "isbn": null,
+    "best": {
+      "source": "web",
+      "coverUrl": "https://www.booknet.co.il/Images/Site/Products/1002752812.jpg",
+      "candTitle": "נעמי רגן",
+      "candAuthor": "",
+      "score": 0.55,
+      "confidence": "low",
+      "conflict": false,
+      "ts": 0,
+      "as": 0
+    },
+    "alts": [
+      {
+        "source": "web",
+        "coverUrl": "https://www.booknet.co.il/Images/Site/Products/1002752812.jpg",
+        "candTitle": "נעמי רגן",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://smartcat.co.il/wp-content/uploads/2024/11/1000113850-scaled.jpg",
+        "candTitle": "עקדת תמר / נעמי רגן - החתול החכם",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010074113-175758429123780.jpg",
+        "candTitle": "עקדת תמר",
+        "candAuthor": "",
+        "score": 0.2,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0.333,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010073846-173737817853949.jpg",
+        "candTitle": "ציר תמר",
+        "candAuthor": "",
+        "score": 0.2,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0.333,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg",
+        "candTitle": "מתיר אסורים",
+        "candAuthor": "יאיר מירון",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg",
+        "candTitle": "מה שאפשר לדעת",
+        "candAuthor": "איאן מקיואן",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      }
+    ]
+  },
+  "נאמנות-כחולה-לינווד-ברקלי": {
+    "done": true,
+    "isbn": "20-52541",
+    "best": {
+      "source": "simania",
+      "coverUrl": "https://cdn.simania.co.il/bookimages/covers95/955961.jpg",
+      "candTitle": "נאמנות כחולה",
+      "candAuthor": "דיוויד באלדאצ'י",
+      "isbn": "20-52541",
+      "score": 0.6,
+      "confidence": "low",
+      "conflict": true,
+      "ts": 1,
+      "as": 0
+    },
+    "alts": [
+      {
+        "source": "simania",
+        "coverUrl": "https://cdn.simania.co.il/bookimages/covers95/955961.jpg",
+        "candTitle": "נאמנות כחולה",
+        "candAuthor": "דיוויד באלדאצ'י",
+        "isbn": "20-52541",
+        "score": 0.6,
+        "confidence": "low",
+        "conflict": true,
+        "ts": 1,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011413658-173737865510897.jpg",
+        "candTitle": "נאמנות כחולה",
+        "candAuthor": "",
+        "score": 0.6,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 1,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://www.booknet.co.il/Images/Site/Products/20-52541.jpg",
+        "candTitle": "נאמנות כחולה | צומת ספרים",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://master.library.org.il/ext_image.php?q=http://www.icl-catalog.org.il/multimedia/2011/11-2135-11-2233/11-2199f.jpg",
+        "candTitle": "דף הבית - ספריית אלון מורה",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011325056-1737378499105724.jpg",
+        "candTitle": "נאמנות",
+        "candAuthor": "",
+        "score": 0.3,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0.5,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg",
+        "candTitle": "מתיר אסורים",
+        "candAuthor": "יאיר מירון",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      }
+    ]
+  },
+  "להציל-את-פיית-לינווד-ברקלי": {
+    "done": true,
+    "isbn": "978-0446608893",
+    "best": {
+      "source": "openlibrary",
+      "coverUrl": "https://covers.openlibrary.org/b/isbn/978-0446608893-L.jpg?default=false",
+      "candTitle": "להציל את פיית",
+      "candAuthor": "לינווד ברקלי",
+      "isbn": "978-0446608893",
+      "score": 1,
+      "confidence": "high",
+      "conflict": false,
+      "ts": 1,
+      "as": 1
+    },
+    "alts": [
+      {
+        "source": "openlibrary",
+        "coverUrl": "https://covers.openlibrary.org/b/isbn/978-0446608893-L.jpg?default=false",
+        "candTitle": "להציל את פיית",
+        "candAuthor": "לינווד ברקלי",
+        "isbn": "978-0446608893",
+        "score": 1,
+        "confidence": "high",
+        "conflict": false,
+        "ts": 1,
+        "as": 1
+      },
+      {
+        "source": "simania",
+        "coverUrl": "https://cdn.simania.co.il/bookimages/covers21/217796.jpg",
+        "candTitle": "להציל את פיית",
+        "candAuthor": "דיוויד באלדאצ'י",
+        "isbn": "978-0446608893",
+        "score": 0.6,
+        "confidence": "low",
+        "conflict": true,
+        "ts": 1,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011413852-173737865827740.jpg",
+        "candTitle": "להציל את פיית",
+        "candAuthor": "",
+        "score": 0.6,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 1,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://rebooks.org.il/wp-content/uploads/2023/10/mVxiLvbLAS3q7g5i.jpeg",
+        "candTitle": "להציל את פיית - סיפור חוזר",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://www.modan.co.il/Media/Uploads/%D7%9C%D7%94%D7%A6%D7%99%D7%9C_%D7%90%D7%AA_%D7%A4%D7%99%D7%99%D7%AA_jpg.webp",
+        "candTitle": "להציל את פיית | מודן הוצאה לאור",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/012200001-173737892834143.jpg",
+        "candTitle": "להציל את ריין",
+        "candAuthor": "",
+        "score": 0.3,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0.5,
+        "as": 0
+      }
+    ]
+  },
+  "פיור-פן-חייב-למות-ג-ון-ורדון": {
+    "done": true,
+    "isbn": null,
+    "best": {
+      "source": "web",
+      "coverUrl": "https://www.sivanreads.co.il/wp-content/uploads/2024/08/%D7%94%D7%A1%D7%A4%D7%A8-%D7%A4%D7%99%D7%98%D7%A8-%D7%A4%D7%9F-%D7%97%D7%99%D7%99%D7%91-%D7%9C%D7%9E%D7%95%D7%AA-%D7%9E%D7%90%D7%AA-%D7%92%D7%95%D7%9F-%D7%95%D7%A8%D7%93%D7%95%D7%9F-%D7%9B%D7%AA%D7%A8-2014.jpg",
+      "candTitle": "ספר מתח וריגול \"פיטר פן חייב למות\" מאת ג'ון ורדון | כתר, 2014 - סיון קוראת",
+      "candAuthor": "",
+      "score": 0.55,
+      "confidence": "low",
+      "conflict": false,
+      "ts": 0,
+      "as": 0
+    },
+    "alts": [
+      {
+        "source": "web",
+        "coverUrl": "https://www.sivanreads.co.il/wp-content/uploads/2024/08/%D7%94%D7%A1%D7%A4%D7%A8-%D7%A4%D7%99%D7%98%D7%A8-%D7%A4%D7%9F-%D7%97%D7%99%D7%99%D7%91-%D7%9C%D7%9E%D7%95%D7%AA-%D7%9E%D7%90%D7%AA-%D7%92%D7%95%D7%9F-%D7%95%D7%A8%D7%93%D7%95%D7%9F-%D7%9B%D7%AA%D7%A8-2014.jpg",
+        "candTitle": "ספר מתח וריגול \"פיטר פן חייב למות\" מאת ג'ון ורדון | כתר, 2014 - סיון קוראת",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://pashoshim.com/cdn/shop/products/Peter_Pan_Must_Die_-_hebrew_book_back_600x.jpg?v=1571268636",
+        "candTitle": "Peter Pan Must Die(Book in Hebrew) - John Verdon - Pashoshim.com",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010073240-173737816249398.jpg",
+        "candTitle": "פיטר פן חייב למות",
+        "candAuthor": "",
+        "score": 0.36,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0.6,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011321213-1659848011833821.jpg",
+        "candTitle": "פיטר פן דיסני",
+        "candAuthor": "",
+        "score": 0.1,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0.167,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg",
+        "candTitle": "מתיר אסורים",
+        "candAuthor": "יאיר מירון",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg",
+        "candTitle": "מה שאפשר לדעת",
+        "candAuthor": "איאן מקיואן",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      }
+    ]
+  },
+  "הנערכה-מכיכר-טיימס-פאולינה-סיימונס": {
+    "done": true,
+    "isbn": null,
+    "best": {
+      "source": "web",
+      "coverUrl": "https://images-evrit.yit.co.il/Images/Products/ModanMasters/hanaramikikartimes_master.jpg",
+      "candTitle": "הנערה מכיכר טיימס - פאולינה סיימונס | עברית - חנות ספרים",
+      "candAuthor": "",
+      "score": 0.55,
+      "confidence": "low",
+      "conflict": false,
+      "ts": 0,
+      "as": 0
+    },
+    "alts": [
+      {
+        "source": "web",
+        "coverUrl": "https://images-evrit.yit.co.il/Images/Products/ModanMasters/hanaramikikartimes_master.jpg",
+        "candTitle": "הנערה מכיכר טיימס - פאולינה סיימונס | עברית - חנות ספרים",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://simania.co.il/108x160/bookimages/covers98/980996.jpg",
+        "candTitle": "הנערה מכיכר טיימס - סיפור על אהבה ושקרים, חיים ומוות - פאולינה סיימונס",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011413581-1635769419252578.jpg",
+        "candTitle": "הנערה מכיכר טיימס",
+        "candAuthor": "",
+        "score": 0.3,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0.5,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg",
+        "candTitle": "מתיר אסורים",
+        "candAuthor": "יאיר מירון",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg",
+        "candTitle": "מה שאפשר לדעת",
+        "candAuthor": "איאן מקיואן",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/013760125-173737906114886.jpg",
+        "candTitle": "יצירת המופת הנעלמה הנערה שעיניה זהב אדון קרונליוס",
+        "candAuthor": "",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      }
+    ]
+  },
+  "חשופה-לעינייך-סילביה-דיי": {
+    "done": true,
+    "isbn": null,
+    "best": {
+      "source": "web",
+      "coverUrl": "https://static.wixstatic.com/media/967877_66dc23968c6b4f318ddd6bb948295668~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+      "candTitle": "סילביה דיי - חשופה לעיניך | The Last Word Books",
+      "candAuthor": "",
+      "score": 0.55,
+      "confidence": "low",
+      "conflict": false,
+      "ts": 0,
+      "as": 0
+    },
+    "alts": [
+      {
+        "source": "web",
+        "coverUrl": "https://static.wixstatic.com/media/967877_66dc23968c6b4f318ddd6bb948295668~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "candTitle": "סילביה דיי - חשופה לעיניך | The Last Word Books",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://sfarimvemetzilim.co.il/wp-content/uploads/2024/08/%D7%97%D7%A9%D7%95%D7%A4%D7%94-%D7%9C%D7%A2%D7%99%D7%A0%D7%99%D7%9A-%D7%A7%D7%A8%D7%95%D7%A1%D7%A4%D7%99%D7%99%D7%A8-%D7%A1%D7%A4%D7%A8-1_%D7%A1%D7%99%D7%9C%D7%91%D7%99%D7%94-%D7%93%D7%99%D7%99.jpg",
+        "candTitle": "חשופה לעיניך - קרוספייר, ספר 1 - עמותת ספרים ומצילים",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/010140860-1711620726181518.jpg",
+        "candTitle": "חשופה",
+        "candAuthor": "",
+        "score": 0.3,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0.5,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/013620782-173737902015726.jpg",
+        "candTitle": "חשופה לעיניך",
+        "candAuthor": "",
+        "score": 0.2,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0.333,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg",
+        "candTitle": "מתיר אסורים",
+        "candAuthor": "יאיר מירון",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg",
+        "candTitle": "מה שאפשר לדעת",
+        "candAuthor": "איאן מקיואן",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      }
+    ]
+  },
+  "מחוברת-אלייך-סילביה-דיי": {
+    "done": true,
+    "isbn": null,
+    "best": {
+      "source": "web",
+      "coverUrl": "https://cdn.simania.co.il/bookimages/covers96/968321.jpg",
+      "candTitle": "מחוברת אליך מאת סילביה דיי | סימניה - ספרים, סופרים וחברים",
+      "candAuthor": "",
+      "score": 0.55,
+      "confidence": "low",
+      "conflict": false,
+      "ts": 0,
+      "as": 0
+    },
+    "alts": [
+      {
+        "source": "web",
+        "coverUrl": "https://cdn.simania.co.il/bookimages/covers96/968321.jpg",
+        "candTitle": "מחוברת אליך מאת סילביה דיי | סימניה - ספרים, סופרים וחברים",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://static.wixstatic.com/media/967877_9e3ff7835cf6435191b2aad67b358570~mv2.jpg/v1/fill/w_720,h_960,al_c,q_85,enc_avif,quality_auto/967877_9e3ff7835cf6435191b2aad67b358570~mv2.jpg",
+        "candTitle": "סילביה דיי - שבויה בידיך | The Last Word Books",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011400135-173737863979244.jpg",
+        "candTitle": "אלייך",
+        "candAuthor": "",
+        "score": 0.3,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0.5,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/013620825-173737902118614.jpg",
+        "candTitle": "מחוברת אליך",
+        "candAuthor": "",
+        "score": 0.2,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0.333,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg",
+        "candTitle": "מתיר אסורים",
+        "candAuthor": "יאיר מירון",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg",
+        "candTitle": "מה שאפשר לדעת",
+        "candAuthor": "איאן מקיואן",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      }
+    ]
+  },
+  "שבויה-בידייך-סילביה-דיי": {
+    "done": true,
+    "isbn": null,
+    "best": {
+      "source": "web",
+      "coverUrl": "https://indiebook.co.il/Images/Site/Products/36250.jpg",
+      "candTitle": "שבויה בידיך מאת סילביה דיי | אינדיבוק - ספרים דיגיטליים להורדה בעברית",
+      "candAuthor": "",
+      "score": 0.55,
+      "confidence": "low",
+      "conflict": false,
+      "ts": 0,
+      "as": 0
+    },
+    "alts": [
+      {
+        "source": "web",
+        "coverUrl": "https://indiebook.co.il/Images/Site/Products/36250.jpg",
+        "candTitle": "שבויה בידיך מאת סילביה דיי | אינדיבוק - ספרים דיגיטליים להורדה בעברית",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://smartcat.co.il/wp-content/uploads/2024/10/1000107814-600x927.webp",
+        "candTitle": "שבויה בידיך / סילביה דיי - החתול החכם",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/013620913-1737379022267981.jpg",
+        "candTitle": "שבויה בידיך",
+        "candAuthor": "",
+        "score": 0.2,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0.333,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011325621-1768204740417796.jpg",
+        "candTitle": "שבויה במשימה",
+        "candAuthor": "",
+        "score": 0.2,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0.333,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg",
+        "candTitle": "מתיר אסורים",
+        "candAuthor": "יאיר מירון",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg",
+        "candTitle": "מה שאפשר לדעת",
+        "candAuthor": "איאן מקיואן",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      }
+    ]
+  },
+  "סיפור-אהבתם-של-ג-קסון-וג-יה-סילביה-דיי": {
+    "done": true,
+    "isbn": null,
+    "best": {
+      "source": "web",
+      "coverUrl": "https://images-evrit.yit.co.il/Images/Products/newcovers/ls_sylviaday_master.jpg",
+      "candTitle": "סיפור אהבתם של ג'קסון וג'ייה - סילביה דיי | עברית - חנות ספרים",
+      "candAuthor": "",
+      "score": 0.55,
+      "confidence": "low",
+      "conflict": false,
+      "ts": 0,
+      "as": 0
+    },
+    "alts": [
+      {
+        "source": "web",
+        "coverUrl": "https://images-evrit.yit.co.il/Images/Products/newcovers/ls_sylviaday_master.jpg",
+        "candTitle": "סיפור אהבתם של ג'קסון וג'ייה - סילביה דיי | עברית - חנות ספרים",
+        "candAuthor": "",
+        "score": 0.55,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "web",
+        "coverUrl": "https://rebooks.org.il/wp-content/uploads/2023/10/vLMLbjYPU5qFbhsv.jpeg",
+        "candTitle": "שבויה בידיך - סיפור חוזר",
+        "candAuthor": "",
+        "score": 0.53,
+        "confidence": "low",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/013620973-173737902548647.jpg",
+        "candTitle": "סיפור אהבתם של ג’קסון וג’ייה",
+        "candAuthor": "",
+        "score": 0.2,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0.333,
+        "as": 0
+      },
+      {
+        "source": "steimatzky",
+        "coverUrl": "https://www.steimatzky.co.il/pub/media/catalog/product/cache/7de3bd51a14570365ea4a3b182c00065/0/1/011374527-173737860320068.jpg",
+        "candTitle": "סיפור האהבה של המהפנטת",
+        "candAuthor": "",
+        "score": 0.171,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0.286,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39457/prohibited_Master.jpg",
+        "candTitle": "מתיר אסורים",
+        "candAuthor": "יאיר מירון",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      },
+      {
+        "source": "evrit",
+        "coverUrl": "https://www.e-vrit.co.il/Images/Products/NewBO/Products/39498/WhatWeCanKnow_Master.jpg",
+        "candTitle": "מה שאפשר לדעת",
+        "candAuthor": "איאן מקיואן",
+        "score": 0,
+        "confidence": "none",
+        "conflict": false,
+        "ts": 0,
+        "as": 0
+      }
+    ]
+  }
+}
