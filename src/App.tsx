@@ -94,7 +94,7 @@ export default function App() {
     const isDigital = activeLibrary === 'digital';
 
     return (
-        <div className="mx-auto max-w-7xl px-4 py-5">
+        <div className="mx-auto max-w-7xl px-3 py-3 sm:px-4 sm:py-5">
             <Header
                 count={libraryBooks.length}
                 library={activeLibrary}

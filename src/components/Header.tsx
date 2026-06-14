@@ -51,13 +51,14 @@ export function Header({
     const isDigital = library === 'digital';
 
     return (
-        <header className="hero-shell mb-7 rounded-[28px] px-4 py-5 sm:px-7 sm:py-7">
+        <header className="hero-shell mb-4 rounded-[28px] px-4 py-4 sm:mb-7 sm:px-7 sm:py-7">
             <div className="hero-shell__decor" aria-hidden />
 
             {/* כותרת ראשית ממורכזת — כתב היד של חנית */}
-            <div className="flex flex-col items-center gap-2.5 text-center">
-                <Logo size={72} count={count} />
-                <h1 className="signature-foil font-script text-[34px] leading-[0.95] sm:text-[50px]">
+            <div className="flex flex-col items-center gap-1.5 text-center sm:gap-2.5">
+                <div className="sm:hidden"><Logo size={54} count={count} /></div>
+                <div className="hidden sm:block"><Logo size={72} count={count} /></div>
+                <h1 className="signature-foil font-script text-[26px] leading-[1] sm:text-[50px] sm:leading-[0.95]">
                     הספרייה של חנית
                 </h1>
                 <p className="flex items-center gap-1.5 text-[13px] font-medium text-ink-soft">
@@ -67,11 +68,11 @@ export function Header({
             </div>
 
             {/* שורת פעולות ממורכזת */}
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-2 border-t border-line/60 pt-4">
+            <div className="mt-3.5 flex flex-wrap items-center justify-center gap-2 border-t border-line/60 pt-3 sm:mt-5 sm:pt-4">
                 <button
                     type="button"
                     onClick={onAdd}
-                    className="flex items-center gap-1.5 rounded-full bg-gradient-to-br from-accent-500 to-accent-700 px-5 py-2.5 text-[14px] font-semibold text-white glow-accent transition hover:from-accent-600 hover:to-accent-800"
+                    className="flex items-center gap-1.5 rounded-full bg-gradient-to-br from-accent-500 to-accent-700 px-4 py-2 text-[14px] font-semibold text-white glow-accent transition hover:from-accent-600 hover:to-accent-800 sm:px-5 sm:py-2.5"
                 >
                     <Plus size={18} />
                     <span>הוספת ספר</span>
@@ -80,7 +81,7 @@ export function Header({
                 <button
                     type="button"
                     onClick={onToggleStats}
-                    className={`flex items-center gap-1.5 rounded-full px-3.5 py-2.5 text-[14px] font-medium transition ${showStats
+                    className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[14px] font-medium transition sm:py-2.5 ${showStats
                         ? 'bg-accent-600 text-white glow-accent'
                         : 'glass text-ink hover:text-accent-700'
                         }`}
@@ -138,7 +139,7 @@ export function Header({
                 </div>
 
             {/* שורת סינון פרימיום: מהדורה (פיזי/קינדל) + מדף */}
-            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+            <div className="mt-2.5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 sm:mt-3 sm:gap-y-3">
                 {/* מהדורה */}
                 <div className="flex items-center gap-2.5">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-ink-soft/70">מהדורה</span>

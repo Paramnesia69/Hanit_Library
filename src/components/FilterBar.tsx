@@ -35,7 +35,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
     const active = activeFilterCount(filters);
 
     return (
-        <div className="glass-strong sticky top-2 z-30 mb-8 rounded-2xl px-3 py-3 shadow-card">
+        <div className="glass-strong sticky top-2 z-30 mb-4 rounded-2xl px-3 py-2.5 shadow-card sm:mb-8 sm:py-3">
             <div className="flex flex-wrap items-center gap-2">
                 {/* חיפוש */}
                 <div className="relative min-w-0 flex-1 sm:min-w-64 sm:max-w-md">
@@ -99,7 +99,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
             </div>
 
             {/* שורת ז'אנרים צבעונית */}
-            <div className="no-scrollbar mt-3 flex items-center gap-1.5 overflow-x-auto pb-0.5">
+            <div className="no-scrollbar mt-2.5 flex items-center gap-1.5 overflow-x-auto pb-0.5 sm:mt-3">
                 <button
                     type="button"
                     onClick={() => onChange({ genre: '' })}
@@ -135,7 +135,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                 })}
             </div>
 
-            <div className="mt-3 flex flex-wrap items-center gap-2">
+            <div className="mt-2.5 flex flex-wrap items-center gap-2 sm:mt-3">
                 {/* טאבים לפי סטטוס */}
                 <div className="flex rounded-full bg-paper-2 p-0.5">
                     {STATUS_TABS.map((t) => (
