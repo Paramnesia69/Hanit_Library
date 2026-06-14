@@ -992,13 +992,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
-    "isbn": null,
+    "coverUrl": "/covers/m-55453c6c69.jpg",
+    "coverConfidence": "high",
+    "isbn": "978-0446608893",
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "openlibrary"
   },
   {
     "id": "טוב-מראה-עיניים-לינווד-ברקלי",
@@ -1960,13 +1961,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
-    "isbn": null,
+    "coverUrl": "/covers/m-aa16890c03.jpg",
+    "coverConfidence": "high",
+    "isbn": "978-965-545-1",
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הקתדרלה-ליד-הים-אילדפונסו-פלקונס",
@@ -3761,13 +3763,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-0ddb247086.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "אל-זועם-ליהי-שן",
@@ -3835,13 +3838,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-f4039a8863.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "ספארו-ליהי-שן",
@@ -5728,13 +5732,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-216ecfecb6.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "לשנוא-אותו-קלואי-וולש",
@@ -7089,13 +7094,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-30f0c927c5.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "המלך-דוד-שרון-חיות-גינת",
@@ -7110,13 +7116,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-ea33eea6cc.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "עמנואל-שרון-חיות-גינת",
@@ -7131,13 +7138,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-cdea8bbb10.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "נשבעת-בדם-ליליאן-סלמה-נחום",
@@ -9349,13 +9357,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-498ea0bf6b.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "הסכמה-שרמיין-פולס",
@@ -10155,13 +10164,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-afac5e5a04.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "מתוק-כמו-חטא-ג-יי-טי-גייסינגר",
@@ -13403,13 +13413,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-6fe9d5cb5f.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "התעלות-מחטא-אשלי-זווארלי-נטשה-נייט",
@@ -13424,13 +13435,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-8b0a2f4190.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "תחיית-הלב-אשלי-זווארלי-נטשה-נייט",
@@ -13445,13 +13457,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-858d8287b3.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "כשהכוכבים-נופלים-אמרי-רוז",
@@ -13839,13 +13852,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-2b61ae1e2f.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "ארס-והתעלות-שאנורה-ויליאמס",
@@ -15709,13 +15723,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-b724bb634a.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "ג-יין-האלמונית-ויקטוריה-הלן-סטון",
@@ -16337,13 +16352,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-c8cf86175a.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "מי-אלמה-קרן-גנון-רופין",
@@ -16805,13 +16821,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
-    "isbn": null,
+    "coverUrl": "/covers/m-d45e3f661c.jpg",
+    "coverConfidence": "high",
+    "isbn": "978",
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "openlibrary"
   },
   {
     "id": "הרשעה-אליתיה-רומינג",
@@ -16921,13 +16938,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-c8ca393017.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "טוניק-סטייסי-הארט",
@@ -17656,13 +17674,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-a0c8ae2988.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "כל-עולמי-קייט-מארש",
@@ -18700,13 +18719,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
-    "isbn": null,
+    "coverUrl": "/covers/m-8984046256.jpg",
+    "coverConfidence": "high",
+    "isbn": "978-965-7648-",
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "בידיו-של-הגבר-הזה-ג-ודי-אלן-מלפיס",
@@ -18721,13 +18741,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-82d332b96b.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "וידויו-של-הגבר-הזה-ג-ודי-אלן-מלפיס",
@@ -18742,13 +18763,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-3768e46c01.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "עם-הגבר-הזה-ג-ודי-אלן-מלפיס",
@@ -18763,13 +18785,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-b12fbf317e.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "ג-נטלמן-חוטא-ג-ודי-אלן-מלפיס",
@@ -18784,13 +18807,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-1c417e579d.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "פאנק-57-פנלופה-דאגלאס",
@@ -21669,13 +21693,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-faa9be8df7.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "רק-כשזה-אנחנו-קלואי-ליס",
@@ -22073,13 +22098,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-9b1a1e963b.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "לילות-סתיו-ווילו-אסטר",
@@ -22872,13 +22898,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-150cce4a11.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "איך-לסיים-סיפור-אהבה-יולין-קואנג",
@@ -23490,13 +23517,14 @@
     "genres": [],
     "favorite": false,
     "review": "",
-    "coverUrl": null,
-    "coverConfidence": "none",
+    "coverUrl": "/covers/m-9d550cd260.jpg",
+    "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "coverSource": "simania"
   },
   {
     "id": "רק-לקיץ-הזה-אבי-חימנז",
