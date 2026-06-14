@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(lsof -nP -iTCP -sTCP:LISTEN)",
+      "Bash(xattr node_modules/@rolldown/binding-darwin-arm64/rolldown-binding.darwin-arm64.node)",
+      "Bash(xattr -d com.apple.quarantine node_modules/@rolldown/binding-darwin-arm64/rolldown-binding.darwin-arm64.node)",
+      "Bash(codesign --force --sign - node_modules/@rolldown/binding-darwin-arm64/rolldown-binding.darwin-arm64.node)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5173/)",
+      "Bash(open http://localhost:5173/)",
+      "Bash(npx tsc *)",
+      "Bash(echo \"=== tsc exit $? ===\")",
+      "Bash(node -e ' *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=hanit-library -c user.email=local@hanit.library commit -q -m 'Checkpoint: clean minimalist design + 793 books \\(covers, themes, 3D\\) *)"
+    ]
+  }
+}
