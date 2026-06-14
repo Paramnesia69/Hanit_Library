@@ -1,14 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="lf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8f2a37"/><stop offset="1" stop-color="#4a121b"/></linearGradient>
-    <linearGradient id="gf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6d98a"/><stop offset="1" stop-color="#c89a36"/></linearGradient>
-  </defs>
-  <rect x="6" y="3" width="52" height="58" rx="10" fill="#f3e3bb"/>
-  <rect x="11" y="3" width="47" height="58" rx="10" fill="url(#lf)"/>
-  <rect x="17" y="10" width="35" height="44" rx="5" fill="none" stroke="url(#gf)" stroke-width="2"/>
-  <g fill="url(#gf)">
-    <rect x="23" y="19" width="24" height="6.5" rx="3"/>
-    <rect x="23" y="22" width="6.5" height="22" rx="3"/>
-    <rect x="40.5" y="22" width="6.5" height="22" rx="3"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs>
+  <linearGradient id="logo-bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#3a1228"/><stop offset="0.5" stop-color="#230d1a"/><stop offset="1" stop-color="#120610"/></linearGradient>
+  <linearGradient id="logo-foil" x1="0" y1="0" x2="0.3" y2="1">
+    <stop offset="0" stop-color="#fff4d2"/><stop offset="0.4" stop-color="#e9c45f"/><stop offset="0.72" stop-color="#c79a3a"/><stop offset="1" stop-color="#a8761f"/></linearGradient>
+  <linearGradient id="logo-foil-soft" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f7e6bd"/><stop offset="1" stop-color="#c79a3a"/></linearGradient>
+  <linearGradient id="logo-ribbon" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#e25c92"/><stop offset="1" stop-color="#a81f57"/></linearGradient>
+  <radialGradient id="logo-glow" cx="0.5" cy="0.3" r="0.75">
+    <stop offset="0" stop-color="rgba(255,236,200,0.28)"/><stop offset="1" stop-color="rgba(255,236,200,0)"/></radialGradient>
+</defs>
+  <rect x="3" y="3" width="94" height="94" rx="27" fill="url(#logo-bg)"/>
+  <rect x="3" y="3" width="94" height="94" rx="27" fill="url(#logo-glow)"/>
+  <rect x="4.5" y="4.5" width="91" height="91" rx="24.5" fill="none" stroke="url(#logo-foil)" stroke-width="1.6" opacity="0.85"/>
+  <path d="M50 30 L50 84 L46 79 L42 84 L42 30 Z" fill="url(#logo-ribbon)" opacity="0.95"/>
+  <path d="M50 41 C 64 33, 79 32, 90 37 L 88 71 C 77 67, 62 69, 50 76 Z" fill="url(#logo-foil)" stroke="#7a5512" stroke-width="0.6" stroke-opacity="0.45"/>
+  <path d="M50 41 C 36 33, 21 32, 10 37 L 12 71 C 23 67, 38 69, 50 76 Z" fill="url(#logo-foil-soft)" stroke="#7a5512" stroke-width="0.6" stroke-opacity="0.45"/>
+  <g stroke="#7a5512" stroke-opacity="0.4" stroke-width="1.1" stroke-linecap="round">
+    <path d="M55 47 C 66 42, 76 41, 84 43"/><path d="M55 53 C 66 48, 76 47, 84 49"/><path d="M55 59 C 66 55, 76 54, 84 56"/>
+    <path d="M45 47 C 34 42, 24 41, 16 43"/><path d="M45 53 C 34 48, 24 47, 16 49"/><path d="M45 59 C 34 55, 24 54, 16 56"/></g>
+  <path d="M50 76 L50 41" stroke="#8a5f17" stroke-width="1.4" stroke-opacity="0.6"/>
+  <path d="M50 76 C 38 69, 23 67, 12 71 L 12 74 C 23 70, 38 72, 50 79 C 62 72, 77 70, 88 74 L 88 71 C 77 67, 62 69, 50 76 Z" fill="#a8761f" opacity="0.85"/>
+  <g transform="translate(50 20)" fill="url(#logo-foil)">
+    <path d="M0 -7 L1.5 -1.5 L7 0 L1.5 1.5 L0 7 L-1.5 1.5 L-7 0 L-1.5 -1.5 Z"/></g>
 </svg>
