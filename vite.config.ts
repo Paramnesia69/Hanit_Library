@@ -13,7 +13,7 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
         name: 'הספרייה של חנית',
-        short_name: 'ספריית חנית',
+        short_name: 'הספרייה של חנית',
         description: 'הספרייה האישית של חנית — כל הספרים שקראתי, במקום אחד יפה',
         lang: 'he',
         dir: 'rtl',
