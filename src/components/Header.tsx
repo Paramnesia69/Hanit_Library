@@ -68,7 +68,7 @@ export function Header({
             </div>
 
             {/* שורת פעולות ממורכזת */}
-            <div className="mt-3.5 flex flex-wrap items-center justify-center gap-2 border-t border-line/60 pt-3 sm:mt-5 sm:pt-4">
+            <div className="mt-3.5 flex flex-wrap items-center justify-center gap-1.5 border-t border-line/60 pt-3 sm:mt-5 sm:gap-2 sm:pt-4">
                 <button
                     type="button"
                     onClick={onAdd}
@@ -93,7 +93,7 @@ export function Header({
                 <ThemePicker theme={theme} onChange={onThemeChange} />
 
                 <details className="group relative">
-                    <summary className="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-full glass text-ink-soft transition hover:text-ink">
+                    <summary className="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-full glass text-ink-soft transition hover:text-ink sm:h-11 sm:w-11">
                         <MoreVertical size={18} />
                     </summary>
                     <div className="glass-strong absolute end-0 z-40 mt-2 w-56 overflow-hidden rounded-2xl py-1 shadow-book">
@@ -139,15 +139,15 @@ export function Header({
                 </div>
 
             {/* שורת סינון פרימיום: מהדורה (פיזי/קינדל) + מדף */}
-            <div className="mt-2.5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 sm:mt-3 sm:gap-y-3">
+            <div className="mt-2.5 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 sm:mt-3 sm:gap-x-5 sm:gap-y-3">
                 {/* מהדורה */}
                 <div className="flex items-center gap-2.5">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-ink-soft/70">מהדורה</span>
+                    <span className="hidden text-[11px] font-bold uppercase tracking-wider text-ink-soft/70 sm:inline">מהדורה</span>
                     <div className="flex rounded-full border border-line bg-card/70 p-1 shadow-card">
                         <button
                             type="button"
                             onClick={() => onLibraryChange('physical')}
-                            className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] font-semibold transition ${!isDigital ? 'bg-accent-600 text-white shadow' : 'text-ink-soft hover:text-ink'
+                            className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold transition sm:px-3.5 sm:py-2 ${!isDigital ? 'bg-accent-600 text-white shadow' : 'text-ink-soft hover:text-ink'
                                 }`}
                         >
                             <Library size={16} />
@@ -157,7 +157,7 @@ export function Header({
                         <button
                             type="button"
                             onClick={() => onLibraryChange('digital')}
-                            className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] font-semibold transition ${isDigital ? 'bg-indigo-600 text-white shadow' : 'text-ink-soft hover:text-ink'
+                            className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold transition sm:px-3.5 sm:py-2 ${isDigital ? 'bg-indigo-600 text-white shadow' : 'text-ink-soft hover:text-ink'
                                 }`}
                         >
                             <Tablet size={16} />
@@ -170,7 +170,7 @@ export function Header({
                 {/* מדף — רלוונטי רק לספרייה הפיזית */}
                 {!isDigital && floors.length > 0 && (
                     <div className="flex items-center gap-2.5">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-ink-soft/70">מדף</span>
+                        <span className="hidden text-[11px] font-bold uppercase tracking-wider text-ink-soft/70 sm:inline">מדף</span>
                         <div className="relative">
                             <Layers
                                 size={15}

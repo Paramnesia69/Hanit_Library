@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, LayoutGrid, List, Heart, ArrowUpDown, SlidersHorizontal, X, Library } from 'lucide-react';
+import { Search, LayoutGrid, List, Heart, ArrowUpDown, SlidersHorizontal, X, Library, ChevronDown } from 'lucide-react';
 import type { Filters, Facets } from '../hooks/useBooks';
 import { activeFilterCount } from '../hooks/useBooks';
 import { SORT_FIELDS, STATUS_LABELS } from '../types/book';
@@ -32,6 +32,8 @@ const VIEWS: Array<{ key: ViewMode; label: string; icon: typeof LayoutGrid }> = 
 
 export function FilterBar({ filters, onChange, onReset, facets, view, onViewChange, count }: Props) {
     const [advanced, setAdvanced] = useState(false);
+    /** במובייל: פתיחת/סגירת אזור הסינון (ז'אנרים, סטטוס, מיון). בדסקטופ תמיד פתוח. */
+    const [open, setOpen] = useState(false);
     const active = activeFilterCount(filters);
 
     return (
@@ -47,24 +49,6 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                         className="w-full rounded-full border border-line bg-card py-2.5 pe-10 ps-4 text-[15px] text-ink outline-none transition placeholder:text-ink-soft focus:border-accent-400 focus:ring-2 focus:ring-accent-100"
                     />
                 </div>
-
-                {/* מסננים מתקדמים */}
-                <button
-                    type="button"
-                    onClick={() => setAdvanced((v) => !v)}
-                    className={`relative flex items-center gap-1.5 rounded-full border px-3 py-2 text-[13px] font-medium transition ${advanced || active > 0
-                        ? 'border-accent-300 bg-accent-50 text-accent-700'
-                        : 'border-line bg-card text-ink-soft hover:text-accent-600'
-                        }`}
-                >
-                    <SlidersHorizontal size={16} />
-                    <span className="hidden sm:inline">סינון</span>
-                    {active > 0 && (
-                        <span className="grid h-5 min-w-5 place-items-center rounded-full bg-accent-600 px-1 text-[11px] font-bold text-white">
-                            {active}
-                        </span>
-                    )}
-                </button>
 
                 {/* מועדפים */}
                 <button
@@ -96,7 +80,30 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                         </button>
                     ))}
                 </div>
+
+                {/* פתיחת/סגירת אזור הסינון — נייד בלבד */}
+                <button
+                    type="button"
+                    onClick={() => setOpen((v) => !v)}
+                    className={`relative ms-auto flex items-center gap-1 rounded-full border px-3 py-2.5 text-[13px] font-semibold transition sm:hidden ${open || active > 0
+                        ? 'border-accent-300 bg-accent-50 text-accent-700'
+                        : 'border-line bg-card text-ink-soft'
+                        }`}
+                    aria-expanded={open}
+                >
+                    <SlidersHorizontal size={16} />
+                    סינון
+                    {active > 0 && (
+                        <span className="grid h-5 min-w-5 place-items-center rounded-full bg-accent-600 px-1 text-[11px] font-bold text-white">
+                            {active}
+                        </span>
+                    )}
+                    <ChevronDown size={14} className={`transition-transform ${open ? 'rotate-180' : ''}`} />
+                </button>
             </div>
+
+            {/* אזור הסינון — נסגר במובייל, תמיד פתוח בדסקטופ */}
+            <div className={open ? 'block' : 'hidden sm:block'}>
 
             {/* שורת ז'אנרים צבעונית */}
             <div className="no-scrollbar mt-2.5 flex items-center gap-1.5 overflow-x-auto pb-0.5 sm:mt-3">
@@ -174,6 +181,21 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                         <ArrowUpDown size={16} />
                     </button>
                 </div>
+
+                {/* מסננים מתקדמים */}
+                <button
+                    type="button"
+                    onClick={() => setAdvanced((v) => !v)}
+                    className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[13px] font-medium transition ${advanced
+                        ? 'border-accent-300 bg-accent-50 text-accent-700'
+                        : 'border-line bg-card text-ink-soft hover:text-accent-600'
+                        }`}
+                    aria-expanded={advanced}
+                >
+                    <SlidersHorizontal size={15} />
+                    מתקדם
+                    <ChevronDown size={13} className={`transition-transform ${advanced ? 'rotate-180' : ''}`} />
+                </button>
 
                 {active > 0 && (
                     <button
@@ -285,6 +307,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                     </label>
                 </div>
             )}
+            </div>
         </div>
     );
 }
