@@ -1,8 +1,8 @@
 # Active Work — hanit-library
 
-> Handoff notes for resuming after `/clear`. Last updated: 2026-06-15 (e-vrit digital library integration).
+> Handoff notes for resuming after `/clear`. Last updated: 2026-06-16 (cross-device sync via Upstash Redis).
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
-> Data: 956 books in `src/data/books.json` — 793 physical (Excel) + 163 digital (e-vrit). Persistence = localStorage. Live on Vercel (auto-deploy from GitHub).
+> Data: 956 books — 793 physical (Excel) + 163 digital (e-vrit). Persistence = **Upstash Redis** (server, source of truth) with bundled `src/data/books.json` as offline/first-paint cache. Live on Vercel (auto-deploy from GitHub).
 
 ## CURRENT FOCUS — cross-device sync is LIVE (Upstash Redis backend)
 The app now has a real backend: books persist to **Upstash Redis** (via Vercel Storage) and sync across
