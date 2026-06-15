@@ -81,13 +81,14 @@ export function Header({
                 <button
                     type="button"
                     onClick={onToggleStats}
-                    className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[14px] font-medium transition sm:py-2.5 ${showStats
+                    aria-label="סטטיסטיקות"
+                    className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-[14px] font-medium transition sm:px-3.5 sm:py-2.5 ${showStats
                         ? 'bg-accent-600 text-white glow-accent'
                         : 'glass text-ink hover:text-accent-700'
                         }`}
                 >
                     <BarChart3 size={17} />
-                    <span>סטטיסטיקות</span>
+                    <span className="hidden sm:inline">סטטיסטיקות</span>
                 </button>
 
                 <ThemePicker theme={theme} onChange={onThemeChange} />
