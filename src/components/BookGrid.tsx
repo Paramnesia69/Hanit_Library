@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { Book } from '../types/book';
 import { BookCard } from './BookCard';
 import { effectiveGenre, GENRE_THEMES, DEFAULT_THEME } from '../lib/genreThemes';
@@ -38,12 +38,11 @@ function groupByGenre(books: Book[]): Band[] {
 
 // gap-y מוקטן ב-20px (gap-10→gap-5) כדי לקזז את ה-padding-top של .cv-auto
 // (מקום להטיית התלת-ממד), כך שהמרווח הנראה בין השורות נשאר זהה.
-// tile-in = כניסה מדורגת של העטיפות (גל עדין).
 const GRID =
-    'tile-in grid grid-cols-2 gap-x-6 gap-y-5 px-0.5 sm:grid-cols-3 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6';
+    'grid grid-cols-2 gap-x-6 gap-y-5 px-0.5 sm:grid-cols-3 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6';
 
 /** רצועת ז'אנר — כותרת בלבד, ללא רקע; הכריכות על הדף הנקי */
-function GenreBand({ band, onOpen, onToggleFavorite }: { band: Band } & Omit<Props, 'books'>) {
+function GenreBand({ band, animate, onOpen, onToggleFavorite }: { band: Band; animate: boolean } & Omit<Props, 'books'>) {
     const { theme, label, books } = band;
     return (
         <section className="px-0.5 py-6">
@@ -56,7 +55,9 @@ function GenreBand({ band, onOpen, onToggleFavorite }: { band: Band } & Omit<Pro
                 </span>
             </header>
 
-            <div className={GRID}>
+            {/* tile-in = כניסה מדורגת — מופעל רק פעם אחת אחרי טעינה/סינון (לא בכל
+                גלילה), כדי לשמור על גלילה חלקה לאורך 793 עטיפות. */}
+            <div className={`${animate ? 'tile-in ' : ''}${GRID}`}>
                 {books.map((b) => (
                     <BookCard key={b.id} book={b} onOpen={onOpen} onToggleFavorite={onToggleFavorite} />
                 ))}
@@ -68,10 +69,17 @@ function GenreBand({ band, onOpen, onToggleFavorite }: { band: Band } & Omit<Pro
 /** קיר העטיפות — מקובץ לעולמות ז'אנר עם סימני-מים של עטיפות אמיתיות */
 export function BookGrid({ books, onOpen, onToggleFavorite }: Props) {
     const bands = useMemo(() => groupByGenre(books), [books]);
+    // הפעלת אנימציית הכניסה פעם אחת בלבד אחרי שינוי רשימת הספרים
+    const [animate, setAnimate] = useState(true);
+    useEffect(() => {
+        setAnimate(true);
+        const t = window.setTimeout(() => setAnimate(false), 1300);
+        return () => window.clearTimeout(t);
+    }, [books]);
     return (
         <div className="space-y-8">
             {bands.map((band) => (
-                <GenreBand key={band.key} band={band} onOpen={onOpen} onToggleFavorite={onToggleFavorite} />
+                <GenreBand key={band.key} band={band} animate={animate} onOpen={onOpen} onToggleFavorite={onToggleFavorite} />
             ))}
         </div>
     );

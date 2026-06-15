@@ -5,7 +5,9 @@
   font-family: 'Dana Yad';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
+  /* block (במקום swap) — מונע הבהוב מפונט ברירת המחדל לכתב היד.
+     הפונט נטען מראש (preload ב-index.html) כך שה"חסך" קצר מאוד. */
+  font-display: block;
   src: url('/fonts/DanaYad.woff') format('woff');
 }
 
