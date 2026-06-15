@@ -61,35 +61,46 @@ async function extractProducts(page) {
     } catch { return []; }
 }
 
-/** חיפוש שם הסופר/ת → קישור /Author/{id} שה-slug שלו מכיל את שם הסופר/ת */
+/** מציאת עמוד הסופר/ת — ניווט ישיר ל-/Search/{שם} (אמין יותר מהקלדה+Enter), עם סקרים ונסיונות */
 async function findAuthorPage(page, author) {
-    await page.goto('https://www.e-vrit.co.il/', { waitUntil: 'domcontentloaded', timeout: 30000 });
-    const input = await page.waitForSelector('input[placeholder*="חיפוש"]', { timeout: 10000 });
-    await input.click(); await input.fill(''); await input.type(author, { delay: 50 });
-    await sleep(1000); await input.press('Enter');
-    try { await page.waitForSelector('a[href*="/Author/"]', { timeout: 8000 }); } catch { return null; }
-    await sleep(800);
-    const links = await page.$$eval('a[href*="/Author/"]', (as) => [...new Set(as.map((a) => a.getAttribute('href')).filter(Boolean))]);
     const aTok = [...tokens(author)];
-    for (const href of links) {
-        const m = href.match(/\/Author\/(\d+)\/([^"?#]+)/);
-        if (!m) continue;
-        const slug = decodeURIComponent(m[2]);
-        // לפחות מחצית מטוקני שם-הסופר חייבים להופיע ב-slug
-        const hit = aTok.filter((t) => norm(slug).includes(t)).length;
-        if (aTok.length && hit / aTok.length >= 0.5) {
-            return `https://www.e-vrit.co.il/Author/${m[1]}/${m[2]}`;
+    for (let attempt = 0; attempt < 3; attempt++) {
+        try {
+            await page.goto('https://www.e-vrit.co.il/Search/' + encodeURIComponent(author), { waitUntil: 'domcontentloaded', timeout: 30000 });
+        } catch { continue; }
+        let links = [];
+        for (let i = 0; i < 18; i++) {
+            await sleep(600);
+            links = await page.$$eval('a[href*="/Author/"]', (as) => [...new Set(as.map((a) => a.getAttribute('href')).filter(Boolean))]);
+            if (links.length) break;
+        }
+        const authorLinks = links.map((h) => h.match(/\/Author\/(\d+)\/([^"?#]+)/)).filter(Boolean);
+        if (!authorLinks.length) continue;
+        // בוחרים את הקישור עם הכי הרבה טוקנים תואמים; אם יש רק אחד — לוקחים אותו
+        let best = null, bestHit = 0;
+        for (const m of authorLinks) {
+            const hit = aTok.length ? aTok.filter((t) => norm(decodeURIComponent(m[2])).includes(t)).length / aTok.length : 0;
+            if (hit > bestHit) { bestHit = hit; best = m; }
+        }
+        if (best && (bestHit >= 0.34 || authorLinks.length === 1)) {
+            return `https://www.e-vrit.co.il/Author/${best[1]}/${best[2]}`;
         }
     }
     return null;
 }
 
-/** כל ספרי הסופר/ת מעמוד /Author */
+/** כל ספרי הסופר/ת מעמוד /Author — עם סקרים לרינדור (ה-JS איטי/לא-עקבי) */
 async function authorBooks(page, authorUrl) {
-    await page.goto(authorUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
-    try { await page.waitForSelector(RESULT_SEL, { timeout: 9000 }); } catch { return []; }
-    await sleep(1200);
-    return extractProducts(page);
+    for (let attempt = 0; attempt < 3; attempt++) {
+        await page.goto(authorUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+        // ממתינים שרשת המוצרים תיטען — עד ~13 שניות
+        for (let i = 0; i < 22; i++) {
+            await sleep(600);
+            const prods = await extractProducts(page);
+            if (prods.length >= 1) return prods;
+        }
+    }
+    return [];
 }
 
 async function fetchProduct(page, url) {
@@ -101,9 +112,9 @@ async function fetchProduct(page, url) {
             const body = (document.body.innerText || '');
             const ym = body.match(/תאריך הוצאה:\s*(?:\d{1,2}[./])?(?:\d{1,2}[./])?(\d{4})/);
             const pm = body.match(/מספר עמודים:\s*(\d{2,4})/);
-            return { desc, year: ym ? Number(ym[1]) : null, pageCount: pm ? Number(pm[1]) : null };
+            return { desc, body: body.slice(0, 6000), year: ym ? Number(ym[1]) : null, pageCount: pm ? Number(pm[1]) : null };
         });
-    } catch { return { desc: '', year: null, pageCount: null }; }
+    } catch { return { desc: '', body: '', year: null, pageCount: null }; }
 }
 
 function loadJson(p, f) { try { return JSON.parse(readFileSync(p, 'utf8')); } catch { return f; } }
@@ -143,22 +154,27 @@ async function main() {
         for (const b of byAuthor.get(author)) {
             if (b.description) continue;
             // התאמה לרשימת ספרי הסופר/ת
-            // סף 0.5 בטוח כאן: כל המועמדים מובטחים מאותו סופר/ת, אז התאמת-שם חלקית
-            // (וריאנט כתיב כמו עקידת/עקדת) כמעט תמיד הספר הנכון.
+            // סף 0.4 — כל המועמדים מאותו סופר/ת, ואימות-סופר בדף המוצר שומר על דיוק,
+            // אז התאמת-שם חלקית (וריאנט כתיב כמו עקידת/עקדת) נתפסת בבטחה.
             const cands = ac.list
                 .map((p) => ({ p, score: Math.max(containment(b.title, p.slug), jaccard(b.title, p.slug)) }))
-                .filter((c) => c.score >= 0.5)
+                .filter((c) => c.score >= 0.4)
                 .sort((a, c) => c.score - a.score || a.p.slug.length - c.p.slug.length);
-            if (!cands.length) continue;
-            const { desc, year, pageCount } = await fetchProduct(page, cands[0].p.url);
-            if (desc.length >= 60) {
-                b.description = desc;
-                if (year && b.year !== year) { b.year = year; yrs++; }
-                if (pageCount && !b.pageCount) { b.pageCount = pageCount; pgs++; }
-                b.updatedAt = new Date().toISOString();
-                filled++;
+            const aTok = [...tokens(b.author)];
+            for (const c of cands.slice(0, 3)) {
+                const { desc, body, year, pageCount } = await fetchProduct(page, c.p.url);
+                const authorOk = aTok.length === 0 || aTok.some((t) => norm(body).includes(t));
+                if (desc.length >= 60 && authorOk) {
+                    b.description = desc;
+                    if (year && b.year !== year) { b.year = year; yrs++; }
+                    if (pageCount && !b.pageCount) { b.pageCount = pageCount; pgs++; }
+                    b.updatedAt = new Date().toISOString();
+                    filled++;
+                    break;
+                }
+                await sleep(250);
             }
-            await sleep(300);
+            await sleep(250);
         }
         console.log(`  ${author}: ספרי-מקור ${ac.list.length} | מולאו עד כה ${filled}`);
     }
