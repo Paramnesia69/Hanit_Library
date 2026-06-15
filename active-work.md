@@ -76,10 +76,30 @@ whole library works offline on a plane. Reply-in-English / build-in-Hebrew as al
 - **Hebrew years/pages** (`scripts/enrich-evrit-meta.mjs`): e-vrit product page server HTML has
   "תאריך הוצאה:" + "מספר עמודים:". These Hebrew-edition years OVERRIDE Google's original-language years.
   Fixed **תחרה: 1985 → 2013, 719pp** (the כנרת זמורה ביתן Hebrew edition). +20 years, +54 page counts overall.
-- **Ceiling reached (~115 still blank):** obscure Hebrew indie romance not reliably indexed by e-vrit/Google/
-  Wikipedia. e-vrit's own search relevance is non-deterministic for these — diminishing returns, stopped.
-  Re-run the scripts later to pick up newly-listed e-vrit titles. Other enrich scripts:
-  `enrich-wikipedia.mjs`, `enrich-content.mjs` (Google, needs `GOOGLE_BOOKS_API_KEY`, throttles hard).
+- **✅ REACHED 100% (2026-06-16): all 956 books have descriptions** (793 physical + 163 digital), covers 956/956,
+  plus dozens of years/page counts. Got from 168 missing → 0 across multiple sources + sessions:
+  - **e-vrit author pages** (`scripts/enrich-evrit-author.mjs`) — the workhorse. Since e-vrit *title* search is
+    flaky, search the **author name** → `/Author/{id}` page (reliable) → it lists ALL their books → match titles.
+    Direct-URL `/Search/{name}` navigation beats typing-in-the-box. Containment + edit-distance (spelling variants
+    like יפייפיה/יפהפייה) + author-verification.
+  - **Simania** (`scripts/enrich-simania-desc.mjs`) — plain HTTP `api/search` → `data.books[].DESCRIPTION`. Best
+    for mainstream + **Israeli authors**. Title-only queries (combined title+author returns 0). +35.
+  - **Steimatzky** (`scripts/enrich-steimatzky.mjs`) — search is bot-blocked, but plain search HTML exposes
+    `data-product-id`, and `/catalog/product/view/id/{id}` is server-rendered with the book's opening excerpt.
+    Fixed many **garbled source titles** (חופח לסר רחמים→יופי חסר רחמים, etc.). +~18.
+  - All three are **collision-safe**: physical-only (`!b.evritId`), re-read books.json right before writing,
+    fill only empty fields — never clobber the digital session's work.
+- **🔑 KEY LESSON — e-vrit search is BROKEN; never rely on it. Two reliable paths instead:**
+  1. **Fetch by product ID.** Digital books are 100% because the sync gives every `evritId` → fetch
+     `Product/{id}` directly (blurb in `.tab-content__about-book .single-tab__txt`, needs headless render;
+     year/pages in server HTML). No search involved.
+  2. **GOOGLE to discover the ID (user's tip).** e-vrit has *every* book — a Google search for the title puts
+     the e-vrit `Product/{id}` page in the **first results** (the URLs even carry `utm_source=google`). So:
+     Google the title → grab the e-vrit product ID → fetch directly. This is THE way to find physical-book IDs
+     (which aren't stored). The final 3 books filled instantly once the user pasted the Google-found IDs
+     (3978/11554/16750). Source titles have spelling typos vs e-vrit, so fuzzy match + author-verify.
+  - Other (lower-yield) scripts: `enrich-wikipedia.mjs` (only famous books), `enrich-content.mjs`
+    (Google Books, needs `GOOGLE_BOOKS_API_KEY`, throttles hard).
 - **Offline = verified, not assumed.** `books.json` is a static `import` → bundled into JS → precached by
   the SW, so ALL per-book info (incl. the new descriptions) is offline. `storage.ts` `mergeEnrichment()`
   pulls new enrichment fields (description/year/pageCount/genres in `ENRICH_KEYS`) into existing localStorage,
