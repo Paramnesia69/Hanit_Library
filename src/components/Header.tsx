@@ -6,6 +6,7 @@ import { FLOOR_LABELS } from '../lib/shelf';
 import { Logo } from './Logo';
 import { ThemePicker } from './ThemePicker';
 import { InstallButton } from './InstallButton';
+import { OfflineButton } from './OfflineButton';
 
 interface Props {
     count: number;
@@ -26,6 +27,7 @@ interface Props {
     onImport: (file: File) => void;
     onConnectKindle: () => void;
     onReset: () => void;
+    coverUrls: string[];
 }
 
 export function Header({
@@ -47,6 +49,7 @@ export function Header({
     onImport,
     onConnectKindle,
     onReset,
+    coverUrls,
 }: Props) {
     const fileRef = useRef<HTMLInputElement>(null);
     const isDigital = library === 'digital';
@@ -100,6 +103,8 @@ export function Header({
                     </summary>
                     <div className="glass-strong absolute end-0 z-40 mt-2 w-56 overflow-hidden rounded-2xl py-1 shadow-book">
                             <InstallButton />
+                            <OfflineButton coverUrls={coverUrls} />
+                            <div className="my-1 border-t border-line" />
                             <button
                                 type="button"
                                 onClick={onExportJson}

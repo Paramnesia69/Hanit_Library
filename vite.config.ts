@@ -39,11 +39,22 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         runtimeCaching: [
           {
-            // Book covers: cache on first view so they show offline afterward.
+            // Local book covers: cache on first view so they show offline afterward.
             urlPattern: ({ url }) => url.pathname.startsWith('/covers/'),
             handler: 'CacheFirst',
             options: {
               cacheName: 'book-covers',
+              expiration: { maxEntries: 1000, maxAgeSeconds: 60 * 60 * 24 * 90 },
+            },
+          },
+          {
+            // Remote covers (Simania CDN). statuses:[0,200] allows caching the
+            // opaque cross-origin responses so they work offline too.
+            urlPattern: ({ url }) => url.origin === 'https://cdn.simania.co.il',
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'book-covers-remote',
+              cacheableResponse: { statuses: [0, 200] },
               expiration: { maxEntries: 1000, maxAgeSeconds: 60 * 60 * 24 * 90 },
             },
           },

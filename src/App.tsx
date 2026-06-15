@@ -32,6 +32,16 @@ export default function App() {
     const physicalCount = useMemo(() => books.filter((b) => (b.library ?? 'physical') === 'physical').length, [books]);
     const digitalCount = books.length - physicalCount;
 
+    // כל כתובות העטיפות האמיתיות (להורדה לא-מקוונת) — מקומיות + מרוחקות, ללא placeholders
+    const coverUrls = useMemo(() => {
+        const set = new Set<string>();
+        for (const b of books) {
+            const u = b.coverUrl;
+            if (u && (u.startsWith('/') || u.startsWith('http'))) set.add(u);
+        }
+        return [...set];
+    }, [books]);
+
     const libraryBooks = useMemo(
         () => books.filter((b) => (b.library ?? 'physical') === activeLibrary),
         [books, activeLibrary],
@@ -114,6 +124,7 @@ export default function App() {
                 onImport={handleImport}
                 onConnectKindle={() => setKindleOpen(true)}
                 onReset={handleReset}
+                coverUrls={coverUrls}
             />
 
             <AnimatePresence>
