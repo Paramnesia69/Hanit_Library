@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Book, BookDraft, ReadingStatus, SortField } from '../types/book';
 import { loadBooks, saveBooks } from '../lib/storage';
+import { fetchRemoteBooks, flushQueue, applyQueue, syncUpsert, syncDelete } from '../lib/remote';
 import { effectiveGenre, genresWithCounts } from '../lib/genreThemes';
 import type { GenreCount } from '../lib/genreThemes';
 import { parseShelf } from '../lib/shelf';
@@ -106,44 +107,66 @@ export function computeFacets(books: Book[]): Facets {
 
 export function useBooks() {
     const [books, setBooks] = useState<Book[]>(() => loadBooks());
+    // ref עם המצב העדכני — כדי שמוטציות יקראו את הספר הנוכחי בלי תלות ב-closure
+    const booksRef = useRef(books);
 
     useEffect(() => {
+        booksRef.current = books;
         saveBooks(books);
     }, [books]);
+
+    // טעינה מהשרת: השרת (Upstash) הוא מקור האמת. דוחפים תור ממתין, מושכים הכול,
+    // ומחילים מעליו שינויים שטרם סונכרנו. הביל ד/localStorage שימשו רק לציור מיידי/אופליין.
+    useEffect(() => {
+        let alive = true;
+        (async () => {
+            await flushQueue();
+            const remote = await fetchRemoteBooks();
+            if (alive && remote) setBooks(applyQueue(remote));
+        })();
+        const onOnline = () => { flushQueue(); };
+        window.addEventListener('online', onOnline);
+        return () => {
+            alive = false;
+            window.removeEventListener('online', onOnline);
+        };
+    }, []);
 
     const addBook = useCallback((draft: BookDraft): Book => {
         const now = new Date().toISOString();
         const book: Book = { ...draft, id: genId(), createdAt: now, updatedAt: now };
         setBooks((prev) => [book, ...prev]);
+        void syncUpsert(book);
         return book;
     }, []);
 
-    /** הוספת אצווה של ספרים (לייבוא קינדל) */
+    /** הוספת אצווה של ספרים */
     const addBooks = useCallback((drafts: BookDraft[]): number => {
         if (drafts.length === 0) return 0;
         const now = new Date().toISOString();
         const created: Book[] = drafts.map((d) => ({ ...d, id: genId(), createdAt: now, updatedAt: now }));
         setBooks((prev) => [...created, ...prev]);
+        created.forEach((b) => void syncUpsert(b));
         return created.length;
     }, []);
 
     const updateBook = useCallback((id: string, patch: Partial<Book>) => {
-        setBooks((prev) =>
-            prev.map((b) => (b.id === id ? { ...b, ...patch, updatedAt: new Date().toISOString() } : b)),
-        );
+        const current = booksRef.current.find((b) => b.id === id);
+        if (!current) return;
+        const updated: Book = { ...current, ...patch, updatedAt: new Date().toISOString() };
+        setBooks((prev) => prev.map((b) => (b.id === id ? updated : b)));
+        void syncUpsert(updated);
     }, []);
 
     const removeBook = useCallback((id: string) => {
         setBooks((prev) => prev.filter((b) => b.id !== id));
+        void syncDelete(id);
     }, []);
 
-    const toggleFavorite = useCallback(
-        (id: string) => {
-            const b = books.find((x) => x.id === id);
-            if (b) updateBook(id, { favorite: !b.favorite });
-        },
-        [books, updateBook],
-    );
+    const toggleFavorite = useCallback((id: string) => {
+        const b = booksRef.current.find((x) => x.id === id);
+        if (b) updateBook(id, { favorite: !b.favorite });
+    }, [updateBook]);
 
     const replaceAll = useCallback((next: Book[]) => setBooks(next), []);
 

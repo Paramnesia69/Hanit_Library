@@ -25,6 +25,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install deps (for the Upstash push)
+        run: npm ci
+
       - name: Sync library from e-vrit
         env:
           # אופציונלי: אפשר להגדיר Sid אחר דרך Variables של הריפו (ברירת מחדל: חנית)
@@ -33,6 +36,12 @@ jobs:
 
       - name: Enrich new books from their e-vrit product pages
         run: node scripts/enrich-evrit-products.mjs
+
+      - name: Push new/updated books to Upstash (preserves user edits)
+        env:
+          KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
+          KV_REST_API_TOKEN: ${{ secrets.KV_REST_API_TOKEN }}
+        run: node scripts/push-evrit-to-upstash.mjs
 
       - name: Commit if the library changed
         run: |

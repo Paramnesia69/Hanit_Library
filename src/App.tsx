@@ -14,8 +14,10 @@ import { Bookshelf3D } from './components/Bookshelf3D';
 import { BookDetail } from './components/BookDetail';
 import { BookForm } from './components/BookForm';
 import { EvritLibrary } from './components/EvritLibrary';
+import { PassphraseGate } from './components/PassphraseGate';
 import { StatsPanel } from './components/StatsPanel';
 import { exportJson, exportCsv, importJson, downloadFile, resetToSeed } from './lib/storage';
+import { hasPass } from './lib/remote';
 
 export default function App() {
     const { books, addBook, updateBook, removeBook, toggleFavorite, replaceAll } = useBooks();
@@ -28,6 +30,17 @@ export default function App() {
     const [formOpen, setFormOpen] = useState(false);
     const [editing, setEditing] = useState<Book | null>(null);
     const [evritOpen, setEvritOpen] = useState(false);
+    // עריכה מוגנת בסיסמה: פעולה ממתינה עד שמזינים את מילת הסוד (פעם אחת למכשיר)
+    const [pendingEdit, setPendingEdit] = useState<(() => void) | null>(null);
+
+    /** מריץ פעולת עריכה אם הסיסמה כבר הוזנה, אחרת פותח את שער הסיסמה */
+    function guard(action: () => void) {
+        if (hasPass()) action();
+        else setPendingEdit(() => action);
+    }
+    const guardedToggleFavorite = (id: string) => guard(() => toggleFavorite(id));
+    const guardedUpdate = (id: string, patch: Partial<Book>) => guard(() => updateBook(id, patch));
+    const guardedRemove = (id: string) => guard(() => removeBook(id));
 
     const physicalCount = useMemo(() => books.filter((b) => (b.library ?? 'physical') === 'physical').length, [books]);
     const digitalCount = books.length - physicalCount;
@@ -68,14 +81,18 @@ export default function App() {
     }
 
     function openAdd() {
-        setEditing(null);
-        setFormOpen(true);
+        guard(() => {
+            setEditing(null);
+            setFormOpen(true);
+        });
     }
 
     function openEdit(b: Book) {
-        setEditing(b);
-        setSelectedId(null);
-        setFormOpen(true);
+        guard(() => {
+            setEditing(b);
+            setSelectedId(null);
+            setFormOpen(true);
+        });
     }
 
     function handleImport(file: File) {
@@ -181,9 +198,9 @@ export default function App() {
                                     <p className="text-sm">נסי לשנות את החיפוש או הסינון</p>
                                 </div>
                             ) : view === 'grid' ? (
-                                <BookGrid books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={toggleFavorite} />
+                                <BookGrid books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={guardedToggleFavorite} />
                             ) : (
-                                <BookList books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={toggleFavorite} />
+                                <BookList books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={guardedToggleFavorite} />
                             )}
                         </motion.div>
                     </AnimatePresence>
@@ -196,10 +213,10 @@ export default function App() {
                         book={selected}
                         allBooks={books}
                         onClose={() => setSelectedId(null)}
-                        onUpdate={updateBook}
+                        onUpdate={guardedUpdate}
                         onEdit={openEdit}
-                        onDelete={removeBook}
-                        onToggleFavorite={toggleFavorite}
+                        onDelete={guardedRemove}
+                        onToggleFavorite={guardedToggleFavorite}
                         onOpen={(b) => setSelectedId(b.id)}
                     />
                 )}
@@ -219,6 +236,19 @@ export default function App() {
             <AnimatePresence>
                 {evritOpen && (
                     <EvritLibrary count={digitalCount} onClose={() => setEvritOpen(false)} />
+                )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+                {pendingEdit && (
+                    <PassphraseGate
+                        onClose={() => setPendingEdit(null)}
+                        onUnlock={() => {
+                            const action = pendingEdit;
+                            setPendingEdit(null);
+                            action?.();
+                        }}
+                    />
                 )}
             </AnimatePresence>
         </div>

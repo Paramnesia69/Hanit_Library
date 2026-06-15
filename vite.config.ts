@@ -37,6 +37,8 @@ export default defineConfig({
         // App shell + bundled data are precached for instant/offline loads.
         globPatterns: ['**/*.{js,css,html,svg,woff,woff2}'],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
+        // ה-API (סנכרון מול Upstash) חייב תמיד להגיע לרשת — לא לקבל את ה-SPA shell.
+        navigateFallbackDenylist: [/^\/api\//],
         runtimeCaching: [
           {
             // Local book covers: cache on first view so they show offline afterward.
