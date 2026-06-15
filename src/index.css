@@ -14,7 +14,7 @@
 /* ===== טוקנים בסיסיים (ברירת מחדל = ערכת נושא בהירה) ===== */
 @theme {
   --font-sans: 'Rubik', 'Heebo', 'Assistant', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Frank Ruhl Libre', 'Heebo', Georgia, serif;
+  --font-display: 'Bellefair', 'Frank Ruhl Libre', 'Heebo', Georgia, serif;
   --font-wordmark: 'Suez One', 'Frank Ruhl Libre', Georgia, serif;
   --font-script: 'Dana Yad', 'Gveret Levin Alef Alef Alef', cursive;
 
