@@ -1,14 +1,46 @@
 # Active Work — hanit-library
 
-> Handoff notes for resuming after `/clear`. Last updated: 2026-06-15 (premium UI redesign kickoff).
+> Handoff notes for resuming after `/clear`. Last updated: 2026-06-15 (content enrichment + offline verification).
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
 > Data: 793 books in `src/data/books.json`. Persistence = localStorage. Live on Vercel (auto-deploy from GitHub).
 
-## CURRENT FOCUS — Premium UI redesign (started 2026-06-15)
+## CURRENT FOCUS — feature-complete for offline flight use
+Both big workstreams are DONE & shipped: the **premium UI redesign** (3 phases, see below)
+and the **content enrichment + offline-readiness** (see "DONE — Content enrichment" below).
+The app is installable, fully offline-capable, and the book data now carries real Hebrew
+descriptions. No active task in flight — awaiting the next request.
+
+## DONE — Content enrichment + offline verification (2026-06-15)
+**Goal:** fill missing per-book content (the user flagged blank cards like תחרה) and confirm the
+whole library works offline on a plane. Reply-in-English / build-in-Hebrew as always.
+- **Descriptions: 168 missing → 115 missing** (filled 53). Sources, in yield order: **e-vrit** (47
+  real Hebrew back-cover blurbs), Google Books (4 Hebrew), Wikipedia (2). Removed 1 stray English blurb.
+- **e-vrit scraper** (`scripts/enrich-evrit.mjs`) — the only reliable Hebrew-blurb source. e-vrit search
+  is JS-rendered → **Playwright headless** (`playwright-core`, chromium already in `~/Library/Caches/ms-playwright`).
+  Flow: type title in search box → Enter → wait for `.product-item`/`.product-item-container` results
+  (NOT the recommendation carousels) → match by containment (handles "סדרת X N" prefixes) + jaccard
+  tie-break + **author-verification** against the product page → blurb from `.tab-content__about-book .single-tab__txt`.
+  **Do NOT use request-blocking (`page.route` abort) — it silently breaks e-vrit's result rendering.**
+  Resumable cache: `src/data/evrit.cache.json`.
+- **Hebrew years/pages** (`scripts/enrich-evrit-meta.mjs`): e-vrit product page server HTML has
+  "תאריך הוצאה:" + "מספר עמודים:". These Hebrew-edition years OVERRIDE Google's original-language years.
+  Fixed **תחרה: 1985 → 2013, 719pp** (the כנרת זמורה ביתן Hebrew edition). +20 years, +54 page counts overall.
+- **Ceiling reached (~115 still blank):** obscure Hebrew indie romance not reliably indexed by e-vrit/Google/
+  Wikipedia. e-vrit's own search relevance is non-deterministic for these — diminishing returns, stopped.
+  Re-run the scripts later to pick up newly-listed e-vrit titles. Other enrich scripts:
+  `enrich-wikipedia.mjs`, `enrich-content.mjs` (Google, needs `GOOGLE_BOOKS_API_KEY`, throttles hard).
+- **Offline = verified, not assumed.** `books.json` is a static `import` → bundled into JS → precached by
+  the SW, so ALL per-book info (incl. the new descriptions) is offline. `storage.ts` `mergeEnrichment()`
+  pulls new enrichment fields (description/year/pageCount/genres in `ENRICH_KEYS`) into existing localStorage,
+  filling blanks WITHOUT overwriting the user's edits — so Hanit gets the new blurbs with no reset. Covers:
+  all 793 URLs are local `/covers/` (456) or `cdn.simania.co.il` (337); **both have SW CacheFirst rules** (no
+  orphan origins). Pre-flight: open once online (auto-update SW + merge) → ⋮ → שמירה לא מקוונת → הורדה מלאה.
+
+## Premium UI redesign — DONE (2026-06-15)
 Goal: make the app feel genuinely Apple-grade premium. Approved plan in
 `~/.claude/plans/tingly-riding-fiddle.md`. An interactive HTML prototype the user
 approved lives at `premium-demo.html` (open in a browser; real tokens + real cover,
-live theme switcher) — it is the visual spec for the three changes below.
+live theme switcher) — it was the visual spec for the three changes below.
 
 **Restore points (revert with `git reset --hard <tag>`):**
 - `checkpoint-pre-premium-ui` (`3d9a793`) — state before any redesign work.
@@ -19,7 +51,15 @@ live theme switcher) — it is the visual spec for the three changes below.
 2. ✅ **Theme-aware pill glows** — `FilterBar.tsx` + `index.css`. Genre chips each glow their OWN genre color always; UI pills (status/view/favorite) glow with the active accent via `.glow-accent { box-shadow: …color-mix(var(--color-accent-500)…) }`.
 3. ✅ **Full-screen immersive book page** — `BookDetail.tsx` rewritten (all sections + handlers preserved). Full-bleed blurred cover backdrop + genre-tinted scrim + framer `useScroll` parallax, floating `Cover3D`, frosted `glass-strong` sheet rising over the hero, spring rise-in, sticky glass top bar. **Deferred:** drag-down-to-dismiss (X + sticky bar instead) — easy follow-up if wanted.
 
-**Data note:** user flagged "wrong years" (plural) — only תחרה fixed so far; the enrichment script may have written original-language pub years instead of Hebrew-edition years elsewhere. Separate audit if asked.
+**Data note (RESOLVED):** the "wrong years" were Google's original-language pub years. Now fixed for all
+e-vrit-matched books — `enrich-evrit-meta.mjs` overrides them with the Hebrew-edition year from the e-vrit
+product page (תחרה 1985→2013 etc.). The ~12 Google-only years on non-e-vrit books are mostly correct
+Hebrew years already; audit further only if a specific one looks wrong.
+
+**Font note:** the display font (`--font-display`, all `font-display` headings — card titles, stats, detail,
+modals) is now **Bellefair** (elegant single-weight book serif), user-chosen over Frank Ruhl Libre / Noto
+Serif Hebrew. Loaded in `index.html`; Frank Ruhl kept as fallback. Renders light — bump size/weight if a small
+card title reads too faint.
 
 
 ## Working style (IMPORTANT)
@@ -94,13 +134,21 @@ User wants to go through these interactively and pick. Suggestions presented (al
 10. Vertical rhythm + hairline dividers between sections.
 
 ## State
-- Dev server: `npm run dev` (currently on http://localhost:5175/). `npx tsc -b` passes; `npm run build` works.
-- Latest commit: series strip (`01554d0`). **This session's work is UNCOMMITTED in the working tree.**
-- Pre-existing lint error in `BookForm.tsx:62` (setState in effect) — NOT from this session.
+- `npx tsc -b` passes; `npm run build` works. All work committed & pushed to `main` (auto-deploys to Vercel).
+- Premium UI redesign + content enrichment both shipped. Restore tag `hanit-library-v1.0` (`fb3335c`).
+- Pre-existing lint error in `BookForm.tsx:62` (setState in effect) — long-standing, not from recent work.
 
-## Backlog (discussed, NOT started) — goal: usable on Hanit's phone
-- **BookDetail contrast pass** — header/description box/rating badge still use old genre `grad`/`glow` colors; not yet verified against the 5 new themes.
-- **Placeholder cover redesign** — moot now (793/793 have real covers), but `coverPlaceholder` in `src/lib/covers.ts` is still the loud genre-gradient SVG if any future book lacks a cover.
-- **Supabase backend** — dependency installed, UNUSED. Sync ratings/reviews/favorites across devices instead of localStorage. No `.env`/schema yet.
-- **PWA** — no manifest/service worker/icons. Would make installable + offline.
-- **Deploy** — Vercel available; not set up.
+## DONE — PWA + offline (shipped)
+Installable phone app via `vite-plugin-pwa` (`registerType: 'autoUpdate'`, RTL Hebrew manifest, standalone
+display, simple open-book icon for favicon/app icons). `OfflineButton.tsx` (⋮ → שמירה לא מקוונת) offers a
+full-download that caches all 793 covers through the SW for plane use; book data is bundled + precached so it
+works offline always. See the "Content enrichment + offline verification" section above for the verified details.
+
+## Backlog (discussed, NOT started)
+- **BookDetail contrast pass** — verify the immersive book page's text/badges across all 9 themes (light + dark).
+- **Remaining ~115 descriptions** — obscure indie titles with no reliable free source; re-run enrich scripts
+  later to catch newly-listed e-vrit titles. Manual entry is the only sure path for the true long tail.
+- **Supabase backend** — dependency installed, UNUSED. Would sync ratings/reviews/favorites across devices
+  instead of localStorage. No `.env`/schema yet.
+- **Placeholder cover redesign** — moot (793/793 have real covers); `coverPlaceholder` in `src/lib/covers.ts`
+  is still the loud genre-gradient SVG if any future book lacks a cover.

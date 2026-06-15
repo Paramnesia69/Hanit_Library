@@ -8,11 +8,12 @@ Built with React + Vite + Tailwind, in Hebrew (RTL).
 ## Features
 
 - Browse the full collection with cover art, genres, and series
+- **Rich book details** — Hebrew back-cover descriptions, publication year, page count, and community ratings
 - **Immersive book page** — full-screen Apple-style view: blurred cover backdrop, floating 3D cover, frosted-glass content sheet with parallax
 - Reading stats and charts
 - **9 color themes** (light & dark) — each retints the whole UI, including accent glows
 - Apple-style auto-hiding scrollbars
-- Installable as a phone app (PWA) — works offline
+- **Installable phone app (PWA) — works fully offline.** All book info is bundled into the app; for a flight, open it once on wifi (⋮ → שמירה לא מקוונת → הורדה מלאה) to cache every cover, then the whole library — text, covers, search, filters, themes — works in airplane mode
 
 ## Development
 
