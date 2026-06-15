@@ -14,10 +14,10 @@ live theme switcher) — it is the visual spec for the three changes below.
 - `checkpoint-pre-premium-ui` (`3d9a793`) — state before any redesign work.
 - **`hanit-library-v1.0`** (`fb3335c`) — stable v1.0 snapshot: working app + תחרה year fix (1985→2013, the כנרת זמורה ביתן 2013 Hebrew edition per e-vrit) + the approved demo.
 
-**Three phases — executing one at a time, interactively (user verifies each before the next):**
-1. **Apple auto-hiding scrollbars** — `src/index.css` (~L426): thin 8px, transparent track, thumb transparent until hover; Firefox `scrollbar-width: thin`. Keep `.no-scrollbar` for horizontal rows.
-2. **Theme-aware pill glows** — `FilterBar.tsx` + `index.css`. Genre chips each glow their OWN genre color always (spectrum, not flat pink); UI pills (status/view/favorite) glow with the active app-theme accent via a new `.glow-accent { box-shadow: …color-mix(var(--color-accent-500)…) }`. The themes already override `--color-accent-*` (Copilot→blue, Noir→gold); only the hardcoded-pink glows need fixing.
-3. **Full-screen immersive book page** — rewrite shell/layout/motion of `BookDetail.tsx` (keep ALL existing sections + handlers). Full-bleed blurred cover backdrop + theme-tinted scrim, floating `Cover3D` with depth, frosted `glass-strong` content sheet that rises over the hero, framer-motion `useScroll` parallax + spring rise-in + drag-down-to-dismiss. Reuse `Cover3D`, `Stars`, `getBookTheme`/`resolveCover`.
+**Three phases — ALL DONE & user-verified (commit `972e6c2`):**
+1. ✅ **Apple auto-hiding scrollbars** — `src/index.css` (~L426): thin 8px, transparent track, thumb transparent until hover; Firefox `scrollbar-width: thin`. Also added `color-scheme` per theme + explicit input/textarea/select text color & accent caret → fixed invisible search-box text.
+2. ✅ **Theme-aware pill glows** — `FilterBar.tsx` + `index.css`. Genre chips each glow their OWN genre color always; UI pills (status/view/favorite) glow with the active accent via `.glow-accent { box-shadow: …color-mix(var(--color-accent-500)…) }`.
+3. ✅ **Full-screen immersive book page** — `BookDetail.tsx` rewritten (all sections + handlers preserved). Full-bleed blurred cover backdrop + genre-tinted scrim + framer `useScroll` parallax, floating `Cover3D`, frosted `glass-strong` sheet rising over the hero, spring rise-in, sticky glass top bar. **Deferred:** drag-down-to-dismiss (X + sticky bar instead) — easy follow-up if wanted.
 
 **Data note:** user flagged "wrong years" (plural) — only תחרה fixed so far; the enrichment script may have written original-language pub years instead of Hebrew-edition years elsewhere. Separate audit if asked.
 
