@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>לוגואים — ספריית חנית</title>
+<style>
+  :root { --bg:#f3eee4; --card:#fffdf8; --ink:#2b2335; --muted:#8b8294; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,"Heebo","Rubik",system-ui,sans-serif; padding:40px 24px 80px; }
+  h1 { text-align:center; font-weight:800; font-size:30px; margin:0 0 6px; }
+  .sub { text-align:center; color:var(--muted); margin:0 0 36px; font-size:15px; }
+  .grid { max-width:1180px; margin:0 auto; display:grid; gap:26px;
+    grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); }
+  .card { background:var(--card); border-radius:22px; padding:24px;
+    box-shadow:0 10px 30px rgba(40,30,60,.08), 0 1px 0 rgba(0,0,0,.03); }
+  .ttl { font-weight:800; font-size:17px; margin:0 0 2px; }
+  .desc { color:var(--muted); font-size:13px; margin:0 0 18px; line-height:1.5; }
+  .hero { display:flex; align-items:center; gap:18px; margin-bottom:20px; }
+  .tile { width:120px; height:120px; border-radius:27px; overflow:hidden; flex:none;
+    box-shadow:0 8px 20px rgba(40,30,60,.18); }
+  .tile svg, .ico svg, .fav svg { display:block; width:100%; height:100%; }
+  .home { display:flex; flex-direction:column; align-items:center; gap:7px; }
+  .ico { width:62px; height:62px; border-radius:14px; overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,.25); }
+  .home small { font-size:11px; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.5); }
+  .wall { padding:14px 18px; border-radius:18px;
+    background:linear-gradient(160deg,#6d5b8f,#322a4a); }
+  .row { display:flex; align-items:center; gap:16px; padding-top:16px;
+    border-top:1px solid #efe9dd; }
+  .favset { display:flex; align-items:flex-end; gap:12px; }
+  .fav { border-radius:5px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.2); }
+  .f16{width:16px;height:16px} .f24{width:24px;height:24px}
+  .f32{width:32px;height:32px} .f48{width:48px;height:48px;border-radius:8px}
+  .lbl { color:var(--muted); font-size:11px; margin-inline-start:auto; }
+  .pill { display:inline-block; background:#efe7fb; color:#6d28d9; font-size:11px;
+    font-weight:700; padding:2px 9px; border-radius:999px; margin-inline-start:8px; vertical-align:middle; }
+</style>
+</head>
+<body>
+<h1>לוגואים לאפליקציה · ספריית חנית</h1>
+<p class="sub">כל אפשרות מוצגת כאייקון אפליקציה, על מסך בית, וכ-favicon בגדלים קטנים</p>
+
+<!-- ===== SVG SPRITE (hidden) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <linearGradient id="v1" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#6d28d9"/></linearGradient>
+  <linearGradient id="gB" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#a855f7"/><stop offset="1" stop-color="#4f46e5"/></linearGradient>
+  <linearGradient id="plum" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#3b2566"/><stop offset="1" stop-color="#1c1233"/></linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f3d99b"/><stop offset=".5" stop-color="#e1b659"/><stop offset="1" stop-color="#c79433"/></linearGradient>
+  <linearGradient id="cover" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#4c1d95"/></linearGradient>
+</defs>
+
+<!-- A: editorial open book (cream) -->
+<symbol id="A" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#f6f1e8"/>
+  <path d="M256 206 C206 182 156 182 116 200 L116 322 C156 304 206 304 256 324 Z" fill="#fff" stroke="url(#v1)" stroke-width="15" stroke-linejoin="round"/>
+  <path d="M256 206 C306 182 356 182 396 200 L396 322 C356 304 306 304 256 324 Z" fill="#fff" stroke="url(#v1)" stroke-width="15" stroke-linejoin="round"/>
+  <path d="M256 206 L256 324" stroke="url(#v1)" stroke-width="15" stroke-linecap="round"/>
+  <g stroke="#c9b8f5" stroke-width="7" fill="none" stroke-linecap="round">
+    <path d="M150 236 C185 226 218 228 240 240"/><path d="M150 266 C185 256 218 258 240 270"/>
+    <path d="M272 240 C294 228 327 226 362 236"/><path d="M272 270 C294 258 327 256 362 266"/></g>
+</symbol>
+
+<!-- B: modern book + sparkle (violet gradient) -->
+<symbol id="B" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="url(#gB)"/>
+  <path d="M256 212 C208 188 158 188 120 206 L120 326 C158 308 208 308 256 328 Z" fill="#fff"/>
+  <path d="M256 212 C304 188 354 188 392 206 L392 326 C354 308 304 308 256 328 Z" fill="#fff"/>
+  <path d="M256 212 L256 328" stroke="#c7c2f5" stroke-width="9" stroke-linecap="round"/>
+  <path d="M150 244 C185 234 216 236 240 246 M150 272 C185 262 216 264 240 274 M272 246 C296 236 327 234 362 244 M272 274 C296 264 327 262 362 272" stroke="#cbb9f3" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M386 150 l8 22 22 8 -22 8 -8 22 -8 -22 -22 -8 22 -8 z" fill="#fff"/>
+</symbol>
+
+<!-- C: gold monogram ח on plum -->
+<symbol id="C" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="url(#plum)"/>
+  <g fill="url(#gold)">
+    <rect x="146" y="150" width="220" height="40" rx="14"/>
+    <rect x="146" y="172" width="40" height="196" rx="16"/>
+    <rect x="326" y="172" width="40" height="196" rx="16"/>
+  </g>
+  <path d="M150 392 C210 372 302 372 362 392" stroke="url(#gold)" stroke-width="10" fill="none" stroke-linecap="round" opacity=".85"/>
+</symbol>
+
+<!-- D: light monogram ח (cream) violet + gold curve -->
+<symbol id="D" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#f6f1e8"/>
+  <g fill="url(#v1)">
+    <rect x="146" y="150" width="220" height="40" rx="14"/>
+    <rect x="146" y="172" width="40" height="196" rx="16"/>
+    <rect x="326" y="172" width="40" height="196" rx="16"/>
+  </g>
+  <path d="M150 392 C210 372 302 372 362 392" stroke="url(#gold)" stroke-width="11" fill="none" stroke-linecap="round"/>
+</symbol>
+
+<!-- E: genre-color book stack (cream) -->
+<symbol id="E" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#f6f1e8"/>
+  <rect x="116" y="312" width="284" height="56" rx="16" fill="#0ea5a4"/>
+  <rect x="140" y="312" width="10" height="56" fill="#0b827f"/><circle cx="372" cy="340" r="7" fill="#7af0ec"/>
+  <rect x="132" y="246" width="252" height="56" rx="16" fill="#f59e0b"/>
+  <rect x="154" y="246" width="10" height="56" fill="#c47d06"/><circle cx="358" cy="274" r="7" fill="#ffd98a"/>
+  <rect x="108" y="180" width="268" height="56" rx="16" fill="#7c3aed"/>
+  <rect x="130" y="180" width="10" height="56" fill="#5b21b6"/><circle cx="350" cy="208" r="7" fill="#c9b8f5"/>
+  <path d="M392 150 l10 24 24 10 -24 10 -10 24 -10 -24 -24 -10 24 -10 z" fill="#e7b54a"/>
+</symbol>
+
+<!-- F: closed book + gold ribbon (luxury) -->
+<symbol id="F" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#f6f1e8"/>
+  <rect x="156" y="132" width="200" height="248" rx="20" fill="url(#cover)"/>
+  <rect x="156" y="132" width="26" height="248" rx="12" fill="#3b1577" opacity=".55"/>
+  <g stroke="#cdbdf2" stroke-width="6" fill="none" stroke-linecap="round" opacity=".8">
+    <path d="M214 196 H322"/><path d="M214 224 H322"/><path d="M214 252 H300"/></g>
+  <path d="M300 132 H340 V292 L320 270 L300 292 Z" fill="url(#gold)"/>
+</symbol>
+
+<!-- G: stack on charcoal (genre colors pop) -->
+<symbol id="G" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#211c2b"/>
+  <rect x="116" y="312" width="284" height="56" rx="16" fill="#14b8a6"/>
+  <rect x="140" y="312" width="10" height="56" fill="#0b827f"/>
+  <rect x="132" y="246" width="252" height="56" rx="16" fill="#f59e0b"/>
+  <rect x="154" y="246" width="10" height="56" fill="#c47d06"/>
+  <rect x="108" y="180" width="268" height="56" rx="16" fill="#a855f7"/>
+  <rect x="130" y="180" width="10" height="56" fill="#6d28d9"/>
+  <path d="M392 150 l10 24 24 10 -24 10 -10 24 -10 -24 -24 -10 24 -10 z" fill="#e7b54a"/>
+</symbol>
+
+<!-- H: open book on gold→amber (warm premium) -->
+<symbol id="H" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="url(#gold)"/>
+  <path d="M256 206 C206 182 156 182 116 200 L116 322 C156 304 206 304 256 324 Z" fill="#fffaf0" stroke="#7c3aed" stroke-width="14" stroke-linejoin="round"/>
+  <path d="M256 206 C306 182 356 182 396 200 L396 322 C356 304 306 304 256 324 Z" fill="#fffaf0" stroke="#7c3aed" stroke-width="14" stroke-linejoin="round"/>
+  <path d="M256 206 L256 324" stroke="#7c3aed" stroke-width="14" stroke-linecap="round"/>
+</symbol>
+</svg>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const items = [
+  ['A','#1 · ספר פתוח עריכתי','קווי נקי בסגול על שמנת — קלאסי וספרותי, מתאים לנושא הבהיר.'],
+  ['B','#2 · ספר מודרני + ניצוץ','ספר לבן על גרדיאנט סגול-אינדיגו. מראה אפליקציה פרימיום מודרני.','recommended'],
+  ['C','#3 · מונוגרמה ח זהב','האות ח של חנית בזהב על רקע שזיף עמוק — קרסט אישי ויוקרתי.','recommended'],
+  ['D','#4 · מונוגרמה ח בהיר','ח בסגול על שמנת עם קשת זהב — יוקרה בהירה ועדינה.'],
+  ['E','#5 · ערימת ספרים צבעונית','שלושה ספרים בצבעי הז׳אנרים של האפליקציה + ניצוץ. מקושר למותג.'],
+  ['F','#6 · ספר סגור + סימנייה','כריכה סגולה עם סימניית זהב — יוקרתי ומוקפד.'],
+  ['G','#7 · ערימה על פחם','אותם ספרים על רקע כהה — הצבעים בולטים מאוד.'],
+  ['H','#8 · ספר פתוח על זהב','ספר בקווי סגול על רקע זהב חם — פרימיום חמים.'],
+];
+const fav = id => `<div class="fav f16"><svg><use href="#${id}"/></svg></div>
+  <div class="fav f24"><svg><use href="#${id}"/></svg></div>
+  <div class="fav f32"><svg><use href="#${id}"/></svg></div>
+  <div class="fav f48"><svg><use href="#${id}"/></svg></div>`;
+document.getElementById('grid').innerHTML = items.map(([id,ttl,desc,rec]) => `
+  <div class="card">
+    <div class="ttl">${ttl}${rec?`<span class="pill">מומלץ</span>`:''}</div>
+    <div class="desc">${desc}</div>
+    <div class="hero">
+      <div class="tile"><svg><use href="#${id}"/></svg></div>
+      <div class="home"><div class="wall"><div class="ico"><svg><use href="#${id}"/></svg></div></div>
+        <small>ספריית חנית</small></div>
+    </div>
+    <div class="row">
+      <div class="favset">${fav(id)}</div>
+      <span class="lbl">favicon · 16/24/32/48</span>
+    </div>
+  </div>`).join('');
+</script>
+</body>
+</html>

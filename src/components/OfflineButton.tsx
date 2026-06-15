@@ -90,27 +90,14 @@ export function OfflineButton({ coverUrls }: Props) {
                             הספרים, החיפוש והסינון עובדים תמיד גם בלי אינטרנט. ההבדל הוא רק בעטיפות.
                         </p>
 
-                        {/* אופציה 1 — קלה */}
-                        <div className="mb-3 rounded-2xl border border-line p-4">
-                            <div className="flex items-center gap-2.5">
-                                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-paper-2 text-ink-soft">
-                                    <Feather size={18} />
-                                </span>
-                                <div className="min-w-0">
-                                    <div className="text-[14px] font-bold text-ink">גרסה קלה <span className="text-[11px] font-medium text-ink-soft">· ברירת מחדל</span></div>
-                                    <div className="text-[12px] text-ink-soft">העטיפות נשמרות תוך כדי גלילה. כמעט ללא נפח.</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* אופציה 2 — מלאה */}
-                        <div className="rounded-2xl border border-accent-200 bg-accent-50/40 p-4">
+                        {/* אופציה 1 — מלאה (מומלצת, ברירת מחדל) */}
+                        <div className="mb-3 rounded-2xl border-2 border-accent-300 bg-accent-50/50 p-4">
                             <div className="flex items-center gap-2.5">
                                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-100 text-accent-700">
                                     <HardDriveDownload size={18} />
                                 </span>
                                 <div className="min-w-0 flex-1">
-                                    <div className="text-[14px] font-bold text-ink">הורדה מלאה</div>
+                                    <div className="text-[14px] font-bold text-ink">הורדה מלאה <span className="rounded-full bg-accent-600 px-2 py-0.5 text-[10px] font-bold text-white">מומלץ</span></div>
                                     <div className="text-[12px] text-ink-soft">
                                         הורדת כל {total} העטיפות עכשיו (~{estMb}MB). הספרייה תעבוד לגמרי בלי אינטרנט — מושלם לטיסה.
                                     </div>
@@ -140,6 +127,19 @@ export function OfflineButton({ coverUrls }: Props) {
                                     <HardDriveDownload size={16} /> הורדה מלאה (~{estMb}MB)
                                 </button>
                             )}
+                        </div>
+
+                        {/* אופציה 2 — קלה (חלופה) */}
+                        <div className="rounded-2xl border border-line p-4">
+                            <div className="flex items-center gap-2.5">
+                                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-paper-2 text-ink-soft">
+                                    <Feather size={18} />
+                                </span>
+                                <div className="min-w-0">
+                                    <div className="text-[14px] font-bold text-ink">גרסה קלה <span className="text-[11px] font-medium text-ink-soft">· חלופה</span></div>
+                                    <div className="text-[12px] text-ink-soft">בלי הורדה — העטיפות נשמרות תוך כדי גלילה. כמעט ללא נפח.</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
