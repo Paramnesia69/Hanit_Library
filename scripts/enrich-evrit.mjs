@@ -55,24 +55,20 @@ function containment(title, slug) {
     return found / T.size;
 }
 
-/** משיכת התקציר מעמוד המוצר דרך ה-DOM (innerText מטפל בקינון) */
-async function fetchDescription(page, productUrl) {
+/** משיכת התקציר + טקסט הדף (לאימות סופר) מעמוד המוצר דרך ה-DOM */
+async function fetchProduct(page, productUrl) {
     try {
         await page.goto(productUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
-        // התקציר נמצא בתוך הבלוק tab-content__about-book (לא about-author, לא first-chapter)
-        const text = await page.evaluate(() => {
+        return await page.evaluate(() => {
             const pick = (sel) => {
                 const el = document.querySelector(sel);
                 return el ? (el.innerText || '').replace(/[ \t]+/g, ' ').replace(/\n{2,}/g, '\n').trim() : '';
             };
-            return (
-                pick('.tab-content__about-book .single-tab__txt') ||
-                pick('.tab-content__about-book') ||
-                ''
-            );
+            const desc = pick('.tab-content__about-book .single-tab__txt') || pick('.tab-content__about-book') || '';
+            const body = (document.body.innerText || '').slice(0, 8000);
+            return { desc, body };
         });
-        return text.length >= 60 ? text : '';
-    } catch { return ''; }
+    } catch { return { desc: '', body: '' }; }
 }
 
 async function searchProducts(page, query) {
@@ -123,18 +119,24 @@ async function main() {
         let r = cache[b.id];
         if (!r) {
             const products = await searchProducts(page, b.title);
-            // התאמה: ניקוד = max(הכלה, jaccard). הכלה תופסת גם כותרות עם קידומת סדרה.
-            let best = null, bestScore = 0;
-            for (const p of products) {
-                const s = Math.max(containment(b.title, p.slug), jaccard(b.title, p.slug));
-                if (s > bestScore) { bestScore = s; best = p; }
-            }
-            // מקבלים אם כל מילות הכותרת מופיעות (הכלה מלאה) או דמיון גבוה
-            if (best && bestScore >= 0.85) {
-                const description = await fetchDescription(page, best.url);
-                r = { matched: !!description, score: Number(bestScore.toFixed(2)), id: best.id, slug: best.slug, description };
+            // מועמדים: הכלה מלאה של מילות הכותרת (תופס גם קידומת "סדרת X N").
+            // דירוג: jaccard גבוה קודם (מעדיף התאמה מדויקת על פני הכלה מקרית),
+            // שובר-שוויון לפי slug קצר יותר.
+            const cands = products
+                .map((p) => ({ p, cont: containment(b.title, p.slug), jac: jaccard(b.title, p.slug) }))
+                .filter((c) => c.cont >= 0.85)
+                .sort((a, c) => c.jac - a.jac || a.p.slug.length - c.p.slug.length);
+            const best = cands[0]?.p || null;
+            const bestScore = cands[0] ? Math.max(cands[0].jac, cands[0].cont) : 0;
+            if (best) {
+                const { desc, body } = await fetchProduct(page, best.url);
+                // אימות סופר: לפחות טוקן אחד משם הסופר חייב להופיע בדף המוצר
+                const aTok = [...tokens(b.author)];
+                const authorOk = aTok.length === 0 || aTok.some((t) => norm(body).includes(t));
+                const ok = desc.length >= 60 && authorOk;
+                r = { matched: ok, score: Number(bestScore.toFixed(2)), id: best.id, slug: best.slug, description: ok ? desc : '' };
             } else {
-                r = { matched: false, score: Number(bestScore.toFixed(2)) };
+                r = { matched: false, score: 0 };
             }
             cache[b.id] = r;
             writeFileSync(CACHE, JSON.stringify(cache, null, 0));

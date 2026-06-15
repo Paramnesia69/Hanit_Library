@@ -423,22 +423,68 @@ h3,
   box-shadow: 0 0 0 3px var(--color-accent-100);
 }
 
-/* פס גלילה עדין */
+/* color-scheme לכל ערכה — כדי שפקדי טופס מקוריים (טקסט, סמן, גלילה, בורר תאריך)
+   יצוירו בצבעי המערכת הנכונים. בלי זה, בערכות כהות הדפדפן מצייר את הקלט בברירת
+   מחדל בהירה והטקסט/סמן "נעלמים" על הזכוכית הכהה. */
+:root {
+  color-scheme: light;
+}
+[data-theme='copilot'],
+[data-theme='noir'],
+[data-theme='amethyst'],
+[data-theme='pitwall-dark'] {
+  color-scheme: dark;
+}
+
+/* כל שדות הקלט — טקסט גלוי תמיד וסמן (caret) בצבע המבטא, בכל ערכה.
+   מבטיח שרואים מה מקלידים בשורת החיפוש ובכל טופס. */
+input,
+textarea,
+select {
+  color: var(--color-ink);
+  caret-color: var(--color-accent-500);
+}
+
+/* פס גלילה בסגנון Apple — דק, צף, ונעלם כשלא גוללים.
+   הסמן שקוף לגמרי כברירת מחדל ומתגלה רק בריחוף מעל אזור הגלילה.
+   הצבע נגזר מ-var(--color-ink) דרך color-mix כך שהוא מתהפך אוטומטית
+   בערכות כהות (שם ה-ink בהיר) ונשאר עדין. */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(27, 23, 20, 0.18);
+  background: transparent;
   border-radius: 999px;
   border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background 0.3s ease;
+}
+
+/* התגלות בריחוף מעל המסמך או כל אזור גליל פנימי */
+:hover::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-ink) 22%, transparent);
   background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(27, 23, 20, 0.3);
+  background: color-mix(in srgb, var(--color-ink) 40%, transparent);
   background-clip: content-box;
+}
+
+/* Firefox — דק ושקוף, מתגלה בריחוף */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+html:hover {
+  scrollbar-color: color-mix(in srgb, var(--color-ink) 22%, transparent) transparent;
 }
 
 /* אפקט "ספר" לעטיפות — שדרת ספר ובוהק עדין */
