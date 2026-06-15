@@ -81,7 +81,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                     type="button"
                     onClick={() => onChange({ favoritesOnly: !filters.favoritesOnly })}
                     className={`press grid h-10 w-10 place-items-center rounded-full border transition ${filters.favoritesOnly
-                        ? 'border-accent-300 bg-accent-50 text-accent-600'
+                        ? 'border-accent-300 bg-accent-50 text-accent-600 glow-accent'
                         : 'border-line bg-card text-ink-soft hover:text-accent-600'
                         }`}
                     aria-pressed={filters.favoritesOnly}
@@ -106,7 +106,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                                 {isActive && (
                                     <motion.span
                                         layoutId="viewPill"
-                                        className="absolute inset-0 rounded-full bg-accent-600"
+                                        className="absolute inset-0 rounded-full bg-accent-600 glow-accent"
                                         transition={{ type: 'spring', stiffness: 480, damping: 36 }}
                                     />
                                 )}
@@ -158,12 +158,12 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                             type="button"
                             onClick={() => onChange({ genre: selected ? '' : g.key })}
                             className={`flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-[13px] font-medium transition ${selected
-                                ? 'border-transparent text-white shadow-sm'
+                                ? 'border-transparent text-white'
                                 : 'border-line bg-card text-ink-soft hover:text-ink'
                                 }`}
                             style={selected
-                                ? { background: g.theme.dot, boxShadow: `0 6px 16px -6px ${g.theme.dot}` }
-                                : undefined}
+                                ? { background: g.theme.dot, boxShadow: `0 7px 20px -6px ${g.theme.dot}` }
+                                : { boxShadow: `0 4px 14px -8px ${g.theme.dot}` }}
                         >
                             <span
                                 className="h-2 w-2 shrink-0 rounded-full ring-1 ring-black/5"
@@ -193,7 +193,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                                 {isActive && (
                                     <motion.span
                                         layoutId="statusPill"
-                                        className="absolute inset-0 rounded-full bg-card shadow-sm"
+                                        className="absolute inset-0 rounded-full bg-card glow-accent"
                                         transition={{ type: 'spring', stiffness: 480, damping: 36 }}
                                     />
                                 )}

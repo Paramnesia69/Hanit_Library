@@ -445,6 +445,13 @@ select {
   caret-color: var(--color-accent-500);
 }
 
+/* זוהר מבטא תלוי-ערכה לפילים פעילים (סטטוס/תצוגה/מועדפים).
+   נגזר מ-var(--color-accent-500) כך שמתחלף אוטומטית עם הערכה
+   (כחול ב-Copilot, זהב ב-Noir, סגול ב-Amethyst) — לא ורוד קבוע. */
+.glow-accent {
+  box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--color-accent-500) 75%, transparent);
+}
+
 /* פס גלילה בסגנון Apple — דק, צף, ונעלם כשלא גוללים.
    הסמן שקוף לגמרי כברירת מחדל ומתגלה רק בריחוף מעל אזור הגלילה.
    הצבע נגזר מ-var(--color-ink) דרך color-mix כך שהוא מתהפך אוטומטית
