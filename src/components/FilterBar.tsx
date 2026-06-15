@@ -72,7 +72,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                         onChange={(e) => onChange({ search: e.target.value })}
                         onBlur={() => { if (!filters.search) setSearchOpen(false); }}
                         placeholder="חיפוש לפי שם, סופר, הוצאה או סדרה…"
-                        className="w-full rounded-full border border-line bg-card py-2.5 pe-10 ps-4 text-[15px] text-ink outline-none transition placeholder:text-transparent focus:border-accent-400 focus:ring-2 focus:ring-accent-100 sm:placeholder:text-ink-soft"
+                        className="w-full rounded-full border border-line bg-card py-2.5 pe-10 ps-4 text-[16px] text-ink outline-none transition placeholder:text-transparent focus:border-accent-400 focus:ring-2 focus:ring-accent-100 sm:text-[15px] sm:placeholder:text-ink-soft"
                     />
                 </div>
 

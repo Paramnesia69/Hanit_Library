@@ -296,9 +296,8 @@ h3,
   position: relative;
   background: var(--glass-strong);
   border: 1px solid var(--glass-border);
-  /* זכוכית מטושטשת אמיתית (Apple) — מטשטש את רקע האפליקציה שמאחור */
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
+  /* אסור backdrop-filter כאן! הוא יוצר stacking-context שכולא את התפריטים
+     הצפים (ThemePicker / שלוש הנקודות) מתחת לסרגל הסינון הדביק. */
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.5) inset,
     var(--shadow-book);
@@ -656,20 +655,22 @@ h3,
   border: 1px solid var(--glass-border);
 }
 
-/* סרגל הסינון הדביק — שקוף יותr כך שהעטיפות נראות דרכו (Apple).
-   מתעבה בגלילה (.is-scrolled) כדי לשמור על קריאוּת מעל תוכן. */
+/* סרגל הסינון הדביק — זכוכית שקופה באמת: רקע הכרטיס בשקיפות נמוכה כך
+   שהעטיפות נראות מטושטשות דרכו בזמן גלילה (Apple). בגלילה רק מעמיקים את
+   הטשטוש ומוסיפים צל — לא הופכים אותו לאטום. */
 .glass-bar {
-  background: var(--glass-bg);
-  backdrop-filter: saturate(190%) blur(16px);
-  -webkit-backdrop-filter: saturate(190%) blur(16px);
+  background: color-mix(in srgb, var(--color-card) 55%, transparent);
+  backdrop-filter: saturate(190%) blur(18px);
+  -webkit-backdrop-filter: saturate(190%) blur(18px);
   border: 1px solid var(--glass-border);
   transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
 }
 
 .glass-bar.is-scrolled {
-  background: var(--glass-strong);
-  backdrop-filter: saturate(200%) blur(26px);
-  -webkit-backdrop-filter: saturate(200%) blur(26px);
+  background: color-mix(in srgb, var(--color-card) 68%, transparent);
+  backdrop-filter: saturate(200%) blur(28px);
+  -webkit-backdrop-filter: saturate(200%) blur(28px);
+  box-shadow: var(--shadow-card);
 }
 
 /* ===== טקסט רדיד זהב/מתכת ===== */
