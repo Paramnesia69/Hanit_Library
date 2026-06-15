@@ -1,14 +1,38 @@
 # Active Work — hanit-library
 
-> Handoff notes for resuming after `/clear`. Last updated: 2026-06-15 (content enrichment + offline verification).
+> Handoff notes for resuming after `/clear`. Last updated: 2026-06-15 (e-vrit digital library integration).
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
-> Data: 793 books in `src/data/books.json`. Persistence = localStorage. Live on Vercel (auto-deploy from GitHub).
+> Data: 956 books in `src/data/books.json` — 793 physical (Excel) + 163 digital (e-vrit). Persistence = localStorage. Live on Vercel (auto-deploy from GitHub).
 
-## CURRENT FOCUS — feature-complete for offline flight use
-Both big workstreams are DONE & shipped: the **premium UI redesign** (3 phases, see below)
-and the **content enrichment + offline-readiness** (see "DONE — Content enrichment" below).
-The app is installable, fully offline-capable, and the book data now carries real Hebrew
-descriptions. No active task in flight — awaiting the next request.
+## CURRENT FOCUS — enriching the e-vrit digital library
+The digital library is now **e-vrit (עברית)**, NOT Kindle (earlier mistaken assumption — fully removed).
+163 of Hanit's e-vrit books are synced and live. **Next task (in progress):** pull MUCH more per-book
+info from e-vrit — descriptions, year, page count, category/genre, translator, narrator, series — using
+the exact ProductIDs we now hold (no fuzzy search needed). See "DONE — e-vrit pivot" below for the sync,
+and the enrichment scripts in "DONE — Content enrichment".
+
+## DONE — e-vrit pivot: live digital library (2026-06-15)
+**Hanit has NO Kindle.** She buys on **e-vrit.co.il (עברית)** and reads on a **Boox**. Replaced the whole
+Kindle path with an automatic e-vrit sync.
+- **Source = her public share link** `https://www.e-vrit.co.il/customerProducts?Sid=NzE5NjA1`
+  (Sid = base64 of customer id 719605, owner "hanitza"). No password — public.
+- **Key discovery:** the page is React but the full product list is embedded in the initial HTML inside
+  `React.createElement(CustomerProductsPage,{"Products":[...]})`, so a **plain `fetch` (no browser)** gets
+  all 163. Each record has: ProductID, Name, AuthorsName, Image (real cover), OrderDate, ProductFormat
+  (0=ebook,1=audio), IsLendingItem, **CustomerReviewModel (her own ReviewRating/ReviewContent)**.
+- **`scripts/sync-evrit-library.mjs`** (`npm run sync:evrit`): fetch → bracket-walk extract Products →
+  map to digital Books → **upsert** books.json (idempotent; preserves user edits). Status heuristic:
+  rated on e-vrit → `read` (86), unrated → `want` (77). 2 audiobooks.
+- **Daily auto-sync:** `.github/workflows/sync-evrit.yml` (cron 04:00 UTC) runs the script, commits if
+  changed → Vercel deploys. Optional `EVRIT_SID` repo variable overrides the Sid.
+- **UI:** library toggle + labels say **"עברית"** (`LIBRARY_LABELS.digital = 'עברית · דיגיטלי'`).
+  `EvritLibrary.tsx` info modal replaced `KindleImport.tsx` (deleted, with `lib/kindle.ts`).
+- **storage.ts fix:** `mergeEnrichment` now **appends** bundled books not yet in localStorage (the loader
+  previously only enriched existing ids → new e-vrit books never showed for users with existing storage).
+  Refresh the page → 163 appear, no reset needed.
+- **Book type:** added `evritId` / `purchasedAt` / `audiobook`.
+- **GAP:** e-vrit's share link exposes ownership, NOT reading progress. "Reading now / %" can't be
+  auto-synced (not on e-vrit's site, not public on Boox) — manual "קוראת עכשיו" only.
 
 ## DONE — Content enrichment + offline verification (2026-06-15)
 **Goal:** fill missing per-book content (the user flagged blank cards like תחרה) and confirm the
