@@ -1,8 +1,26 @@
 # Active Work — hanit-library
 
-> Handoff notes for resuming after `/clear`. Last updated: 2026-06-14 (hero + themes + stats session).
+> Handoff notes for resuming after `/clear`. Last updated: 2026-06-15 (premium UI redesign kickoff).
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
-> Data: 793 books in `src/data/books.json`. Persistence = localStorage only (no backend wired up yet).
+> Data: 793 books in `src/data/books.json`. Persistence = localStorage. Live on Vercel (auto-deploy from GitHub).
+
+## CURRENT FOCUS — Premium UI redesign (started 2026-06-15)
+Goal: make the app feel genuinely Apple-grade premium. Approved plan in
+`~/.claude/plans/tingly-riding-fiddle.md`. An interactive HTML prototype the user
+approved lives at `premium-demo.html` (open in a browser; real tokens + real cover,
+live theme switcher) — it is the visual spec for the three changes below.
+
+**Restore points (revert with `git reset --hard <tag>`):**
+- `checkpoint-pre-premium-ui` (`3d9a793`) — state before any redesign work.
+- **`hanit-library-v1.0`** (`fb3335c`) — stable v1.0 snapshot: working app + תחרה year fix (1985→2013, the כנרת זמורה ביתן 2013 Hebrew edition per e-vrit) + the approved demo.
+
+**Three phases — executing one at a time, interactively (user verifies each before the next):**
+1. **Apple auto-hiding scrollbars** — `src/index.css` (~L426): thin 8px, transparent track, thumb transparent until hover; Firefox `scrollbar-width: thin`. Keep `.no-scrollbar` for horizontal rows.
+2. **Theme-aware pill glows** — `FilterBar.tsx` + `index.css`. Genre chips each glow their OWN genre color always (spectrum, not flat pink); UI pills (status/view/favorite) glow with the active app-theme accent via a new `.glow-accent { box-shadow: …color-mix(var(--color-accent-500)…) }`. The themes already override `--color-accent-*` (Copilot→blue, Noir→gold); only the hardcoded-pink glows need fixing.
+3. **Full-screen immersive book page** — rewrite shell/layout/motion of `BookDetail.tsx` (keep ALL existing sections + handlers). Full-bleed blurred cover backdrop + theme-tinted scrim, floating `Cover3D` with depth, frosted `glass-strong` content sheet that rises over the hero, framer-motion `useScroll` parallax + spring rise-in + drag-down-to-dismiss. Reuse `Cover3D`, `Stars`, `getBookTheme`/`resolveCover`.
+
+**Data note:** user flagged "wrong years" (plural) — only תחרה fixed so far; the enrichment script may have written original-language pub years instead of Hebrew-edition years elsewhere. Separate audit if asked.
+
 
 ## Working style (IMPORTANT)
 - **Reply to the user in ENGLISH** (they find RTL ordering in chat confusing). **Build everything in the app in Hebrew (RTL).**
@@ -10,11 +28,11 @@
 - After each change: typecheck (`npx tsc -b --noEmit`) + tell them to refresh localhost; they verify visually / send screenshots.
 - The 3D cover animation (`Cover3D.tsx` + `.book3d` in `index.css`) is sacred — don't flatten it.
 
-## Backups / git (local only — NOTHING pushed)
-- Git was initialized locally (no remote). The user is OK keeping local git + being ready to push later, but **do not create/push to any online repo** until they explicitly ask.
+## Backups / git
+- Now pushed to **GitHub** (`Paramnesia69/Hanit_Library`) and live on **Vercel** (Git auto-deploy). See [[deployment]] in memory for URLs/token.
 - Commit a checkpoint before risky changes. Commit messages end with the Claude co-author trailer.
 - Frozen tarball snapshot in `backups/` (gitignored). Restore: `git reset --hard <tag/commit>` or `tar xzf backups/snapshot-*.tgz`.
-- Tag `checkpoint-clean-design` = the clean-design state before cover work.
+- Key tags: `checkpoint-clean-design` (pre cover work) · `checkpoint-premium-hero` · `checkpoint-pre-premium-ui` (`3d9a793`) · **`hanit-library-v1.0`** (`fb3335c`, current stable).
 
 ## DONE — Cover recovery (793/793, complete)
 All 166 previously-missing covers were recovered. Coverage is now **793/793**.
