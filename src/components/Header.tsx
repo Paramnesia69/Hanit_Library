@@ -72,7 +72,7 @@ export function Header({
                 <button
                     type="button"
                     onClick={onAdd}
-                    className="flex items-center gap-1.5 rounded-full bg-gradient-to-br from-accent-500 to-accent-700 px-4 py-2 text-[14px] font-semibold text-white glow-accent transition hover:from-accent-600 hover:to-accent-800 sm:px-5 sm:py-2.5"
+                    className="press flex items-center gap-1.5 rounded-full bg-gradient-to-br from-accent-500 to-accent-700 px-4 py-2 text-[14px] font-semibold text-white glow-accent transition hover:from-accent-600 hover:to-accent-800 sm:px-5 sm:py-2.5"
                 >
                     <Plus size={18} />
                     <span>הוספת ספר</span>
@@ -82,7 +82,7 @@ export function Header({
                     type="button"
                     onClick={onToggleStats}
                     aria-label="סטטיסטיקות"
-                    className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-[14px] font-medium transition sm:px-3.5 sm:py-2.5 ${showStats
+                    className={`press flex items-center gap-1.5 rounded-full px-3 py-2 text-[14px] font-medium transition sm:px-3.5 sm:py-2.5 ${showStats
                         ? 'bg-accent-600 text-white glow-accent'
                         : 'glass text-ink hover:text-accent-700'
                         }`}
@@ -148,7 +148,7 @@ export function Header({
                         <button
                             type="button"
                             onClick={() => onLibraryChange('physical')}
-                            className={`flex items-center gap-1 rounded-full px-2 py-1.5 text-[13px] font-semibold transition sm:gap-1.5 sm:px-3.5 sm:py-2 ${!isDigital ? 'bg-accent-600 text-white shadow' : 'text-ink-soft hover:text-ink'
+                            className={`press flex items-center gap-1 rounded-full px-2 py-1.5 text-[13px] font-semibold transition sm:gap-1.5 sm:px-3.5 sm:py-2 ${!isDigital ? 'bg-accent-600 text-white shadow' : 'text-ink-soft hover:text-ink'
                                 }`}
                         >
                             <Library size={16} />
@@ -158,7 +158,7 @@ export function Header({
                         <button
                             type="button"
                             onClick={() => onLibraryChange('digital')}
-                            className={`flex items-center gap-1 rounded-full px-2 py-1.5 text-[13px] font-semibold transition sm:gap-1.5 sm:px-3.5 sm:py-2 ${isDigital ? 'bg-indigo-600 text-white shadow' : 'text-ink-soft hover:text-ink'
+                            className={`press flex items-center gap-1 rounded-full px-2 py-1.5 text-[13px] font-semibold transition sm:gap-1.5 sm:px-3.5 sm:py-2 ${isDigital ? 'bg-indigo-600 text-white shadow' : 'text-ink-soft hover:text-ink'
                                 }`}
                         >
                             <Tablet size={16} />

@@ -108,7 +108,7 @@ export function BookDetail({ book, allBooks, onClose, onUpdate, onEdit, onDelete
     const cover = resolveCover(book);
     return (
         <motion.div
-            className="fixed inset-0 z-40 flex justify-start bg-ink/40 backdrop-blur-sm"
+            className="fixed inset-0 z-40 flex justify-start bg-ink/45 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

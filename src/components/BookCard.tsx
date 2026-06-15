@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Heart, Star } from 'lucide-react';
 import type { Book } from '../types/book';
 import { STATUS_LABELS } from '../types/book';
@@ -12,10 +13,11 @@ interface Props {
 
 export function BookCard({ book, onOpen, onToggleFavorite }: Props) {
     const theme = getBookTheme(book);
+    const [burst, setBurst] = useState(false);
 
     return (
         <div
-            className="cv-auto group cursor-pointer animate-fade-in"
+            className="cv-auto group cursor-pointer"
             onClick={() => onOpen(book)}
         >
             {/* עטיפת הספר — נקייה, ללא מסגרת/קופסה */}
@@ -33,15 +35,19 @@ export function BookCard({ book, onOpen, onToggleFavorite }: Props) {
                     aria-label={book.favorite ? 'הסרה מהמועדפים' : 'הוספה למועדפים'}
                     onClick={(e) => {
                         e.stopPropagation();
+                        if (!book.favorite) {
+                            setBurst(true);
+                            window.setTimeout(() => setBurst(false), 480);
+                        }
                         onToggleFavorite(book.id);
                     }}
-                    className={`absolute start-1 top-0 z-20 grid h-8 w-8 place-items-center rounded-full backdrop-blur-md transition-all duration-300 ${book.favorite
+                    className={`press absolute start-1 top-0 z-20 grid h-8 w-8 place-items-center rounded-full backdrop-blur-md transition-all duration-300 ${book.favorite
                         ? 'bg-white/90 text-accent-600 opacity-100 shadow-lg'
                         : 'bg-white/70 text-ink-soft opacity-0 shadow group-hover:opacity-100'
                         }`}
                     aria-pressed={book.favorite}
                 >
-                    <Heart size={16} fill={book.favorite ? 'currentColor' : 'none'} />
+                    <Heart size={16} fill={book.favorite ? 'currentColor' : 'none'} className={burst ? 'heart-burst' : ''} />
                 </button>
             </div>
 

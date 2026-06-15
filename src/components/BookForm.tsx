@@ -117,7 +117,7 @@ export function BookForm({ initial, defaultLibrary = 'physical', onSave, onClose
 
     return (
         <motion.div
-            className="fixed inset-0 z-50 flex items-end justify-center bg-ink/40 backdrop-blur-sm sm:items-center"
+            className="fixed inset-0 z-50 flex items-end justify-center bg-ink/45 backdrop-blur-md sm:items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

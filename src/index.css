@@ -296,6 +296,9 @@ h3,
   position: relative;
   background: var(--glass-strong);
   border: 1px solid var(--glass-border);
+  /* זכוכית מטושטשת אמיתית (Apple) — מטשטש את רקע האפליקציה שמאחור */
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.5) inset,
     var(--shadow-book);
@@ -427,6 +430,48 @@ h3,
 
 .animate-fade-in {
   animation: fade-in 0.35s ease both;
+}
+
+/* ===== תנועה פרימיום ===== */
+
+/* כניסת אריחים מדורגת — גל עדין בכל טעינה/סינון.
+   ההשהיה מדורגת רק ל-12 הראשונים; השאר נכנסים מיד (העטיפות מרונדרות
+   בכל מקרה רק כשהן נכנסות למסך בזכות content-visibility). */
+@keyframes tile-rise {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+.tile-in>* { animation: tile-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.tile-in>*:nth-child(1) { animation-delay: 0.02s; }
+.tile-in>*:nth-child(2) { animation-delay: 0.06s; }
+.tile-in>*:nth-child(3) { animation-delay: 0.10s; }
+.tile-in>*:nth-child(4) { animation-delay: 0.14s; }
+.tile-in>*:nth-child(5) { animation-delay: 0.18s; }
+.tile-in>*:nth-child(6) { animation-delay: 0.22s; }
+.tile-in>*:nth-child(7) { animation-delay: 0.26s; }
+.tile-in>*:nth-child(8) { animation-delay: 0.30s; }
+.tile-in>*:nth-child(9) { animation-delay: 0.34s; }
+.tile-in>*:nth-child(10) { animation-delay: 0.38s; }
+.tile-in>*:nth-child(11) { animation-delay: 0.42s; }
+.tile-in>*:nth-child(12) { animation-delay: 0.46s; }
+
+/* לחיצה קפיצית — משוב מגע "יקר" על כפתורים */
+.press { transition: transform 0.14s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.press:active { transform: scale(0.93); }
+
+/* לב מתפוצץ בעת הוספה למועדפים */
+@keyframes heart-burst {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.45); }
+  65% { transform: scale(0.88); }
+  100% { transform: scale(1); }
+}
+
+.heart-burst { animation: heart-burst 0.45s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-in>*, .heart-burst { animation: none !important; }
 }
 
 /* גלילה אופקית ללא פס נראה (למדפים) */
@@ -596,8 +641,8 @@ h3,
 /* ===== זכוכית פרימיום (glassmorphism) ===== */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: saturate(180%) blur(18px);
-  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  backdrop-filter: saturate(190%) blur(18px);
+  -webkit-backdrop-filter: saturate(190%) blur(18px);
   border: 1px solid var(--glass-border);
   box-shadow:
     0 1px 0 var(--glass-border) inset,
@@ -606,9 +651,25 @@ h3,
 
 .glass-strong {
   background: var(--glass-strong);
-  backdrop-filter: saturate(180%) blur(22px);
-  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  backdrop-filter: saturate(190%) blur(22px);
+  -webkit-backdrop-filter: saturate(190%) blur(22px);
   border: 1px solid var(--glass-border);
+}
+
+/* סרגל הסינון הדביק — שקוף יותr כך שהעטיפות נראות דרכו (Apple).
+   מתעבה בגלילה (.is-scrolled) כדי לשמור על קריאוּת מעל תוכן. */
+.glass-bar {
+  background: var(--glass-bg);
+  backdrop-filter: saturate(190%) blur(16px);
+  -webkit-backdrop-filter: saturate(190%) blur(16px);
+  border: 1px solid var(--glass-border);
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-bar.is-scrolled {
+  background: var(--glass-strong);
+  backdrop-filter: saturate(200%) blur(26px);
+  -webkit-backdrop-filter: saturate(200%) blur(26px);
 }
 
 /* ===== טקסט רדיד זהב/מתכת ===== */

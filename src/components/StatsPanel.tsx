@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
     BookOpen, CheckCircle2, FileText, Star, Layers, Languages, Sparkles,
@@ -35,12 +36,35 @@ function SectionHeader({
     );
 }
 
+/** מספר שמטפס מ-0 לערך (אנימציית count-up) — רק למספרים שלמים */
+function CountUp({ value }: { value: number }) {
+    const [n, setN] = useState(0);
+    useEffect(() => {
+        if (typeof window === 'undefined') { setN(value); return; }
+        let raf = 0;
+        const start = performance.now();
+        const dur = 900;
+        const tick = (t: number) => {
+            const p = Math.min(1, (t - start) / dur);
+            const eased = 1 - Math.pow(1 - p, 3);
+            setN(Math.round(value * eased));
+            if (p < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(raf);
+    }, [value]);
+    return <>{n.toLocaleString('he')}</>;
+}
+
 function StatCard({ icon, value, label }: { icon: React.ReactNode; value: string | number; label: string }) {
+    const animate = typeof value === 'number' && Number.isInteger(value);
     return (
         <div className="flex items-center gap-3 rounded-2xl border border-line bg-card px-4 py-3 shadow-card transition hover:-translate-y-0.5 hover:shadow-book">
             <div className="grid h-11 w-11 place-items-center rounded-xl bg-accent-50 text-accent-600">{icon}</div>
             <div>
-                <div className="font-display text-2xl font-extrabold leading-none text-ink">{value}</div>
+                <div className="font-display text-2xl font-extrabold leading-none text-ink">
+                    {animate ? <CountUp value={value as number} /> : value}
+                </div>
                 <div className="mt-1 text-[12px] text-ink-soft">{label}</div>
             </div>
         </div>
@@ -216,7 +240,7 @@ export function StatsPanel({ books }: { books: Book[] }) {
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                 <StatCard icon={<BookOpen size={20} />} value={s.total} label="סה״כ ספרים" />
                 <StatCard icon={<CheckCircle2 size={20} />} value={s.read} label="נקראו" />
-                <StatCard icon={<FileText size={20} />} value={s.totalPages.toLocaleString('he')} label="עמודים" />
+                <StatCard icon={<FileText size={20} />} value={s.totalPages} label="עמודים" />
                 <StatCard icon={<Star size={20} />} value={s.communityAvg || '—'} label="דירוג הקוראים" />
                 <StatCard icon={<Layers size={20} />} value={s.seriesCount} label="סדרות" />
                 <StatCard icon={<Languages size={20} />} value={s.translatorCount} label="מתרגמים" />

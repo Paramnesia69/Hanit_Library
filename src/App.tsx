@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { BookX, Tablet } from 'lucide-react';
 import { useBooks, filterAndSort, computeFacets, DEFAULT_FILTERS, activeFilterCount } from './hooks/useBooks';
 import { useTheme } from './hooks/useTheme';
@@ -153,24 +153,34 @@ export default function App() {
                         count={visible.length}
                     />
 
-                    {view === 'shelf' ? (
-                        <Bookshelf3D
-                            books={libraryBooks}
-                            matchedIds={matchedIds}
-                            mode={isDigital ? 'genre' : 'physical'}
-                            onOpen={(b) => setSelectedId(b.id)}
-                        />
-                    ) : visible.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center py-24 text-center text-ink-soft">
-                            <BookX size={48} className="mb-3 opacity-40" />
-                            <p className="text-lg">לא נמצאו ספרים</p>
-                            <p className="text-sm">נסי לשנות את החיפוש או הסינון</p>
-                        </div>
-                    ) : view === 'grid' ? (
-                        <BookGrid books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={toggleFavorite} />
-                    ) : (
-                        <BookList books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={toggleFavorite} />
-                    )}
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={view}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -6 }}
+                            transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                            {view === 'shelf' ? (
+                                <Bookshelf3D
+                                    books={libraryBooks}
+                                    matchedIds={matchedIds}
+                                    mode={isDigital ? 'genre' : 'physical'}
+                                    onOpen={(b) => setSelectedId(b.id)}
+                                />
+                            ) : visible.length === 0 ? (
+                                <div className="flex flex-col items-center justify-center py-24 text-center text-ink-soft">
+                                    <BookX size={48} className="mb-3 opacity-40" />
+                                    <p className="text-lg">לא נמצאו ספרים</p>
+                                    <p className="text-sm">נסי לשנות את החיפוש או הסינון</p>
+                                </div>
+                            ) : view === 'grid' ? (
+                                <BookGrid books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={toggleFavorite} />
+                            ) : (
+                                <BookList books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={toggleFavorite} />
+                            )}
+                        </motion.div>
+                    </AnimatePresence>
                 </>
             )}
 

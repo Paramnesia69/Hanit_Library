@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Search, LayoutGrid, List, Heart, ArrowUpDown, SlidersHorizontal, X, Library, ChevronDown } from 'lucide-react';
 import type { Filters, Facets } from '../hooks/useBooks';
 import { activeFilterCount } from '../hooks/useBooks';
@@ -34,17 +35,42 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
     const [advanced, setAdvanced] = useState(false);
     /** במובייל: פתיחת/סגירת אזור הסינון (ז'אנרים, סטטוס, מיון). בדסקטופ תמיד פתוח. */
     const [open, setOpen] = useState(false);
+    /** במובייל: החיפוש מצומצם לאייקון ונפתח בלחיצה */
+    const [searchOpen, setSearchOpen] = useState(false);
+    /** מתעבה כשגוללים — לקריאוּת מעל התוכן */
+    const [scrolled, setScrolled] = useState(false);
+    const searchRef = useRef<HTMLInputElement>(null);
     const active = activeFilterCount(filters);
 
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 24);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
     return (
-        <div className="glass-strong sticky top-2 z-30 mb-4 rounded-2xl px-3 py-2.5 shadow-card sm:mb-8 sm:py-3">
+        <div className={`glass-bar sticky top-2 z-30 mb-4 rounded-2xl px-3 py-2.5 shadow-card sm:mb-8 sm:py-3 ${scrolled ? 'is-scrolled' : ''}`}>
             <div className="flex flex-wrap items-center gap-2">
-                {/* חיפוש */}
-                <div className="relative min-w-0 flex-1 sm:min-w-64 sm:max-w-md">
+                {/* חיפוש — אייקון מצומצם במובייל, נפתח בלחיצה; שדה מלא בדסקטופ */}
+                <button
+                    type="button"
+                    onClick={() => {
+                        setSearchOpen(true);
+                        requestAnimationFrame(() => searchRef.current?.focus());
+                    }}
+                    aria-label="חיפוש"
+                    className={`press grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line bg-card text-ink-soft transition hover:text-accent-600 sm:hidden ${searchOpen ? 'hidden' : 'grid'}`}
+                >
+                    <Search size={18} />
+                </button>
+                <div className={`relative min-w-0 ${searchOpen ? 'flex-1' : 'hidden'} sm:block sm:min-w-64 sm:max-w-md sm:flex-1`}>
                     <Search className="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 text-ink-soft" size={18} />
                     <input
+                        ref={searchRef}
                         value={filters.search}
                         onChange={(e) => onChange({ search: e.target.value })}
+                        onBlur={() => { if (!filters.search) setSearchOpen(false); }}
                         placeholder="חיפוש לפי שם, סופר, הוצאה או סדרה…"
                         className="w-full rounded-full border border-line bg-card py-2.5 pe-10 ps-4 text-[15px] text-ink outline-none transition placeholder:text-transparent focus:border-accent-400 focus:ring-2 focus:ring-accent-100 sm:placeholder:text-ink-soft"
                     />
@@ -54,7 +80,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                 <button
                     type="button"
                     onClick={() => onChange({ favoritesOnly: !filters.favoritesOnly })}
-                    className={`grid h-10 w-10 place-items-center rounded-full border transition ${filters.favoritesOnly
+                    className={`press grid h-10 w-10 place-items-center rounded-full border transition ${filters.favoritesOnly
                         ? 'border-accent-300 bg-accent-50 text-accent-600'
                         : 'border-line bg-card text-ink-soft hover:text-accent-600'
                         }`}
@@ -64,21 +90,30 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                     <Heart size={18} fill={filters.favoritesOnly ? 'currentColor' : 'none'} />
                 </button>
 
-                {/* מעבר תצוגה */}
-                <div className="flex overflow-hidden rounded-full border border-line bg-card">
-                    {VIEWS.map((v) => (
-                        <button
-                            key={v.key}
-                            type="button"
-                            onClick={() => onViewChange(v.key)}
-                            className={`grid h-10 w-10 place-items-center transition ${view === v.key ? 'bg-accent-600 text-white' : 'text-ink-soft hover:bg-paper-2'
-                                }`}
-                            aria-label={v.label}
-                            title={v.label}
-                        >
-                            <v.icon size={18} />
-                        </button>
-                    ))}
+                {/* מעבר תצוגה — עם גלולה מחליקה */}
+                <div className="relative flex rounded-full border border-line bg-card">
+                    {VIEWS.map((v) => {
+                        const isActive = view === v.key;
+                        return (
+                            <button
+                                key={v.key}
+                                type="button"
+                                onClick={() => onViewChange(v.key)}
+                                className="press relative grid h-10 w-10 place-items-center rounded-full"
+                                aria-label={v.label}
+                                title={v.label}
+                            >
+                                {isActive && (
+                                    <motion.span
+                                        layoutId="viewPill"
+                                        className="absolute inset-0 rounded-full bg-accent-600"
+                                        transition={{ type: 'spring', stiffness: 480, damping: 36 }}
+                                    />
+                                )}
+                                <v.icon size={18} className={`relative z-10 transition-colors ${isActive ? 'text-white' : 'text-ink-soft'}`} />
+                            </button>
+                        );
+                    })}
                 </div>
 
                 {/* פתיחת/סגירת אזור הסינון — נייד בלבד */}
@@ -143,19 +178,29 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
             </div>
 
             <div className="mt-2.5 flex flex-wrap items-center gap-2 sm:mt-3">
-                {/* טאבים לפי סטטוס */}
+                {/* טאבים לפי סטטוס — עם גלולה מחליקה */}
                 <div className="flex rounded-full bg-paper-2 p-0.5">
-                    {STATUS_TABS.map((t) => (
-                        <button
-                            key={t.key}
-                            type="button"
-                            onClick={() => onChange({ status: t.key })}
-                            className={`rounded-full px-3 py-1.5 text-[13px] font-medium transition ${filters.status === t.key ? 'bg-card text-accent-700 shadow-sm' : 'text-ink-soft hover:text-ink'
-                                }`}
-                        >
-                            {t.label}
-                        </button>
-                    ))}
+                    {STATUS_TABS.map((t) => {
+                        const isActive = filters.status === t.key;
+                        return (
+                            <button
+                                key={t.key}
+                                type="button"
+                                onClick={() => onChange({ status: t.key })}
+                                className={`press relative rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors ${isActive ? 'text-accent-700' : 'text-ink-soft hover:text-ink'
+                                    }`}
+                            >
+                                {isActive && (
+                                    <motion.span
+                                        layoutId="statusPill"
+                                        className="absolute inset-0 rounded-full bg-card shadow-sm"
+                                        transition={{ type: 'spring', stiffness: 480, damping: 36 }}
+                                    />
+                                )}
+                                <span className="relative z-10">{t.label}</span>
+                            </button>
+                        );
+                    })}
                 </div>
 
                 {/* מיון */}
