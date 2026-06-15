@@ -100,32 +100,32 @@ export function InstallButton() {
                         <ol className="space-y-3 text-[14px] text-ink">
                             {ios ? (
                                 <>
-                                    <li className="flex items-center gap-3">
+                                    <li className="flex items-start gap-3">
                                         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-50 text-accent-600">
                                             <Share size={18} />
                                         </span>
-                                        הקישי על כפתור <b>השיתוף</b> בתחתית ה-Safari
+                                        <span className="min-w-0 flex-1 break-words leading-snug">הקישי על כפתור <b>השיתוף</b> בתחתית ה-Safari</span>
                                     </li>
-                                    <li className="flex items-center gap-3">
+                                    <li className="flex items-start gap-3">
                                         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-50 text-accent-600">
                                             <SquarePlus size={18} />
                                         </span>
-                                        בחרי <b>״הוסף למסך הבית״</b> (Add to Home Screen)
+                                        <span className="min-w-0 flex-1 break-words leading-snug">בחרי <b>״הוסף למסך הבית״</b> (Add to Home Screen)</span>
                                     </li>
                                 </>
                             ) : (
                                 <>
-                                    <li className="flex items-center gap-3">
+                                    <li className="flex items-start gap-3">
                                         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-50 text-accent-600">
                                             <MoreVertical size={18} />
                                         </span>
-                                        פתחי את תפריט הדפדפן (<b>⋮</b> בפינה)
+                                        <span className="min-w-0 flex-1 break-words leading-snug">פתחי את תפריט הדפדפן (<b>⋮</b> בפינה)</span>
                                     </li>
-                                    <li className="flex items-center gap-3">
+                                    <li className="flex items-start gap-3">
                                         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-50 text-accent-600">
                                             <SquarePlus size={18} />
                                         </span>
-                                        בחרי <b>״התקנת אפליקציה״</b> / <b>״Add to Home screen״</b>
+                                        <span className="min-w-0 flex-1 break-words leading-snug">בחרי <b>״התקנת אפליקציה״</b> / <b>״Add to Home screen״</b></span>
                                     </li>
                                 </>
                             )}
