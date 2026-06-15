@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>הספרייה של חנית — הדגמת תיקונים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#faf8f4; --paper-2:#f1ece3; --card:#ffffff;
+    --ink:#181412; --ink-soft:#645b52; --line:#e4dccf;
+    --accent-50:#fdf2f6; --accent-100:#fbe4ee; --accent-300:#ee93b8;
+    --accent-500:#c8336f; --accent-600:#a81f57; --accent-700:#841746;
+    --gold:#c79a3a;
+    --sev-crit:#b91c1c; --sev-high:#c2410c; --sev-med:#b7791f; --sev-low:#64748b; --sev-done:#15803d;
+    --shadow-card:0 1px 3px rgba(27,23,20,.05),0 8px 22px -12px rgba(27,23,20,.16);
+    --shadow-book:0 1px 2px rgba(27,23,20,.07),0 10px 24px -10px rgba(27,23,20,.24),0 28px 50px -24px rgba(27,23,20,.22);
+    --display:'Frank Ruhl Libre',Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:'Rubik','Heebo',system-ui,sans-serif; color:var(--ink);
+    background:linear-gradient(180deg,#fcfbf8 0%,#f5f2ec 100%); line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:980px; margin:0 auto; padding:24px 18px 80px}
+  /* ---- skip link (Fix #10) ---- */
+  .skip{
+    position:absolute; right:16px; top:-60px; z-index:100;
+    background:var(--accent-600); color:#fff; padding:10px 18px; border-radius:0 0 12px 12px;
+    font-weight:700; text-decoration:none; transition:top .18s;
+  }
+  .skip:focus{top:0}
+
+  header.hero{text-align:center; padding:26px 0 8px}
+  .hero h1{font-family:var(--display); font-weight:900; font-size:clamp(28px,5vw,44px); margin:0 0 6px; letter-spacing:-.5px}
+  .hero p{color:var(--ink-soft); margin:0 auto; max-width:620px; font-size:15.5px}
+  .hero .by{display:inline-block; margin-top:10px; font-size:12.5px; color:var(--ink-soft);
+    background:var(--paper-2); border:1px solid var(--line); border-radius:999px; padding:4px 12px}
+
+  /* severity legend */
+  .legend{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:18px 0 8px}
+  .chip{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700;
+    padding:4px 11px; border-radius:999px; color:#fff}
+  .chip.crit{background:var(--sev-crit)} .chip.high{background:var(--sev-high)}
+  .chip.med{background:var(--sev-med)} .chip.low{background:var(--sev-low)} .chip.done{background:var(--sev-done)}
+  .chip.ghost{background:transparent; color:var(--ink-soft); border:1px solid var(--line)}
+
+  section.fix{
+    background:var(--card); border:1px solid var(--line); border-radius:20px;
+    box-shadow:var(--shadow-card); padding:20px 20px 22px; margin:18px 0;
+  }
+  .fix > .head{display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap}
+  .fix .num{font-family:var(--display); font-weight:900; font-size:22px; color:var(--accent-500);
+    background:var(--accent-50); border:1px solid var(--accent-100); width:42px; height:42px;
+    display:grid; place-items:center; border-radius:13px; flex:none}
+  .fix h2{font-family:var(--display); font-weight:800; font-size:21px; margin:2px 0 0; flex:1 1 240px}
+  .fix .meta{display:flex; gap:6px; align-items:center; flex-wrap:wrap}
+  .fix .desc{margin:12px 0 0; color:var(--ink-soft); font-size:14.5px}
+  .fix .desc b{color:var(--ink)}
+  .tag{font-size:11.5px; font-weight:700; padding:3px 9px; border-radius:999px; background:var(--paper-2);
+    color:var(--ink-soft); border:1px solid var(--line)}
+
+  /* demo stage */
+  .stage{margin-top:16px; border:1px dashed var(--line); border-radius:14px; padding:16px; background:#fcfbf9; position:relative}
+  .stage-label{position:absolute; top:-10px; right:14px; background:#fcfbf9; padding:0 8px; font-size:11px;
+    font-weight:700; color:var(--ink-soft); letter-spacing:.5px}
+
+  /* segmented before/after toggle */
+  .seg{display:inline-flex; background:var(--paper-2); border-radius:999px; padding:3px; gap:2px; margin-bottom:14px}
+  .seg button{border:0; background:transparent; font:inherit; font-weight:700; font-size:13px; color:var(--ink-soft);
+    padding:7px 16px; border-radius:999px; cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--card); color:var(--accent-700); box-shadow:0 1px 4px rgba(0,0,0,.08)}
+
+  .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+  .btn{font:inherit; font-weight:600; font-size:14px; border-radius:12px; padding:10px 16px; cursor:pointer;
+    border:1px solid var(--line); background:var(--card); color:var(--ink)}
+  .btn.primary{background:var(--accent-600); color:#fff; border-color:var(--accent-600)}
+  .btn.ghost{background:var(--paper-2)}
+  .hint{font-size:13px; color:var(--ink-soft); margin-top:10px}
+  kbd{font-family:ui-monospace,monospace; background:var(--ink); color:var(--paper); border-radius:6px;
+    padding:1px 7px; font-size:12px}
+
+  /* ---------- Fix #2 focus-visible ---------- */
+  /* AFTER mode: real focus ring scoped to the demo */
+  .focus-after :is(button,a,input,[tabindex]):focus-visible{
+    outline:2px solid var(--accent-500); outline-offset:2px; border-radius:12px;
+  }
+  /* BEFORE mode: emulate Tailwind preflight stripping outlines */
+  .focus-before :is(button,a,input):focus{outline:none}
+  .focus-before :is(button,a,input):focus-visible{outline:none}
+
+  /* ---------- Fix #3 dialog ---------- */
+  .overlay{position:fixed; inset:0; background:rgba(24,20,18,.55); backdrop-filter:blur(8px);
+    display:none; align-items:center; justify-content:center; z-index:50; padding:20px}
+  .overlay.open{display:flex}
+  .dialog{background:var(--card); border-radius:22px; max-width:420px; width:100%; padding:22px;
+    box-shadow:var(--shadow-book); animation:rise .26s cubic-bezier(.22,1,.36,1)}
+  @keyframes rise{from{transform:translateY(14px); opacity:0}to{transform:none; opacity:1}}
+  .dialog h3{font-family:var(--display); font-weight:800; margin:0 0 8px; font-size:20px}
+  .dialog p{color:var(--ink-soft); font-size:14px; margin:0 0 16px}
+  .dialog .row{justify-content:flex-start}
+
+  /* ---------- Fix tabular-nums ---------- */
+  .counter-box{position:relative; display:inline-block; min-width:180px; text-align:center; padding:10px 0}
+  .counter{font-family:var(--display); font-weight:900; font-size:46px; color:var(--ink); line-height:1}
+  .counter.tab{font-variant-numeric:tabular-nums}
+  .guide{position:absolute; top:0; bottom:0; right:50%; width:1px; background:var(--gold); opacity:.45}
+  .counter-label{font-size:12.5px; color:var(--ink-soft); margin-top:4px}
+
+  /* ---------- Fix date input ---------- */
+  input[type=date]{font:inherit; font-size:15px}
+  .date-after{
+    border:1px solid var(--line); background:var(--paper-2); color:var(--ink);
+    border-radius:12px; padding:10px 14px;
+  }
+  .date-after::-webkit-calendar-picker-indicator{filter:saturate(0) brightness(.4); cursor:pointer}
+  .date-before{border:1px solid #767676; border-radius:2px; padding:3px}
+
+  /* ---------- Fix #10 heading hierarchy ---------- */
+  .toc-row{display:flex; gap:8px; align-items:baseline; font-size:13.5px; color:var(--ink-soft); padding:3px 0}
+  .toc-row .lvl{font-family:ui-monospace,monospace; font-weight:700; width:34px; flex:none}
+  .toc-row.bad .lvl{color:var(--sev-crit)} .toc-row.good .lvl{color:var(--sev-done)}
+  .indent-2{padding-inline-start:18px} .indent-3{padding-inline-start:36px}
+
+  /* ---------- Fix #9 sticky scroll-padding ---------- */
+  .scrollbox{height:200px; overflow:auto; border:1px solid var(--line); border-radius:14px; position:relative; background:var(--card)}
+  .scrollbox.pad{scroll-padding-top:56px}
+  .sticky-bar{position:sticky; top:0; z-index:5; background:rgba(255,255,255,.7); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line); padding:14px 16px; font-weight:700; font-size:14px}
+  .scroll-item{padding:18px 16px; border-bottom:1px solid var(--line)}
+  .scroll-item:target{background:var(--accent-50); box-shadow:inset 4px 0 0 var(--accent-500)}
+
+  /* ---------- Perf bar ---------- */
+  .perfbar{display:flex; height:46px; border-radius:12px; overflow:hidden; border:1px solid var(--line); font-size:12px; font-weight:700; color:#fff}
+  .perfbar .seg-d{background:var(--accent-600); display:grid; place-items:center}
+  .perfbar .seg-l{background:var(--accent-300); display:grid; place-items:center; color:var(--ink)}
+  .perfbar .seg-r{background:var(--gold); display:grid; place-items:center}
+  .perf-legend{display:flex; gap:16px; margin-top:10px; font-size:12.5px; color:var(--ink-soft); flex-wrap:wrap}
+  .dot{display:inline-block; width:10px; height:10px; border-radius:3px; margin-inline-end:6px; vertical-align:middle}
+
+  /* ---------- Fix #1 admin/guest menu ---------- */
+  .menu{width:310px; max-width:100%; background:var(--card); border:1px solid var(--line);
+    border-radius:16px; box-shadow:var(--shadow-book); padding:6px}
+  .menu .mi{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px;
+    font-size:14px; color:var(--ink); cursor:pointer; transition:background .12s}
+  .menu .mi:hover{background:var(--paper-2)}
+  .menu .mi .ic{width:16px; height:16px; color:var(--ink-soft); flex:none}
+  .menu .mi.danger,.menu .mi.danger .ic{color:#dc2626}
+  .menu .mi.evrit,.menu .mi.evrit .ic{color:#4f46e5}
+  .menu .sep{height:1px; background:var(--line); margin:6px 10px}
+  .menu .badge{margin-inline-start:auto; font-size:10.5px; font-weight:800; color:#fff;
+    background:linear-gradient(135deg,var(--gold),#9c6e1c); border-radius:999px; padding:2px 9px;
+    display:inline-flex; align-items:center; gap:4px}
+  .menu .badge .ic{width:11px; height:11px; color:#fff}
+  .menu .free{margin-inline-start:auto; font-size:10.5px; font-weight:700; color:var(--sev-done);
+    background:#e8f5ee; border:1px solid #cdead8; border-radius:999px; padding:2px 9px}
+  .menu.guest .admin-only{display:none}
+  .menu.guest .sep.admin-sep{display:none}
+  .guest-note{display:flex; align-items:center; gap:8px; margin-top:6px; padding:10px 12px;
+    font-size:12.5px; font-weight:600; color:var(--ink-soft); background:var(--paper-2); border-radius:10px}
+  .guest-note .ic{width:15px; height:15px; color:var(--ink-soft)}
+  .menu:not(.guest) .guest-note{display:none}
+
+  /* findings table */
+  .tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:16px; margin-top:14px}
+  table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:680px}
+  th,td{text-align:right; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--paper-2); font-weight:800; position:sticky; top:0}
+  tr:last-child td{border-bottom:0}
+  td .chip{font-size:11px; padding:2px 8px}
+  .rec{color:var(--ink-soft)}
+  h2.section-title{font-family:var(--display); font-weight:900; font-size:24px; margin:40px 0 4px}
+  .section-sub{color:var(--ink-soft); margin:0 0 4px; font-size:14px}
+  code{background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:1px 6px; font-size:12.5px}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">דלג לתוכן ←</a>
+
+<div class="wrap">
+  <header class="hero">
+    <h1>הדגמת התיקונים — הספרייה של חנית</h1>
+    <p>כל תיקון כאן הוא חי וניתן ללחיצה, בערכת הצבעים והגופנים של האפליקציה. החליפי בין <b>«לפני»</b> ל-<b>«אחרי»</b> כדי לראות את ההבדל בפועל.</p>
+    <span class="by">נבדק מול הקוד בפועל · 16.6.2026</span>
+  </header>
+
+  <div class="legend" aria-label="מקרא חומרה">
+    <span class="chip crit">קריטי</span>
+    <span class="chip high">גבוה</span>
+    <span class="chip med">בינוני</span>
+    <span class="chip low">נמוך</span>
+    <span class="chip done">כבר מיושם</span>
+  </div>
+
+  <main id="main">
+
+  <!-- FIX 1 admin/guest -->
+  <section class="fix" id="adminfix">
+    <div class="head">
+      <div class="num">1</div>
+      <h2>מצב בעלים — מי רואה מה</h2>
+      <div class="meta"><span class="chip med">בינוני</span><span class="tag">אדמין / אורח</span><span class="tag">התקנה קלה לכולם</span></div>
+    </div>
+    <p class="desc"><b>הדרישה:</b> רק אדמין רואה את כפתורי הנתונים — <b>גיבוי (JSON)</b>, <b>ייצוא לאקסל</b>, <b>שחזור מגיבוי</b> ו<b>איפוס</b> — וגם את <b>הורדת המצב הלא-מקוון המלא</b>. אורח יכול רק לעיין ולהתקין את האפליקציה <b>במצב קל</b> (העטיפות נשמרות תוך כדי גלילה) — בלי הורדה מלאה ובלי כלי נתונים. עריכה/הוספה/מחיקה נשארות מאחורי אותו שער סיסמה.</p>
+    <div class="stage">
+      <span class="stage-label">תפריט שלוש הנקודות — הדגמה חיה</span>
+      <div class="seg" role="group" aria-label="אורח/אדמין">
+        <button aria-pressed="true" onclick="setAdmin(false,this)">אורח</button>
+        <button aria-pressed="false" onclick="setAdmin(true,this)">אדמין</button>
+      </div>
+      <div class="menu guest" id="adminMenu">
+        <div class="mi"><i data-lucide="smartphone" class="ic"></i> התקנת האפליקציה <span class="free">לכולם</span></div>
+        <div class="mi"><i data-lucide="cloud" class="ic"></i> מצב לא-מקוון · גרסה קלה <span class="free">לכולם</span></div>
+        <div class="mi admin-only"><i data-lucide="cloud-download" class="ic"></i> מצב לא-מקוון · הורדה מלאה <span class="badge"><i data-lucide="lock" class="ic"></i> אדמין</span></div>
+        <div class="sep admin-sep"></div>
+        <div class="mi admin-only"><i data-lucide="download" class="ic"></i> גיבוי (JSON) <span class="badge"><i data-lucide="lock" class="ic"></i> אדמין</span></div>
+        <div class="mi admin-only"><i data-lucide="file-spreadsheet" class="ic"></i> ייצוא לאקסל (CSV) <span class="badge"><i data-lucide="lock" class="ic"></i> אדמין</span></div>
+        <div class="mi admin-only"><i data-lucide="upload" class="ic"></i> שחזור מגיבוי <span class="badge"><i data-lucide="lock" class="ic"></i> אדמין</span></div>
+        <div class="sep"></div>
+        <div class="mi evrit"><i data-lucide="tablet" class="ic"></i> הספרייה הדיגיטלית · עברית</div>
+        <div class="sep admin-sep"></div>
+        <div class="mi danger admin-only"><i data-lucide="rotate-ccw" class="ic"></i> איפוס ליומן המקורי <span class="badge"><i data-lucide="lock" class="ic"></i> אדמין</span></div>
+        <div class="guest-note"><i data-lucide="lock" class="ic"></i> 5 פעולות נתונים מוסתרות מאורחים — נדרשת כניסת אדמין</div>
+      </div>
+      <p class="hint">החליפי בין «אורח» ל«אדמין» כדי לראות את כפתורי הנתונים וההורדה-המלאה מופיעים/נעלמים.</p>
+    </div>
+  </section>
+
+  <!-- FIX 2 -->
+  <section class="fix">
+    <div class="head">
+      <div class="num">2</div>
+      <h2>פוקוס מקלדת נראה (<code>:focus-visible</code>)</h2>
+      <div class="meta"><span class="chip high">גבוה</span><span class="tag">WCAG 2.4.7</span><span class="tag">~10 שורות</span></div>
+    </div>
+    <p class="desc"><b>הבעיה:</b> אין כלל <code>:focus-visible</code> בקוד; preflight של Tailwind מסיר את ה-outline. ניווט במקלדת — בלתי נראה. <b>התיקון:</b> טבעת פוקוס בצבע המבטא.</p>
+    <div class="stage focus-before" id="focusStage">
+      <span class="stage-label">הדגמה חיה</span>
+      <div class="seg" role="group" aria-label="לפני/אחרי">
+        <button aria-pressed="true" onclick="setFocus('before',this)">לפני</button>
+        <button aria-pressed="false" onclick="setFocus('after',this)">אחרי</button>
+      </div>
+      <div class="row">
+        <button class="btn primary">הוספת ספר</button>
+        <button class="btn">עריכה</button>
+        <button class="btn ghost">סינון</button>
+        <a href="#focusStage" class="btn">קישור</a>
+      </div>
+      <p class="hint">לחצי <kbd>Tab</kbd> כמה פעמים כדי לעבור בין הכפתורים. ב«לפני» אי-אפשר לדעת איפה את.</p>
+    </div>
+  </section>
+
+  <!-- FIX 3 -->
+  <section class="fix">
+    <div class="head">
+      <div class="num">3</div>
+      <h2>חלון הספר כדיאלוג אמיתי</h2>
+      <div class="meta"><span class="chip high">גבוה</span><span class="tag">role=dialog</span><span class="tag">Esc + מלכודת פוקוס</span></div>
+    </div>
+    <p class="desc"><b>הבעיה:</b> ל-<code>BookDetail</code> אין <code>role="dialog"</code>, אין <code>aria-modal</code>, אין סגירה ב-Esc, אין מלכודת פוקוס ולא החזרת פוקוס. <b>התיקון:</b> כל אלה יחד.</p>
+    <div class="stage">
+      <span class="stage-label">הדגמה חיה</span>
+      <div class="seg" role="group" aria-label="מצב נגישות">
+        <button aria-pressed="false" onclick="setDlgMode('before',this)">לפני (לא נגיש)</button>
+        <button aria-pressed="true" onclick="setDlgMode('after',this)">אחרי (נגיש)</button>
+      </div>
+      <div class="row"><button class="btn primary" id="dlgTrigger" onclick="openDialog()">פתחי את חלון הספר</button></div>
+      <p class="hint" id="dlgHint">במצב «אחרי»: הפוקוס נכנס לחלון, <kbd>Tab</kbd> לכוד בפנים, <kbd>Esc</kbd> סוגר, והפוקוס חוזר לכפתור.</p>
+    </div>
+  </section>
+
+  <!-- FIX tabular-nums -->
+  <section class="fix">
+    <div class="head">
+      <div class="num">★</div>
+      <h2>מספרי הסטטיסטיקה לא רוקדים (<code>tabular-nums</code>)</h2>
+      <div class="meta"><span class="chip low">נמוך</span><span class="tag">שורה אחת</span></div>
+    </div>
+    <p class="desc"><b>הבעיה:</b> אנימציית ה-count-up בכרטיסי הסטטיסטיקה ללא <code>font-variant-numeric: tabular-nums</code> → הרוחב של הספרות משתנה והמספר רועד. <b>התיקון:</b> ספרות ברוחב אחיד. הקו הזהוב הוא נקודת ייחוס.</p>
+    <div class="stage">
+      <span class="stage-label">הדגמה חיה</span>
+      <div class="seg" role="group" aria-label="לפני/אחרי">
+        <button aria-pressed="true" onclick="setTab(false,this)">לפני (רועד)</button>
+        <button aria-pressed="false" onclick="setTab(true,this)">אחרי (יציב)</button>
+      </div>
+      <div class="counter-box">
+        <span class="guide"></span>
+        <div class="counter" id="counter">0</div>
+        <div class="counter-label">ספרים בספרייה</div>
+      </div>
+      <div class="row"><button class="btn" onclick="runCount()">הרצת האנימציה שוב</button></div>
+    </div>
+  </section>
+
+  <!-- FIX date -->
+  <section class="fix">
+    <div class="head">
+      <div class="num">⌗</div>
+      <h2>שדה תאריך מותאם לעיצוב</h2>
+      <div class="meta"><span class="chip low">נמוך</span><span class="tag">קוסמטי</span></div>
+    </div>
+    <p class="desc"><b>הבעיה:</b> <code>type="date"</code> הגולמי שובר את האסתטיקה. <b>התיקון:</b> נשמר השדה הנייטיבי (נגישות + לוקליזציה חינם) אבל עם מסגרת/רקע/צבע של האפליקציה.</p>
+    <div class="stage">
+      <span class="stage-label">הדגמה חיה</span>
+      <div class="row" style="gap:28px; align-items:flex-end">
+        <div><div class="counter-label" style="margin-bottom:6px">לפני</div><input type="date" class="date-before" value="2026-06-16"></div>
+        <div><div class="counter-label" style="margin-bottom:6px">אחרי</div><input type="date" class="date-after" value="2026-06-16"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIX 10 -->
+  <section class="fix">
+    <div class="head">
+      <div class="num">10</div>
+      <h2>היררכיית כותרות + קישור דילוג</h2>
+      <div class="meta"><span class="chip med">בינוני</span><span class="tag">סמנטיקה</span></div>
+    </div>
+    <p class="desc"><b>הבעיה:</b> תצוגת הרשימה קופצת מ-<code>H1</code> ל-<code>H3</code> בלי <code>H2</code> של ז'אנרים (בניגוד לרשת), אין קישור «דלג לתוכן» ואין landmark של <code>&lt;main&gt;</code>. <b>התיקון:</b> כותרות תקינות + קישור דילוג (כבר פעיל בראש העמוד — לחצי <kbd>Tab</kbd> מתחילת העמוד).</p>
+    <div class="stage">
+      <span class="stage-label">מבנה הכותרות בתצוגת רשימה</span>
+      <div class="row" style="gap:24px; align-items:flex-start">
+        <div style="flex:1 1 220px">
+          <div class="counter-label" style="margin-bottom:6px">לפני</div>
+          <div class="toc-row bad"><span class="lvl">H1</span><span>הספרייה של חנית</span></div>
+          <div class="toc-row bad indent-3"><span class="lvl">H3</span><span>שם הספר ⚠ קפיצה</span></div>
+          <div class="toc-row bad indent-3"><span class="lvl">H3</span><span>שם הספר</span></div>
+        </div>
+        <div style="flex:1 1 220px">
+          <div class="counter-label" style="margin-bottom:6px">אחרי</div>
+          <div class="toc-row good"><span class="lvl">H1</span><span>הספרייה של חנית</span></div>
+          <div class="toc-row good indent-2"><span class="lvl">H2</span><span>רומן רומנטי</span></div>
+          <div class="toc-row good indent-3"><span class="lvl">H3</span><span>שם הספר</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIX 9 -->
+  <section class="fix">
+    <div class="head">
+      <div class="num">9</div>
+      <h2>סרגל דביק לא מסתיר תוכן (<code>scroll-padding-top</code>)</h2>
+      <div class="meta"><span class="chip low">נמוך</span><span class="tag">CSS אחד</span></div>
+    </div>
+    <p class="desc"><b>הבעיה:</b> כשמדלגים לעוגן/פוקוס, הסרגל הדביק מכסה את היעד. <b>התיקון:</b> <code>scroll-padding-top</code> בגובה הסרגל.</p>
+    <div class="stage">
+      <span class="stage-label">הדגמה חיה — לחצי «קפצי לפריט 8»</span>
+      <div class="seg" role="group" aria-label="לפני/אחרי">
+        <button aria-pressed="true" onclick="setPad(false,this)">לפני</button>
+        <button aria-pressed="false" onclick="setPad(true,this)">אחרי</button>
+      </div>
+      <div class="row" style="margin-bottom:10px">
+        <button class="btn" onclick="jumpTo('it8')">קפצי לפריט 8 ↓</button>
+      </div>
+      <div class="scrollbox" id="scrollbox">
+        <div class="sticky-bar">סרגל סינון דביק</div>
+        <div class="scroll-item" id="it1">פריט 1</div>
+        <div class="scroll-item" id="it2">פריט 2</div>
+        <div class="scroll-item" id="it3">פריט 3</div>
+        <div class="scroll-item" id="it4">פריט 4</div>
+        <div class="scroll-item" id="it5">פריט 5</div>
+        <div class="scroll-item" id="it6">פריט 6</div>
+        <div class="scroll-item" id="it7">פריט 7</div>
+        <div class="scroll-item" id="it8">פריט 8 — היעד</div>
+        <div class="scroll-item" id="it9">פריט 9</div>
+        <div class="scroll-item" id="it10">פריט 10</div>
+      </div>
+      <p class="hint">ב«לפני» פריט 8 נחבא מתחת לסרגל; ב«אחרי» הוא נעצר בדיוק מתחתיו.</p>
+    </div>
+  </section>
+
+  <!-- FIX 5 perf -->
+  <section class="fix">
+    <div class="head">
+      <div class="num">5</div>
+      <h2>החבילה: בעיית נתונים, לא בעיית גרפים</h2>
+      <div class="meta"><span class="chip high">גבוה</span><span class="tag">3.0MB chunk</span></div>
+    </div>
+    <p class="desc"><b>האבחנה בביקורת הייתה שגויה:</b> עיקר המשקל הוא <code>import books.json</code> (2.4MB) שנצרב לתוך ה-JS ב-<code>storage.ts:2</code> — לא recharts/d3. <b>התיקון בעדיפות:</b> להפסיק לצרוב את הספרייה לחבילה (השרת הוא ממילא מקור האמת + localStorage כבר מטמן), ואז פיצול עצל ל-Statistics/3D.</p>
+    <div class="stage">
+      <span class="stage-label">הרכב חבילת ה-JS (3.0MB)</span>
+      <div class="perfbar">
+        <div class="seg-d" style="flex:0 0 80%">books.json · 2.4MB (80%)</div>
+        <div class="seg-l" style="flex:0 0 13%">recharts וכו'</div>
+        <div class="seg-r" style="flex:0 0 7%">app</div>
+      </div>
+      <div class="perf-legend">
+        <span><span class="dot" style="background:var(--accent-600)"></span>נתוני הספרים — להוציא מהחבילה</span>
+        <span><span class="dot" style="background:var(--accent-300)"></span>ספריות גרפים — פיצול עצל</span>
+        <span><span class="dot" style="background:var(--gold)"></span>קוד האפליקציה</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL FINDINGS TABLE -->
+  <h2 class="section-title" id="all">כל הממצאים — חומרה + המלצה</h2>
+  <p class="section-sub">לא הושמט דבר. הסטטוס משקף בדיקה מול הקוד בפועל.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>ממצא</th><th>סטטוס מול הקוד</th><th>חומרה</th><th>המלצה</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>הרשאות + מצב בעלים</td><td>אימות צד-שרת אמיתי קיים; הדרישה: להפריד אדמין/אורח גם על כפתורי הנתונים</td><td><span class="chip med">בינוני</span></td><td class="rec"><b>אורח:</b> עיון + התקנה קלה בלבד. <b>אדמין בלבד:</b> עריכה/הוספה/מחיקה, גיבוי JSON, ייצוא אקסל, שחזור, איפוס, והורדה לא-מקוונת מלאה. בסיס לתצוגת שיתוף ציבורית</td></tr>
+        <tr><td>2</td><td>פוקוס מקלדת בלתי-נראה</td><td>נכון — אין <code>:focus-visible</code></td><td><span class="chip high">גבוה</span></td><td class="rec">להוסיף טבעת פוקוס גלובלית. תיקון מהיר</td></tr>
+        <tr><td>3</td><td>חלון הספר אינו דיאלוג</td><td>נכון — אין role/aria/Esc/מלכודת</td><td><span class="chip high">גבוה</span></td><td class="rec">role=dialog + aria-modal + Esc + מלכודת + החזרת פוקוס</td></tr>
+        <tr><td>4</td><td>הירו בנייד תופס מסך שלם</td><td>סביר — לא נמדד</td><td><span class="chip med">בינוני</span></td><td class="rec">לבדוק במכשיר אמיתי; להצר את הירו בנייד</td></tr>
+        <tr><td>5</td><td>חבילת JS ענקית</td><td>נכון אך מאובחן שגוי — האשם הוא <code>books.json</code></td><td><span class="chip high">גבוה</span></td><td class="rec">להוציא נתונים מהחבילה; אח"כ פיצול עצל ל-Statistics/3D</td></tr>
+        <tr><td>6</td><td>אין וירטואליזציה (793 כרטיסים)</td><td>נכון</td><td><span class="chip high">גבוה</span></td><td class="rec">windowing — גדול יותר, מתנגש עם אנימציית הכניסה. לתכנן בנפרד</td></tr>
+        <tr><td>7</td><td>GET שולח הכול בכל טעינה / SWR</td><td>ברובו מיושם — cache-first + revalidate קיים</td><td><span class="chip done">מיושם</span></td><td class="rec">אופציונלי: פיצול index קל מול שדות כבדים</td></tr>
+        <tr><td>8</td><td>כוכבים אינטראקטיביים בכל שורה</td><td>לא נכון — כבר תצוגה-בלבד ברשת/רשימה</td><td><span class="chip done">מיושם</span></td><td class="rec">אין צורך בפעולה</td></tr>
+        <tr><td>9</td><td>סרגל דביק מסתיר תוכן</td><td>חלקית — שקיפות מכוונת; חסר <code>scroll-padding</code></td><td><span class="chip low">נמוך</span></td><td class="rec">להוסיף <code>scroll-padding-top</code></td></tr>
+        <tr><td>10</td><td>היררכיית כותרות + קישור דילוג</td><td>נכון — רשימה ללא H2, אין skip link / main</td><td><span class="chip med">בינוני</span></td><td class="rec">H2 לז'אנרים ברשימה + קישור דילוג + <code>&lt;main&gt;</code></td></tr>
+        <tr><td>11</td><td>שדה תאריך נייטיבי שובר עיצוב</td><td>נכון</td><td><span class="chip low">נמוך</span></td><td class="rec">לעצב <code>::-webkit-datetime-edit</code></td></tr>
+        <tr><td>12</td><td>סיכון לוגו/גופן בלתי-נראה</td><td>מוגזם — הלוגו הוא SVG; ל-DanaYad יש preload + fallback</td><td><span class="chip low">נמוך</span></td><td class="rec">לוודא fallback נראה; שקלי <code>swap</code></td></tr>
+        <tr><td>13</td><td>טוקני זכוכית לבנים על רקע כהה</td><td>לא נכון — כבר ממוקמים לפי ערכת נושא</td><td><span class="chip done">מיושם</span></td><td class="rec">אין צורך בפעולה</td></tr>
+        <tr><td>14</td><td>שש משפחות גופנים</td><td>נכון</td><td><span class="chip low">נמוך</span></td><td class="rec">לבדוק מה באמת בשימוש; להסיר/לארח עצמית woff2</td></tr>
+        <tr><td>15</td><td>כרטיסי count-up רועדים</td><td>נכון</td><td><span class="chip low">נמוך</span></td><td class="rec"><code>tabular-nums</code> — תיקון שורה אחת</td></tr>
+        <tr><td>16</td><td>מיקרו-קופי דירוג מבלבל ("N עד")</td><td>לא שוחזר — הכרטיסים כבר מציגים "X.X ★ · N עמ׳"</td><td><span class="chip done">מיושם</span></td><td class="rec">אין צורך; אפשר ליישר נוסח אם רוצים</td></tr>
+        <tr><td>17</td><td>גרפים מקודדים בצבע בלבד</td><td>ברובו לא נכון — יש LabelList + מספרים בתאים</td><td><span class="chip low">נמוך</span></td><td class="rec">אופציונלי: fallback של טבלת נתונים</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">רעיונות לפיצ'רים (גב-לוג, לא באגים)</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>רעיון</th><th>נשען על</th><th>המלצה</th></tr></thead>
+      <tbody>
+        <tr><td>תצוגת שיתוף ציבורית לקריאה-בלבד</td><td>נופל מ"מצב בעלים"</td><td class="rec">שווה — שיתוף בטוח של הספרייה</td></tr>
+        <tr><td>"איפה זה?" — תגית מדף ↔ מפת מדפים</td><td>נתוני <code>shelf</code> קיימים</td><td class="rec">הופך נתון ייחודי לכלי</td></tr>
+        <tr><td>זיהוי כפילויות</td><td>ISBN שמור</td><td class="rec">בדיקה פסיבית — מונע קניה כפולה</td></tr>
+        <tr><td>יעדי קריאה / קצב</td><td>תאריכי קריאה + recharts</td><td class="rec">כרטיס זול</td></tr>
+        <tr><td>"מה לקרוא עכשיו"</td><td>מה שכבר מחושב ב-Statistics</td><td class="rec">המלצות מתוך מה שיש</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  </main>
+</div>
+
+<!-- dialog overlay -->
+<div class="overlay" id="overlay">
+  <div class="dialog" id="dialog">
+    <h3 id="dlgTitle">שם הספר</h3>
+    <p>זהו חלון הספר. במצב «אחרי» נסי <kbd>Tab</kbd> (לכוד בפנים) ו-<kbd>Esc</kbd> (סוגר ומחזיר פוקוס).</p>
+    <div class="row">
+      <button class="btn primary">עריכה</button>
+      <button class="btn">מחיקה</button>
+      <button class="btn ghost" onclick="closeDialog()">סגירה</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+  /* ---- Fix #1 admin / guest gating ---- */
+  function setAdmin(isAdmin, btn){
+    document.getElementById('adminMenu').classList.toggle('guest', !isAdmin);
+    btn.parentElement.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', b===btn));
+  }
+
+  /* ---- Fix #2 focus-visible ---- */
+  function setFocus(mode, btn){
+    const s = document.getElementById('focusStage');
+    s.classList.toggle('focus-after', mode==='after');
+    s.classList.toggle('focus-before', mode==='before');
+    btn.parentElement.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', b===btn));
+  }
+
+  /* ---- Fix #3 accessible dialog ---- */
+  let dlgAccessible = true, lastTrigger = null, keyHandler = null;
+  function setDlgMode(mode, btn){
+    dlgAccessible = (mode==='after');
+    btn.parentElement.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', b===btn));
+  }
+  function getFocusable(c){return [...c.querySelectorAll('button,a[href],input,[tabindex]:not([tabindex="-1"])')].filter(e=>!e.disabled)}
+  function openDialog(){
+    const ov=document.getElementById('overlay'), dlg=document.getElementById('dialog');
+    lastTrigger=document.activeElement;
+    ov.classList.add('open');
+    if(dlgAccessible){
+      dlg.setAttribute('role','dialog'); dlg.setAttribute('aria-modal','true'); dlg.setAttribute('aria-labelledby','dlgTitle');
+      const f=getFocusable(dlg); f[0]&&f[0].focus();
+      keyHandler=function(e){
+        if(e.key==='Escape'){closeDialog();return;}
+        if(e.key==='Tab'){
+          const items=getFocusable(dlg); if(!items.length)return;
+          const first=items[0], last=items[items.length-1];
+          if(e.shiftKey && document.activeElement===first){e.preventDefault(); last.focus();}
+          else if(!e.shiftKey && document.activeElement===last){e.preventDefault(); first.focus();}
+        }
+      };
+      document.addEventListener('keydown', keyHandler);
+    } else {
+      dlg.removeAttribute('role'); dlg.removeAttribute('aria-modal'); dlg.removeAttribute('aria-labelledby');
+      /* before: no esc, no trap, no focus move */
+    }
+  }
+  function closeDialog(){
+    const ov=document.getElementById('overlay');
+    ov.classList.remove('open');
+    if(keyHandler){document.removeEventListener('keydown',keyHandler); keyHandler=null;}
+    if(dlgAccessible && lastTrigger){lastTrigger.focus();}
+  }
+  document.getElementById('overlay').addEventListener('click',e=>{if(e.target.id==='overlay')closeDialog();});
+
+  /* ---- tabular-nums count-up ---- */
+  let useTab=false;
+  function setTab(v,btn){
+    useTab=v; document.getElementById('counter').classList.toggle('tab',v);
+    btn.parentElement.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', b===btn));
+    runCount();
+  }
+  function runCount(){
+    const el=document.getElementById('counter'); const target=270067; const dur=1600; const t0=performance.now();
+    function tick(now){
+      const p=Math.min((now-t0)/dur,1); const eased=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*eased).toLocaleString('he');
+      if(p<1)requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  runCount();
+
+  /* render lucide icons in the admin/guest menu */
+  if(window.lucide){ lucide.createIcons(); }
+
+  /* ---- Fix #9 scroll-padding ---- */
+  function setPad(v,btn){
+    document.getElementById('scrollbox').classList.toggle('pad',v);
+    btn.parentElement.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', b===btn));
+  }
+  function jumpTo(id){
+    const box=document.getElementById('scrollbox'), el=document.getElementById(id);
+    /* reset then scroll within the box, honoring scroll-padding-top */
+    history.replaceState(null,'','#'+id);
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+    /* manual highlight (since :target inside scroll container) */
+    document.querySelectorAll('.scroll-item').forEach(i=>i.style.background='');
+  }
+</script>
+</body>
+</html>

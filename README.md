@@ -71,3 +71,18 @@ exposes what she *owns*, not her reading progress.
 Hosted on Vercel. Pushing to `main` auto-deploys to production. The Upstash
 integration injects `KV_REST_API_URL` / `KV_REST_API_TOKEN`; `EDIT_PASSPHRASE`
 is set in the Vercel project env (changing it needs a redeploy).
+
+## Audit & roadmap (v1.3 → v1.4)
+
+An end-to-end UX/accessibility/performance review was verified against the code.
+About half the findings were already addressed (cache-first sync, display-only
+row stars, theme-scoped glass, chart value labels); the rest are being fixed in
+**v1.4**. An interactive, on-brand demo of every fix is in **`fixes-demo.html`**
+(open it in a browser). Tag `hanit-library-v1.3` is the restore point before this work.
+
+v1.4 work: global `:focus-visible`; accessible dialogs (role/aria/Esc/focus-trap);
+list heading hierarchy + skip link + `<main>`; styled date input; `tabular-nums`
+stats; `scroll-padding-top`; lazy-loaded Stats/3D and `books.json` split out of the
+main bundle; trimmed fonts; and an **owner/admin mode** — read-only by default,
+with edit/backup/CSV/restore/reset and the full offline download gated to an admin,
+while guests can still browse and light-install the PWA.

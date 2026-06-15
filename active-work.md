@@ -1,14 +1,33 @@
 # Active Work — hanit-library
 
-> Handoff notes for resuming after `/clear`. Last updated: 2026-06-16 (cross-device sync via Upstash Redis).
+> Handoff notes for resuming after `/clear`. Last updated: 2026-06-16 (UX/a11y/perf audit → v1.4).
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
 > Data: 956 books — 793 physical (Excel) + 163 digital (e-vrit). Persistence = **Upstash Redis** (server, source of truth) with bundled `src/data/books.json` as offline/first-paint cache. Live on Vercel (auto-deploy from GitHub).
 
-## CURRENT FOCUS — cross-device sync is LIVE (Upstash Redis backend)
-The app now has a real backend: books persist to **Upstash Redis** (via Vercel Storage) and sync across
+## CURRENT FOCUS — UX / a11y / performance pass (v1.3 → v1.4)
+An external end-to-end review (Opus 4.8) was verified against the code; ~half the findings were already
+fixed, the rest are real. An interactive, on-brand demo of every fix lives at **`fixes-demo.html`** (repo
+root). Tag **`hanit-library-v1.3`** is the restore point taken right before this work.
+
+**v1.4 scope being implemented now:**
+- **A11y/polish:** global `:focus-visible` ring; `BookDetail`/`BookForm`/`EvritLibrary` made real dialogs
+  (`role=dialog`+`aria-modal`+Esc+focus-trap+return-focus); list heading hierarchy (sr-only `<h2>`, no
+  rogue `<h3>`) + skip link + `<main>` landmark; styled native date input; `tabular-nums` on count-up
+  stats; `scroll-padding-top` for the sticky filter bar; `font-display: swap` on the handwriting font.
+- **Perf:** lazy-load `StatsPanel` (recharts) and `Bookshelf3D` via `React.lazy`; move the 2.4MB
+  `books.json` out of the main JS chunk (the real cause of the 3MB bundle — it was a static `import`);
+  trim unused Google font weights. (Off-screen virtualization already handled by `content-visibility:auto`
+  on `.cv-auto`; full windowing deferred — it fights the animated genre bands.)
+- **Owner/admin mode (per user request):** read-only by default. **Admin-only** = edit/add/delete, the
+  whole data toolbar (גיבוי JSON, ייצוא אקסל, שחזור, איפוס) and the **full offline download**. A **guest**
+  can only browse, PWA **light-install**, and use the **light offline** mode (covers auto-cached while
+  scrolling). `isAdmin` derives from `hasPass()`; an explicit admin login/logout entry was added.
+
+## DONE — Cross-device sync is LIVE (Upstash Redis backend)
+The app has a real backend: books persist to **Upstash Redis** (via Vercel Storage) and sync across
 all devices. Reading is open; editing needs a shared passphrase (entered once per device). The passphrase
 is configured in Vercel (`EDIT_PASSPHRASE`, Production+Development) — the value lives only in Vercel, not
-in the repo. No active task in flight. See "DONE — Cross-device sync" below.
+in the repo. See "DONE — Cross-device sync" below.
 
 ## DONE — Cross-device sync via Upstash Redis (2026-06-15)
 Replaced localStorage-only with a server-backed library so manual adds/edits persist everywhere and survive
