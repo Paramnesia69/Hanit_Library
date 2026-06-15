@@ -9,9 +9,11 @@ interface Props {
     book: Book;
     onOpen: (book: Book) => void;
     onToggleFavorite: (id: string) => void;
+    /** אורח: בלי כפתור מועדפים (עיון בלבד) */
+    isAdmin?: boolean;
 }
 
-export function BookCard({ book, onOpen, onToggleFavorite }: Props) {
+export function BookCard({ book, onOpen, onToggleFavorite, isAdmin = false }: Props) {
     const theme = getBookTheme(book);
     const [burst, setBurst] = useState(false);
 
@@ -30,25 +32,28 @@ export function BookCard({ book, onOpen, onToggleFavorite }: Props) {
                     </span>
                 )}
 
-                <button
-                    type="button"
-                    aria-label={book.favorite ? 'הסרה מהמועדפים' : 'הוספה למועדפים'}
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        if (!book.favorite) {
-                            setBurst(true);
-                            window.setTimeout(() => setBurst(false), 480);
-                        }
-                        onToggleFavorite(book.id);
-                    }}
-                    className={`press absolute start-1 top-0 z-20 grid h-8 w-8 place-items-center rounded-full backdrop-blur-md transition-all duration-300 ${book.favorite
-                        ? 'bg-white/90 text-accent-600 opacity-100 shadow-lg'
-                        : 'bg-white/70 text-ink-soft opacity-0 shadow group-hover:opacity-100'
-                        }`}
-                    aria-pressed={book.favorite}
-                >
-                    <Heart size={16} fill={book.favorite ? 'currentColor' : 'none'} className={burst ? 'heart-burst' : ''} />
-                </button>
+                {/* כפתור מועדפים — אדמין בלבד (אורח: עיון בלבד) */}
+                {isAdmin && (
+                    <button
+                        type="button"
+                        aria-label={book.favorite ? 'הסרה מהמועדפים' : 'הוספה למועדפים'}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            if (!book.favorite) {
+                                setBurst(true);
+                                window.setTimeout(() => setBurst(false), 480);
+                            }
+                            onToggleFavorite(book.id);
+                        }}
+                        className={`press absolute start-1 top-0 z-20 grid h-8 w-8 place-items-center rounded-full backdrop-blur-md transition-all duration-300 ${book.favorite
+                            ? 'bg-white/90 text-accent-600 opacity-100 shadow-lg'
+                            : 'bg-white/70 text-ink-soft opacity-0 shadow group-hover:opacity-100'
+                            }`}
+                        aria-pressed={book.favorite}
+                    >
+                        <Heart size={16} fill={book.favorite ? 'currentColor' : 'none'} className={burst ? 'heart-burst' : ''} />
+                    </button>
+                )}
             </div>
 
             <div className="mt-3 px-0.5">

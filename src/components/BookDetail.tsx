@@ -7,10 +7,13 @@ import { Cover3D } from './Cover3D';
 import { getBookTheme } from '../lib/genreThemes';
 import { resolveCover } from '../lib/covers';
 import { Stars } from './Stars';
+import { useDialog } from '../hooks/useDialog';
 
 interface Props {
     book: Book;
     allBooks: Book[];
+    /** אורח: עיון בלבד — בלי עריכה/מחיקה/דירוג/מועדף/שינוי סטטוס (Fix #1) */
+    isAdmin: boolean;
     onClose: () => void;
     onUpdate: (id: string, patch: Partial<Book>) => void;
     onEdit: (book: Book) => void;
@@ -103,7 +106,7 @@ function MetaRow({ icon, children }: { icon: React.ReactNode; children: React.Re
     );
 }
 
-export function BookDetail({ book, allBooks, onClose, onUpdate, onEdit, onDelete, onToggleFavorite, onOpen }: Props) {
+export function BookDetail({ book, allBooks, isAdmin, onClose, onUpdate, onEdit, onDelete, onToggleFavorite, onOpen }: Props) {
     const theme = getBookTheme(book);
     const cover = resolveCover(book);
 
@@ -112,6 +115,8 @@ export function BookDetail({ book, allBooks, onClose, onUpdate, onEdit, onDelete
     const { scrollY } = useScroll({ container: scrollRef });
     const bgY = useTransform(scrollY, [0, 600], [0, 90]);
     const bgScale = useTransform(scrollY, [0, 600], [1.25, 1.4]);
+    // נגישות: דיאלוג אמיתי — Esc, מלכודת פוקוס, החזרת פוקוס (Fix #3)
+    useDialog(scrollRef, onClose);
 
     return (
         <motion.div
@@ -142,11 +147,15 @@ export function BookDetail({ book, allBooks, onClose, onUpdate, onEdit, onDelete
             <motion.div
                 ref={scrollRef}
                 onClick={(e) => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="book-detail-title"
+                tabIndex={-1}
                 initial={{ y: '7%', opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: '7%', opacity: 0 }}
                 transition={{ type: 'spring', damping: 32, stiffness: 300 }}
-                className="absolute inset-0 overflow-y-auto overflow-x-hidden"
+                className="absolute inset-0 overflow-y-auto overflow-x-hidden outline-none"
             >
                 <div className="mx-auto flex min-h-full max-w-2xl flex-col">
                     {/* סרגל עליון דביק — כפתורים זכוכית שמסתגלים לערכה */}
@@ -159,28 +168,31 @@ export function BookDetail({ book, allBooks, onClose, onUpdate, onEdit, onDelete
                         >
                             <X size={20} />
                         </button>
-                        <div className="flex gap-1.5">
-                            <button
-                                type="button"
-                                onClick={() => onEdit(book)}
-                                className="flex items-center gap-1.5 rounded-full glass px-3.5 py-2 text-[13px] font-medium text-ink transition hover:text-accent-700"
-                            >
-                                <Pencil size={15} /> עריכה
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    if (confirm(`למחוק את "${book.title}" מהספרייה?`)) {
-                                        onDelete(book.id);
-                                        onClose();
-                                    }
-                                }}
-                                className="grid h-10 w-10 place-items-center rounded-full glass text-red-500 hover:text-red-600"
-                                aria-label="מחיקה"
-                            >
-                                <Trash2 size={16} />
-                            </button>
-                        </div>
+                        {/* עריכה/מחיקה — אדמין בלבד (אורח: עיון בלבד) */}
+                        {isAdmin && (
+                            <div className="flex gap-1.5">
+                                <button
+                                    type="button"
+                                    onClick={() => onEdit(book)}
+                                    className="flex items-center gap-1.5 rounded-full glass px-3.5 py-2 text-[13px] font-medium text-ink transition hover:text-accent-700"
+                                >
+                                    <Pencil size={15} /> עריכה
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        if (confirm(`למחוק את "${book.title}" מהספרייה?`)) {
+                                            onDelete(book.id);
+                                            onClose();
+                                        }
+                                    }}
+                                    className="grid h-10 w-10 place-items-center rounded-full glass text-red-500 hover:text-red-600"
+                                    aria-label="מחיקה"
+                                >
+                                    <Trash2 size={16} />
+                                </button>
+                            </div>
+                        )}
                     </div>
 
                     {/* גיבור — עטיפה תלת-ממדית מרחפת מעל הרקע המטושטש */}
@@ -189,7 +201,7 @@ export function BookDetail({ book, allBooks, onClose, onUpdate, onEdit, onDelete
                             <Cover3D book={book} />
                         </div>
 
-                        <h2 className="mt-8 font-display text-3xl font-extrabold leading-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.45)] sm:text-4xl">
+                        <h2 id="book-detail-title" className="mt-8 font-display text-3xl font-extrabold leading-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.45)] sm:text-4xl">
                             {book.title}
                         </h2>
                         <p className="mt-1.5 text-[16px] text-white/85 drop-shadow-[0_1px_10px_rgba(0,0,0,0.4)]">{book.author || '—'}</p>
@@ -210,35 +222,55 @@ export function BookDetail({ book, allBooks, onClose, onUpdate, onEdit, onDelete
                         {/* ידית גרירה ויזואלית */}
                         <div className="mx-auto mb-4 h-[5px] w-11 rounded-full bg-ink/20" />
 
-                        {/* דירוג + מועדף */}
+                        {/* דירוג + מועדף — אינטראקטיבי לאדמין, לקריאה בלבד לאורח */}
                         <div className="flex items-center justify-center gap-3">
-                            <Stars value={book.rating} onChange={(r) => onUpdate(book.id, { rating: r })} size={28} />
-                            <button
-                                type="button"
-                                onClick={() => onToggleFavorite(book.id)}
-                                className={`grid h-11 w-11 place-items-center rounded-full border transition ${book.favorite ? 'border-accent-300 bg-accent-50 text-accent-600 glow-accent' : 'border-line bg-card/60 text-ink-soft'
-                                    }`}
-                                aria-pressed={book.favorite}
-                                aria-label="מועדף"
-                            >
-                                <Heart size={19} fill={book.favorite ? 'currentColor' : 'none'} />
-                            </button>
+                            <Stars
+                                value={book.rating}
+                                onChange={isAdmin ? (r) => onUpdate(book.id, { rating: r }) : undefined}
+                                readOnly={!isAdmin}
+                                size={28}
+                            />
+                            {isAdmin && (
+                                <button
+                                    type="button"
+                                    onClick={() => onToggleFavorite(book.id)}
+                                    className={`grid h-11 w-11 place-items-center rounded-full border transition ${book.favorite ? 'border-accent-300 bg-accent-50 text-accent-600 glow-accent' : 'border-line bg-card/60 text-ink-soft'
+                                        }`}
+                                    aria-pressed={book.favorite}
+                                    aria-label="מועדף"
+                                >
+                                    <Heart size={19} fill={book.favorite ? 'currentColor' : 'none'} />
+                                </button>
+                            )}
+                            {!isAdmin && book.favorite && (
+                                <span className="grid h-11 w-11 place-items-center rounded-full border border-accent-300 bg-accent-50 text-accent-600" aria-label="מועדף">
+                                    <Heart size={19} fill="currentColor" />
+                                </span>
+                            )}
                         </div>
 
-                        {/* סטטוס */}
-                        <div className="mt-5 flex justify-center rounded-full bg-paper-2 p-1">
-                            {STATUSES.map((s) => (
-                                <button
-                                    key={s}
-                                    type="button"
-                                    onClick={() => onUpdate(book.id, { status: s })}
-                                    className={`flex-1 rounded-full px-3 py-2 text-[13px] font-medium transition ${book.status === s ? 'bg-card text-accent-700 glow-accent' : 'text-ink-soft'
-                                        }`}
-                                >
-                                    {STATUS_LABELS[s]}
-                                </button>
-                            ))}
-                        </div>
+                        {/* סטטוס — מתג לאדמין, תווית סטטית לאורח */}
+                        {isAdmin ? (
+                            <div className="mt-5 flex justify-center rounded-full bg-paper-2 p-1">
+                                {STATUSES.map((s) => (
+                                    <button
+                                        key={s}
+                                        type="button"
+                                        onClick={() => onUpdate(book.id, { status: s })}
+                                        className={`flex-1 rounded-full px-3 py-2 text-[13px] font-medium transition ${book.status === s ? 'bg-card text-accent-700 glow-accent' : 'text-ink-soft'
+                                            }`}
+                                    >
+                                        {STATUS_LABELS[s]}
+                                    </button>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="mt-5 flex justify-center">
+                                <span className="rounded-full bg-paper-2 px-4 py-2 text-[13px] font-medium text-ink-soft">
+                                    {STATUS_LABELS[book.status]}
+                                </span>
+                            </div>
+                        )}
 
                         {/* תגובת הקוראים (סימניה) */}
                         {typeof book.communityRating === 'number' && book.communityRating > 0 && (

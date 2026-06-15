@@ -6,6 +6,7 @@ import { STATUS_LABELS } from '../types/book';
 import { searchGoogleBooks } from '../lib/googleBooks';
 import type { BookSearchResult } from '../lib/googleBooks';
 import { Stars } from './Stars';
+import { useDialog } from '../hooks/useDialog';
 
 interface Props {
     initial: Book | null;
@@ -51,6 +52,9 @@ export function BookForm({ initial, defaultLibrary = 'physical', onSave, onClose
     const [searching, setSearching] = useState(false);
     const [genreInput, setGenreInput] = useState('');
     const fileRef = useRef<HTMLInputElement>(null);
+    const dialogRef = useRef<HTMLFormElement>(null);
+    // נגישות: דיאלוג אמיתי — Esc, מלכודת פוקוס, החזרת פוקוס (Fix #3)
+    useDialog(dialogRef, onClose);
 
     const set = <K extends keyof BookDraft>(key: K, value: BookDraft[K]) =>
         setDraft((d) => ({ ...d, [key]: value }));
@@ -124,15 +128,20 @@ export function BookForm({ initial, defaultLibrary = 'physical', onSave, onClose
             onClick={onClose}
         >
             <motion.form
+                ref={dialogRef}
                 onSubmit={submit}
                 onClick={(e) => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="book-form-title"
+                tabIndex={-1}
                 initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 40, opacity: 0 }}
-                className="max-h-[92svh] w-full max-w-2xl overflow-y-auto rounded-t-3xl bg-paper p-5 shadow-book sm:rounded-3xl"
+                className="max-h-[92svh] w-full max-w-2xl overflow-y-auto rounded-t-3xl bg-paper p-5 shadow-book outline-none sm:rounded-3xl"
             >
                 <div className="mb-4 flex items-center justify-between">
-                    <h2 className="font-display text-xl font-extrabold text-ink">
+                    <h2 id="book-form-title" className="font-display text-xl font-extrabold text-ink">
                         {initial ? 'עריכת ספר' : 'הוספת ספר'}
                     </h2>
                     <button type="button" onClick={onClose} className="rounded-full p-2 text-ink-soft hover:bg-paper-2">

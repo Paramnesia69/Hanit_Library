@@ -1,4 +1,4 @@
-import { Plus, BarChart3, MoreVertical, Download, Upload, FileSpreadsheet, RotateCcw, Tablet, Library, Layers, ChevronDown } from 'lucide-react';
+import { Plus, BarChart3, MoreVertical, Download, Upload, FileSpreadsheet, RotateCcw, Tablet, Library, Layers, ChevronDown, Lock, LogOut } from 'lucide-react';
 import { useRef } from 'react';
 import type { LibraryKind } from '../types/book';
 import type { ThemeId } from '../lib/theme';
@@ -28,6 +28,10 @@ interface Props {
     onConnectEvrit: () => void;
     onReset: () => void;
     coverUrls: string[];
+    /** מצב בעלים: אדמין רואה עריכה + כלי נתונים + הורדה מלאה; אורח — עיון בלבד (Fix #1) */
+    isAdmin: boolean;
+    onAdminLogin: () => void;
+    onAdminLogout: () => void;
 }
 
 export function Header({
@@ -50,6 +54,9 @@ export function Header({
     onConnectEvrit,
     onReset,
     coverUrls,
+    isAdmin,
+    onAdminLogin,
+    onAdminLogout,
 }: Props) {
     const fileRef = useRef<HTMLInputElement>(null);
     const isDigital = library === 'digital';
@@ -73,14 +80,17 @@ export function Header({
 
             {/* שורת פעולות ממורכזת */}
             <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 border-t border-line/60 pt-2.5 sm:mt-5 sm:gap-2 sm:pt-4">
-                <button
-                    type="button"
-                    onClick={onAdd}
-                    className="press flex items-center gap-1.5 rounded-full bg-gradient-to-br from-accent-500 to-accent-700 px-4 py-2 text-[14px] font-semibold text-white glow-accent transition hover:from-accent-600 hover:to-accent-800 sm:px-5 sm:py-2.5"
-                >
-                    <Plus size={18} />
-                    <span>הוספת ספר</span>
-                </button>
+                {/* הוספת ספר — אדמין בלבד (אורח: עיון בלבד) */}
+                {isAdmin && (
+                    <button
+                        type="button"
+                        onClick={onAdd}
+                        className="press flex items-center gap-1.5 rounded-full bg-gradient-to-br from-accent-500 to-accent-700 px-4 py-2 text-[14px] font-semibold text-white glow-accent transition hover:from-accent-600 hover:to-accent-800 sm:px-5 sm:py-2.5"
+                    >
+                        <Plus size={18} />
+                        <span>הוספת ספר</span>
+                    </button>
+                )}
 
                 <button
                     type="button"
@@ -102,30 +112,38 @@ export function Header({
                         <MoreVertical size={18} />
                     </summary>
                     <div className="glass-strong absolute end-0 z-40 mt-2 w-56 overflow-hidden rounded-2xl py-1 shadow-book">
+                            {/* לכולם: התקנה קלה + מצב לא-מקוון (הורדה מלאה לאדמין בלבד) */}
                             <InstallButton />
-                            <OfflineButton coverUrls={coverUrls} />
-                            <div className="my-1 border-t border-line" />
-                            <button
-                                type="button"
-                                onClick={onExportJson}
-                                className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-[14px] text-ink transition hover:bg-paper-2"
-                            >
-                                <Download size={16} /> גיבוי (JSON)
-                            </button>
-                            <button
-                                type="button"
-                                onClick={onExportCsv}
-                                className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-[14px] text-ink transition hover:bg-paper-2"
-                            >
-                                <FileSpreadsheet size={16} /> ייצוא לאקסל (CSV)
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => fileRef.current?.click()}
-                                className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-[14px] text-ink transition hover:bg-paper-2"
-                            >
-                                <Upload size={16} /> שחזור מגיבוי
-                            </button>
+                            <OfflineButton coverUrls={coverUrls} isAdmin={isAdmin} />
+
+                            {/* כלי נתונים — אדמין בלבד (Fix #1) */}
+                            {isAdmin && (
+                                <>
+                                    <div className="my-1 border-t border-line" />
+                                    <button
+                                        type="button"
+                                        onClick={onExportJson}
+                                        className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-[14px] text-ink transition hover:bg-paper-2"
+                                    >
+                                        <Download size={16} /> גיבוי (JSON)
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={onExportCsv}
+                                        className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-[14px] text-ink transition hover:bg-paper-2"
+                                    >
+                                        <FileSpreadsheet size={16} /> ייצוא לאקסל (CSV)
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => fileRef.current?.click()}
+                                        className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-[14px] text-ink transition hover:bg-paper-2"
+                                    >
+                                        <Upload size={16} /> שחזור מגיבוי
+                                    </button>
+                                </>
+                            )}
+
                             <div className="my-1 border-t border-line" />
                             <button
                                 type="button"
@@ -134,14 +152,40 @@ export function Header({
                             >
                                 <Tablet size={16} /> הספרייה הדיגיטלית · עברית
                             </button>
+
+                            {/* כניסת/יציאת אדמין — נקודת הכניסה למצב בעלים */}
                             <div className="my-1 border-t border-line" />
-                            <button
-                                type="button"
-                                onClick={onReset}
-                                className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-[14px] text-red-600 transition hover:bg-red-50"
-                            >
-                                <RotateCcw size={16} /> איפוס ליומן המקורי
-                            </button>
+                            {isAdmin ? (
+                                <button
+                                    type="button"
+                                    onClick={onAdminLogout}
+                                    className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-[14px] text-ink-soft transition hover:bg-paper-2"
+                                >
+                                    <LogOut size={16} /> יציאת אדמין
+                                </button>
+                            ) : (
+                                <button
+                                    type="button"
+                                    onClick={onAdminLogin}
+                                    className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-[14px] text-ink transition hover:bg-paper-2"
+                                >
+                                    <Lock size={16} /> כניסת אדמין
+                                </button>
+                            )}
+
+                            {/* איפוס — אדמין בלבד */}
+                            {isAdmin && (
+                                <>
+                                    <div className="my-1 border-t border-line" />
+                                    <button
+                                        type="button"
+                                        onClick={onReset}
+                                        className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-[14px] text-red-600 transition hover:bg-red-50"
+                                    >
+                                        <RotateCcw size={16} /> איפוס ליומן המקורי
+                                    </button>
+                                </>
+                            )}
                         </div>
                     </details>
                 </div>

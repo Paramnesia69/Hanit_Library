@@ -5,9 +5,10 @@
   font-family: 'Dana Yad';
   font-style: normal;
   font-weight: 400;
-  /* block (במקום swap) — מונע הבהוב מפונט ברירת המחדל לכתב היד.
-     הפונט נטען מראש (preload ב-index.html) כך שה"חסך" קצר מאוד. */
-  font-display: block;
+  /* swap — מציג מיד גופן חלופי ומחליף לכתב היד כשנטען (נטען מראש ב-preload,
+     כך שכמעט אין הבהוב). swap מבטיח שהכותרת לעולם לא תהיה בלתי-נראית גם אם
+     הגופן נכשל/איטי — חשוב כי הכותרת היא טקסט עם gradient-clip (Fix #12). */
+  font-display: swap;
   src: url('/fonts/DanaYad.woff') format('woff');
 }
 
@@ -319,6 +320,46 @@ h3,
 
 .font-script {
   font-family: var(--font-script);
+}
+
+/* ===== נגישות: טבעת פוקוס למקלדת (Fix #2 — WCAG 2.4.7) ===== */
+:focus-visible {
+  outline: 2px solid var(--color-accent-500);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+/* לא להציג טבעת בלחיצת עכבר/מגע (רק בניווט מקלדת) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+/* ערכות נושא כהות: זהב נקרא טוב יותר על רקע כהה */
+[data-theme='copilot'] :focus-visible,
+[data-theme='noir'] :focus-visible,
+[data-theme='pitwall-dark'] :focus-visible,
+[data-theme='amethyst'] :focus-visible {
+  outline-color: var(--color-gold);
+}
+
+/* גלילת עוגן/פוקוס לא תיחבא מתחת לסרגל הסינון הדביק (Fix #9) */
+html {
+  scroll-padding-top: 5.5rem;
+}
+
+/* שדה תאריך נייטיבי בעיצוב האפליקציה — שומר נגישות/לוקליזציה (Fix #11) */
+input[type='date'] {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+}
+input[type='date']::-webkit-datetime-edit {
+  color: var(--color-ink);
+}
+input[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s;
+}
+input[type='date']::-webkit-calendar-picker-indicator:hover {
+  opacity: 0.9;
 }
 
 /* ===== חתימת השם ===== */

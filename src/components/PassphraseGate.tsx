@@ -42,6 +42,9 @@ export function PassphraseGate({ onUnlock, onClose }: Props) {
         >
             <motion.div
                 onClick={(e) => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="passphrase-title"
                 initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 40, opacity: 0 }}
@@ -52,7 +55,7 @@ export function PassphraseGate({ onUnlock, onClose }: Props) {
                         <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-accent-500 to-accent-700 text-white">
                             <Lock size={18} />
                         </div>
-                        <h2 className="font-display text-lg font-extrabold text-ink">עריכת הספרייה</h2>
+                        <h2 id="passphrase-title" className="font-display text-lg font-extrabold text-ink">עריכת הספרייה</h2>
                     </div>
                     <button type="button" onClick={onClose} className="rounded-full p-2 text-ink-soft hover:bg-paper-2">
                         <X size={20} />
@@ -69,7 +72,10 @@ export function PassphraseGate({ onUnlock, onClose }: Props) {
                     dir="ltr"
                     value={value}
                     onChange={(e) => { setValue(e.target.value); setError(false); }}
-                    onKeyDown={(e) => e.key === 'Enter' && submit()}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') submit();
+                        else if (e.key === 'Escape') { e.stopPropagation(); onClose(); }
+                    }}
                     placeholder="מילת הסוד"
                     className={`w-full rounded-xl border bg-paper px-3 py-2.5 text-center text-[15px] outline-none transition focus:border-accent-400 ${error ? 'border-red-400' : 'border-line'}`}
                 />

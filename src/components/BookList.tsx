@@ -8,11 +8,16 @@ interface Props {
     books: Book[];
     onOpen: (book: Book) => void;
     onToggleFavorite: (id: string) => void;
+    /** אורח: בלי כפתור מועדפים (עיון בלבד) */
+    isAdmin?: boolean;
 }
 
 /** תצוגת רשימה קומפקטית */
-export function BookList({ books, onOpen, onToggleFavorite }: Props) {
+export function BookList({ books, onOpen, onToggleFavorite, isAdmin = false }: Props) {
     return (
+        <>
+        {/* כותרת מבנה לקוראי-מסך — מונעת קפיצה מ-H1 ל-H3 בתצוגת הרשימה (Fix #10) */}
+        <h2 className="sr-only">רשימת הספרים</h2>
         <div className="overflow-hidden rounded-2xl border border-line bg-card shadow-card">
             {books.map((b, i) => (
                 <div
@@ -23,7 +28,7 @@ export function BookList({ books, onOpen, onToggleFavorite }: Props) {
                 >
                     <CoverImage book={b} spine={false} className="w-10 shrink-0 sm:w-12" />
                     <div className="min-w-0 flex-1">
-                        <h3 className="truncate font-display text-[15px] font-bold text-ink">{b.title}</h3>
+                        <p className="truncate font-display text-[15px] font-bold text-ink">{b.title}</p>
                         <p className="truncate text-[13px] text-ink-soft">
                             {b.author || '—'}
                             {b.publisher ? ` · ${b.publisher}` : ''}
@@ -47,19 +52,23 @@ export function BookList({ books, onOpen, onToggleFavorite }: Props) {
                             {b.shelf && <span className="text-[11px] text-ink-soft/70">מדף {b.shelf}</span>}
                         </div>
                     </div>
-                    <button
-                        type="button"
-                        aria-label={b.favorite ? 'הסרה מהמועדפים' : 'הוספה למועדפים'}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onToggleFavorite(b.id);
-                        }}
-                        className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-accent-600 transition hover:bg-accent-50"
-                    >
-                        <Heart size={18} fill={b.favorite ? 'currentColor' : 'none'} />
-                    </button>
+                    {/* כפתור מועדפים — אדמין בלבד (אורח: עיון בלבד) */}
+                    {isAdmin && (
+                        <button
+                            type="button"
+                            aria-label={b.favorite ? 'הסרה מהמועדפים' : 'הוספה למועדפים'}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onToggleFavorite(b.id);
+                            }}
+                            className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-accent-600 transition hover:bg-accent-50"
+                        >
+                            <Heart size={18} fill={b.favorite ? 'currentColor' : 'none'} />
+                        </button>
+                    )}
                 </div>
             ))}
         </div>
+        </>
     );
 }

@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
+import { lazy, Suspense, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { BookX, Tablet } from 'lucide-react';
+import { BookX, Loader2, Tablet } from 'lucide-react';
 import { useBooks, filterAndSort, computeFacets, DEFAULT_FILTERS, activeFilterCount } from './hooks/useBooks';
 import { useTheme } from './hooks/useTheme';
 import type { Filters } from './hooks/useBooks';
@@ -10,14 +10,26 @@ import { FilterBar } from './components/FilterBar';
 import type { ViewMode } from './components/FilterBar';
 import { BookGrid } from './components/BookGrid';
 import { BookList } from './components/BookList';
-import { Bookshelf3D } from './components/Bookshelf3D';
 import { BookDetail } from './components/BookDetail';
 import { BookForm } from './components/BookForm';
 import { EvritLibrary } from './components/EvritLibrary';
 import { PassphraseGate } from './components/PassphraseGate';
-import { StatsPanel } from './components/StatsPanel';
 import { exportJson, exportCsv, importJson, downloadFile, resetToSeed } from './lib/storage';
-import { hasPass } from './lib/remote';
+import { hasPass, clearPass } from './lib/remote';
+
+// פיצול-קוד: התצוגות הכבדות (גרפים=recharts, מדף תלת-ממד) נטענות עצלות
+// כדי שהן לא ייכללו בחבילה הראשית של דף העיון (Fix #5).
+const StatsPanel = lazy(() => import('./components/StatsPanel').then((m) => ({ default: m.StatsPanel })));
+const Bookshelf3D = lazy(() => import('./components/Bookshelf3D').then((m) => ({ default: m.Bookshelf3D })));
+
+/** ספינר טעינה למקטעים העצלים */
+function LazyFallback() {
+    return (
+        <div className="flex items-center justify-center py-20 text-ink-soft">
+            <Loader2 size={28} className="animate-spin" />
+        </div>
+    );
+}
 
 export default function App() {
     const { books, addBook, updateBook, removeBook, toggleFavorite, replaceAll } = useBooks();
@@ -32,12 +44,21 @@ export default function App() {
     const [evritOpen, setEvritOpen] = useState(false);
     // עריכה מוגנת בסיסמה: פעולה ממתינה עד שמזינים את מילת הסוד (פעם אחת למכשיר)
     const [pendingEdit, setPendingEdit] = useState<(() => void) | null>(null);
+    // מצב בעלים: אדמין = הוזנה הסיסמה במכשיר; אורח = עיון בלבד (Fix #1)
+    const [isAdmin, setIsAdmin] = useState(hasPass());
 
     /** מריץ פעולת עריכה אם הסיסמה כבר הוזנה, אחרת פותח את שער הסיסמה */
     function guard(action: () => void) {
         if (hasPass()) action();
         else setPendingEdit(() => action);
     }
+    /** כניסת אדמין מפורשת (בלי פעולת עריכה) — פותחת את שער הסיסמה אם צריך */
+    const adminLogin = () => guard(() => setIsAdmin(true));
+    /** יציאת אדמין — שוכח את הסיסמה במכשיר וחוזר למצב עיון */
+    const adminLogout = () => {
+        clearPass();
+        setIsAdmin(false);
+    };
     const guardedToggleFavorite = (id: string) => guard(() => toggleFavorite(id));
     const guardedUpdate = (id: string, patch: Partial<Book>) => guard(() => updateBook(id, patch));
     const guardedRemove = (id: string) => guard(() => removeBook(id));
@@ -107,9 +128,9 @@ export default function App() {
         reader.readAsText(file);
     }
 
-    function handleReset() {
+    async function handleReset() {
         if (confirm('לאפס את הספרייה חזרה ליומן המקורי? כל השינויים יימחקו.')) {
-            replaceAll(resetToSeed());
+            replaceAll(await resetToSeed());
         }
     }
 
@@ -117,6 +138,13 @@ export default function App() {
 
     return (
         <div className="mx-auto max-w-7xl px-3 py-3 sm:px-4 sm:py-5">
+            {/* קישור דילוג לתוכן — נראה רק בפוקוס מקלדת (Fix #10) */}
+            <a
+                href="#main"
+                className="sr-only focus:not-sr-only focus:fixed focus:end-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-accent-600 focus:px-4 focus:py-2 focus:font-semibold focus:text-white focus:shadow-book"
+            >
+                דלג לתוכן
+            </a>
             <Header
                 count={libraryBooks.length}
                 library={activeLibrary}
@@ -137,12 +165,18 @@ export default function App() {
                 onConnectEvrit={() => setEvritOpen(true)}
                 onReset={handleReset}
                 coverUrls={coverUrls}
+                isAdmin={isAdmin}
+                onAdminLogin={adminLogin}
+                onAdminLogout={adminLogout}
             />
 
+            <main id="main">
             <AnimatePresence>
                 {showStats && (
                     <div className="mb-8">
-                        <StatsPanel books={libraryBooks} />
+                        <Suspense fallback={<LazyFallback />}>
+                            <StatsPanel books={libraryBooks} />
+                        </Suspense>
                     </div>
                 )}
             </AnimatePresence>
@@ -185,12 +219,14 @@ export default function App() {
                             transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
                         >
                             {view === 'shelf' ? (
-                                <Bookshelf3D
-                                    books={libraryBooks}
-                                    matchedIds={matchedIds}
-                                    mode={isDigital ? 'genre' : 'physical'}
-                                    onOpen={(b) => setSelectedId(b.id)}
-                                />
+                                <Suspense fallback={<LazyFallback />}>
+                                    <Bookshelf3D
+                                        books={libraryBooks}
+                                        matchedIds={matchedIds}
+                                        mode={isDigital ? 'genre' : 'physical'}
+                                        onOpen={(b) => setSelectedId(b.id)}
+                                    />
+                                </Suspense>
                             ) : visible.length === 0 ? (
                                 <div className="flex flex-col items-center justify-center py-24 text-center text-ink-soft">
                                     <BookX size={48} className="mb-3 opacity-40" />
@@ -198,20 +234,22 @@ export default function App() {
                                     <p className="text-sm">נסי לשנות את החיפוש או הסינון</p>
                                 </div>
                             ) : view === 'grid' ? (
-                                <BookGrid books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={guardedToggleFavorite} />
+                                <BookGrid books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={guardedToggleFavorite} isAdmin={isAdmin} />
                             ) : (
-                                <BookList books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={guardedToggleFavorite} />
+                                <BookList books={visible} onOpen={(b) => setSelectedId(b.id)} onToggleFavorite={guardedToggleFavorite} isAdmin={isAdmin} />
                             )}
                         </motion.div>
                     </AnimatePresence>
                 </>
             )}
+            </main>
 
             <AnimatePresence>
                 {selected && (
                     <BookDetail
                         book={selected}
                         allBooks={books}
+                        isAdmin={isAdmin}
                         onClose={() => setSelectedId(null)}
                         onUpdate={guardedUpdate}
                         onEdit={openEdit}
@@ -246,6 +284,7 @@ export default function App() {
                         onUnlock={() => {
                             const action = pendingEdit;
                             setPendingEdit(null);
+                            setIsAdmin(true);
                             action?.();
                         }}
                     />

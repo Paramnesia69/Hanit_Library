@@ -1,7 +1,17 @@
 import type { Book } from '../types/book';
-import bundled from '../data/books.json';
 
 const KEY = 'hanit-library:books:v2';
+
+/**
+ * הנתונים המובנים (books.json, ~2.4MB) נטענים ב-dynamic import כך שהם הופכים
+ * ל-chunk נפרד ולא נצרבים לחבילה הראשית של דף העיון (Fix #5). ספרים שמורים
+ * ב-localStorage מציירים מיד; ה-seed נטען ברקע למיזוג העשרה/ריצה ראשונה.
+ */
+async function loadBundled(): Promise<Book[]> {
+    const mod = await import('../data/books.json');
+    const data = (mod.default ?? mod) as unknown as Book[];
+    return data.map((b) => ({ ...b, library: b.library ?? 'physical' }));
+}
 
 /** שדות העשרה מהרשת — מתמזגים מהבילד אל localStorage בלי לדרוס עריכות אישיות */
 const ENRICH_KEYS: Array<keyof Book> = [
@@ -61,9 +71,22 @@ function mergeEnrichment(stored: Book[], source: Book[]): Book[] {
     return result;
 }
 
-/** טעינת הספרים — מ-localStorage אם קיים (עם מיזוג העשרה), אחרת מהנתונים המובנים */
-export function loadBooks(): Book[] {
-    const source = (bundled as unknown as Book[]).map((b) => ({ ...b, library: b.library ?? 'physical' }));
+/** ציור מיידי (סינכרוני) מ-localStorage בלבד — בלי הנתונים המובנים הכבדים. ריק אם אין מטמון. */
+export function loadCachedBooks(): Book[] {
+    try {
+        const raw = localStorage.getItem(KEY);
+        if (raw) {
+            return (JSON.parse(raw) as Book[]).map((b) => ({ ...b, library: b.library ?? 'physical' }));
+        }
+    } catch {
+        /* מטמון פגום — מתעלמים */
+    }
+    return [];
+}
+
+/** טעינת ה-seed (dynamic import) ומיזוגו: מעשיר את המטמון, ובריצה ראשונה זורע אותו. */
+export async function loadSeededBooks(): Promise<Book[]> {
+    const source = await loadBundled();
     const raw = localStorage.getItem(KEY);
     if (raw) {
         try {
@@ -81,9 +104,9 @@ export function saveBooks(books: Book[]): void {
     localStorage.setItem(KEY, JSON.stringify(books));
 }
 
-/** איפוס מלא חזרה ליומן המקורי המועשר */
-export function resetToSeed(): Book[] {
-    const initial = bundled as unknown as Book[];
+/** איפוס מלא חזרה ליומן המקורי המועשר (טוען את ה-seed בדרישה) */
+export async function resetToSeed(): Promise<Book[]> {
+    const initial = await loadBundled();
     saveBooks(initial);
     return initial;
 }

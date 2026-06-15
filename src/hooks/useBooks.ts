@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Book, BookDraft, ReadingStatus, SortField } from '../types/book';
-import { loadBooks, saveBooks } from '../lib/storage';
+import { loadCachedBooks, loadSeededBooks, saveBooks } from '../lib/storage';
 import { fetchRemoteBooks, flushQueue, applyQueue, syncUpsert, syncDelete } from '../lib/remote';
 import { effectiveGenre, genresWithCounts } from '../lib/genreThemes';
 import type { GenreCount } from '../lib/genreThemes';
@@ -106,7 +106,8 @@ export function computeFacets(books: Book[]): Facets {
 }
 
 export function useBooks() {
-    const [books, setBooks] = useState<Book[]>(() => loadBooks());
+    // ציור מיידי מ-localStorage בלבד (סינכרוני, קליל). ה-seed הכבד נטען ברקע למטה.
+    const [books, setBooks] = useState<Book[]>(() => loadCachedBooks());
     // ref עם המצב העדכני — כדי שמוטציות יקראו את הספר הנוכחי בלי תלות ב-closure
     const booksRef = useRef(books);
 
@@ -115,11 +116,13 @@ export function useBooks() {
         saveBooks(books);
     }, [books]);
 
-    // טעינה מהשרת: השרת (Upstash) הוא מקור האמת. דוחפים תור ממתין, מושכים הכול,
-    // ומחילים מעליו שינויים שטרם סונכרנו. הביל ד/localStorage שימשו רק לציור מיידי/אופליין.
+    // טעינה: (1) seed ברקע (chunk נפרד) — מצייר בריצה ראשונה וממזג העשרה;
+    // (2) השרת (Upstash) הוא מקור האמת — דוחפים תור ממתין, מושכים הכול ומחילים מעליו.
     useEffect(() => {
         let alive = true;
         (async () => {
+            const seeded = await loadSeededBooks();
+            if (alive) setBooks(seeded);
             await flushQueue();
             const remote = await fetchRemoteBooks();
             if (alive && remote) setBooks(applyQueue(remote));

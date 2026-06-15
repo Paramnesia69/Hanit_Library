@@ -62,7 +62,7 @@ function StatCard({ icon, value, label }: { icon: React.ReactNode; value: string
         <div className="flex items-center gap-3 rounded-2xl border border-line bg-card px-4 py-3 shadow-card transition hover:-translate-y-0.5 hover:shadow-book">
             <div className="grid h-11 w-11 place-items-center rounded-xl bg-accent-50 text-accent-600">{icon}</div>
             <div>
-                <div className="font-display text-2xl font-extrabold leading-none text-ink">
+                <div className="font-display text-2xl font-extrabold leading-none text-ink tabular-nums">
                     {animate ? <CountUp value={value as number} /> : value}
                 </div>
                 <div className="mt-1 text-[12px] text-ink-soft">{label}</div>

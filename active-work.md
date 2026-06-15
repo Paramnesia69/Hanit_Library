@@ -1,27 +1,35 @@
 # Active Work — hanit-library
 
-> Handoff notes for resuming after `/clear`. Last updated: 2026-06-16 (UX/a11y/perf audit → v1.4).
+> Handoff notes for resuming after `/clear`. Last updated: 2026-06-16 (v1.4 shipped: a11y + perf + admin mode).
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
 > Data: 956 books — 793 physical (Excel) + 163 digital (e-vrit). Persistence = **Upstash Redis** (server, source of truth) with bundled `src/data/books.json` as offline/first-paint cache. Live on Vercel (auto-deploy from GitHub).
 
-## CURRENT FOCUS — UX / a11y / performance pass (v1.3 → v1.4)
+## DONE — UX / a11y / performance pass + owner/admin mode (v1.4, 2026-06-16)
 An external end-to-end review (Opus 4.8) was verified against the code; ~half the findings were already
-fixed, the rest are real. An interactive, on-brand demo of every fix lives at **`fixes-demo.html`** (repo
-root). Tag **`hanit-library-v1.3`** is the restore point taken right before this work.
+fixed, the rest were implemented here. Interactive, on-brand demo of every fix: **`fixes-demo.html`**.
+Tags: **`hanit-library-v1.3`** = restore point before this work; **`hanit-library-v1.4`** = this work.
+Verified by an automated Playwright e2e (`/tmp/hanit-e2e.mjs`): **26/26 checks pass** (guest+admin).
 
-**v1.4 scope being implemented now:**
-- **A11y/polish:** global `:focus-visible` ring; `BookDetail`/`BookForm`/`EvritLibrary` made real dialogs
-  (`role=dialog`+`aria-modal`+Esc+focus-trap+return-focus); list heading hierarchy (sr-only `<h2>`, no
-  rogue `<h3>`) + skip link + `<main>` landmark; styled native date input; `tabular-nums` on count-up
-  stats; `scroll-padding-top` for the sticky filter bar; `font-display: swap` on the handwriting font.
-- **Perf:** lazy-load `StatsPanel` (recharts) and `Bookshelf3D` via `React.lazy`; move the 2.4MB
-  `books.json` out of the main JS chunk (the real cause of the 3MB bundle — it was a static `import`);
-  trim unused Google font weights. (Off-screen virtualization already handled by `content-visibility:auto`
-  on `.cv-auto`; full windowing deferred — it fights the animated genre bands.)
-- **Owner/admin mode (per user request):** read-only by default. **Admin-only** = edit/add/delete, the
-  whole data toolbar (גיבוי JSON, ייצוא אקסל, שחזור, איפוס) and the **full offline download**. A **guest**
-  can only browse, PWA **light-install**, and use the **light offline** mode (covers auto-cached while
-  scrolling). `isAdmin` derives from `hasPass()`; an explicit admin login/logout entry was added.
+- **A11y/polish:** global `:focus-visible` ring (gold on dark themes) in `index.css`; new `useDialog`
+  hook makes `BookDetail`/`BookForm`/`EvritLibrary` real dialogs (`role=dialog`+`aria-modal`+
+  `aria-labelledby`+Esc+focus-trap+return-focus+body-lock); `PassphraseGate` got dialog roles + Esc;
+  `BookList` heading hierarchy (sr-only `<h2>`, row title `<h3>`→`<p>`); skip link + `<main id=main>`
+  in `App`; styled native date input; `tabular-nums` on count-up; `scroll-padding-top: 5.5rem`;
+  `font-display: swap` on DanaYad.
+- **Perf:** `StatsPanel` (recharts) + `Bookshelf3D` lazy via `React.lazy`/`Suspense`; `books.json`
+  moved out of the main chunk via dynamic `import()` in `storage.ts` (`loadCachedBooks` sync from
+  localStorage for instant paint + `loadSeededBooks` async seed/merge; `resetToSeed` now async).
+  **Result: main JS chunk 3.0MB → 427KB** (gzip 133KB); books (2.39MB), StatsPanel (381KB),
+  Bookshelf3D (4KB) are now separate async chunks (still SW-precached for offline). Dropped the
+  never-rendered Gveret Levin font download. (Off-screen rendering already via `content-visibility:auto`;
+  full windowing deferred — fights the animated genre bands.)
+- **Owner/admin mode:** read-only by default. `isAdmin` state in `App` (derives from `hasPass()`,
+  set true on passphrase unlock, cleared on logout). **Admin-only** = add/edit/delete (incl. the detail
+  rating/favorite/status controls + card hearts), the data toolbar (גיבוי JSON, ייצוא אקסל, שחזור, איפוס)
+  and the **full offline download** in `OfflineButton`. A **guest** gets browse + PWA **light-install** +
+  **light offline** (covers auto-cached on scroll). Explicit **כניסת/יציאת אדמין** entry in the ⋮ menu.
+  NOTE: local-only testing of admin needs `localStorage['hanit-library:editpass']` set, since the real
+  unlock path (`checkPass`) calls `/api/books?check` which only exists under `vercel dev`/production.
 
 ## DONE — Cross-device sync is LIVE (Upstash Redis backend)
 The app has a real backend: books persist to **Upstash Redis** (via Vercel Storage) and sync across

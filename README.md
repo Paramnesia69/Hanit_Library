@@ -15,7 +15,8 @@ Built with React + Vite + Tailwind, in Hebrew (RTL).
 - Reading stats and charts
 - **9 color themes** (light & dark) — each retints the whole UI, including accent glows
 - Apple-style auto-hiding scrollbars
-- **Installable phone app (PWA) — works fully offline.** All book info is bundled into the app; for a flight, open it once on wifi (⋮ → שמירה לא מקוונת → הורדה מלאה) to cache every cover, then the whole library — text, covers, search, filters, themes — works in airplane mode
+- **Installable phone app (PWA) — works fully offline.** Anyone can light-install the app and use it offline (covers cache as you scroll). For a flight, an **admin** opens it once on wifi (⋮ → שמירה לא מקוונת → הורדה מלאה) to cache every cover, then the whole library — text, covers, search, filters, themes — works in airplane mode
+- **Owner/admin mode** — read-only by default. Browsing is open to everyone; editing, the data tools (backup/CSV/restore/reset) and the full offline download appear only after admin unlock (⋮ → כניסת אדמין)
 
 ## Development
 
@@ -72,17 +73,22 @@ Hosted on Vercel. Pushing to `main` auto-deploys to production. The Upstash
 integration injects `KV_REST_API_URL` / `KV_REST_API_TOKEN`; `EDIT_PASSPHRASE`
 is set in the Vercel project env (changing it needs a redeploy).
 
-## Audit & roadmap (v1.3 → v1.4)
+## Audit & changelog (v1.4)
 
 An end-to-end UX/accessibility/performance review was verified against the code.
 About half the findings were already addressed (cache-first sync, display-only
-row stars, theme-scoped glass, chart value labels); the rest are being fixed in
-**v1.4**. An interactive, on-brand demo of every fix is in **`fixes-demo.html`**
-(open it in a browser). Tag `hanit-library-v1.3` is the restore point before this work.
+row stars, theme-scoped glass, chart value labels); the rest shipped in **v1.4**.
+An interactive, on-brand demo of every fix is in **`fixes-demo.html`** (open it in
+a browser). Tags: `hanit-library-v1.3` = restore point before the work,
+`hanit-library-v1.4` = the work. Verified with a Playwright e2e: 26/26 checks pass.
 
-v1.4 work: global `:focus-visible`; accessible dialogs (role/aria/Esc/focus-trap);
-list heading hierarchy + skip link + `<main>`; styled date input; `tabular-nums`
-stats; `scroll-padding-top`; lazy-loaded Stats/3D and `books.json` split out of the
-main bundle; trimmed fonts; and an **owner/admin mode** — read-only by default,
-with edit/backup/CSV/restore/reset and the full offline download gated to an admin,
-while guests can still browse and light-install the PWA.
+**v1.4 shipped:**
+- **A11y:** global `:focus-visible`; accessible dialogs (`role/aria/Esc/focus-trap/
+  return-focus` via `useDialog`); list heading hierarchy + skip link + `<main>`;
+  styled date input; `tabular-nums`; `scroll-padding-top`; `font-display: swap`.
+- **Perf:** lazy-loaded Stats (recharts) + 3D shelf; `books.json` split out of the
+  main bundle via dynamic import — **main chunk 3.0MB → 427KB** (gzip 133KB), data/
+  charts now separate async chunks (still precached offline); dropped an unused font.
+- **Owner/admin mode:** read-only by default. Edit/backup/CSV/restore/reset and the
+  full offline download are gated to an admin (⋮ → כניסת אדמין); guests browse and
+  light-install the PWA.

@@ -4,6 +4,8 @@ import { CloudDownload, Feather, HardDriveDownload, Check, X, Loader2 } from 'lu
 interface Props {
     /** כל כתובות העטיפות האמיתיות (מקומיות + מרוחקות), ללא placeholders */
     coverUrls: string[];
+    /** הורדה מלאה (כל העטיפות) זמינה לאדמין בלבד; אורח מקבל את הגרסה הקלה */
+    isAdmin?: boolean;
 }
 
 const DONE_KEY = 'hanit-library:offline-full';
@@ -33,7 +35,7 @@ async function downloadAll(urls: string[], onProgress: (done: number) => void): 
  *  1. גרסה קלה (ברירת מחדל) — העטיפות נשמרות תוך כדי גלילה.
  *  2. הורדה מלאה — מורידה את כל העטיפות עכשיו לשימוש מלא בלי אינטרנט (טיסה).
  */
-export function OfflineButton({ coverUrls }: Props) {
+export function OfflineButton({ coverUrls, isAdmin = false }: Props) {
     const [open, setOpen] = useState(false);
     const [downloading, setDownloading] = useState(false);
     const [done, setDone] = useState(0);
@@ -90,7 +92,8 @@ export function OfflineButton({ coverUrls }: Props) {
                             הספרים, החיפוש והסינון עובדים תמיד גם בלי אינטרנט. ההבדל הוא רק בעטיפות.
                         </p>
 
-                        {/* אופציה 1 — מלאה (מומלצת, ברירת מחדל) */}
+                        {/* אופציה 1 — מלאה (מומלצת) — לאדמין בלבד */}
+                        {isAdmin && (
                         <div className="mb-3 rounded-2xl border-2 border-accent-300 bg-accent-50/50 p-4">
                             <div className="flex items-center gap-2.5">
                                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-100 text-accent-700">
@@ -128,8 +131,9 @@ export function OfflineButton({ coverUrls }: Props) {
                                 </button>
                             )}
                         </div>
+                        )}
 
-                        {/* אופציה 2 — קלה (חלופה) */}
+                        {/* אופציה 2 — קלה (לכולם) */}
                         <div className="rounded-2xl border border-line p-4">
                             <div className="flex items-center gap-2.5">
                                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-paper-2 text-ink-soft">

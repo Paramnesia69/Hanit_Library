@@ -8,6 +8,8 @@ interface Props {
     books: Book[];
     onOpen: (book: Book) => void;
     onToggleFavorite: (id: string) => void;
+    /** אורח: בלי כפתור מועדפים (עיון בלבד) */
+    isAdmin?: boolean;
 }
 
 interface Band {
@@ -42,7 +44,7 @@ const GRID =
     'grid grid-cols-2 gap-x-6 gap-y-5 px-0.5 sm:grid-cols-3 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6';
 
 /** רצועת ז'אנר — כותרת בלבד, ללא רקע; הכריכות על הדף הנקי */
-function GenreBand({ band, animate, onOpen, onToggleFavorite }: { band: Band; animate: boolean } & Omit<Props, 'books'>) {
+function GenreBand({ band, animate, onOpen, onToggleFavorite, isAdmin }: { band: Band; animate: boolean } & Omit<Props, 'books'>) {
     const { theme, label, books } = band;
     return (
         <section className="px-0.5 py-6">
@@ -59,7 +61,7 @@ function GenreBand({ band, animate, onOpen, onToggleFavorite }: { band: Band; an
                 גלילה), כדי לשמור על גלילה חלקה לאורך 793 עטיפות. */}
             <div className={`${animate ? 'tile-in ' : ''}${GRID}`}>
                 {books.map((b) => (
-                    <BookCard key={b.id} book={b} onOpen={onOpen} onToggleFavorite={onToggleFavorite} />
+                    <BookCard key={b.id} book={b} onOpen={onOpen} onToggleFavorite={onToggleFavorite} isAdmin={isAdmin} />
                 ))}
             </div>
         </section>
@@ -67,7 +69,7 @@ function GenreBand({ band, animate, onOpen, onToggleFavorite }: { band: Band; an
 }
 
 /** קיר העטיפות — מקובץ לעולמות ז'אנר עם סימני-מים של עטיפות אמיתיות */
-export function BookGrid({ books, onOpen, onToggleFavorite }: Props) {
+export function BookGrid({ books, onOpen, onToggleFavorite, isAdmin }: Props) {
     const bands = useMemo(() => groupByGenre(books), [books]);
     // הפעלת אנימציית הכניסה פעם אחת בלבד אחרי שינוי רשימת הספרים
     const [animate, setAnimate] = useState(true);
@@ -79,7 +81,7 @@ export function BookGrid({ books, onOpen, onToggleFavorite }: Props) {
     return (
         <div className="space-y-8">
             {bands.map((band) => (
-                <GenreBand key={band.key} band={band} animate={animate} onOpen={onOpen} onToggleFavorite={onToggleFavorite} />
+                <GenreBand key={band.key} band={band} animate={animate} onOpen={onOpen} onToggleFavorite={onToggleFavorite} isAdmin={isAdmin} />
             ))}
         </div>
     );

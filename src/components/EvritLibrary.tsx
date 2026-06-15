@@ -1,5 +1,7 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { X, Tablet, ShieldCheck, ExternalLink, RefreshCw, Star } from 'lucide-react';
+import { useDialog } from '../hooks/useDialog';
 
 interface Props {
     /** מספר הספרים הדיגיטליים שכבר מסונכרנים */
@@ -16,6 +18,9 @@ const DEFAULT_SHARE = 'https://www.e-vrit.co.il/customerProducts?Sid=NzE5NjA1';
  * אין כאן ייבוא ידני — הספרייה מסתנכרנת אוטומטית מקישור השיתוף שלה.
  */
 export function EvritLibrary({ count, shareUrl = DEFAULT_SHARE, onClose }: Props) {
+    const dialogRef = useRef<HTMLDivElement>(null);
+    // נגישות: דיאלוג אמיתי — Esc, מלכודת פוקוס, החזרת פוקוס (Fix #3)
+    useDialog(dialogRef, onClose);
     return (
         <motion.div
             className="fixed inset-0 z-50 flex items-end justify-center bg-ink/45 backdrop-blur-md sm:items-center"
@@ -25,18 +30,23 @@ export function EvritLibrary({ count, shareUrl = DEFAULT_SHARE, onClose }: Props
             onClick={onClose}
         >
             <motion.div
+                ref={dialogRef}
                 onClick={(e) => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="evrit-title"
+                tabIndex={-1}
                 initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 40, opacity: 0 }}
-                className="max-h-[92svh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-paper p-5 shadow-book sm:rounded-3xl"
+                className="max-h-[92svh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-paper p-5 shadow-book outline-none sm:rounded-3xl"
             >
                 <div className="mb-3 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-sky-500 to-indigo-700 text-white">
                             <Tablet size={20} />
                         </div>
-                        <h2 className="font-display text-xl font-extrabold text-ink">הספרייה הדיגיטלית · עברית</h2>
+                        <h2 id="evrit-title" className="font-display text-xl font-extrabold text-ink">הספרייה הדיגיטלית · עברית</h2>
                     </div>
                     <button type="button" onClick={onClose} className="rounded-full p-2 text-ink-soft hover:bg-paper-2">
                         <X size={20} />
