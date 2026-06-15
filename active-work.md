@@ -4,11 +4,28 @@
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
 > Data: 956 books in `src/data/books.json` — 793 physical (Excel) + 163 digital (e-vrit). Persistence = localStorage. Live on Vercel (auto-deploy from GitHub).
 
-## CURRENT FOCUS — e-vrit digital library DONE (synced + fully enriched)
-The digital library is now **e-vrit (עברית)**, NOT Kindle (earlier mistaken assumption — fully removed).
-All 163 of Hanit's e-vrit books are synced AND fully enriched from their product pages (description,
-year, pages, publisher, translator, genres, community rating). Both the sync and the enrichment run
-in the daily Action. No active task in flight — awaiting the next request.
+## CURRENT FOCUS — cross-device sync is LIVE (Upstash Redis backend)
+The app now has a real backend: books persist to **Upstash Redis** (via Vercel Storage) and sync across
+all devices. Reading is open; editing needs a shared passphrase (entered once per device).
+**Action item:** the passphrase is the temporary `hanit-books` — pick a real word and update it in Vercel
+(`vercel env add EDIT_PASSPHRASE` for production/development). See "DONE — Cross-device sync" below.
+
+## DONE — Cross-device sync via Upstash Redis (2026-06-15)
+Replaced localStorage-only with a server-backed library so manual adds/edits persist everywhere and survive
+cache clears (the user's request after losing manually-added books to a cache clear).
+- **Store:** Upstash Redis (Vercel marketplace → `upstash-hanit-library`, Frankfurt). Hash `library`,
+  field=id, value=book. Seeded all 956 (`scripts/seed-upstash.mjs`).
+- **Gateway:** `api/books.ts` Vercel function — `GET` open, `PUT`/`DELETE` need `x-edit-pass` ===
+  `EDIT_PASSPHRASE`. Token server-side only (`KV_REST_API_URL/TOKEN`, auto-injected; `@upstash/redis`).
+  `GET ?check` validates a passphrase.
+- **Client:** `src/lib/remote.ts` — overlay fetch, optimistic write-through, offline queue (flush on
+  reconnect), passphrase in localStorage. `useBooks`: **Redis = source of truth** (bundle = first paint/
+  offline only). ⇒ the nightly e-vrit sync MUST push to Redis or new books won't show.
+- **Edit gate:** `PassphraseGate.tsx`. **Passphrase = temp `hanit-books`** (Vercel Production+Development).
+- **e-vrit nightly:** `scripts/push-evrit-to-upstash.mjs` (workflow step) upserts digital books to Redis,
+  preserving user-edited fields. Secrets `KV_REST_API_URL/TOKEN` in GitHub.
+- **Verified live:** `GET https://hanit-library.vercel.app/api/books` → 956; passphrase gate works in prod.
+- **Local:** `vercel env pull .env.development.local` (gitignored), `vercel dev` runs functions.
 
 ## DONE — e-vrit product enrichment (2026-06-15)
 `scripts/enrich-evrit-products.mjs` — for each digital book, fetches `e-vrit.co.il/Product/{evritId}`
