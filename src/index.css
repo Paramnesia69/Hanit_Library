@@ -483,8 +483,13 @@ h3,
    (כל כרטיס הוא ספר תלת-ממד; בלי זה כולם מרונדרים בבת אחת והגלילה נתקעת). */
 .cv-auto {
   content-visibility: auto;
-  contain-intrinsic-size: auto 320px;
-  /* מרווח דליפה — שההטיה התלת-ממד לא תיגזר בקצה העליון/בצדדים */
+  contain-intrinsic-size: auto 340px;
+  /* content-visibility מוסיף paint-containment שחותך כל מה שגולש מקופסת
+     הכרטיס — כולל ראש הספר התלת-ממדי המוטה. overflow-clip-margin אינו
+     מכובד עם containment ב-Safari, ולכן שומרים מקום אמיתי מעל העטיפה
+     (padding-top) שההטיה תיכנס לתוכו בלי להיחתך. ה-gap-y בגריד הוקטן
+     באותו שיעור כדי שהמרווח בין השורות יישאר זהה. */
+  padding-top: 20px;
   overflow-clip-margin: 40px;
 }
 

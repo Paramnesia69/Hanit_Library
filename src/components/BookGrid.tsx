@@ -36,8 +36,10 @@ function groupByGenre(books: Book[]): Band[] {
         .sort((a, b) => b.books.length - a.books.length);
 }
 
+// gap-y מוקטן ב-20px (gap-10→gap-5) כדי לקזז את ה-padding-top של .cv-auto
+// (מקום להטיית התלת-ממד), כך שהמרווח הנראה בין השורות נשאר זהה.
 const GRID =
-    'grid grid-cols-2 gap-x-6 gap-y-10 px-0.5 sm:grid-cols-3 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6';
+    'grid grid-cols-2 gap-x-6 gap-y-5 px-0.5 sm:grid-cols-3 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6';
 
 /** רצועת ז'אנר — כותרת בלבד, ללא רקע; הכריכות על הדף הנקי */
 function GenreBand({ band, onOpen, onToggleFavorite }: { band: Band } & Omit<Props, 'books'>) {
