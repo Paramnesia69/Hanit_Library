@@ -64,7 +64,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                 >
                     <Search size={18} />
                 </button>
-                <div className={`relative min-w-0 ${searchOpen ? 'flex-1' : 'hidden'} sm:block sm:min-w-64 sm:max-w-md sm:flex-1`}>
+                <div className={`relative min-w-0 ${searchOpen ? 'order-first basis-full' : 'hidden'} sm:order-none sm:block sm:basis-auto sm:min-w-64 sm:max-w-md sm:flex-1`}>
                     <Search className="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 text-ink-soft" size={18} />
                     <input
                         ref={searchRef}
@@ -72,8 +72,18 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                         onChange={(e) => onChange({ search: e.target.value })}
                         onBlur={() => { if (!filters.search) setSearchOpen(false); }}
                         placeholder="חיפוש לפי שם, סופר, הוצאה או סדרה…"
-                        className="w-full rounded-full border border-line bg-card py-2.5 pe-10 ps-4 text-[16px] text-ink outline-none transition placeholder:text-transparent focus:border-accent-400 focus:ring-2 focus:ring-accent-100 sm:text-[15px] sm:placeholder:text-ink-soft"
+                        className="w-full rounded-full border border-line bg-card py-2.5 pe-10 ps-10 text-[16px] text-ink outline-none transition placeholder:text-ink-soft focus:border-accent-400 focus:ring-2 focus:ring-accent-100 sm:ps-4 sm:text-[15px]"
                     />
+                    {searchOpen && (
+                        <button
+                            type="button"
+                            onClick={() => { onChange({ search: '' }); setSearchOpen(false); }}
+                            aria-label="סגירת חיפוש"
+                            className="absolute start-2 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full text-ink-soft transition hover:bg-paper-2 hover:text-ink sm:hidden"
+                        >
+                            <X size={16} />
+                        </button>
+                    )}
                 </div>
 
                 {/* מועדפים */}
