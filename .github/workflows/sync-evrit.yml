@@ -31,14 +31,17 @@ jobs:
           EVRIT_SID: ${{ vars.EVRIT_SID }}
         run: node scripts/sync-evrit-library.mjs
 
+      - name: Enrich new books from their e-vrit product pages
+        run: node scripts/enrich-evrit-products.mjs
+
       - name: Commit if the library changed
         run: |
-          if git diff --quiet -- src/data/books.json; then
+          git add src/data/books.json src/data/evrit-products.cache.json
+          if git diff --cached --quiet; then
             echo "אין שינוי בספרייה — לא נוצר commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/data/books.json
           git commit -m "sync: update e-vrit library ($(date -u +%Y-%m-%d))"
           git push
