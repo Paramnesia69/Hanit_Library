@@ -1,4 +1,4 @@
-export type ThemeId = 'light' | 'pearl' | 'cream' | 'copilot' | 'noir' | 'pinkdesert' | 'amethyst';
+export type ThemeId = 'light' | 'pearl' | 'cream' | 'copilot' | 'noir' | 'pinkdesert' | 'amethyst' | 'pitwall-dark' | 'pitwall-light';
 
 export interface ThemeDef {
     id: ThemeId;
@@ -65,6 +65,22 @@ export const THEMES: ThemeDef[] = [
         blurb: 'פנטזיה — סגול עמוק ומסתורי',
         swatch: ['#17131f', '#9a7ce0', '#cabbf2'],
         dark: true,
+    },
+    {
+        id: 'pitwall-dark',
+        attr: 'pitwall-dark',
+        label: 'Pitwall Dark',
+        blurb: 'Paramnesia Pitwall — אדום מרוצים על שחור',
+        swatch: ['#06060b', '#e10600', '#c4a747'],
+        dark: true,
+    },
+    {
+        id: 'pitwall-light',
+        attr: 'pitwall-light',
+        label: 'Pitwall Light',
+        blurb: 'Pitwall בהיר — אפור אייפון ואדום מרוצים',
+        swatch: ['#f2f2f7', '#e10600', '#c4a747'],
+        dark: false,
     },
 ];
 

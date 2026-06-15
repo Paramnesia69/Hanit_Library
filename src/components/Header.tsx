@@ -5,6 +5,7 @@ import type { ThemeId } from '../lib/theme';
 import { FLOOR_LABELS } from '../lib/shelf';
 import { Logo } from './Logo';
 import { ThemePicker } from './ThemePicker';
+import { InstallButton } from './InstallButton';
 
 interface Props {
     count: number;
@@ -98,6 +99,7 @@ export function Header({
                         <MoreVertical size={18} />
                     </summary>
                     <div className="glass-strong absolute end-0 z-40 mt-2 w-56 overflow-hidden rounded-2xl py-1 shadow-book">
+                            <InstallButton />
                             <button
                                 type="button"
                                 onClick={onExportJson}

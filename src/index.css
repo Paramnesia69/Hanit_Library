@@ -216,6 +216,60 @@
   --app-bg: linear-gradient(180deg, #f9f3ea 0%, #f0e5d3 100%);
 }
 
+/* ===== Paramnesia Pitwall · Dark — שחור-נייבי עם אדום מרוצים (#e10600) =====
+   הפלטה מבוססת על ערכת ה-Pitwall (paramnesia-pitwall). צבעי הז'אנרים
+   נשארים של הספרייה (genreThemes) — רק הבסיס/המבטא הם של Pitwall. */
+[data-theme='pitwall-dark'] {
+  --color-paper: #06060b;
+  --color-paper-2: #0e0e16;
+  --color-card: #0d0d14;
+  --color-ink: #f0f0f5;
+  --color-ink-soft: #9a9aa8;
+  --color-line: #20202c;
+  --color-gold: #c4a747;
+  --color-accent-50: #2a0a09;
+  --color-accent-100: #3e0d0b;
+  --color-accent-200: #631511;
+  --color-accent-300: #8f1a14;
+  --color-accent-400: #bd1f17;
+  --color-accent-500: #d22018;
+  --color-accent-600: #e10600;
+  --color-accent-700: #f0463e;
+  --color-accent-800: #f88a84;
+  --color-accent-900: #ffccc9;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-strong: rgba(13, 13, 20, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --grain-opacity: 0.04;
+  --app-bg: linear-gradient(180deg, #06060b 0%, #030307 100%);
+}
+
+/* ===== Paramnesia Pitwall · Light — אפור-אייפון בהיר עם אדום מרוצים ===== */
+[data-theme='pitwall-light'] {
+  --color-paper: #f2f2f7;
+  --color-paper-2: #e7e7ee;
+  --color-card: #ffffff;
+  --color-ink: #1a1a2e;
+  --color-ink-soft: #5c5c6b;
+  --color-line: #e0e0e8;
+  --color-gold: #c4a747;
+  --color-accent-50: #fff0ef;
+  --color-accent-100: #ffdcd9;
+  --color-accent-200: #ffbab4;
+  --color-accent-300: #ff8c84;
+  --color-accent-400: #f9544a;
+  --color-accent-500: #ee2317;
+  --color-accent-600: #e10600;
+  --color-accent-700: #b40800;
+  --color-accent-800: #8c0a05;
+  --color-accent-900: #6b0a07;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-strong: rgba(242, 242, 247, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --grain-opacity: 0.02;
+  --app-bg: linear-gradient(180deg, #f7f7fb 0%, #ececf2 100%);
+}
+
 /* ===== בסיס ===== */
 html {
   direction: rtl;
@@ -285,6 +339,7 @@ h3,
    הכותרת מופיעה כמלבן זהב מלא במקום אותיות */
 [data-theme='copilot'] .signature-foil,
 [data-theme='noir'] .signature-foil,
+[data-theme='pitwall-dark'] .signature-foil,
 [data-theme='amethyst'] .signature-foil {
   background-image: linear-gradient(100deg, #a8761f 0%, #f7e6bd 26%, #e9c45f 48%, #fff4d2 64%, #c79a3a 100%);
   background-size: 220% auto;
