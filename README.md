@@ -8,8 +8,10 @@ Built with React + Vite + Tailwind, in Hebrew (RTL).
 ## Features
 
 - Browse the full collection with cover art, genres, and series
+- **Immersive book page** — full-screen Apple-style view: blurred cover backdrop, floating 3D cover, frosted-glass content sheet with parallax
 - Reading stats and charts
-- Two visual themes
+- **9 color themes** (light & dark) — each retints the whole UI, including accent glows
+- Apple-style auto-hiding scrollbars
 - Installable as a phone app (PWA) — works offline
 
 ## Development
