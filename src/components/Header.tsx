@@ -140,7 +140,7 @@ export function Header({
                 </div>
 
             {/* שורת סינון פרימיום: מהדורה (פיזי/קינדל) + מדף */}
-            <div className="mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 sm:mt-3 sm:gap-x-5 sm:gap-y-3">
+            <div className="mt-2 flex flex-nowrap items-center justify-center gap-x-1.5 gap-y-2 sm:mt-3 sm:flex-wrap sm:gap-x-5 sm:gap-y-3">
                 {/* מהדורה */}
                 <div className="flex items-center gap-2.5">
                     <span className="hidden text-[11px] font-bold uppercase tracking-wider text-ink-soft/70 sm:inline">מהדורה</span>
@@ -148,7 +148,7 @@ export function Header({
                         <button
                             type="button"
                             onClick={() => onLibraryChange('physical')}
-                            className={`flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[13px] font-semibold transition sm:px-3.5 sm:py-2 ${!isDigital ? 'bg-accent-600 text-white shadow' : 'text-ink-soft hover:text-ink'
+                            className={`flex items-center gap-1 rounded-full px-2 py-1.5 text-[13px] font-semibold transition sm:gap-1.5 sm:px-3.5 sm:py-2 ${!isDigital ? 'bg-accent-600 text-white shadow' : 'text-ink-soft hover:text-ink'
                                 }`}
                         >
                             <Library size={16} />
@@ -158,7 +158,7 @@ export function Header({
                         <button
                             type="button"
                             onClick={() => onLibraryChange('digital')}
-                            className={`flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[13px] font-semibold transition sm:px-3.5 sm:py-2 ${isDigital ? 'bg-indigo-600 text-white shadow' : 'text-ink-soft hover:text-ink'
+                            className={`flex items-center gap-1 rounded-full px-2 py-1.5 text-[13px] font-semibold transition sm:gap-1.5 sm:px-3.5 sm:py-2 ${isDigital ? 'bg-indigo-600 text-white shadow' : 'text-ink-soft hover:text-ink'
                                 }`}
                         >
                             <Tablet size={16} />
@@ -175,7 +175,7 @@ export function Header({
                         <div className="relative">
                             <Layers
                                 size={15}
-                                className="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 text-accent-600"
+                                className="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 text-accent-600 sm:end-3"
                             />
                             <ChevronDown
                                 size={15}
@@ -184,7 +184,11 @@ export function Header({
                             <select
                                 value={floor ?? ''}
                                 onChange={(e) => onFloorChange(e.target.value ? Number(e.target.value) : null)}
-                                className={`appearance-none rounded-full border bg-card/70 py-1.5 pe-8 ps-6 text-[13px] font-semibold shadow-card outline-none transition focus:border-accent-400 sm:py-2 sm:pe-9 sm:ps-7 ${floor !== null ? 'border-accent-300 text-accent-700' : 'border-line text-ink-soft'
+                                /* רוחב מוגבל במובייל: ה-select מתאים אחרת לאופציה הארוכה ביותר
+                                   ("קומה 5 (תחתונה)") ולכן נשאר רווח ריק כש"כל המדפים" מוצג.
+                                   ה-cap מצמצם אותו כך שייכנס לצד מהדורה. הרשימה הנפתחת עדיין
+                                   מציגה את שמות הקומות המלאים. */
+                                className={`max-w-[136px] truncate appearance-none rounded-full border bg-card/70 py-1.5 pe-7 ps-6 text-[13px] font-semibold shadow-card outline-none transition focus:border-accent-400 sm:max-w-none sm:py-2 sm:pe-9 sm:ps-7 ${floor !== null ? 'border-accent-300 text-accent-700' : 'border-line text-ink-soft'
                                     }`}
                             >
                                 <option value="">כל המדפים</option>
