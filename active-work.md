@@ -1,8 +1,16 @@
 # Active Work — hanit-library
 
-> Handoff notes for resuming after `/clear`. Last updated: 2026-06-16 (v1.4 shipped: a11y + perf + admin mode).
+> Handoff notes for resuming after `/clear`. Last updated: 2026-06-16 (v1.4 shipped + DEPLOYED to production).
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
 > Data: 956 books — 793 physical (Excel) + 163 digital (e-vrit). Persistence = **Upstash Redis** (server, source of truth) with bundled `src/data/books.json` as offline/first-paint cache. Live on Vercel (auto-deploy from GitHub).
+
+## STATUS — v1.4 LIVE in production, no active task
+v1.4 (a11y + perf + owner/admin mode) is committed, tagged, pushed to `main`, and **auto-deployed to
+production**. Verified 2026-06-16: the deployed main chunk carries the admin-login flow, and
+`GET https://hanit-library.vercel.app/api/books` returns **956** (all books present; offline seed also 956).
+Admin login on the live site works with the Vercel `EDIT_PASSPHRASE` (it cannot be verified on the static
+`vite preview` — that has no `/api`; use the live site or `vercel dev`). Tags: `v1.3` (pre-work restore
+point), `v1.4` (this work). Interactive demo of the fixes: `fixes-demo.html`.
 
 ## DONE — UX / a11y / performance pass + owner/admin mode (v1.4, 2026-06-16)
 An external end-to-end review (Opus 4.8) was verified against the code; ~half the findings were already
