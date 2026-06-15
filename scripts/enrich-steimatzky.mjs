@@ -93,26 +93,33 @@ function parseProduct(html) {
 }
 
 async function lookup(book) {
-    const search = await get(`${BASE}/catalogsearch/result/?q=${encodeURIComponent(book.title)}`);
-    const ids = searchIds(search);
+    let ids = [];
+    for (let attempt = 0; attempt < 6 && !ids.length; attempt++) {
+        const search = await get(`${BASE}/catalogsearch/result/?q=${encodeURIComponent(book.title)}`);
+        ids = searchIds(search);
+        if (!ids.length) await sleep(600);
+    }
     if (!ids.length) return { matched: false };
     const aTok = [...tokens(book.author)];
     const bVol = volume(book.title);
-    for (const id of ids.slice(0, 4)) {
+    let best = null, bestCont = 0;
+    for (const id of ids.slice(0, 8)) {
         const html = await get(`${BASE}/catalog/product/view/id/${id}`);
         if (!html) continue;
         const p = parseProduct(html);
         const cont = containment(book.title, p.title);
-        if (cont < 0.6) continue;
         const iVol = volume(p.title);
-        if (bVol && iVol && bVol !== iVol) continue;       // כרכים חייבים להתאים
-        if (!bVol && iVol && iVol > 1) continue;            // אין כרך אצלנו → לא לוקחים כרך 2+
-        const authorOk = aTok.length === 0 || aTok.some((t) => p.body.includes(t) || (t.length >= 5 && p.body.includes(t.slice(0, 4))));
-        if (!authorOk) continue;
-        if (p.desc.length >= 90) return { matched: true, id, name: p.title, description: p.desc };
-        await sleep(200);
+        if (bVol && iVol && bVol !== iVol) { await sleep(150); continue; }   // כרכים חייבים להתאים
+        if (!bVol && iVol && iVol > 1) { await sleep(150); continue; }       // אין כרך אצלנו → לא כרך 2+
+        // התאמה חזקה לכותרת (אימות-סופר רך — חלק מהספרים מיוחסים לסופר שגוי בנתונים)
+        if (cont >= 0.75 && p.desc.length >= 90 && cont > bestCont) {
+            const authorMatch = aTok.length === 0 || aTok.some((t) => p.body.includes(t) || (t.length >= 5 && p.body.includes(t.slice(0, 4))));
+            best = { matched: true, id, name: p.title, description: p.desc, authorMatch };
+            bestCont = cont;
+        }
+        await sleep(150);
     }
-    return { matched: false };
+    return best || { matched: false };
 }
 
 async function main() {
