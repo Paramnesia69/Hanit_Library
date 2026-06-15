@@ -13,12 +13,12 @@ import { BookList } from './components/BookList';
 import { Bookshelf3D } from './components/Bookshelf3D';
 import { BookDetail } from './components/BookDetail';
 import { BookForm } from './components/BookForm';
-import { KindleImport } from './components/KindleImport';
+import { EvritLibrary } from './components/EvritLibrary';
 import { StatsPanel } from './components/StatsPanel';
 import { exportJson, exportCsv, importJson, downloadFile, resetToSeed } from './lib/storage';
 
 export default function App() {
-    const { books, addBook, addBooks, updateBook, removeBook, toggleFavorite, replaceAll } = useBooks();
+    const { books, addBook, updateBook, removeBook, toggleFavorite, replaceAll } = useBooks();
     const { theme, setTheme } = useTheme();
     const [activeLibrary, setActiveLibrary] = useState<LibraryKind>('physical');
     const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
@@ -27,7 +27,7 @@ export default function App() {
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [formOpen, setFormOpen] = useState(false);
     const [editing, setEditing] = useState<Book | null>(null);
-    const [kindleOpen, setKindleOpen] = useState(false);
+    const [evritOpen, setEvritOpen] = useState(false);
 
     const physicalCount = useMemo(() => books.filter((b) => (b.library ?? 'physical') === 'physical').length, [books]);
     const digitalCount = books.length - physicalCount;
@@ -78,11 +78,6 @@ export default function App() {
         setFormOpen(true);
     }
 
-    function handleKindleImport(drafts: BookDraft[]) {
-        if (drafts.length) addBooks(drafts);
-        setActiveLibrary('digital');
-    }
-
     function handleImport(file: File) {
         const reader = new FileReader();
         reader.onload = () => {
@@ -122,7 +117,7 @@ export default function App() {
                 onExportJson={() => downloadFile('hanit-library-backup.json', exportJson(books))}
                 onExportCsv={() => downloadFile('hanit-library.csv', exportCsv(books), 'text/csv;charset=utf-8')}
                 onImport={handleImport}
-                onConnectKindle={() => setKindleOpen(true)}
+                onConnectEvrit={() => setEvritOpen(true)}
                 onReset={handleReset}
                 coverUrls={coverUrls}
             />
@@ -140,16 +135,16 @@ export default function App() {
                     <div className="mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-sky-500 to-indigo-700 text-white shadow-book">
                         <Tablet size={30} />
                     </div>
-                    <h2 className="font-display text-xl font-extrabold text-ink">ספריית הקינדל עוד ריקה</h2>
+                    <h2 className="font-display text-xl font-extrabold text-ink">הספרייה הדיגיטלית עוד ריקה</h2>
                     <p className="mt-1 max-w-sm text-[14px] text-ink-soft">
-                        חברי את חשבון הקינדל וכל הספרים הדיגיטליים שלך יופיעו כאן — עם אותם עטיפות, מדפים ופרטים.
+                        הספרים הדיגיטליים שלך מ-e-vrit (עברית) מסתנכרנים אוטומטית ויופיעו כאן — עם העטיפות, הסופרים והדירוגים.
                     </p>
                     <button
                         type="button"
-                        onClick={() => setKindleOpen(true)}
+                        onClick={() => setEvritOpen(true)}
                         className="mt-5 flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-[15px] font-semibold text-white shadow transition hover:bg-indigo-700"
                     >
-                        <Tablet size={18} /> חיבור ספריית הקינדל
+                        <Tablet size={18} /> על הספרייה הדיגיטלית
                     </button>
                 </div>
             ) : (
@@ -222,8 +217,8 @@ export default function App() {
             </AnimatePresence>
 
             <AnimatePresence>
-                {kindleOpen && (
-                    <KindleImport existing={books} onImport={handleKindleImport} onClose={() => setKindleOpen(false)} />
+                {evritOpen && (
+                    <EvritLibrary count={digitalCount} onClose={() => setEvritOpen(false)} />
                 )}
             </AnimatePresence>
         </div>

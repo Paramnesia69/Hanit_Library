@@ -31,6 +31,7 @@ function isEmpty(v: unknown): boolean {
 /** מיזוג העשרה חדשה (עטיפות/תיאורים/דירוגים) אל ספרים שמורים, תוך שמירת עריכות המשתמשת */
 function mergeEnrichment(stored: Book[], source: Book[]): Book[] {
     const byId = new Map(source.map((b) => [b.id, b]));
+    const storedIds = new Set(stored.map((b) => b.id));
     let changed = false;
     const merged = stored.map((s) => {
         const b = byId.get(s.id);
@@ -52,8 +53,12 @@ function mergeEnrichment(stored: Book[], source: Book[]): Book[] {
         }
         return Object.keys(patch).length ? { ...s, ...patch } : s;
     });
-    if (changed) saveBooks(merged);
-    return merged;
+    // ספרים חדשים בבילד שטרם נמצאים אצל המשתמשת (למשל סנכרון e-vrit) — נוספים כמו שהם
+    const fresh = source.filter((b) => !storedIds.has(b.id));
+    const result = fresh.length ? [...merged, ...fresh] : merged;
+    if (fresh.length) changed = true;
+    if (changed) saveBooks(result);
+    return result;
 }
 
 /** טעינת הספרים — מ-localStorage אם קיים (עם מיזוג העשרה), אחרת מהנתונים המובנים */

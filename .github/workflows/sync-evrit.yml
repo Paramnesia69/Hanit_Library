@@ -1,0 +1,44 @@
+name: Sync e-vrit library
+
+# מסנכרן את הספרייה הדיגיטלית של חנית מ-e-vrit פעם ביום.
+# כל ספר חדש שהיא קונה נוסף ל-books.json, וה-commit מפעיל פריסה אוטומטית ב-Vercel.
+
+on:
+  schedule:
+    - cron: '0 4 * * *' # כל יום ב-04:00 UTC (~07:00 בישראל)
+  workflow_dispatch: {} # אפשר גם להריץ ידנית מ-GitHub
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-evrit
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Sync library from e-vrit
+        env:
+          # אופציונלי: אפשר להגדיר Sid אחר דרך Variables של הריפו (ברירת מחדל: חנית)
+          EVRIT_SID: ${{ vars.EVRIT_SID }}
+        run: node scripts/sync-evrit-library.mjs
+
+      - name: Commit if the library changed
+        run: |
+          if git diff --quiet -- src/data/books.json; then
+            echo "אין שינוי בספרייה — לא נוצר commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/books.json
+          git commit -m "sync: update e-vrit library ($(date -u +%Y-%m-%d))"
+          git push

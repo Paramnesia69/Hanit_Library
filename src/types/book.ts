@@ -6,13 +6,13 @@
 
 export type ReadingStatus = 'read' | 'reading' | 'want';
 
-/** הספרייה שאליה משויך הספר: פיזית (מדף) או דיגיטלית (קינדל) */
+/** הספרייה שאליה משויך הספר: פיזית (מדף) או דיגיטלית (עברית) */
 export type LibraryKind = 'physical' | 'digital';
 
 export interface Book {
     /** מזהה ייחודי יציב */
     id: string;
-    /** הספרייה — פיזית (ברירת מחדל) או דיגיטלית (קינדל) */
+    /** הספרייה — פיזית (ברירת מחדל) או דיגיטלית (עברית) */
     library: LibraryKind;
     /** מספר סידורי מקורי מהאקסל (עמודה A) */
     serial: number | null;
@@ -72,8 +72,15 @@ export interface Book {
     /** קישור לעמוד הספר במקור */
     sourceUrl?: string | null;
 
-    /** מזהה Amazon/Kindle (ASIN) — לספרים דיגיטליים */
+    /** מזהה Amazon/Kindle (ASIN) — לספרים דיגיטליים ישנים (לא בשימוש חדש) */
     asin?: string | null;
+
+    /** מזהה המוצר ב-e-vrit (עברית) — לספרים דיגיטליים שמסונכרנים מהספרייה שלה */
+    evritId?: number | null;
+    /** תאריך הרכישה ב-e-vrit (ISO) */
+    purchasedAt?: string | null;
+    /** ספר מוקרא (אודיו) — ProductFormat=1 ב-e-vrit */
+    audiobook?: boolean;
 
     createdAt: string;
     updatedAt: string;
@@ -90,7 +97,7 @@ export const STATUS_LABELS: Record<ReadingStatus, string> = {
 
 export const LIBRARY_LABELS: Record<LibraryKind, string> = {
     physical: 'ספרייה פיזית',
-    digital: 'קינדל · דיגיטלי',
+    digital: 'עברית · דיגיטלי',
 };
 
 export const SORT_FIELDS = {

@@ -25,7 +25,7 @@ interface Props {
     onExportJson: () => void;
     onExportCsv: () => void;
     onImport: (file: File) => void;
-    onConnectKindle: () => void;
+    onConnectEvrit: () => void;
     onReset: () => void;
     coverUrls: string[];
 }
@@ -47,7 +47,7 @@ export function Header({
     onExportJson,
     onExportCsv,
     onImport,
-    onConnectKindle,
+    onConnectEvrit,
     onReset,
     coverUrls,
 }: Props) {
@@ -67,7 +67,7 @@ export function Header({
                 </h1>
                 <p className="flex items-center gap-1.5 text-[13px] font-medium text-ink-soft">
                     <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold" />
-                    {count} ספרים {isDigital ? 'בקינדל' : 'באוסף הפיזי'}
+                    {count} ספרים {isDigital ? 'דיגיטליים' : 'באוסף הפיזי'}
                 </p>
             </div>
 
@@ -129,10 +129,10 @@ export function Header({
                             <div className="my-1 border-t border-line" />
                             <button
                                 type="button"
-                                onClick={onConnectKindle}
+                                onClick={onConnectEvrit}
                                 className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-[14px] text-indigo-600 transition hover:bg-indigo-50"
                             >
-                                <Tablet size={16} /> ייבוא מקינדל
+                                <Tablet size={16} /> הספרייה הדיגיטלית · עברית
                             </button>
                             <div className="my-1 border-t border-line" />
                             <button
@@ -146,7 +146,7 @@ export function Header({
                     </details>
                 </div>
 
-            {/* שורת סינון פרימיום: מהדורה (פיזי/קינדל) + מדף */}
+            {/* שורת סינון פרימיום: מהדורה (פיזי/עברית) + מדף */}
             <div className="mt-2 flex flex-nowrap items-center justify-center gap-x-1.5 gap-y-2 sm:mt-3 sm:flex-wrap sm:gap-x-5 sm:gap-y-3">
                 {/* מהדורה */}
                 <div className="flex items-center gap-2.5">
@@ -169,7 +169,7 @@ export function Header({
                                 }`}
                         >
                             <Tablet size={16} />
-                            קינדל
+                            עברית
                             <span className={isDigital ? 'opacity-80' : 'opacity-60'}>{digitalCount}</span>
                         </button>
                     </div>
