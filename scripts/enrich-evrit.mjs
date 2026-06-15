@@ -71,25 +71,35 @@ async function fetchProduct(page, productUrl) {
     } catch { return { desc: '', body: '' }; }
 }
 
+// תוצאות החיפוש האמיתיות יושבות בקונטיינרים .product-item — בנפרד מקרוסלות
+// "מומלצים"/"נצפו לאחרונה" שמזהמות חילוץ של כל a[href*="/Product/"] בדף.
+const RESULT_SEL = '.product-item a[href*="/Product/"], .product-item-container a[href*="/Product/"]';
+
+async function extractProducts(page) {
+    try {
+        const hrefs = await page.$$eval(RESULT_SEL, (as) => as.map((a) => a.getAttribute('href')).filter(Boolean));
+        const seen = new Map();
+        for (const href of hrefs) {
+            const m = href.match(/\/Product\/(\d+)\/([^"?#]+)/);
+            if (m && !seen.has(m[1])) seen.set(m[1], { id: m[1], slug: decodeURIComponent(m[2]), url: `https://www.e-vrit.co.il/Product/${m[1]}` });
+        }
+        return [...seen.values()];
+    } catch { return []; }
+}
+
 async function searchProducts(page, query) {
     try {
         await page.goto('https://www.e-vrit.co.il/', { waitUntil: 'domcontentloaded', timeout: 30000 });
         const input = await page.waitForSelector('input[placeholder*="חיפוש"]', { timeout: 10000 });
         await input.click();
         await input.fill('');
-        await input.type(query, { delay: 40 });
-        await sleep(700);
+        await input.type(query, { delay: 60 });
+        await sleep(1000);
         await input.press('Enter');
-        await sleep(3500); // תוצאות נטענות ב-JS
-        const links = await page.$$eval('a[href*="/Product/"]', (as) =>
-            as.map((a) => a.getAttribute('href')).filter(Boolean),
-        );
-        const seen = new Map();
-        for (const href of links) {
-            const m = href.match(/\/Product\/(\d+)\/([^"?#]+)/);
-            if (m && !seen.has(m[1])) seen.set(m[1], { id: m[1], slug: decodeURIComponent(m[2]), url: `https://www.e-vrit.co.il/Product/${m[1]}` });
-        }
-        return [...seen.values()];
+        // ממתינים שקונטיינר התוצאות ייטען (ה-JS מרנדר אותו אחרי ניווט ל-/Search/)
+        try { await page.waitForSelector(RESULT_SEL, { timeout: 9000 }); } catch { /* אין תוצאות */ }
+        await sleep(800);
+        return await extractProducts(page);
     } catch { return []; }
 }
 
@@ -105,12 +115,7 @@ async function main() {
     const browser = await chromium.launch({ executablePath: EXE, headless: true });
     const ctx = await browser.newContext({ userAgent: UA, locale: 'he-IL' });
     const page = await ctx.newPage();
-    // חוסך טעינת אנליטיקס/פרסום — מאיץ משמעותית
-    await page.route('**/*', (route) => {
-        const u = route.request().url();
-        if (/googletag|google-analytics|analytics|doubleclick|facebook|tiktok|outbrain|klaviyo|hotjar|gtm|\.(png|jpg|jpeg|webp|gif|svg|woff2?)/i.test(u)) return route.abort();
-        return route.continue();
-    });
+    // ללא חסימת בקשות — חסימה (אפילו של תמונות) שברה את רינדור תוצאות החיפוש של e-vrit.
 
     let filled = 0, miss = 0, done = 0;
     for (const b of books) {
@@ -118,25 +123,27 @@ async function main() {
         done++;
         let r = cache[b.id];
         if (!r) {
-            const products = await searchProducts(page, b.title);
-            // מועמדים: הכלה מלאה של מילות הכותרת (תופס גם קידומת "סדרת X N").
-            // דירוג: jaccard גבוה קודם (מעדיף התאמה מדויקת על פני הכלה מקרית),
-            // שובר-שוויון לפי slug קצר יותר.
+            // חיפוש לפי כותרת; אם אין תוצאות, ניסיון שני עם הסופר
+            let products = await searchProducts(page, b.title);
+            if (b.author && products.length === 0) {
+                products = await searchProducts(page, `${b.title} ${b.author}`);
+            }
+            // מועמדים: ניקוד = max(הכלה, jaccard). סף 0.5 (אימות-הסופר שומר על דיוק),
+            // מה שתופס גם וריאנטים בכתיב (עקידת/עקדת) וגם קידומות סדרה.
+            const aTok = [...tokens(b.author)];
             const cands = products
-                .map((p) => ({ p, cont: containment(b.title, p.slug), jac: jaccard(b.title, p.slug) }))
-                .filter((c) => c.cont >= 0.85)
-                .sort((a, c) => c.jac - a.jac || a.p.slug.length - c.p.slug.length);
-            const best = cands[0]?.p || null;
-            const bestScore = cands[0] ? Math.max(cands[0].jac, cands[0].cont) : 0;
-            if (best) {
-                const { desc, body } = await fetchProduct(page, best.url);
-                // אימות סופר: לפחות טוקן אחד משם הסופר חייב להופיע בדף המוצר
-                const aTok = [...tokens(b.author)];
+                .map((p) => ({ p, score: Math.max(containment(b.title, p.slug), jaccard(b.title, p.slug)) }))
+                .filter((c) => c.score >= 0.5)
+                .sort((a, c) => c.score - a.score || a.p.slug.length - c.p.slug.length);
+            // עוברים על המועמדים הטובים ומקבלים את הראשון עם תקציר + אימות-סופר
+            r = { matched: false, score: cands[0] ? Number(cands[0].score.toFixed(2)) : 0 };
+            for (const c of cands.slice(0, 4)) {
+                const { desc, body } = await fetchProduct(page, c.p.url);
                 const authorOk = aTok.length === 0 || aTok.some((t) => norm(body).includes(t));
-                const ok = desc.length >= 60 && authorOk;
-                r = { matched: ok, score: Number(bestScore.toFixed(2)), id: best.id, slug: best.slug, description: ok ? desc : '' };
-            } else {
-                r = { matched: false, score: 0 };
+                if (desc.length >= 60 && authorOk) {
+                    r = { matched: true, score: Number(c.score.toFixed(2)), id: c.p.id, slug: c.p.slug, description: desc };
+                    break;
+                }
             }
             cache[b.id] = r;
             writeFileSync(CACHE, JSON.stringify(cache, null, 0));
