@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Download, Share, SquarePlus, X } from 'lucide-react';
+import { Download, Share, SquarePlus, MoreVertical, X } from 'lucide-react';
 
 /** אירוע ההתקנה של Chrome/Android (לא מוגדר בטיפוסים הסטנדרטיים) */
 interface BeforeInstallPromptEvent extends Event {
@@ -50,9 +50,10 @@ export function InstallButton() {
         };
     }, []);
 
-    // כבר מותקנת — אין מה להציע. ב-iOS מציגים תמיד (אין דרך לדעת בוודאות + אין prompt).
+    // כבר מותקנת (רצה במסך מלא) — אין מה להציע.
     if (installed) return null;
-    if (!deferred && !isIOS()) return null;
+
+    const ios = isIOS();
 
     async function install() {
         if (deferred) {
@@ -61,6 +62,7 @@ export function InstallButton() {
             if (choice.outcome === 'accepted') setInstalled(true);
             setDeferred(null);
         } else {
+            // אין prompt מקורי (iOS, או Chrome שעדיין לא הציע) — מציגים הסבר
             setIosHelp(true);
         }
     }
@@ -96,18 +98,37 @@ export function InstallButton() {
                             </button>
                         </div>
                         <ol className="space-y-3 text-[14px] text-ink">
-                            <li className="flex items-center gap-3">
-                                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-50 text-accent-600">
-                                    <Share size={18} />
-                                </span>
-                                הקישי על כפתור <b>השיתוף</b> בתחתית הדפדפן
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-50 text-accent-600">
-                                    <SquarePlus size={18} />
-                                </span>
-                                בחרי <b>״הוסף למסך הבית״</b> (Add to Home Screen)
-                            </li>
+                            {ios ? (
+                                <>
+                                    <li className="flex items-center gap-3">
+                                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-50 text-accent-600">
+                                            <Share size={18} />
+                                        </span>
+                                        הקישי על כפתור <b>השיתוף</b> בתחתית ה-Safari
+                                    </li>
+                                    <li className="flex items-center gap-3">
+                                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-50 text-accent-600">
+                                            <SquarePlus size={18} />
+                                        </span>
+                                        בחרי <b>״הוסף למסך הבית״</b> (Add to Home Screen)
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li className="flex items-center gap-3">
+                                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-50 text-accent-600">
+                                            <MoreVertical size={18} />
+                                        </span>
+                                        פתחי את תפריט הדפדפן (<b>⋮</b> בפינה)
+                                    </li>
+                                    <li className="flex items-center gap-3">
+                                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent-50 text-accent-600">
+                                            <SquarePlus size={18} />
+                                        </span>
+                                        בחרי <b>״התקנת אפליקציה״</b> / <b>״Add to Home screen״</b>
+                                    </li>
+                                </>
+                            )}
                         </ol>
                         <p className="mt-4 text-[13px] text-ink-soft">
                             האפליקציה תיפתח במסך מלא, עם אייקון משלה וללא שורת כתובת — בדיוק כמו אפליקציה רגילה.
