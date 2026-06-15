@@ -50,8 +50,9 @@
     "pageCount": null,
     "year": null,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
-    "coverSource": "steimatzky"
+    "updatedAt": "2026-06-15T14:44:00.968Z",
+    "coverSource": "steimatzky",
+    "description": "צלה של הרוח (בספרדית: La sombra del viento) הוא רומן פרי עטו של הסופר הספרדי קרלוס רואיס סאפון. הספר, שיצא לאור בשנת 2001, הפך לרב-מכר בין-לאומי. הספר תורגם לעברית על ידי ליה נירגד, ויצא לאור בעברית בהוצאת כנרת, זמורה-ביתן, דביר בשנת 2006. על-פי הערכות נמכר הספר בכ-15 מיליון עותקים, מה שהופך אותו לאחד הספרים הנמכרים ביותר בעולם."
   },
   {
     "id": "תחרה-שירלי-קונרן",
@@ -70,9 +71,9 @@
     "coverConfidence": "manual",
     "isbn": "965",
     "pageCount": null,
-    "year": null,
+    "year": 1985,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T13:57:23.306Z",
     "description": "",
     "subtitle": "",
     "series": "",
@@ -486,10 +487,10 @@
     "coverUrl": "/covers/m-1f3ef6c7e0.jpg",
     "coverConfidence": "manual",
     "isbn": null,
-    "pageCount": null,
-    "year": null,
+    "pageCount": 426,
+    "year": 2012,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T13:57:23.307Z",
     "coverSource": "steimatzky"
   },
   {
@@ -604,10 +605,10 @@
     "coverUrl": "/covers/m-205a113633.jpg",
     "coverConfidence": "manual",
     "isbn": null,
-    "pageCount": null,
-    "year": null,
+    "pageCount": 324,
+    "year": 1997,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T13:57:23.307Z",
     "coverSource": "web"
   },
   {
@@ -627,9 +628,9 @@
     "coverConfidence": "high",
     "isbn": null,
     "pageCount": 365,
-    "year": null,
+    "year": 1999,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T13:50:24.890Z",
     "description": "בידך אפקיד רוחי, ספרה החדש של נעמי רגן, חוצה הפעם גבולות של נושא וזמן, וכבר התקבל כספרה המרשים ביותר של סופרת רבי - המכר. כשמתברר לקתרין דה קוסטה, מטרונית יהודייה עשירה מניו - יורק, שימיה ספורים, היא מבינה שהשושלת המשפחתית תיגדע. היא מחליטה שהיא חייבת להעביר את מורשת המשפחה לשתי נכדותיה, סוזן ופרצ'סקה. אך השתיים, נשים צעירות ותוססות בשנות העשרים לחייהן, שקועות בעיסוקיהן האופנתיים ואין להן עניין לא בסבתא ולא בעברה. ערב אחד, כשקתרין על סף הייאוש, פוקד אותה חזון: בחזונה מופיעה רוחה של מייסדת השושלת המשפחתית שלה, גארציה מנדס. מנדס חייתה בימי הביניים והיתה אשת עסקים עצמאית ובלתי נכנעת. רוחה מעודדת את קתרין לנקוט בכל תכסיס אפשרי כנגד נכדותיה - שוחד, סחיטה רגשית, ואיומים לסלקן מהצוואה - וכל זאת כדי לאלצן לקחת פסק זמן מחיי הזוהר שלהן בניו - יורק, לנסוע לאירופה ולחפש כתב - יד עתיק - ספר זיכרונותיה של גארציה מנדס. סוזן ופרנצ'סקה מכבדות את משאלתה של סבתן, אך הן ממאנות להאמין שהחיפוש יישא פרי. אלא שאז, בדרך מסתורית ומפתיעה, מתחילים לצוץ חלקים מכתב - היד בכל רחבי אירופה, יחד עם שני גברים נאים ומסתוריים. חייהן של שתי הצעירות הניו - יורקיות מתחילים להשתנות ולהשתלב בהווייתה של גארציה מנדס המתה. בידך אפקיד רוחי משלב באופן מרהיב רומנטיקה והיסטוריה. הספר מגיש פסיפס מרתק ורב - משמעות המשלב את עולמם של יהודי ספרד בימי הביניים עם חיי דור הסילון כאן ועכשיו ולשלמות אחת. בתוך כך מעלה הספר את אחת השאלות הנוקבות ביותר של זמננו: האם עלינו לקחת עמנו, עם כניסתנו אל האלף החדש, את האמונה, התבונה והמנהגים שהנחו את אבותינו - או שמא עלינו להשליכם מעלינו כמו מטען עודף?",
     "subtitle": "",
     "series": "",
@@ -1112,17 +1113,20 @@
     "status": "read",
     "dateRead": null,
     "rating": null,
-    "genres": [],
+    "genres": [
+      "מתח"
+    ],
     "favorite": false,
     "review": "",
     "coverUrl": "/covers/m-b01dddc851.jpg",
     "coverConfidence": "manual",
     "isbn": null,
-    "pageCount": null,
-    "year": null,
+    "pageCount": 403,
+    "year": 2014,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
-    "coverSource": "web"
+    "updatedAt": "2026-06-15T13:50:24.890Z",
+    "coverSource": "web",
+    "description": "\"איש עסקים עשיר נרצח בהלוויית אמו. אלמנתו מורשעת ברצח ונשלחת למאסר עולם. דייב גרני, הבלש המהולל ביותר בתולדות משטרת ניו יורק שפרש לחיים שלווים בכפר, נשכר כדי להוכיח את חפותה. בחקירתו עולה גרני על עקבותיו של רוצח שכיר אכזרי וחמקמק. כשהחקירה מסתבכת והסכנה מגיעה עד סף ביתו המבודד של גרני, הוא מבין שלא יוכל עוד להתעלם מהאבחנה של אשתו: הוא מכור לסכנה. האם ההתמכרות הזאת תוביל בסופו של דבר למותו שלו?\" -- מן המעטפת האחורית."
   },
   {
     "id": "תנו-לשד-לישון-ג-ון-ורדון",
@@ -1664,10 +1668,10 @@
     "coverUrl": "/covers/m-ae10e736ea.jpg",
     "coverConfidence": "manual",
     "isbn": null,
-    "pageCount": null,
-    "year": null,
+    "pageCount": 352,
+    "year": 2013,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T13:57:38.133Z",
     "coverSource": "web"
   },
   {
@@ -1976,10 +1980,10 @@
     "coverUrl": "/covers/m-aa16890c03.jpg",
     "coverConfidence": "high",
     "isbn": "978-965-545-1",
-    "pageCount": null,
-    "year": null,
+    "pageCount": 382,
+    "year": 2011,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T13:57:47.651Z",
     "coverSource": "simania"
   },
   {
@@ -2254,10 +2258,10 @@
     "coverUrl": "/covers/m-96344ae9ef.jpg",
     "coverConfidence": "manual",
     "isbn": null,
-    "pageCount": null,
-    "year": null,
+    "pageCount": 366,
+    "year": 2013,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T13:57:47.651Z",
     "coverSource": "simania"
   },
   {
@@ -2276,10 +2280,10 @@
     "coverUrl": "/covers/956355.jpg",
     "coverConfidence": "high",
     "isbn": null,
-    "pageCount": null,
+    "pageCount": 526,
     "year": 2011,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T13:50:34.698Z",
     "description": "ילדה אבודה...\r\nערב מלחמת העולם הראשונה מתגלה ילדה נטושה על ספינה לאוסטרליה אישה מסתורית שמכונה \r\nהסופרת הבטיחה לדאוג לה, אך אז נעלמה ללא עקבות.\r\n\r\nסוד נורא...\r\nבליל יום הולדתה העשרים ואחד מגלה נל אוקונר סוד שישנה את חייה לנצח עשורים לאחר מכןהיא \r\nיוצאת למסע חיפוש אחר האמת המובילה אותה אל אחוזת בלקהרסט המשונה והיפהפייה, שהיתה \r\nפעם בבעלותה של משפחת מאונטראצ'ט האריסטוקרטית.\r\n\r\nירושה מסתורית...\r\nעם מותה של נל, נכדתה קסנדרה מקבלת ירושה לא צפויה. בית על צוק עם גנו הנשכח, האוצרים \r\nסודות נודעים לשמצה. כאןעתידה קסנדרה לחשוף סופסוף את האמת על משפחתה ולפתור את \r\nהתעלומה בת מאה השנים של ילדה קטנה ואבודה.\r\n\r\nקייט מורטון היא סופרת אוסטרלית. ספרה הראשון כערפל המתפוגג ראה אור בהוצאת כנרת, זמורה־ביתן¨ היה רב־מכר, וזכויות התרגום לו נמכרו ל־31 מדינות.",
     "subtitle": "",
     "series": "",
@@ -3852,16 +3856,18 @@
     "status": "read",
     "dateRead": null,
     "rating": null,
-    "genres": [],
+    "genres": [
+      "מתח"
+    ],
     "favorite": false,
     "review": "",
     "coverUrl": "/covers/m-f4039a8863.jpg",
     "coverConfidence": "high",
     "isbn": null,
-    "pageCount": null,
-    "year": null,
+    "pageCount": 351,
+    "year": 2016,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T13:58:09.136Z",
     "coverSource": "simania"
   },
   {
@@ -9153,8 +9159,8 @@
     "pageCount": 817,
     "year": 2015,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
-    "description": "",
+    "updatedAt": "2026-06-15T14:44:26.845Z",
+    "description": "אחרי שנפלנו (באנגלית: After We Fell) הוא סרט דרמה רומנטית אמריקאית משנת 2021 בבימויה של קסטיליה לנדון, מתסריט מאת שרון סובויל, המבוסס על הרומן מ-2014 באותו שם מאת אנה טוד . בסרט מככבים ג'וזפין לנגפורד והירו פיינס-טיפין, חוזרים לתפקידיהם כטסה יאנג והרדין סקוט, ועוקב אחר טסה כשהיא מתכוננת לעזוב לעבודתה בסיאטל, הגעתו של אביה של טסה וגילויים על משפחתה של הרדין, כל אלה. המאיימים על מערכת היחסים הזוגית בין טסה להרדין. לואיז לומברד, רוב אסטס, אריאל קבל, צ'אנס פרדומו, פרנסס טרנר, קיאנה מדיירה, קרטר ג'נקינס ומירה סורבינו מופיעים בתפקידי משנה. זהו הפרק השלישי בסדרת הסרטים, לאחר \"אחרי ש...\" (2019) ו\"אחרי שהתנגשנו\" (2020). הצילומים התקיימו בסופיה, בולגריה בסוף 2020. עקב התנגשויות תזמון והגבלות במהלך מגפת הקורונה, מספר דמויות תוסרטו מחדש. הסרט יצא לאקרנים במספר מדינות באירופה ב-1 בספטמבר 2021 ובארצות הברית ב-30 בספטמבר. כמו קודמיו, הוא זכה לביקורות שליליות, עם ביקורות על תסריט הסרט.",
     "subtitle": "",
     "series": "אחרי",
     "seriesNumber": "3",
@@ -9732,10 +9738,10 @@
     "coverUrl": "/covers/m-8d03d696c3.jpg",
     "coverConfidence": "manual",
     "isbn": null,
-    "pageCount": null,
-    "year": null,
+    "pageCount": 309,
+    "year": 2014,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T14:00:10.842Z",
     "coverSource": "web"
   },
   {
@@ -12055,16 +12061,19 @@
     "status": "read",
     "dateRead": null,
     "rating": null,
-    "genres": [],
+    "genres": [
+      "פרוזה"
+    ],
     "favorite": false,
     "review": "",
     "coverUrl": "/covers/m-72491ae04a.jpg",
     "coverConfidence": "manual",
     "isbn": null,
-    "pageCount": null,
-    "year": null,
+    "pageCount": 257,
+    "year": 2015,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z"
+    "updatedAt": "2026-06-15T13:52:27.025Z",
+    "description": "The explosive, emotional and unforgettable new romance from the NYT bestselling author of the On Dublin Street series Alexa Holland's father was her hero-until her shocking discovery. Ever since, Alexa has worked to turn her life in a different direction and forge her own identity outside of his terrible secrets. But when she meets a man who's as damaged by her father's mistakes as she is, Alexa must help him. Caine Carraway wants nothing to do with Alexa's efforts at redemption, but it's not so easy to push her away. Determined to make her hate him, he brings her to the edge of her patience and waits for her to walk away. But his actions only draw them together and, despite the odds, they begin an intense and all-consuming affair. Only Caine knows he can never be the white knight that Alexa has always longed for, and when they're on the precipice of danger, he finds he'll do anything to protect either one of them from being hurt again . . . Praise for Samantha Young: 'Ridiculously incendiary chemistry.' - Dear Author 'Scotland's answer to E.L. James. Steamy romance . . . mysterious, all-consuming and pretty damn good' Closer 'Humor, heartbreak, drama, and passion.'-The Reading Cafe 'A true gift for storytelling with a liberal dose of racy encounters. But what really sets it apart is exquisite characterisation, so vivid that the cast seeps into the reader's psyche' - Daily Record \"Heartwarming, sizzling and captivating. . . . [Young's characters] are complex, a little flawed, and at their core good people struggling to make it in this crazy world. . . . Young creates steamy scenes that sizzle with just the right amount of details.\" - Caffeinated Book Reviewer"
   },
   {
     "id": "יוצא-מן-הכלל-סמנתה-יאנג-קריסטן-קאליהן",
@@ -18829,17 +18838,20 @@
     "status": "read",
     "dateRead": null,
     "rating": null,
-    "genres": [],
+    "genres": [
+      "ארוטיקה"
+    ],
     "favorite": false,
     "review": "",
     "coverUrl": "/covers/m-8984046256.jpg",
     "coverConfidence": "high",
     "isbn": "978-965-7648-",
     "pageCount": null,
-    "year": null,
+    "year": 2014,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
-    "coverSource": "simania"
+    "updatedAt": "2026-06-15T14:03:29.217Z",
+    "coverSource": "simania",
+    "description": "\"כשאווה או'שי, מעצבת פנים צעירה, מגיעה לפגישת ייעוץ ראשונה ב'האחוזה', עם בעל המקום מר ג'סי וורד. הדבר האחרון לו היא מצפה הוא מר ג'סי וורד. הגבר הזה, שובה בחיצוניותו וסוחף בכריזמה שלו. הוא גם פלייבוי יהיר, רברבן ונהנתן, חסר גבולות. האינטואיציה שלה אומרת לה לברוח, לא חשוב עד כמה קסמיו מושכים אותה בעבותות אליו. הוא מסוכן לה והיא יודעת את זה. אבל ג'סי וורד לא מוכן לתת לה ללכת. הוא רוצה אותה ונחוש להשיגה. היא יודעת שבסוף הדרך מחכה לה התרסקות, אבל כשג'סי רוצה משהו, אין דבר שיכול לעצור אותו וג'סי רוצה את אווה. הוא ישתמש בכל כלי שיש בידיו כדי להשיג אותה. איך היא יכולה לברוח כשהוא אוחז בה כה חזק?\" -- מן המעטפת האחורית."
   },
   {
     "id": "בידיו-של-הגבר-הזה-ג-ודי-אלן-מלפיס",
@@ -18857,10 +18869,10 @@
     "coverUrl": "/covers/m-82d332b96b.jpg",
     "coverConfidence": "high",
     "isbn": null,
-    "pageCount": null,
-    "year": null,
+    "pageCount": 571,
+    "year": 2015,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T14:03:29.217Z",
     "coverSource": "simania"
   },
   {
@@ -18873,17 +18885,20 @@
     "status": "read",
     "dateRead": null,
     "rating": null,
-    "genres": [],
+    "genres": [
+      "פרוזה"
+    ],
     "favorite": false,
     "review": "",
     "coverUrl": "/covers/m-3768e46c01.jpg",
     "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
-    "year": null,
+    "year": 2015,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
-    "coverSource": "simania"
+    "updatedAt": "2026-06-15T14:03:29.217Z",
+    "coverSource": "simania",
+    "description": "\"האחוזה, המקום שבו החל הרומן רווי התשוקה שלהם, מתמלא באורחים ביום שאמור להיות היום המאושר בחייהם של אווה ושל ג'סי. היא השלימה עם העובדה, שלעולם לא תוכל לאלף את הצד הפראי של ג'סי, והבינה כי, בעצם, אינה רוצה. אהבתם עמוקה, החיבור ביניהם עוצמתי, אבל בדיוק כשהיא חושבת, שהצליחה לחדור את השריון שהוא עוטה, צצות שאלות חדשות, ואווה מתחילה לחשוד, כי ג'סי וורד אינו האדם שחשבה שהוא. הוא יודע היטב איך לקחת אותה למחוזות האקסטזה... אבל האם יוביל אותה גם אל תהום הייאוש? הגיע הזמן לווידויו של הגבר הזה ...\" -- מן המעטפת האחורית."
   },
   {
     "id": "עם-הגבר-הזה-ג-ודי-אלן-מלפיס",
@@ -18895,17 +18910,20 @@
     "status": "read",
     "dateRead": null,
     "rating": null,
-    "genres": [],
+    "genres": [
+      "ארוטיקה"
+    ],
     "favorite": false,
     "review": "",
     "coverUrl": "/covers/m-b12fbf317e.jpg",
     "coverConfidence": "high",
     "isbn": null,
     "pageCount": null,
-    "year": null,
+    "year": 2014,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
-    "coverSource": "simania"
+    "updatedAt": "2026-06-15T14:03:29.217Z",
+    "coverSource": "simania",
+    "description": "\"כשאווה או'שי, מעצבת פנים צעירה, מגיעה לפגישת ייעוץ ראשונה ב'האחוזה', עם בעל המקום מר ג'סי וורד. הדבר האחרון לו היא מצפה הוא מר ג'סי וורד. הגבר הזה, שובה בחיצוניותו וסוחף בכריזמה שלו. הוא גם פלייבוי יהיר, רברבן ונהנתן, חסר גבולות. האינטואיציה שלה אומרת לה לברוח, לא חשוב עד כמה קסמיו מושכים אותה בעבותות אליו. הוא מסוכן לה והיא יודעת את זה. אבל ג'סי וורד לא מוכן לתת לה ללכת. הוא רוצה אותה ונחוש להשיגה. היא יודעת שבסוף הדרך מחכה לה התרסקות, אבל כשג'סי רוצה משהו, אין דבר שיכול לעצור אותו וג'סי רוצה את אווה. הוא ישתמש בכל כלי שיש בידיו כדי להשיג אותה. איך היא יכולה לברוח כשהוא אוחז בה כה חזק?\" -- מן המעטפת האחורית."
   },
   {
     "id": "ג-נטלמן-חוטא-ג-ודי-אלן-מלפיס",
@@ -20934,10 +20952,10 @@
     "coverUrl": "/covers/m-a9af1e596b.jpg",
     "coverConfidence": "manual",
     "isbn": null,
-    "pageCount": null,
-    "year": null,
+    "pageCount": 270,
+    "year": 2016,
     "createdAt": "2026-06-13T21:02:16.424Z",
-    "updatedAt": "2026-06-13T21:02:16.424Z",
+    "updatedAt": "2026-06-15T14:03:59.840Z",
     "coverSource": "steimatzky"
   },
   {

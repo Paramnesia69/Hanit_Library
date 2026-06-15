@@ -119,18 +119,19 @@ async function lookup(book) {
 async function fetchRetry(url, attempt = 0) {
     try {
         const res = await fetch(url);
-        if (res.status === 429) {
-            if (attempt >= 4) { console.error('  · 429 — נכנע אחרי נסיונות'); return null; }
-            const wait = 2000 * (attempt + 1);
-            console.error(`  · 429 quota — ממתין ${wait / 1000}s`);
+        // 429 (quota) ו-400 (Google מחזיר את זה לסירוגין כשמגבילים קצב) — שניהם זמניים
+        if (res.status === 429 || res.status === 400) {
+            if (attempt >= 6) { console.error(`  · ${res.status} — נכנע אחרי נסיונות`); return null; }
+            const wait = 3000 * (attempt + 1);
+            console.error(`  · ${res.status} rate-limit — ממתין ${wait / 1000}s`);
             await sleep(wait);
             return fetchRetry(url, attempt + 1);
         }
         if (!res.ok) return null;
         return res.json();
     } catch {
-        if (attempt >= 2) return null;
-        await sleep(800 * (attempt + 1));
+        if (attempt >= 3) return null;
+        await sleep(1500 * (attempt + 1));
         return fetchRetry(url, attempt + 1);
     }
 }
@@ -159,7 +160,8 @@ async function main() {
             r = await lookup(b);
             cache[b.id] = r;
             writeFileSync(CACHE, JSON.stringify(cache, null, 0));
-            await sleep(220);
+            // קצב איטי + ריצוד כדי לא להפעיל את מגבלת הקצב של Google (מחזירה 400/ריק במקום 429)
+            await sleep(1500 + Math.floor(Math.random() * 700));
         }
         if (!r.matched) { unmatched++; continue; }
 
