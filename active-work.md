@@ -4,12 +4,22 @@
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
 > Data: 956 books in `src/data/books.json` — 793 physical (Excel) + 163 digital (e-vrit). Persistence = localStorage. Live on Vercel (auto-deploy from GitHub).
 
-## CURRENT FOCUS — enriching the e-vrit digital library
+## CURRENT FOCUS — e-vrit digital library DONE (synced + fully enriched)
 The digital library is now **e-vrit (עברית)**, NOT Kindle (earlier mistaken assumption — fully removed).
-163 of Hanit's e-vrit books are synced and live. **Next task (in progress):** pull MUCH more per-book
-info from e-vrit — descriptions, year, page count, category/genre, translator, narrator, series — using
-the exact ProductIDs we now hold (no fuzzy search needed). See "DONE — e-vrit pivot" below for the sync,
-and the enrichment scripts in "DONE — Content enrichment".
+All 163 of Hanit's e-vrit books are synced AND fully enriched from their product pages (description,
+year, pages, publisher, translator, genres, community rating). Both the sync and the enrichment run
+in the daily Action. No active task in flight — awaiting the next request.
+
+## DONE — e-vrit product enrichment (2026-06-15)
+`scripts/enrich-evrit-products.mjs` — for each digital book, fetches `e-vrit.co.il/Product/{evritId}`
+(exact ProductID we already hold → **plain `fetch`, no browser, no fuzzy search**). The product page is
+server-rendered and carries a clean **JSON-LD `@type:Book`** block (description, genre, publisher,
+numberOfPages, aggregateRating) + the full long blurb in `.tab-content__about-book .single-tab__txt` +
+labeled fields (`תאריך הוצאה:` → year, `תרגום:` → translator). Fills only-empty fields; community
+rating always refreshes. e-vrit genres mapped to canonical `GENRE_THEMES` keys (`רומן אירוטי`→ארוטיקה etc.),
+raw genre kept in `category`. **Yield: 163 desc / 163 year / 163 publisher / 163 community / 160 pages /
+140 translator / 161 genres.** Resumable cache `src/data/evrit-products.cache.json`. Wired into
+`sync-evrit.yml` so new purchases self-enrich.
 
 ## DONE — e-vrit pivot: live digital library (2026-06-15)
 **Hanit has NO Kindle.** She buys on **e-vrit.co.il (עברית)** and reads on a **Boox**. Replaced the whole
