@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>חנית · Premium UI Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   חנית — Premium UI Demo  (standalone, no build step)
+   Demonstrates the 3 planned changes against REAL design tokens:
+   1) Apple auto-hiding scrollbars
+   2) Full-screen immersive book page (vibrancy takeover)
+   3) Theme-aware pill glows (genre = own color, UI = app accent)
+   Switch themes top-left to see the accent + glows re-theme live.
+   ============================================================ */
+
+:root {
+  --font-sans: 'Rubik','Heebo',system-ui,sans-serif;
+  --font-display: 'Bellefair','Frank Ruhl Libre',Georgia,serif;
+
+  /* Paper (default) — real tokens from src/index.css */
+  --color-paper:#faf8f4; --color-paper-2:#f1ece3; --color-card:#ffffff;
+  --color-ink:#181412; --color-ink-soft:#645b52; --color-line:#e4dccf;
+  --accent-50:#fdf2f6; --accent-100:#fbe4ee; --accent-300:#ee93b8;
+  --accent-500:#c8336f; --accent-600:#a81f57; --accent-700:#841746;
+  --gold:#c79a3a;
+  --glass-strong:rgba(250,248,244,0.82);
+  --glass-bg:rgba(255,255,255,0.62);
+  --glass-border:rgba(255,255,255,0.6);
+  --app-bg:linear-gradient(180deg,#fcfbf8 0%,#f5f2ec 100%);
+  --on-accent:#fff;
+}
+[data-theme="copilot"]{
+  --color-paper:#0d1117; --color-paper-2:#161b22; --color-card:#161b22;
+  --color-ink:#e6edf3; --color-ink-soft:#8b949e; --color-line:#30363d;
+  --accent-50:#0c2040; --accent-100:#0d2c52; --accent-300:#2471d4;
+  --accent-500:#58a6ff; --accent-600:#79b8ff; --accent-700:#a5cdff;
+  --gold:#e3b341;
+  --glass-strong:rgba(13,17,23,0.88); --glass-bg:rgba(22,27,34,0.7);
+  --glass-border:rgba(255,255,255,0.07);
+  --app-bg:linear-gradient(180deg,#0d1117 0%,#090d13 100%);
+  --on-accent:#06101f;
+}
+[data-theme="noir"]{
+  --color-paper:#16181c; --color-paper-2:#1c1f24; --color-card:#1c1f24;
+  --color-ink:#ece6d8; --color-ink-soft:#9b948a; --color-line:#33363c;
+  --accent-50:#2a2110; --accent-100:#3a2d13; --accent-300:#8a6c2a;
+  --accent-500:#caa14e; --accent-600:#d8b56e; --accent-700:#e6cb95;
+  --gold:#caa14e;
+  --glass-strong:rgba(22,24,28,0.9); --glass-bg:rgba(28,31,36,0.7);
+  --glass-border:rgba(255,255,255,0.07);
+  --app-bg:linear-gradient(180deg,#16181c 0%,#101216 100%);
+  --on-accent:#181206;
+}
+[data-theme="amethyst"]{
+  --color-paper:#17131f; --color-paper-2:#1e1828; --color-card:#1e1828;
+  --color-ink:#efe9f7; --color-ink-soft:#a89bc0; --color-line:#352b46;
+  --accent-50:#241a33; --accent-100:#2f2245; --accent-300:#9a7ce0;
+  --accent-500:#9a7ce0; --accent-600:#b29cf0; --accent-700:#cabbf2;
+  --gold:#cabbf2;
+  --glass-strong:rgba(23,19,31,0.9); --glass-bg:rgba(30,24,40,0.7);
+  --glass-border:rgba(255,255,255,0.08);
+  --app-bg:linear-gradient(180deg,#17131f 0%,#110d18 100%);
+  --on-accent:#150d22;
+}
+
+*{box-sizing:border-box;}
+html{scrollbar-width:thin;scrollbar-color:transparent transparent;}
+html:hover{scrollbar-color:color-mix(in srgb,var(--color-ink) 22%,transparent) transparent;}
+body{
+  margin:0;font-family:var(--font-sans);color:var(--color-ink);
+  background:var(--app-bg);min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---- 1) Apple auto-hiding overlay scrollbars ---- */
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{
+  background:transparent;border-radius:999px;border:2px solid transparent;
+  background-clip:content-box;transition:background .3s;
+}
+*:hover::-webkit-scrollbar-thumb{
+  background:color-mix(in srgb,var(--color-ink) 22%,transparent);background-clip:content-box;
+}
+*:hover::-webkit-scrollbar-thumb:hover{
+  background:color-mix(in srgb,var(--color-ink) 38%,transparent);background-clip:content-box;
+}
+
+/* glass helpers (from src/index.css) */
+.glass{
+  background:var(--glass-bg);
+  backdrop-filter:saturate(190%) blur(18px);-webkit-backdrop-filter:saturate(190%) blur(18px);
+  border:1px solid var(--glass-border);
+}
+.glass-strong{
+  background:var(--glass-strong);
+  backdrop-filter:saturate(190%) blur(26px);-webkit-backdrop-filter:saturate(190%) blur(26px);
+  border:1px solid var(--glass-border);
+}
+
+/* ---- 3) theme-aware accent glow ---- */
+.glow-accent{box-shadow:0 6px 18px -8px color-mix(in srgb,var(--accent-500) 75%,transparent);}
+
+/* ===== Top control bar (demo only) ===== */
+.controls{
+  position:fixed;inset-block-start:0;inset-inline:0;z-index:80;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  padding:10px 16px;
+}
+.controls .grp{display:flex;gap:6px;background:var(--glass-strong);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);border-radius:999px;padding:5px;}
+.controls button{
+  font-family:var(--font-sans);font-size:13px;font-weight:600;cursor:pointer;
+  border:0;border-radius:999px;padding:7px 14px;color:var(--color-ink-soft);background:transparent;
+  transition:.2s;
+}
+.controls button.on{color:var(--on-accent);background:var(--accent-600);}
+.controls .swatch{width:13px;height:13px;border-radius:50%;display:inline-block;margin-inline-end:7px;vertical-align:-1px;border:1px solid rgba(0,0,0,.15);}
+.hint{font-size:12px;color:var(--color-ink-soft);background:var(--glass-strong);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);
+  border-radius:999px;padding:8px 14px;}
+
+/* ===== Filter pill row demo ===== */
+.barwrap{max-width:980px;margin:78px auto 0;padding:0 16px;}
+.pillbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  background:color-mix(in srgb,var(--color-card) 55%,transparent);
+  backdrop-filter:saturate(190%) blur(18px);-webkit-backdrop-filter:saturate(190%) blur(18px);
+  border:1px solid var(--glass-border);border-radius:20px;padding:12px;}
+.seg{display:flex;background:var(--color-paper-2);border-radius:999px;padding:3px;}
+.seg button{border:0;background:transparent;font-family:var(--font-sans);font-weight:600;font-size:13px;
+  color:var(--color-ink-soft);padding:7px 14px;border-radius:999px;cursor:pointer;transition:.2s;}
+.seg button.on{background:var(--color-card);color:var(--accent-700);
+  box-shadow:0 4px 12px -6px color-mix(in srgb,var(--accent-500) 60%,transparent);}
+.iconpill{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  border:1px solid var(--color-line);background:var(--color-card);color:var(--color-ink-soft);}
+.iconpill.on{border-color:transparent;background:var(--accent-600);color:var(--on-accent);}
+.iconpill.on.glow-accent{box-shadow:0 6px 18px -7px color-mix(in srgb,var(--accent-500) 80%,transparent);}
+.label{font-size:12px;color:var(--color-ink-soft);width:100%;margin:2px 2px -2px;}
+
+.genrerow{display:flex;gap:9px;flex-wrap:wrap;}
+.gchip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--color-line);
+  background:var(--color-card);color:var(--color-ink);font-family:var(--font-sans);font-weight:600;font-size:13px;
+  border-radius:999px;padding:8px 14px;cursor:pointer;transition:.2s;}
+.gchip .dot{width:9px;height:9px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.05);}
+.gchip .cnt{opacity:.55;font-weight:500;}
+.gchip.sel{color:#fff;border-color:transparent;}
+.gchip.sel .dot{background:#fff !important;}
+
+/* ===== 2) Immersive full-screen book page ===== */
+.scrim{position:fixed;inset:0;z-index:60;background:rgba(10,8,7,.45);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;transition:opacity .4s;}
+.scrim.show{opacity:1;pointer-events:auto;}
+
+.sheet-host{position:fixed;inset:0;z-index:61;overflow-y:auto;overflow-x:hidden;
+  pointer-events:none;}
+.sheet-host.show{pointer-events:auto;}
+.immersive{
+  position:relative;min-height:100%;width:100%;max-width:760px;margin:0 auto;
+  transform:translateY(8%);opacity:0;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .4s;
+}
+.sheet-host.show .immersive{transform:translateY(0);opacity:1;}
+
+/* full-bleed blurred cover backdrop (parallax) */
+.backdrop{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;}
+.backdrop img{position:absolute;inset:-8% -8%;width:116%;height:116%;object-fit:cover;
+  filter:blur(34px) saturate(1.5);transform:scale(1.15);will-change:transform;}
+.backdrop .tint{position:absolute;inset:0;}
+
+/* hero */
+.hero{position:relative;display:flex;flex-direction:column;align-items:center;
+  padding:96px 22px 28px;text-align:center;}
+.topbtns{position:absolute;inset-block-start:14px;inset-inline:18px;display:flex;justify-content:space-between;}
+.rbtn{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 12px;border-radius:999px;cursor:pointer;
+  background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--glass-border);color:#fff;font-family:var(--font-sans);font-size:13px;font-weight:600;}
+.rbtn.circ{width:38px;justify-content:center;padding:0;}
+
+/* floating 3D cover */
+.coverwrap{perspective:1100px;width:200px;margin-top:8px;}
+.cover3d{position:relative;aspect-ratio:2/3;border-radius:8px;overflow:hidden;
+  transform-style:preserve-3d;transition:transform .15s ease-out;
+  box-shadow:0 2px 4px rgba(0,0,0,.3),0 30px 60px -18px rgba(0,0,0,.6),0 50px 90px -30px rgba(0,0,0,.5);}
+.cover3d img{width:100%;height:100%;object-fit:cover;display:block;}
+.cover3d .spine{position:absolute;inset-block:0;inset-inline-end:0;width:9px;
+  background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,0));}
+.cover3d .sheen{position:absolute;inset:0;background:linear-gradient(105deg,rgba(255,255,255,.32) 0%,rgba(255,255,255,0) 38%);}
+
+.htitle{font-family:var(--font-display);font-size:40px;font-weight:700;line-height:1.05;margin:20px 0 4px;
+  color:#fff;text-shadow:0 2px 22px rgba(0,0,0,.45);}
+.hauthor{color:rgba(255,255,255,.86);font-size:16px;text-shadow:0 1px 12px rgba(0,0,0,.4);}
+.hmeta{margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.tag{font-size:12px;color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;padding:5px 11px;backdrop-filter:blur(6px);}
+
+/* frosted content sheet rising over hero */
+.content{position:relative;margin-top:18px;border-radius:26px 26px 0 0;
+  background:var(--glass-strong);backdrop-filter:saturate(190%) blur(30px);-webkit-backdrop-filter:saturate(190%) blur(30px);
+  border:1px solid var(--glass-border);border-bottom:0;
+  box-shadow:0 -10px 40px -18px rgba(0,0,0,.4);padding:10px 22px 60px;min-height:60vh;}
+.grab{width:42px;height:5px;border-radius:999px;background:color-mix(in srgb,var(--color-ink) 22%,transparent);
+  margin:8px auto 18px;}
+
+.stars{display:flex;gap:4px;justify-content:center;align-items:center;font-size:26px;color:var(--gold);}
+.statusseg{display:flex;background:var(--color-paper-2);border-radius:999px;padding:4px;margin:18px auto 0;max-width:340px;}
+.statusseg button{flex:1;border:0;background:transparent;font-family:var(--font-sans);font-weight:600;font-size:13px;
+  color:var(--color-ink-soft);padding:9px;border-radius:999px;cursor:pointer;}
+.statusseg button.on{background:var(--color-card);color:var(--accent-700);
+  box-shadow:0 4px 12px -6px color-mix(in srgb,var(--accent-500) 60%,transparent);}
+
+.community{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;
+  border:1px solid var(--color-line);background:color-mix(in srgb,var(--color-card) 70%,transparent);
+  border-radius:18px;padding:14px 16px;}
+.cbadge{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;color:#fff;font-family:var(--font-display);font-size:22px;font-weight:700;}
+
+.sec-h{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;font-size:19px;margin:26px 0 10px;}
+.about{border-radius:18px;border:1px solid;padding:16px;font-size:14.5px;line-height:1.85;color:color-mix(in srgb,var(--color-ink) 92%,transparent);}
+.meta{display:grid;gap:11px;border:1px solid var(--color-line);background:color-mix(in srgb,var(--color-card) 70%,transparent);
+  border-radius:18px;padding:16px;margin-top:8px;}
+.mrow{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--color-ink-soft);}
+.mrow b{color:var(--color-ink);font-weight:600;}
+.gpills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px;}
+.review{width:100%;resize:none;border-radius:16px;border:1px solid var(--color-line);
+  background:color-mix(in srgb,var(--color-card) 70%,transparent);padding:14px;font-family:var(--font-sans);
+  font-size:14px;color:var(--color-ink);outline:none;margin-top:8px;}
+.review:focus{border-color:var(--accent-500);}
+
+.ico{width:18px;height:18px;display:inline-block;vertical-align:middle;}
+</style>
+</head>
+<body>
+
+<!-- ================= demo controls ================= -->
+<div class="controls">
+  <div class="grp" id="themeGrp">
+    <button data-theme="" class="on"><span class="swatch" style="background:#faf8f4"></span>Paper</button>
+    <button data-theme="copilot"><span class="swatch" style="background:#0d1117"></span>Copilot</button>
+    <button data-theme="noir"><span class="swatch" style="background:#16181c"></span>Noir</button>
+    <button data-theme="amethyst"><span class="swatch" style="background:#17131f"></span>Amethyst</button>
+  </div>
+  <div class="grp">
+    <button id="openBtn" class="on">פתח את עמוד הספר ↗</button>
+  </div>
+  <span class="hint">החלף ערכת נושא ↑ — שים לב איך הזוהר של הפילים מתחלף לצבע הערכה. שורת הז'אנרים נשארת צבעונית.</span>
+</div>
+
+<!-- ================= pill row demo ================= -->
+<div class="barwrap">
+  <div class="pillbar">
+    <span class="label">פילים של ממשק — זוהר לפי הערכה הפעילה (accent):</span>
+    <div class="iconpill on glow-accent" title="מועדפים">♥</div>
+    <div class="seg">
+      <button class="on">קיר</button><button>רשימה</button><button>מדף 3D</button>
+    </div>
+    <div class="seg">
+      <button class="on">הכל</button><button>נקרא</button><button>בקריאה</button><button>לקרוא</button>
+    </div>
+
+    <span class="label">שורת ז'אנרים — כל שבב זוהר בצבע הז'אנר שלו (ספקטרום, לא ורוד אחיד):</span>
+    <div class="genrerow" id="genreRow"></div>
+  </div>
+</div>
+<div style="height:60vh"></div>
+
+<!-- ================= immersive book page ================= -->
+<div class="scrim" id="scrim"></div>
+<div class="sheet-host" id="sheet">
+  <div class="immersive">
+    <div class="backdrop">
+      <img src="public/covers/m-5d05bfbb0a.jpg" alt="" id="bgImg" />
+      <div class="tint" id="bgTint"></div>
+    </div>
+
+    <div class="hero">
+      <div class="topbtns">
+        <div class="rbtn circ" id="closeBtn" title="סגירה">✕</div>
+        <div style="display:flex;gap:8px">
+          <div class="rbtn">✎ עריכה</div>
+          <div class="rbtn circ" style="color:#ff8a8a">🗑</div>
+        </div>
+      </div>
+
+      <div class="coverwrap">
+        <div class="cover3d" id="cover3d">
+          <img src="public/covers/m-5d05bfbb0a.jpg" alt="תחרה" />
+          <div class="spine"></div><div class="sheen"></div>
+        </div>
+      </div>
+
+      <h1 class="htitle">תחרה</h1>
+      <p class="hauthor">שירלי קונרן</p>
+      <div class="hmeta">
+        <span class="tag">2013</span>
+        <span class="tag">כנרת זמורה ביתן</span>
+        <span class="tag">מדף 1 אחרון</span>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="grab"></div>
+
+      <div class="stars">★★★★<span style="color:color-mix(in srgb,var(--gold) 35%,transparent)">★</span></div>
+
+      <div class="statusseg">
+        <button>לקרוא</button><button>בקריאה</button><button class="on">נקרא</button>
+      </div>
+
+      <div class="community">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div class="cbadge" id="cbadge">4.0</div>
+          <div>
+            <div style="color:var(--gold);font-size:15px">★★★★☆</div>
+            <div style="font-size:12px;color:var(--color-ink-soft);margin-top:3px">5 מדרגים · קהילת סימניה</div>
+          </div>
+        </div>
+        <div style="color:var(--gold);font-size:22px">★</div>
+      </div>
+
+      <div class="sec-h"><span id="aboutIco">📖</span> על הספר</div>
+      <div class="about" id="aboutBox">
+        ארבע חברות, סוד אחד, ושאלה שתרדוף אותן עשרים שנה. כשכוכבת קולנוע צעירה
+        מזמנת ארבע נשים לחדר מלון מפואר ושואלת "מי מכן אמא שלי?" — נפרם חוט
+        שמוביל אחורה אל פנימייה שווייצרית, אל ידידות עזה ואל בגידה. רב־מכר עולמי
+        של שירלי קונרן, ראה אור בעברית בהוצאת כנרת זמורה ביתן, 2013.
+        <span style="opacity:.6">(טקסט הדגמה)</span>
+      </div>
+
+      <div class="sec-h">פרטים</div>
+      <div class="meta">
+        <div class="mrow">🏛 <span>הוצאה: <b>כנרת זמורה ביתן</b></span></div>
+        <div class="mrow">📚 <span>מדף: <b>1 אחרון</b></span></div>
+        <div class="mrow">📅 <span>שנה: <b>2013</b></span></div>
+        <div class="mrow">🔖 <span>מסת״ב: <b>965</b></span></div>
+      </div>
+
+      <div class="gpills" id="aboutPills"></div>
+
+      <div class="sec-h">הביקורת שלי</div>
+      <textarea class="review" rows="4" placeholder="כתבי כאן את מחשבותייך על הספר…"></textarea>
+    </div>
+  </div>
+</div>
+
+<script>
+/* genre themes (subset, real colors from src/lib/genreThemes.ts) */
+const GENRES=[
+  {label:'מתח',dot:'#15161a',count:42},
+  {label:'ארוטיקה',dot:'#7a1228',count:88},
+  {label:'רומנטיקה',dot:'#c2185b',count:131},
+  {label:'פנטזיה',dot:'#6d28d9',count:24},
+  {label:'היסטורי',dot:'#c79a3a',count:19},
+  {label:'מדע בדיוני',dot:'#0e7490',count:11},
+  {label:'אימה',dot:'#991b1b',count:9},
+  {label:'פרוזה',dot:'#0f5132',count:57},
+];
+const ROMANCE={grad:['#f4a9c2','#e06d96','#b6446e']}; // תחרה ≈ romance world
+const row=document.getElementById('genreRow');
+GENRES.forEach((g,i)=>{
+  const b=document.createElement('button');
+  b.className='gchip'+(i===2?' sel':'');
+  // each chip carries its OWN genre-colored glow, always on
+  b.style.boxShadow=`0 4px 14px -6px ${g.dot}`;
+  if(i===2){b.style.background=g.dot;b.style.boxShadow=`0 7px 20px -6px ${g.dot}`;}
+  b.innerHTML=`<span class="dot" style="background:${g.dot}"></span>${g.label}<span class="cnt">${g.count}</span>`;
+  row.appendChild(b);
+});
+
+/* theme switcher */
+document.querySelectorAll('#themeGrp button').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('#themeGrp button').forEach(x=>x.classList.remove('on'));
+    btn.classList.add('on');
+    const t=btn.dataset.theme;
+    if(t)document.documentElement.setAttribute('data-theme',t);
+    else document.documentElement.removeAttribute('data-theme');
+  };
+});
+
+/* open / close immersive page */
+const scrim=document.getElementById('scrim'),sheet=document.getElementById('sheet');
+const open=()=>{scrim.classList.add('show');sheet.classList.add('show');};
+const close=()=>{scrim.classList.remove('show');sheet.classList.remove('show');};
+document.getElementById('openBtn').onclick=open;
+document.getElementById('closeBtn').onclick=close;
+scrim.onclick=close;
+open(); // open by default so the demo lands on it
+
+/* theme-tinted scrim over the blurred cover (uses romance world for תחרה) */
+document.getElementById('bgTint').style.background=
+  `linear-gradient(to bottom, ${ROMANCE.grad[1]}cc 0%, ${ROMANCE.grad[0]}33 42%, var(--color-paper) 94%)`;
+document.getElementById('cbadge').style.background=
+  `linear-gradient(135deg, ${ROMANCE.grad[0]}, ${ROMANCE.grad[1]})`;
+const ab=document.getElementById('aboutBox');
+ab.style.borderColor=ROMANCE.grad[1]+'55';
+ab.style.background=ROMANCE.grad[0]+'14';
+['רומנטיקה','דרמה','רב־מכר'].forEach(g=>{
+  const s=document.createElement('span');s.className='tag';
+  s.style.color=ROMANCE.grad[2];s.style.background=ROMANCE.grad[0]+'22';s.style.border='1px solid '+ROMANCE.grad[1]+'44';
+  s.textContent=g;document.getElementById('aboutPills').appendChild(s);
+});
+
+/* parallax: backdrop drifts slower than scroll */
+sheet.addEventListener('scroll',()=>{
+  document.getElementById('bgImg').style.transform=
+    `scale(1.15) translateY(${sheet.scrollTop*0.12}px)`;
+},{passive:true});
+
+/* 3D cover tilt on pointer move */
+const c=document.getElementById('cover3d');
+const wrap=c.parentElement;
+wrap.addEventListener('pointermove',e=>{
+  const r=wrap.getBoundingClientRect();
+  const px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5;
+  c.style.transform=`rotateY(${px*16}deg) rotateX(${-py*16}deg)`;
+});
+wrap.addEventListener('pointerleave',()=>{c.style.transform='rotateY(0) rotateX(0)';});
+</script>
+</body>
+</html>
