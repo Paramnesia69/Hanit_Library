@@ -122,7 +122,9 @@ function loadJson(p, f) { try { return JSON.parse(readFileSync(p, 'utf8')); } ca
 async function main() {
     const books = loadJson(BOOKS, []);
     const cache = FORCE ? {} : loadJson(CACHE, {});
-    const missing = books.filter((b) => !b.description && b.author);
+    // ספרים פיזיים בלבד (לא דיגיטליים — אלה בטיפול session אחר) ללא תיאור
+    const missing = books.filter((b) => !b.description && b.author && !b.evritId);
+    const results = {}; // { [bookId]: { desc, year, pageCount } } — מיושם בכתיבה בטוחה
 
     // קיבוץ לפי סופר/ת
     const byAuthor = new Map();
@@ -165,10 +167,7 @@ async function main() {
                 const { desc, body, year, pageCount } = await fetchProduct(page, c.p.url);
                 const authorOk = aTok.length === 0 || aTok.some((t) => norm(body).includes(t));
                 if (desc.length >= 60 && authorOk) {
-                    b.description = desc;
-                    if (year && b.year !== year) { b.year = year; yrs++; }
-                    if (pageCount && !b.pageCount) { b.pageCount = pageCount; pgs++; }
-                    b.updatedAt = new Date().toISOString();
+                    results[b.id] = { desc, year, pageCount };
                     filled++;
                     break;
                 }
@@ -180,10 +179,21 @@ async function main() {
     }
 
     await browser.close();
-    console.log(`\n  סיכום: תיאורים ${filled} | שנים ${yrs} | עמודים ${pgs} | סופרים שנמצאו ${authorsHit}/${authors.length}`);
+    console.log(`\n  סיכום: התאמות ${filled} | סופרים שנמצאו ${authorsHit}/${authors.length}`);
     if (DRY) { console.log('\n  --dry: לא נכתב\n'); return; }
-    writeFileSync(BOOKS, JSON.stringify(books, null, 2));
-    console.log('\n  נכתב ל-books.json ✓\n');
+
+    // כתיבה בטוחה מול התנגשות: קוראים books.json מחדש ומיישמים רק שדות ריקים
+    const fresh = loadJson(BOOKS, []);
+    let dDesc = 0, dYear = 0, dPg = 0;
+    for (const b of fresh) {
+        const r = results[b.id];
+        if (!r || b.evritId) continue; // לעולם לא נוגעים בספרים דיגיטליים
+        if (r.desc && !b.description) { b.description = r.desc; b.updatedAt = new Date().toISOString(); dDesc++; }
+        if (r.year && !b.year) { b.year = r.year; dYear++; }
+        if (r.pageCount && !b.pageCount) { b.pageCount = r.pageCount; dPg++; }
+    }
+    writeFileSync(BOOKS, JSON.stringify(fresh, null, 2));
+    console.log(`\n  נכתב (מיזוג בטוח): תיאור ${dDesc} | שנה ${dYear} | עמודים ${dPg} ✓\n`);
 }
 
 main();
