@@ -70,8 +70,10 @@ async function lookup(book) {
     for (const it of books) {
         const cont = containment(book.title, it.NAME);
         if (cont < 0.6) continue;
-        // אימות-סופר: לפחות טוקן אחד משם הסופר/ת בשדה ה-AUTHOR
-        const authorOk = aTok.length === 0 || aTok.some((t) => norm(it.AUTHOR).includes(t));
+        // אימות-סופר: טוקן משם הסופר/ת בשדה AUTHOR — מדויק, או תחילית 4 תווים
+        // (כדי לתפוס וריאנטים בתעתיק כמו רומינג/רומיג, מקגוויר/מקגייר)
+        const sAuthor = norm(it.AUTHOR);
+        const authorOk = aTok.length === 0 || aTok.some((t) => sAuthor.includes(t) || (t.length >= 5 && sAuthor.includes(t.slice(0, 4))));
         if (!authorOk) continue;
         // התאמת כרך: אם לשניהם יש מספר כרך — חייב להיות זהה
         const iVol = volume(it.NAME);
