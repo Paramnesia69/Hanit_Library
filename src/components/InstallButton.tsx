@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Download, Share, SquarePlus, MoreVertical, X } from 'lucide-react';
 
 /** אירוע ההתקנה של Chrome/Android (לא מוגדר בטיפוסים הסטנדרטיים) */
@@ -77,13 +78,13 @@ export function InstallButton() {
                 <Download size={16} /> התקנת האפליקציה
             </button>
 
-            {iosHelp && (
+            {iosHelp && createPortal(
                 <div
                     className="fixed inset-0 z-[60] flex items-end justify-center bg-ink/45 backdrop-blur-md sm:items-center"
                     onClick={() => setIosHelp(false)}
                 >
                     <div
-                        className="m-3 w-full max-w-sm rounded-3xl bg-card p-5 shadow-book"
+                        className="m-3 max-h-[88svh] w-full max-w-sm overflow-y-auto rounded-3xl bg-card p-5 shadow-book"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="mb-3 flex items-center justify-between">
@@ -134,7 +135,8 @@ export function InstallButton() {
                             האפליקציה תיפתח במסך מלא, עם אייקון משלה וללא שורת כתובת — בדיוק כמו אפליקציה רגילה.
                         </p>
                     </div>
-                </div>
+                </div>,
+                document.body,
             )}
         </>
     );

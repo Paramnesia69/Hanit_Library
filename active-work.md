@@ -5,6 +5,15 @@
 > Data: 956 books — 793 physical (Excel) + 163 digital (e-vrit). Persistence = **Upstash Redis** (server, source of truth) with bundled `src/data/books.json` as offline/first-paint cache. Live on Vercel (auto-deploy from GitHub).
 
 ## STATUS — v1.4 LIVE in production, no active task
+**Fix (2026-06-16, post-v1.4):** the ⋮ "שמירה לא מקוונת" (offline) modal — and the InstallButton iOS-help
+modal — got stuck/clipped and unscrollable after a full download. Cause: both render inside the
+`.glass-strong` ⋮ dropdown, whose `backdrop-filter` makes a `position: fixed` child resolve against that
+tiny menu box instead of the viewport (the known trap warned about at `index.css:397`). Fixed by rendering
+both modals via `createPortal(…, document.body)` + `max-h-[88svh] overflow-y-auto` on the panel
+(`OfflineButton.tsx`, `InstallButton.tsx`). Verified: overlay is now a direct child of `<body>` and covers
+the full viewport (Playwright). **Rule: any `fixed` overlay rendered inside a glass/backdrop-filter element
+must be portaled to `document.body`.**
+
 v1.4 (a11y + perf + owner/admin mode) is committed, tagged, pushed to `main`, and **auto-deployed to
 production**. Verified 2026-06-16: the deployed main chunk carries the admin-login flow, and
 `GET https://hanit-library.vercel.app/api/books` returns **956** (all books present; offline seed also 956).
