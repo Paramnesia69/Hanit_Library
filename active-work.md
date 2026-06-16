@@ -1,8 +1,8 @@
 # Active Work — hanit-library
 
-> Handoff notes for resuming after `/clear`. Last updated: 2026-06-16 (v1.4 shipped + DEPLOYED to production).
+> Handoff notes for resuming after `/clear`. Last updated: 2026-06-16 (v1.4 + book-add/enrichment workflows).
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
-> Data: 956 books — 793 physical (Excel) + 163 digital (e-vrit). Persistence = **Upstash Redis** (server, source of truth) with bundled `src/data/books.json` as offline/first-paint cache. Live on Vercel (auto-deploy from GitHub).
+> Data: 958 books — 795 physical (Excel + manual adds) + 163 digital (e-vrit). Persistence = **Upstash Redis** (server, source of truth) with bundled `src/data/books.json` as offline/first-paint cache. Live on Vercel (auto-deploy from GitHub).
 
 ## STATUS — v1.4 LIVE in production, no active task
 **Fix (2026-06-16, post-v1.4):** the ⋮ "שמירה לא מקוונת" (offline) modal — and the InstallButton iOS-help
@@ -20,6 +20,44 @@ production**. Verified 2026-06-16: the deployed main chunk carries the admin-log
 Admin login on the live site works with the Vercel `EDIT_PASSPHRASE` (it cannot be verified on the static
 `vite preview` — that has no `/api`; use the live site or `vercel dev`). Tags: `v1.3` (pre-work restore
 point), `v1.4` (this work). Interactive demo of the fixes: `fixes-demo.html`.
+
+## DONE — Book-add durability + auto-enrichment workflows (2026-06-16)
+Triggered by: Hanit added גבריאל + רפאל (המלאכים מג׳רזי 1 & 2) as **physical** books in the app, but the
+physical count stayed 793. Root-caused and built the full add→enrich→persist pipeline.
+
+**The data model gotcha (critical):** Redis is the live source of truth; the app renders the bundled
+`books.json` then REPLACES it with Redis. So a book in the bundle but not in Redis won't show — AND a book
+in Redis but not in the committed bundle gets **wiped by any reseed** (`scripts/seed-upstash.mjs` does
+`redis.del` then rebuilds from `books.json`). That reseed is the ONLY deleter (nightly sync is upsert-only;
+the offline queue is preserved on auth failure). **So every permanent add must land in BOTH Redis and the
+committed bundle.** The header count is **per active library** (`libraryBooks.length`) — physical and digital
+each show their own number; there is no combined total. A title can be in **both** libraries (physical +
+digital) — never dedupe across them.
+
+**What was built (all live on `main`):**
+- **גבריאל + רפאל** created as physical entries (UUID ids, no `evritId` → e-vrit sync never touches them),
+  enrichment cloned from their digital twins, linked as a series. In bundle + Redis. (958 / 795 physical.)
+- **`npm run pull:db`** (`scripts/sync-from-upstash.mjs`) — pull app adds/edits from Redis INTO the bundle.
+  **Surgical:** new books added whole; for existing books only `USER_FIELDS`
+  (status/rating/review/favorite/dateRead/shelf) are pulled — enrichment stays bundle-authoritative.
+  `--dry` previews, `--prune` removes orphans.
+- **`npm run push:db`** (`scripts/push-enrichment-to-upstash.mjs`) — push bundle enrichment UP to Redis
+  WITHOUT clobbering user edits. **Run after any enrichment commit**, else the live app shows stale text.
+  (Fixed a real drift this session: 293 stale Redis records — description ×293, pageCount ×35, year ×34 —
+  caused by the `0f3ad8c` description-polish that only ever hit the bundle.)
+- **`npm run enrich:new`** (`scripts/enrich-new-books.mjs`) — fill the Hebrew description for newly-added
+  books. Orchestrates: pull from Redis → **(0) digital-twin clone → (1) e-vrit → (2) Simania →
+  (3) Steimatzky** → push back. e-vrit is via **WEB DISCOVERY** (`scripts/enrich-evrit-google.mjs`):
+  Brave/DuckDuckGo `site:e-vrit.co.il {title}` → product id → fetch `/Product/{id}` JSON-LD blurb,
+  **plain HTTP, no browser** (e-vrit's internal search is broken — the `6063d84` lesson, now codified).
+  Author-verified, fills empty fields only. Brave is primary (DDG 202-rate-limits aggressive use).
+- **Nightly safety-net:** `sync-evrit.yml` now also runs `enrich-new-books.mjs` → so any book added in the
+  app gets auto-pulled to the bundle, enriched, pushed to Redis, and committed overnight — hands-off.
+
+**Hanit's workflow:** add a book in the app (title + author; cover/year/pages auto-fill from Google Books
+when she picks a suggestion in `BookForm`). The description fills either on-demand (`npm run enrich:new`,
+then commit/push) or automatically that night. Covers for books added WITHOUT a Google pick are reported
+for manual handling (cover auto-resolve needs review, so it's not in the auto path).
 
 ## DONE — UX / a11y / performance pass + owner/admin mode (v1.4, 2026-06-16)
 An external end-to-end review (Opus 4.8) was verified against the code; ~half the findings were already

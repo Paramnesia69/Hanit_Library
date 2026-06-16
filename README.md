@@ -28,6 +28,14 @@ npm run preview    # preview the production build locally
 npm run sync:evrit # pull her latest e-vrit library into books.json
 ```
 
+Book-add / Redis-bundle sync (need `.env.development.local` with KV creds):
+
+```bash
+npm run enrich:new # fill descriptions/covers for books added in the app, push live
+npm run pull:db    # pull app adds/edits from Redis INTO books.json (then commit)
+npm run push:db    # push bundle enrichment UP to Redis (run after any enrich commit)
+```
+
 To run the API functions locally (the `/api/books` sync gateway), pull the
 Upstash credentials from Vercel and use `vercel dev`:
 
@@ -55,6 +63,28 @@ per device (`PassphraseGate.tsx`) and remembered locally.
 Storage / seeding: `scripts/seed-upstash.mjs` loads `books.json` into Redis;
 `scripts/push-evrit-to-upstash.mjs` pushes e-vrit updates while preserving
 in-app edits.
+
+> ⚠️ **Durability rule:** a permanent book must live in **both** Redis **and** the
+> committed `books.json`. Reseeding (`seed-upstash.mjs`) does `redis.del` then
+> rebuilds Redis *only* from the bundle, so a Redis-only add gets wiped. Use
+> `npm run pull:db` to fold app adds/edits into the bundle, and `npm run push:db`
+> to push bundle enrichment back to Redis (it preserves user-edited fields:
+> status/rating/review/favorite/dateRead/shelf). Run `push:db` after any
+> enrichment commit, or the live app (which reads Redis) shows stale text.
+
+## Adding books + auto-enrichment
+
+Add a book in the app with just **title + author** (cover/year/pages auto-fill from
+Google Books when you pick a suggestion). To fill the **Hebrew description**, run
+`npm run enrich:new` — it pulls the new book from Redis, then tries, richest first:
+**digital-twin clone → e-vrit → Simania → Steimatzky**, and pushes the result live.
+
+e-vrit lookups use **web discovery** (`scripts/enrich-evrit-google.mjs`): a Brave/
+DuckDuckGo `site:e-vrit.co.il {title}` search finds the product ID, then the
+`/Product/{id}` page is fetched directly for its JSON-LD blurb (plain HTTP, no
+browser — e-vrit's own search is unreliable). Matches are author-verified. The same
+step runs nightly in `sync-evrit.yml` as a safety net for anything added but not
+manually enriched.
 
 ## e-vrit sync
 
