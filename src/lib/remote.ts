@@ -135,3 +135,24 @@ export async function syncDelete(id: string): Promise<void> {
     enqueueDelete(id);
     await flushQueue();
 }
+
+/**
+ * ממלא תיאור עברי חסר לספר בצד-שרת (e-vrit/Simania/Steimatzky) ודוחף ל-Redis.
+ * מחזיר את הספר המעודכן אם נמצא תיאור, אחרת null. דורש סיסמת עריכה.
+ */
+export type EnrichResult = { ok: boolean; source: string | null; book?: Book };
+export async function enrichBook(id: string): Promise<EnrichResult> {
+    const pass = getPass();
+    if (!pass) return { ok: false, source: null };
+    try {
+        const r = await fetch('/api/enrich', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-edit-pass': pass },
+            body: JSON.stringify({ id }),
+        });
+        if (!r.ok) return { ok: false, source: null };
+        return (await r.json()) as EnrichResult;
+    } catch {
+        return { ok: false, source: null };
+    }
+}

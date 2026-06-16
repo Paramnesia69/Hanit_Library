@@ -20,6 +20,9 @@ interface Props {
     onDelete: (id: string) => void;
     onToggleFavorite: (id: string) => void;
     onOpen: (book: Book) => void;
+    /** מילוי-תיאור חסר בצד-שרת (כפתור ידני, אדמין בלבד) */
+    onEnrich?: () => void;
+    enriching?: boolean;
 }
 
 const STATUSES: ReadingStatus[] = ['read', 'reading', 'want'];
@@ -106,7 +109,7 @@ function MetaRow({ icon, children }: { icon: React.ReactNode; children: React.Re
     );
 }
 
-export function BookDetail({ book, allBooks, isAdmin, onClose, onUpdate, onEdit, onDelete, onToggleFavorite, onOpen }: Props) {
+export function BookDetail({ book, allBooks, isAdmin, onClose, onUpdate, onEdit, onDelete, onToggleFavorite, onOpen, onEnrich, enriching }: Props) {
     const theme = getBookTheme(book);
     const cover = resolveCover(book);
 
@@ -299,7 +302,7 @@ export function BookDetail({ book, allBooks, isAdmin, onClose, onUpdate, onEdit,
                         <SeriesStrip book={book} allBooks={allBooks} onOpen={onOpen} />
 
                         {/* על הספר — טקסט הכריכה האחורית */}
-                        {book.description && (
+                        {book.description ? (
                             <div className="mt-5">
                                 <h3 className="mb-2 flex items-center gap-2 font-display text-base font-bold text-ink">
                                     <BookOpen size={17} style={{ color: theme.grad[0] }} />
@@ -312,7 +315,29 @@ export function BookDetail({ book, allBooks, isAdmin, onClose, onUpdate, onEdit,
                                     <p className="whitespace-pre-line">{book.description}</p>
                                 </div>
                             </div>
-                        )}
+                        ) : isAdmin && onEnrich ? (
+                            <div className="mt-5">
+                                <button
+                                    type="button"
+                                    onClick={onEnrich}
+                                    disabled={enriching}
+                                    className="flex w-full items-center justify-center gap-2 rounded-2xl border p-4 text-[14px] font-medium text-ink/90 transition hover:text-ink disabled:opacity-70"
+                                    style={{ borderColor: theme.glow, background: `${theme.grad[0]}0c` }}
+                                >
+                                    {enriching ? (
+                                        <>
+                                            <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden />
+                                            ממלא תיאור…
+                                        </>
+                                    ) : (
+                                        <>
+                                            <BookOpen size={17} style={{ color: theme.grad[0] }} />
+                                            מלא תיאור אוטומטית
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                        ) : null}
 
                         {/* מטא-דאטה */}
                         <div className="mt-5 space-y-2 rounded-2xl border border-line bg-card/70 p-4">

@@ -32,7 +32,7 @@ function LazyFallback() {
 }
 
 export default function App() {
-    const { books, addBook, updateBook, removeBook, toggleFavorite, replaceAll } = useBooks();
+    const { books, addBook, updateBook, removeBook, toggleFavorite, replaceAll, enrichBook } = useBooks();
     const { theme, setTheme } = useTheme();
     const [activeLibrary, setActiveLibrary] = useState<LibraryKind>('physical');
     const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
@@ -41,6 +41,9 @@ export default function App() {
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [formOpen, setFormOpen] = useState(false);
     const [editing, setEditing] = useState<Book | null>(null);
+    /** מילוי-תיאור: איזה ספר מתעשר כרגע + הודעת-טוסט קצרה */
+    const [enrichingId, setEnrichingId] = useState<string | null>(null);
+    const [enrichMsg, setEnrichMsg] = useState<string | null>(null);
     const [evritOpen, setEvritOpen] = useState(false);
     // עריכה מוגנת בסיסמה: פעולה ממתינה עד שמזינים את מילת הסוד (פעם אחת למכשיר)
     const [pendingEdit, setPendingEdit] = useState<(() => void) | null>(null);
@@ -94,9 +97,26 @@ export default function App() {
         setFilters(DEFAULT_FILTERS);
     }
 
+    /** מילוי-תיאור בצד-שרת (e-vrit→Simania→Steimatzky) עם טוסט קצר; משמש גם אוטומטית וגם בכפתור הידני */
+    async function runEnrich(id: string, title: string) {
+        setEnrichingId(id);
+        setEnrichMsg(`ממלא תיאור ל"${title}"…`);
+        const res = await enrichBook(id);
+        setEnrichingId((cur) => (cur === id ? null : cur));
+        const okNew = res.ok && res.source && res.source !== 'existing';
+        setEnrichMsg(okNew ? `✓ נוסף תיאור ל"${title}"` : `לא נמצא תיאור ל"${title}" — אפשר לנסות שוב מאוחר יותר`);
+        window.setTimeout(() => setEnrichMsg(null), 4500);
+        return res;
+    }
+
     function handleSave(draft: BookDraft, id: string | null) {
-        if (id) updateBook(id, draft);
-        else addBook(draft);
+        if (id) {
+            updateBook(id, draft);
+        } else {
+            const created = addBook(draft);
+            // לספר חדש בלי תיאור — ממלאים אוטומטית ברקע
+            if (!created.description || !created.description.trim()) void runEnrich(created.id, created.title);
+        }
         setFormOpen(false);
         setEditing(null);
     }
@@ -256,9 +276,25 @@ export default function App() {
                         onDelete={guardedRemove}
                         onToggleFavorite={guardedToggleFavorite}
                         onOpen={(b) => setSelectedId(b.id)}
+                        onEnrich={() => guard(() => runEnrich(selected.id, selected.title))}
+                        enriching={enrichingId === selected.id}
                     />
                 )}
             </AnimatePresence>
+
+            {/* טוסט מילוי-תיאור */}
+            {enrichMsg && (
+                <div
+                    role="status"
+                    aria-live="polite"
+                    className="fixed inset-x-0 bottom-5 z-[90] mx-auto flex w-fit max-w-[90vw] items-center gap-2 rounded-full border border-line bg-card/95 px-4 py-2 text-[13px] font-medium text-ink shadow-book backdrop-blur"
+                >
+                    {enrichingId && (
+                        <span className="inline-block h-3.5 w-3.5 animate-spin rounded-full border-2 border-accent-500 border-t-transparent" aria-hidden />
+                    )}
+                    {enrichMsg}
+                </div>
+            )}
 
             <AnimatePresence>
                 {formOpen && (

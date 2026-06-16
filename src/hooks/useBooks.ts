@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Book, BookDraft, ReadingStatus, SortField } from '../types/book';
 import { loadCachedBooks, loadSeededBooks, saveBooks } from '../lib/storage';
-import { fetchRemoteBooks, flushQueue, applyQueue, syncUpsert, syncDelete } from '../lib/remote';
+import { fetchRemoteBooks, flushQueue, applyQueue, syncUpsert, syncDelete, enrichBook as remoteEnrich, type EnrichResult } from '../lib/remote';
 import { effectiveGenre, genresWithCounts } from '../lib/genreThemes';
 import type { GenreCount } from '../lib/genreThemes';
 import { parseShelf } from '../lib/shelf';
@@ -173,7 +173,17 @@ export function useBooks() {
 
     const replaceAll = useCallback((next: Book[]) => setBooks(next), []);
 
-    return { books, addBook, addBooks, updateBook, removeBook, toggleFavorite, replaceAll };
+    /** ממלא תיאור חסר בצד-שרת וממזג בחזרה רק את שדות-ההעשרה (לא דורס עריכות מקומיות). */
+    const enrichBook = useCallback(async (id: string): Promise<EnrichResult> => {
+        const res = await remoteEnrich(id);
+        if (res.ok && res.book) {
+            const { description, year, pageCount } = res.book;
+            setBooks((prev) => prev.map((b) => (b.id === id ? { ...b, description, year, pageCount } : b)));
+        }
+        return res;
+    }, []);
+
+    return { books, addBook, addBooks, updateBook, removeBook, toggleFavorite, replaceAll, enrichBook };
 }
 
 const collator = new Intl.Collator('he', { numeric: true, sensitivity: 'base' });
