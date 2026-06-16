@@ -26,14 +26,16 @@ OUT_DIR="${TMPDIR:-/tmp}"
 IOS_PNG="$OUT_DIR/hanit-ios.png"
 AND_PNG="$OUT_DIR/hanit-android.png"
 
-chunk() { curl -s "$URL" | grep -o 'assets/index-[A-Za-z0-9_-]*\.js' | head -1; }
+chunk() { curl -s --max-time 8 "$URL" | grep -o 'assets/index-[A-Za-z0-9_-]*\.js' | head -1; }
 
 if [ "$WAIT" = "1" ] && [[ "$URL" == http*vercel.app* ]]; then
-  before="$(chunk)"
-  echo "⏳ waiting for new deploy (current chunk: ${before:-none})…"
+  # get a real (non-empty) baseline first, else any first response looks like a "change"
+  before=""
+  for i in $(seq 1 6); do before="$(chunk)"; [ -n "$before" ] && break; sleep 2; done
+  echo "⏳ waiting for new deploy (baseline: ${before:-unknown})…"
   for i in $(seq 1 40); do      # ~120s max
     now="$(chunk)"
-    if [ -n "$now" ] && [ "$now" != "$before" ]; then echo "✅ new build live: $now"; break; fi
+    if [ -n "$now" ] && [ -n "$before" ] && [ "$now" != "$before" ]; then echo "✅ new build live: $now"; break; fi
     sleep 3
   done
 fi
