@@ -58,16 +58,23 @@ One-tap / automatic Hebrew-description enrichment from inside the app.
 - **Credentials wired (set-and-forget):** Vercel prod+dev, GitHub secrets, local `.env`, nightly workflow.
   `cx = e506411801bd9497b` (engine "Hanit-app", restricted to `www.e-vrit.co.il/*`); API key lives in
   GCP project **Hanit-Books** (value only in env vars, NEVER in the repo).
-- **🔴 OPEN ACTION — RE-CHECK THE GOOGLE API.** As of 2026-06-16 the Custom Search JSON API still returns
-  `403 PERMISSION_DENIED "This project does not have the access to Custom Search JSON API"` on Hanit-Books
-  **despite** everything being correct: API enabled, billing linked (free-trial ₪849), fresh key + fresh
-  cx, and a disable/re-enable. Diagnosed as **Google-side provisioning lag on a brand-new free-trial
-  project** (can take hours, sometimes next day). Proof it's Google-side, not our config: the **same key
-  calls the Books API fine**, and a garbage cx returns 400 while the real cx returns 403. **To verify when
-  it clears:** `curl "https://www.googleapis.com/customsearch/v1?key=<GOOGLE_CSE_KEY>&cx=e506411801bd9497b&q=test"`
-  — when it returns `items` instead of 403, Google has provisioned and the button + nightly use real
-  Google automatically (no redeploy needed). Until then the cascade falls back to Simania/Steimatzky/twin
-  (server) + Brave (local), so descriptions still fill — just less e-vrit server-side.
+- **🔴 OPEN ACTION — RE-CHECK THE GOOGLE API (likely account-level, may clear overnight).** As of
+  2026-06-16 the Custom Search JSON API returns `403 PERMISSION_DENIED "This project does not have the
+  access to Custom Search JSON API"`. **Exhaustively ruled out config:** tried **2 projects**
+  (`hanit-books`, `hanit-search`) × **3 API keys** × **2 search engines** (`478d99d3631af447e`,
+  `e506411801bd9497b`) — **every combination 403**, including a brand-new project with the API freshly
+  enabled + billing. Meanwhile the **same key calls the Books API fine**, and a garbage cx returns 400
+  while a real cx returns 403. Because even a fresh project fails identically, this is **account-level,
+  not project/key/cx** — Google is gating Custom Search on this new free-trial account (the banner says
+  "upgrade to a full account for unlimited access to all of Google Cloud"). **Expected to clear on its
+  own** as the account ages in (often next day) or on upgrade to a full account (no charge for our
+  usage — 100 queries/day is permanently free). **To verify when it clears:**
+  `curl "https://www.googleapis.com/customsearch/v1?key=<GOOGLE_CSE_KEY>&cx=e506411801bd9497b&q=test"`
+  — when it returns `items` instead of 403, it's live; the button + nightly then use real Google
+  automatically (no redeploy needed). Until then the cascade falls back to Simania/Steimatzky/twin
+  (server) + Brave (local), so descriptions still fill — just less e-vrit server-side. **Note:** env vars
+  currently hold the `hanit-books` key (`...Fl7I4U`); a 3rd key exists in `hanit-search` (`...Lz_xw`).
+  Whichever project provisions first, point `GOOGLE_CSE_KEY` at its key and redeploy.
 - **Gotchas learned (don't repeat the 2-hour rabbit hole):** the **OAuth consent screen / "Google Auth
   Platform → Get started" is NOT needed** for API-key calls (Books API proves it — it works with the
   consent screen unconfigured). A Google Cloud **free trial never auto-charges** (it pauses, asks to
