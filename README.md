@@ -79,12 +79,18 @@ Google Books when you pick a suggestion). To fill the **Hebrew description**, ru
 `npm run enrich:new` — it pulls the new book from Redis, then tries, richest first:
 **digital-twin clone → e-vrit → Simania → Steimatzky**, and pushes the result live.
 
-e-vrit lookups use **web discovery** (`scripts/enrich-evrit-google.mjs`): a Brave/
-DuckDuckGo `site:e-vrit.co.il {title}` search finds the product ID, then the
-`/Product/{id}` page is fetched directly for its JSON-LD blurb (plain HTTP, no
-browser — e-vrit's own search is unreliable). Matches are author-verified. The same
-step runs nightly in `sync-evrit.yml` as a safety net for anything added but not
-manually enriched.
+e-vrit lookups use **web discovery** (`scripts/enrich-evrit-google.mjs`): a search for
+`site:e-vrit.co.il {title}` finds the product ID, then the `/Product/{id}` page is
+fetched directly for its JSON-LD blurb (plain HTTP, no browser — e-vrit's own search
+is unreliable). Matches are author-verified. The same step runs nightly in
+`sync-evrit.yml` and via the in-app **`/api/enrich`** endpoint (the "fill description"
+button + auto-after-add).
+
+**Search provider:** real **Google** via the Custom Search JSON API when
+`GOOGLE_CSE_KEY` + `GOOGLE_CSE_CX` are set (works from any IP incl. Vercel/CI),
+otherwise **Brave** (works locally, but datacenter IPs are blocked). See
+[active-work.md](active-work.md) "PENDING GOOGLE" for the Google CSE setup + the open
+re-check (the API key's project provisioning can lag for hours on a new account).
 
 ## e-vrit sync
 

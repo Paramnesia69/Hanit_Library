@@ -4,7 +4,7 @@
 > Project: Hebrew (RTL) personal book-library web app for "חנית". React 19 + TS + Vite 8 + Tailwind 4.
 > Data: 958 books — 795 physical (Excel + manual adds) + 163 digital (e-vrit). Persistence = **Upstash Redis** (server, source of truth) with bundled `src/data/books.json` as offline/first-paint cache. Live on Vercel (auto-deploy from GitHub).
 
-## STATUS — v1.4 LIVE in production, no active task
+## STATUS — v1.4 LIVE; OPEN ITEM: re-check Google CSE API (see "⚠️ PENDING GOOGLE" section below)
 **Fix (2026-06-16, post-v1.4):** the ⋮ "שמירה לא מקוונת" (offline) modal — and the InstallButton iOS-help
 modal — got stuck/clipped and unscrollable after a full download. Cause: both render inside the
 `.glass-strong` ⋮ dropdown, whose `backdrop-filter` makes a `position: fixed` child resolve against that
@@ -20,6 +20,36 @@ production**. Verified 2026-06-16: the deployed main chunk carries the admin-log
 Admin login on the live site works with the Vercel `EDIT_PASSPHRASE` (it cannot be verified on the static
 `vite preview` — that has no `/api`; use the live site or `vercel dev`). Tags: `v1.3` (pre-work restore
 point), `v1.4` (this work). Interactive demo of the fixes: `fixes-demo.html`.
+
+## ⚠️ PENDING GOOGLE — In-app "fill description" button + Google CSE e-vrit discovery (2026-06-16)
+One-tap / automatic Hebrew-description enrichment from inside the app.
+- **`api/enrich.ts`** (admin-only, `POST {id}`) — server-side single-book version of `enrich:new`:
+  cascade **digital-twin clone → e-vrit (web discovery) → Simania → Steimatzky**, all author-verified;
+  writes the description to Redis. Client: `remote.enrichBook` + `useBooks.enrichBook` (merges only
+  enrichment fields). **Auto-fires after adding a book** with no description (toast in `App.tsx`) **+ a
+  manual "מלא תיאור אוטומטית" button** in `BookDetail.tsx` (admin, shown when description missing).
+- **e-vrit discovery uses real Google (Custom Search JSON API)** as primary, Brave as fallback
+  (`googleCse()` in both `api/enrich.ts` and `scripts/enrich-evrit-google.mjs`). Why: from Vercel/CI
+  **datacenter IPs, Brave/DDG get blocked**, so server-side e-vrit needs the Google API. Gated on env
+  vars `GOOGLE_CSE_KEY` + `GOOGLE_CSE_CX`; absent → Brave fallback.
+- **Credentials wired (set-and-forget):** Vercel prod+dev, GitHub secrets, local `.env`, nightly workflow.
+  `cx = e506411801bd9497b` (engine "Hanit-app", restricted to `www.e-vrit.co.il/*`); API key lives in
+  GCP project **Hanit-Books** (value only in env vars, NEVER in the repo).
+- **🔴 OPEN ACTION — RE-CHECK THE GOOGLE API.** As of 2026-06-16 the Custom Search JSON API still returns
+  `403 PERMISSION_DENIED "This project does not have the access to Custom Search JSON API"` on Hanit-Books
+  **despite** everything being correct: API enabled, billing linked (free-trial ₪849), fresh key + fresh
+  cx, and a disable/re-enable. Diagnosed as **Google-side provisioning lag on a brand-new free-trial
+  project** (can take hours, sometimes next day). Proof it's Google-side, not our config: the **same key
+  calls the Books API fine**, and a garbage cx returns 400 while the real cx returns 403. **To verify when
+  it clears:** `curl "https://www.googleapis.com/customsearch/v1?key=<GOOGLE_CSE_KEY>&cx=e506411801bd9497b&q=test"`
+  — when it returns `items` instead of 403, Google has provisioned and the button + nightly use real
+  Google automatically (no redeploy needed). Until then the cascade falls back to Simania/Steimatzky/twin
+  (server) + Brave (local), so descriptions still fill — just less e-vrit server-side.
+- **Gotchas learned (don't repeat the 2-hour rabbit hole):** the **OAuth consent screen / "Google Auth
+  Platform → Get started" is NOT needed** for API-key calls (Books API proves it — it works with the
+  consent screen unconfigured). A Google Cloud **free trial never auto-charges** (it pauses, asks to
+  upgrade). **Custom Search 100/day is permanently free** (separate from the 90-day trial). A Cloud
+  **budget only emails — it does NOT block**; a **quota cap** (Queries per day) is what blocks.
 
 ## DONE — Book-add durability + auto-enrichment workflows (2026-06-16)
 Triggered by: Hanit added גבריאל + רפאל (המלאכים מג׳רזי 1 & 2) as **physical** books in the app, but the
