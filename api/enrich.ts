@@ -55,7 +55,7 @@ function authorOk(bookAuthor: string | undefined, foundAuthor: string | undefine
 }
 async function getText(url: string): Promise<string> {
     try {
-        const r = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'he', Referer: 'https://duckduckgo.com/' } });
+        const r = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'he', Referer: 'https://duckduckgo.com/' }, signal: AbortSignal.timeout(5000) });
         if (!r.ok && r.status !== 202) return '';
         return await r.text();
     } catch { return ''; }
@@ -63,17 +63,24 @@ async function getText(url: string): Promise<string> {
 
 /* ----- (1) e-vrit בגילוי-רשת ----- */
 const ID_RE = /e-vrit\.co\.il(?:%2F|%2f|\/)Product(?:%2F|%2f|\/)(\d+)/gi;
+/** חיפוש Google אמיתי דרך Custom Search API (עובד מכל IP — גם דאטה-סנטר). דורש מפתח + cx. */
+async function googleCse(query: string): Promise<string[]> {
+    const key = process.env.GOOGLE_CSE_KEY, cx = process.env.GOOGLE_CSE_CX;
+    if (!key || !cx) return [];
+    try {
+        const r = await fetch(`https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&num=5&q=${encodeURIComponent(query)}`, { signal: AbortSignal.timeout(5000) });
+        if (!r.ok) return [];
+        const j = (await r.json()) as { items?: { link?: string; formattedUrl?: string }[] };
+        const blob = (j.items || []).flatMap((it) => [it.link, it.formattedUrl]).filter(Boolean).join(' ');
+        return [...new Set([...blob.matchAll(ID_RE)].map((m) => m[1]))];
+    } catch { return []; }
+}
 async function discover(query: string): Promise<string[]> {
-    const endpoints = [
-        'https://search.brave.com/search?q=' + encodeURIComponent(query),
-        'https://html.duckduckgo.com/html/?q=' + encodeURIComponent(query),
-    ];
-    for (const ep of endpoints) {
-        const html = await getText(ep);
-        const ids = [...new Set([...html.matchAll(ID_RE)].map((m) => m[1]))];
-        if (ids.length) return ids;
-    }
-    return [];
+    // ראשי: חיפוש Google (Custom Search API). גיבוי ללא-מפתח: Brave (נחסם מ-IP של דאטה-סנטר).
+    const g = await googleCse(query);
+    if (g.length) return g;
+    const html = await getText('https://search.brave.com/search?q=' + encodeURIComponent(query));
+    return [...new Set([...html.matchAll(ID_RE)].map((m) => m[1]))];
 }
 async function fetchEvritProduct(id: string): Promise<{ name?: string; author?: string; description: string; year?: number; pageCount?: number } | null> {
     const html = await getText(`https://www.e-vrit.co.il/Product/${id}`);
@@ -113,7 +120,7 @@ async function fromEvrit(book: Book): Promise<{ description: string; year?: numb
 /* ----- (2) Simania ----- */
 async function fromSimania(book: Book): Promise<{ description: string } | null> {
     try {
-        const r = await fetch(`https://simania.co.il/api/search?query=${encodeURIComponent(book.title || '')}`, { headers: { 'User-Agent': UA } });
+        const r = await fetch(`https://simania.co.il/api/search?query=${encodeURIComponent(book.title || '')}`, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(5000) });
         if (!r.ok) return null;
         const data = await r.json() as { books?: { TITLE?: string; AUTHOR?: string; DESCRIPTION?: string }[] };
         let best: { description: string; score: number } | null = null;
@@ -137,7 +144,9 @@ async function fromSteimatzky(book: Book): Promise<{ description: string } | nul
         if (!html) continue;
         const h1 = (html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1] || '';
         const name = stripTags(h1);
-        if (containment(book.title || '', name) < 0.5) continue;
+        if (containment(book.title || '', name) < 0.6) continue;
+        // אימות-סופר חובה: שם הסופר חייב להופיע בעמוד המוצר — אחרת זו התאמה שגויה
+        if (!authorOk(book.author, html)) continue;
         const txt = html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, '\n');
         const para = stripTags(txt).split('\n').map((s) => s.trim())
             .filter((s) => /[֐-׿]/.test(s) && s.length > 90 && !/זמין לרכישה|סטימצקי|משלוח|מדיניות|תקנון|עוגיות|מבצע|הוסף לסל|אזל/.test(s))

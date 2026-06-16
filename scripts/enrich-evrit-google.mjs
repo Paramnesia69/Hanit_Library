@@ -71,8 +71,22 @@ async function discoverOnce(url) {
     const ids = [...new Set([...html.matchAll(ID_RE)].map((m) => m[1]))];
     return { ids, blocked };
 }
+/** חיפוש Google אמיתי דרך Custom Search API (אם הוגדרו GOOGLE_CSE_KEY + GOOGLE_CSE_CX). */
+async function googleCse(query) {
+    const key = process.env.GOOGLE_CSE_KEY, cx = process.env.GOOGLE_CSE_CX;
+    if (!key || !cx) return [];
+    try {
+        const r = await fetch(`https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&num=5&q=${encodeURIComponent(query)}`);
+        if (!r.ok) return [];
+        const j = await r.json();
+        const blob = (j.items || []).flatMap((it) => [it.link, it.formattedUrl]).filter(Boolean).join(' ');
+        return [...new Set([...blob.matchAll(ID_RE)].map((m) => m[1]))];
+    } catch { return []; }
+}
 async function discover(query) {
-    for (const ep of ENDPOINTS) {
+    const g = await googleCse(query); // ראשי: Google אמיתי
+    if (g.length) return g;
+    for (const ep of ENDPOINTS) {     // גיבוי: Brave/DuckDuckGo
         for (let attempt = 0; attempt < 3; attempt++) {
             try {
                 const { ids, blocked } = await discoverOnce(ep(query));
