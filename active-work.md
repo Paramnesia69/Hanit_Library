@@ -14,6 +14,29 @@ both modals via `createPortal(…, document.body)` + `max-h-[88svh] overflow-y-a
 the full viewport (Playwright). **Rule: any `fixed` overlay rendered inside a glass/backdrop-filter element
 must be portaled to `document.body`.**
 
+### Our findings — post-v1.4 interaction + accessibility sweep (2026-06-16)
+A full pass over overlays, dropdowns, modals, cards, and accessibility. Live app passes the axe audit on
+every check. Verified each: tsc+lint+build, Playwright (full e2e 28/28, dropdown 6/6, offline-modal 7/7),
+and both emulators after every push (`scripts/test-emulators.sh`).
+- **Overlay containing-block trap** (above) — offline + iOS-install modals were stuck/clipped inside the
+  `.glass-strong` ⋮ menu; portaled to `document.body` + scrollable panel.
+- **Top-bar dropdowns stacked open** — ⋮ menu + ThemePicker are separate `<details>`; new
+  `src/hooks/useCloseOnOutside.ts` (outside-click + Esc) closes them and makes them mutually exclusive; the
+  ⋮ menu also closes on item-select.
+- **Overlay dismissal/scroll consistency** — added Esc + background-scroll-lock to the offline/install/
+  passphrase modals (the `useDialog` ones already had it). Every overlay now: backdrop + ✕ + Esc, scroll-lock,
+  scrollable panel, correctly positioned (root or portaled).
+- **Cards weren't keyboard-operable** — grid/list book titles are now `<button>`s inside the existing
+  `<h3>`/`<p>` ("Option ב"): Tab+Enter opens the book, heading semantics preserved, mouse-click anywhere on
+  the card still opens. Demo: `card-a11y-demo.html`.
+- **axe a11y fixes (all 9 themes)** — full-opacity genre/edition counts (were `opacity-60` ≈ 2.4–3.6:1);
+  darkened `--color-ink-soft` on **cream** (#766551→#6a5a45) and **pinkdesert** (#87604f→#7a5343) so
+  status-tab labels clear 4.5:1 (were 4.48/4.32); `aria-label` on the floor + sort `<select>`s and the ⋮
+  `<summary>`. Result: axe 0 violations, contrast passes on all 9 themes, touch-targets clean.
+- **Repeatable audit:** `node scripts/audit-a11y.mjs` — axe violations + contrast×9 themes + touch-targets +
+  console errors + no-results state + mobile horizontal overflow. Currently **ALL CLEAN** against prod.
+  Connection/test commands (emulators + audit) are documented in `EMULATOR-TESTING.md`.
+
 v1.4 (a11y + perf + owner/admin mode) is committed, tagged, pushed to `main`, and **auto-deployed to
 production**. Verified 2026-06-16: the deployed main chunk carries the admin-login flow, and
 `GET https://hanit-library.vercel.app/api/books` returns **956** (all books present; offline seed also 956).

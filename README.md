@@ -128,3 +128,17 @@ a browser). Tags: `hanit-library-v1.3` = restore point before the work,
 - **Owner/admin mode:** read-only by default. Edit/backup/CSV/restore/reset and the
   full offline download are gated to an admin (⋮ → כניסת אדמין); guests browse and
   light-install the PWA.
+
+**Post-v1.4 hardening (interaction + a11y sweep):**
+- **Overlays:** the offline + iOS-install modals were trapped/clipped inside the glass
+  ⋮ menu (a `backdrop-filter` ancestor traps `position:fixed`) — now portaled to
+  `document.body`. Every overlay closes via backdrop + ✕ + Esc and locks page scroll.
+- **Dropdowns:** the ⋮ menu and theme picker no longer stack open — each closes on
+  outside-click/Esc and they're mutually exclusive (`useCloseOnOutside`).
+- **Keyboard:** grid/list cards are now keyboard-operable (the title is a focusable
+  button inside the heading) — Tab+Enter opens a book. Demo: `card-a11y-demo.html`.
+- **Contrast/labels:** fixed low-contrast counts and `cream`/`pinkdesert` status labels
+  (all 9 themes now pass AA); added accessible names to selects and the ⋮ button.
+- **Repeatable QA:** `node scripts/audit-a11y.mjs` (axe + contrast×9 + touch-targets +
+  console + no-results + mobile overflow) — currently **ALL CLEAN**. See
+  [EMULATOR-TESTING.md](EMULATOR-TESTING.md) for emulator + audit commands.
