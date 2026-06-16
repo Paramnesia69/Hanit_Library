@@ -22,6 +22,18 @@ To test a local build instead: `scripts/test-emulators.sh http://localhost:4173/
 `http://10.0.2.2:4173/`). Note: admin unlock needs the `/api` backend, so use prod or
 `vercel dev` — not static `vite preview`.
 
+## Accessibility / quality audit
+Repeatable headless audit (axe-core) across all 9 themes — a11y violations,
+color-contrast per theme, touch-target sizes, console errors, the no-results
+empty state, and mobile horizontal overflow:
+
+```bash
+node scripts/audit-a11y.mjs                       # audits production
+node scripts/audit-a11y.mjs http://localhost:4173/  # audits a local preview
+```
+
+Exit code is non-zero if anything fails. As of 2026-06-16 the live app is **ALL CLEAN**.
+
 ## Connection settings
 
 ### iOS Simulator (Xcode)
