@@ -1,6 +1,8 @@
+import { useRef } from 'react';
 import { Palette, Check } from 'lucide-react';
 import { THEMES } from '../lib/theme';
 import type { ThemeId } from '../lib/theme';
+import { useCloseOnOutside } from '../hooks/useCloseOnOutside';
 
 interface Props {
     theme: ThemeId;
@@ -8,13 +10,16 @@ interface Props {
 }
 
 export function ThemePicker({ theme, onChange }: Props) {
+    const ref = useRef<HTMLDetailsElement>(null);
+    useCloseOnOutside(ref);
+
     function pick(e: React.MouseEvent, id: ThemeId) {
         onChange(id);
         (e.currentTarget.closest('details') as HTMLDetailsElement | null)?.removeAttribute('open');
     }
 
     return (
-        <details className="group relative">
+        <details ref={ref} className="group relative">
             <summary
                 className="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-full glass text-ink-soft transition hover:text-accent-600"
                 title="ערכת נושא"

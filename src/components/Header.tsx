@@ -7,6 +7,7 @@ import { Logo } from './Logo';
 import { ThemePicker } from './ThemePicker';
 import { InstallButton } from './InstallButton';
 import { OfflineButton } from './OfflineButton';
+import { useCloseOnOutside } from '../hooks/useCloseOnOutside';
 
 interface Props {
     count: number;
@@ -59,6 +60,8 @@ export function Header({
     onAdminLogout,
 }: Props) {
     const fileRef = useRef<HTMLInputElement>(null);
+    const menuRef = useRef<HTMLDetailsElement>(null);
+    useCloseOnOutside(menuRef); // סוגר את תפריט ⋮ בלחיצה בחוץ/Esc (וכך גם סוגר את בורר הערכות)
     const isDigital = library === 'digital';
 
     return (
@@ -107,11 +110,15 @@ export function Header({
 
                 <ThemePicker theme={theme} onChange={onThemeChange} />
 
-                <details className="group relative">
+                <details ref={menuRef} className="group relative">
                     <summary className="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-full glass text-ink-soft transition hover:text-ink sm:h-11 sm:w-11">
                         <MoreVertical size={18} />
                     </summary>
-                    <div className="glass-strong absolute end-0 z-40 mt-2 w-56 overflow-hidden rounded-2xl py-1 shadow-book">
+                    {/* לחיצה על פריט סוגרת את התפריט */}
+                    <div
+                        className="glass-strong absolute end-0 z-40 mt-2 w-56 overflow-hidden rounded-2xl py-1 shadow-book"
+                        onClick={() => menuRef.current?.removeAttribute('open')}
+                    >
                             {/* לכולם: התקנה קלה + מצב לא-מקוון (הורדה מלאה לאדמין בלבד) */}
                             <InstallButton />
                             <OfflineButton coverUrls={coverUrls} isAdmin={isAdmin} />
