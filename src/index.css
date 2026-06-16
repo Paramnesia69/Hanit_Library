@@ -114,7 +114,8 @@
   --color-paper-2: #f1e1d8;
   --color-card: #fffaf7;
   --color-ink: #2a1d18;
-  --color-ink-soft: #87604f;
+  /* כהה מ-#87604f כדי לעבור ניגודיות AA (4.5:1) על paper-2 (היה 4.32) */
+  --color-ink-soft: #7a5343;
   --color-line: #ecd7cc;
   --color-gold: #c9813e;
   --color-accent-50: #fdf2ee;
@@ -197,7 +198,8 @@
   --color-paper-2: #efe5d4;
   --color-card: #fffaf2;
   --color-ink: #2a2018;
-  --color-ink-soft: #766551;
+  /* כהה מ-#766551 כדי לעבור ניגודיות AA (4.5:1) על paper-2 (היה 4.48) */
+  --color-ink-soft: #6a5a45;
   --color-line: #e7dcc7;
   --color-gold: #b8862b;
   --color-accent-50: #f5eee3;

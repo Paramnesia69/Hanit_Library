@@ -181,7 +181,8 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                                 aria-hidden
                             />
                             {g.label}
-                            <span className="opacity-60">{g.count}</span>
+                            {/* ספירה — אטימות מלאה לעמידה בניגודיות AA בכל הערכות (היה opacity-60 ≈ 2.4:1) */}
+                            <span className="font-semibold">{g.count}</span>
                         </button>
                     );
                 })}
@@ -218,6 +219,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                     <select
                         value={filters.sortField}
                         onChange={(e) => onChange({ sortField: e.target.value as SortField })}
+                        aria-label="מיון"
                         className="rounded-full border border-line bg-card px-3 py-1.5 text-[13px] outline-none focus:border-accent-400"
                     >
                         {(Object.entries(SORT_FIELDS) as Array<[SortField, string]>).map(([k, label]) => (

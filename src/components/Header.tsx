@@ -111,7 +111,7 @@ export function Header({
                 <ThemePicker theme={theme} onChange={onThemeChange} />
 
                 <details ref={menuRef} className="group relative">
-                    <summary className="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-full glass text-ink-soft transition hover:text-ink sm:h-11 sm:w-11">
+                    <summary aria-label="עוד פעולות" title="עוד פעולות" className="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-full glass text-ink-soft transition hover:text-ink sm:h-11 sm:w-11">
                         <MoreVertical size={18} />
                     </summary>
                     {/* לחיצה על פריט סוגרת את התפריט */}
@@ -211,7 +211,7 @@ export function Header({
                         >
                             <Library size={16} />
                             פיזית
-                            <span className={!isDigital ? 'opacity-80' : 'opacity-60'}>{physicalCount}</span>
+                            <span className={!isDigital ? 'opacity-80' : ''}>{physicalCount}</span>
                         </button>
                         <button
                             type="button"
@@ -221,7 +221,7 @@ export function Header({
                         >
                             <Tablet size={16} />
                             עברית
-                            <span className={isDigital ? 'opacity-80' : 'opacity-60'}>{digitalCount}</span>
+                            <span className={isDigital ? 'opacity-80' : ''}>{digitalCount}</span>
                         </button>
                     </div>
                 </div>
@@ -242,6 +242,7 @@ export function Header({
                             <select
                                 value={floor ?? ''}
                                 onChange={(e) => onFloorChange(e.target.value ? Number(e.target.value) : null)}
+                                aria-label="סינון לפי קומת מדף"
                                 /* רוחב מוגבל במובייל: ה-select מתאים אחרת לאופציה הארוכה ביותר
                                    ("קומה 5 (תחתונה)") ולכן נשאר רווח ריק כש"כל המדפים" מוצג.
                                    ה-cap מצמצם אותו כך שייכנס לצד מהדורה. הרשימה הנפתחת עדיין

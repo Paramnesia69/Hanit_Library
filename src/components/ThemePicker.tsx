@@ -23,6 +23,7 @@ export function ThemePicker({ theme, onChange }: Props) {
             <summary
                 className="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-full glass text-ink-soft transition hover:text-accent-600"
                 title="ערכת נושא"
+                aria-label="ערכת נושא"
             >
                 <Palette size={18} />
             </summary>
