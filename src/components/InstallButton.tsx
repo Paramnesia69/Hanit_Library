@@ -51,6 +51,21 @@ export function InstallButton() {
         };
     }, []);
 
+    // Esc סוגר את חלון העזרה + נעילת גלילת רקע כל עוד הוא פתוח
+    useEffect(() => {
+        if (!iosHelp) return;
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setIosHelp(false);
+        };
+        document.addEventListener('keydown', onKey);
+        const prev = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.removeEventListener('keydown', onKey);
+            document.body.style.overflow = prev;
+        };
+    }, [iosHelp]);
+
     // כבר מותקנת (רצה במסך מלא) — אין מה להציע.
     if (installed) return null;
 

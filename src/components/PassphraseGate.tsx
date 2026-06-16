@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { X, Lock, Loader2 } from 'lucide-react';
 import { checkPass, setPass } from '../lib/remote';
@@ -16,6 +16,13 @@ export function PassphraseGate({ onUnlock, onClose }: Props) {
     const [value, setValue] = useState('');
     const [error, setError] = useState(false);
     const [busy, setBusy] = useState(false);
+
+    // נעילת גלילת רקע כל עוד השער פתוח (מותקן רק כשהוא מוצג)
+    useEffect(() => {
+        const prev = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => { document.body.style.overflow = prev; };
+    }, []);
 
     async function submit() {
         const pass = value.trim();

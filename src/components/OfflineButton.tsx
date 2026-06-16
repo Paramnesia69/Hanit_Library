@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CloudDownload, Feather, HardDriveDownload, Check, X, Loader2 } from 'lucide-react';
 
@@ -43,6 +43,21 @@ export function OfflineButton({ coverUrls, isAdmin = false }: Props) {
     const [finished, setFinished] = useState(
         typeof localStorage !== 'undefined' && localStorage.getItem(DONE_KEY) === '1',
     );
+
+    // Esc סוגר (לא בזמן הורדה) + נעילת גלילת רקע כל עוד המודאל פתוח
+    useEffect(() => {
+        if (!open) return;
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && !downloading) setOpen(false);
+        };
+        document.addEventListener('keydown', onKey);
+        const prev = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.removeEventListener('keydown', onKey);
+            document.body.style.overflow = prev;
+        };
+    }, [open, downloading]);
 
     const total = coverUrls.length;
     const estMb = Math.max(1, Math.round(total * 0.15));
