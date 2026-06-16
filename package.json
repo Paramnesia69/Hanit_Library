@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "sync:evrit": "node scripts/sync-evrit-library.mjs",
     "pull:db": "node --env-file=.env.development.local scripts/sync-from-upstash.mjs",
-    "pull:db:dry": "node --env-file=.env.development.local scripts/sync-from-upstash.mjs --dry"
+    "pull:db:dry": "node --env-file=.env.development.local scripts/sync-from-upstash.mjs --dry",
+    "push:db": "node --env-file=.env.development.local scripts/push-enrichment-to-upstash.mjs",
+    "push:db:dry": "node --env-file=.env.development.local scripts/push-enrichment-to-upstash.mjs --dry"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.1",
