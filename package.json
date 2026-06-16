@@ -12,7 +12,9 @@
     "pull:db": "node --env-file=.env.development.local scripts/sync-from-upstash.mjs",
     "pull:db:dry": "node --env-file=.env.development.local scripts/sync-from-upstash.mjs --dry",
     "push:db": "node --env-file=.env.development.local scripts/push-enrichment-to-upstash.mjs",
-    "push:db:dry": "node --env-file=.env.development.local scripts/push-enrichment-to-upstash.mjs --dry"
+    "push:db:dry": "node --env-file=.env.development.local scripts/push-enrichment-to-upstash.mjs --dry",
+    "enrich:new": "node --env-file=.env.development.local scripts/enrich-new-books.mjs",
+    "enrich:new:dry": "node --env-file=.env.development.local scripts/enrich-new-books.mjs --dry"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.1",
