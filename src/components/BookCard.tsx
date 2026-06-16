@@ -67,8 +67,16 @@ export function BookCard({ book, onOpen, onToggleFavorite, isAdmin = false }: Pr
                         {theme.label}
                     </span>
                 </div>
-                <h3 className="mt-0.5 font-display text-[15px] font-bold leading-tight text-ink line-clamp-2 transition-colors group-hover:text-accent-700">
-                    {book.title}
+                {/* הכותרת נשארת כותרת (h3) אך עוטפת כפתור — יעד הפוקוס למקלדת:
+                    Tab מגיע, Enter/רווח פותח. לחיצת עכבר בכל מקום בכרטיס עדיין פותחת. */}
+                <h3 className="mt-0.5">
+                    <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); onOpen(book); }}
+                        className="block w-full border-0 bg-transparent p-0 text-start font-display text-[15px] font-bold leading-tight text-ink line-clamp-2 transition-colors group-hover:text-accent-700"
+                    >
+                        {book.title}
+                    </button>
                 </h3>
                 <p className="mt-0.5 text-[13px] text-ink-soft line-clamp-1">{book.author || '—'}</p>
                 {typeof book.communityRating === 'number' && book.communityRating > 0 && (

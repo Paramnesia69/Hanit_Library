@@ -28,7 +28,16 @@ export function BookList({ books, onOpen, onToggleFavorite, isAdmin = false }: P
                 >
                     <CoverImage book={b} spine={false} className="w-10 shrink-0 sm:w-12" />
                     <div className="min-w-0 flex-1">
-                        <p className="truncate font-display text-[15px] font-bold text-ink">{b.title}</p>
+                        {/* כפתור הכותרת = יעד הפוקוס למקלדת (Tab+Enter פותח); השורה כולה עדיין נפתחת בלחיצת עכבר */}
+                        <p className="truncate">
+                            <button
+                                type="button"
+                                onClick={(e) => { e.stopPropagation(); onOpen(b); }}
+                                className="block max-w-full truncate border-0 bg-transparent p-0 text-start font-display text-[15px] font-bold text-ink"
+                            >
+                                {b.title}
+                            </button>
+                        </p>
                         <p className="truncate text-[13px] text-ink-soft">
                             {b.author || '—'}
                             {b.publisher ? ` · ${b.publisher}` : ''}
