@@ -3,13 +3,13 @@
  *
  * חנית שיתפה קישור ציבורי לספרייה שלה ("שיתוף הספרים שלי"):
  *   https://www.e-vrit.co.il/customerProducts?Sid=<Sid>
- * הדף מרנדר עם React, אבל כל רשימת הספרים מוטמעת ב-HTML הראשוני בתוך
- *   React.createElement(CustomerProductsPage, { "Products": [...] })
- * כך שאפשר למשוך הכול עם fetch פשוט (בלי דפדפן) ולפענח את ה-JSON.
+ * האתר (Next.js) טוען את הרשימה מ-API JSON ציבורי:
+ *   /api/customer/customerProducts?sid=<Sid>&take=N
+ * ואותו אנחנו קוראים ישירות עם fetch פשוט (בלי דפדפן).
  *
  * הסקריפט:
  *  1. מושך את עמוד השיתוף.
- *  2. מחלץ את מערך Products (כולל שם, סופר, עטיפה, תאריך רכישה, פורמט,
+ *  2. מושך את Items מה-API (כולל שם, סופר, עטיפה, תאריך רכישה, פורמט,
  *     קנוי/מושאל, והדירוג/ביקורת שחנית עצמה כתבה ב-e-vrit).
  *  3. ממזג ל-books.json כספרים דיגיטליים — בלי לדרוס עריכות שהמשתמשת עשתה.
  *
@@ -34,39 +34,40 @@ const SID =
     (ARGS.find((a) => a.startsWith('--sid=')) || '').split('=')[1] ||
     process.env.EVRIT_SID ||
     'NzE5NjA1';
-const SHARE_URL = `https://www.e-vrit.co.il/customerProducts?Sid=${SID}`;
+const API_URL = `https://www.e-vrit.co.il/api/customer/customerProducts?sid=${SID}&take=2000`;
 const UA =
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36';
 
-const FORMAT_LABEL = { 0: 'דיגיטלי', 1: 'אודיו', 2: 'מודפס' };
+// OrderProductFormat: 1 = דיגיטלי, 2 = אודיו
+const AUDIO_FORMAT = 2;
 
-/** חילוץ מערך "Products":[...] מתוך ה-HTML ע"י מעקב עומק סוגריים */
-function extractProducts(html) {
-    const marker = '"Products":';
-    const at = html.indexOf(marker);
-    if (at < 0) throw new Error('לא נמצא "Products" ב-HTML — ייתכן שמבנה הדף השתנה.');
-    const begin = html.indexOf('[', at);
-    let depth = 0;
-    let inStr = false;
-    let esc = false;
-    let i = begin;
-    for (; i < html.length; i++) {
-        const c = html[i];
-        if (esc) { esc = false; continue; }
-        if (c === '\\') { esc = true; continue; }
-        if (c === '"') { inStr = !inStr; continue; }
-        if (inStr) continue;
-        if (c === '[') depth++;
-        else if (c === ']') { depth--; if (depth === 0) { i++; break; } }
+/**
+ * האתר עבר ל-Next.js ועמוד השיתוף כבר לא מכיל את הרשימה ב-HTML.
+ * במקום זה העמוד קורא ל-API JSON ציבורי (לפי sid), ואותו אנחנו קוראים ישירות.
+ * take גדול מחזיר את כל הספרייה בבקשה אחת (ברירת המחדל: 30 לעמוד).
+ */
+async function fetchProducts() {
+    const res = await fetch(API_URL, { headers: { 'User-Agent': UA, 'Accept-Language': 'he-IL' } });
+    if (!res.ok) throw new Error(`בקשה נכשלה: HTTP ${res.status}`);
+    const data = (await res.json())?.customerProducts;
+    if (!data || !Array.isArray(data.Items)) {
+        throw new Error('תשובת ה-API לא כוללת customerProducts.Items — ייתכן שה-API השתנה.');
     }
-    return JSON.parse(html.slice(begin, i));
+    if (data.Items.length < data.NumRows) {
+        throw new Error(`התקבלו ${data.Items.length} מתוך ${data.NumRows} ספרים — יש להגדיל את take.`);
+    }
+    return data;
 }
 
-/** "11/06/2026" → "2026-06-11T00:00:00.000Z" (תאריך הרכישה ב-e-vrit הוא DD/MM/YYYY) */
-function toIso(ddmmyyyy) {
-    const m = String(ddmmyyyy || '').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-    if (!m) return null;
-    return new Date(Date.UTC(+m[3], +m[2] - 1, +m[1])).toISOString();
+/**
+ * "2026-10-13T09:52:28.4166667Z" → חצות UTC של יום הרכישה (לפי שעון ישראל),
+ * כמו הפורמט הקודם (תאריך בלבד) כדי לא ליצור שינויים מיותרים ב-books.json.
+ */
+function toIso(v) {
+    const d = new Date(String(v || '').replace(/(\.\d{3})\d+/, '$1'));
+    if (isNaN(d)) return null;
+    const day = d.toLocaleDateString('en-CA', { timeZone: 'Asia/Jerusalem' }); // YYYY-MM-DD
+    return new Date(`${day}T00:00:00.000Z`).toISOString();
 }
 
 function clampRating(r) {
@@ -77,31 +78,32 @@ function clampRating(r) {
 
 /** מיפוי רשומת e-vrit → ספר דיגיטלי באפליקציה */
 function toBook(p, now) {
-    const rating = clampRating(p.CustomerReviewModel?.ReviewRating);
-    const review = (p.CustomerReviewModel?.ReviewContent || '').trim();
+    const rating = clampRating(p.CustomerReview?.ReviewRating);
+    const review = (p.CustomerReview?.Body || '').trim();
+    const audio = p.OrderProductFormat === AUDIO_FORMAT;
     return {
         id: `evrit-${p.ProductID}`,
         library: 'digital',
         serial: null,
-        title: (p.Name || '').trim(),
-        author: (p.AuthorsName || '').trim(),
+        title: (p.ProductName || '').trim(),
+        author: (p.Authors || []).map((a) => a.Name).join(', ').trim(),
         publisher: '',
         shelf: '',
         // דירגה אותו ב-e-vrit → בוודאות קראה; אחרת "רוצה לקרוא" (ניתן לשנות באפליקציה)
         status: rating ? 'read' : 'want',
         dateRead: null,
         rating,
-        genres: p.ProductFormat === 1 ? ['אודיו'] : [],
+        genres: audio ? ['אודיו'] : [],
         favorite: false,
         review,
-        coverUrl: p.Image ? `https://www.e-vrit.co.il/${p.Image}` : null,
-        coverConfidence: p.Image ? 'high' : 'none',
+        coverUrl: p.ProductImage ? `https://www.e-vrit.co.il/${p.ProductImage}` : null,
+        coverConfidence: p.ProductImage ? 'high' : 'none',
         isbn: null,
         pageCount: null,
         year: null,
         evritId: p.ProductID,
         purchasedAt: toIso(p.OrderDate),
-        audiobook: p.ProductFormat === 1,
+        audiobook: audio,
         sourceUrl: `https://www.e-vrit.co.il/Product/${p.ProductID}`,
         createdAt: now,
         updatedAt: now,
@@ -115,12 +117,9 @@ const FRESH_FIELDS = ['title', 'author', 'coverUrl', 'coverConfidence', 'purchas
 
 async function main() {
     console.log(`\n  סנכרון ספריית עברית — Sid=${SID}`);
-    const res = await fetch(SHARE_URL, { headers: { 'User-Agent': UA, 'Accept-Language': 'he-IL' } });
-    if (!res.ok) throw new Error(`בקשה נכשלה: HTTP ${res.status}`);
-    const html = await res.text();
-    const products = extractProducts(html);
-    const owner = (html.match(/"CustomerShare":"([^"]*)"/) || [])[1] || '';
-    console.log(`  נמצאו ${products.length} ספרים בספרייה של ${owner || '—'}.`);
+    const data = await fetchProducts();
+    const products = data.Items;
+    console.log(`  נמצאו ${products.length} ספרים בספרייה של ${data.CustomerSharedName || '—'}.`);
 
     const books = JSON.parse(readFileSync(BOOKS, 'utf8'));
     const byEvrit = new Map();
@@ -133,7 +132,7 @@ async function main() {
     let added = 0;
     let updated = 0;
     for (const p of products) {
-        if (!p.ProductID || !p.Name) continue;
+        if (!p.ProductID || !p.ProductName) continue;
         const fresh = toBook(p, now);
         const existing = byEvrit.get(p.ProductID);
         if (!existing) {
