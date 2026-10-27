@@ -4,7 +4,8 @@
  * שאר השדות הם העשרה חדשה שהאפליקציה מנהלת.
  */
 
-export type ReadingStatus = 'read' | 'reading' | 'want';
+/** sold = נמכר — הספר כבר לא חלק מהספרייה (לא נספר ולא מוצג ב״הכל״) */
+export type ReadingStatus = 'read' | 'reading' | 'want' | 'sold';
 
 /** הספרייה שאליה משויך הספר: פיזית (מדף) או דיגיטלית (עברית) */
 export type LibraryKind = 'physical' | 'digital';
@@ -93,6 +94,7 @@ export const STATUS_LABELS: Record<ReadingStatus, string> = {
     read: 'נקרא',
     reading: 'קוראת עכשיו',
     want: 'רוצה לקרוא',
+    sold: 'נמכר',
 };
 
 export const LIBRARY_LABELS: Record<LibraryKind, string> = {

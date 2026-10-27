@@ -66,8 +66,10 @@ export default function App() {
     const guardedUpdate = (id: string, patch: Partial<Book>) => guard(() => updateBook(id, patch));
     const guardedRemove = (id: string) => guard(() => removeBook(id));
 
-    const physicalCount = useMemo(() => books.filter((b) => (b.library ?? 'physical') === 'physical').length, [books]);
-    const digitalCount = books.length - physicalCount;
+    // ספרים שנמכרו כבר לא חלק מהספרייה — לא נספרים בכותרת/בסטטיסטיקה ולא עומדים על המדף
+    const ownedBooks = useMemo(() => books.filter((b) => b.status !== 'sold'), [books]);
+    const physicalCount = useMemo(() => ownedBooks.filter((b) => (b.library ?? 'physical') === 'physical').length, [ownedBooks]);
+    const digitalCount = ownedBooks.length - physicalCount;
 
     // כל כתובות העטיפות האמיתיות (להורדה לא-מקוונת) — מקומיות + מרוחקות, ללא placeholders
     const coverUrls = useMemo(() => {
@@ -83,7 +85,8 @@ export default function App() {
         () => books.filter((b) => (b.library ?? 'physical') === activeLibrary),
         [books, activeLibrary],
     );
-    const facets = useMemo(() => computeFacets(libraryBooks), [libraryBooks]);
+    const libraryOwned = useMemo(() => libraryBooks.filter((b) => b.status !== 'sold'), [libraryBooks]);
+    const facets = useMemo(() => computeFacets(libraryOwned), [libraryOwned]);
     const visible = useMemo(() => filterAndSort(libraryBooks, filters), [libraryBooks, filters]);
     const selected = selectedId ? books.find((b) => b.id === selectedId) ?? null : null;
     const patch = (p: Partial<Filters>) => setFilters((f) => ({ ...f, ...p }));
@@ -166,7 +169,7 @@ export default function App() {
                 דלג לתוכן
             </a>
             <Header
-                count={libraryBooks.length}
+                count={libraryOwned.length}
                 library={activeLibrary}
                 physicalCount={physicalCount}
                 digitalCount={digitalCount}
@@ -195,7 +198,7 @@ export default function App() {
                 {showStats && (
                     <div className="mb-8">
                         <Suspense fallback={<LazyFallback />}>
-                            <StatsPanel books={libraryBooks} />
+                            <StatsPanel books={libraryOwned} />
                         </Suspense>
                     </div>
                 )}
@@ -241,7 +244,7 @@ export default function App() {
                             {view === 'shelf' ? (
                                 <Suspense fallback={<LazyFallback />}>
                                     <Bookshelf3D
-                                        books={libraryBooks}
+                                        books={filters.status === 'sold' ? libraryBooks : libraryOwned}
                                         matchedIds={matchedIds}
                                         mode={isDigital ? 'genre' : 'physical'}
                                         onOpen={(b) => setSelectedId(b.id)}

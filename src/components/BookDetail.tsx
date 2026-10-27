@@ -25,7 +25,7 @@ interface Props {
     enriching?: boolean;
 }
 
-const STATUSES: ReadingStatus[] = ['read', 'reading', 'want'];
+const STATUSES: ReadingStatus[] = ['read', 'reading', 'want', 'sold'];
 
 /** מספר הספר בסדרה כמספר למיון ("6.5" → 6.5, ריק → אינסוף בסוף) */
 function seriesIndex(b: Book): number {
@@ -260,7 +260,7 @@ export function BookDetail({ book, allBooks, isAdmin, onClose, onUpdate, onEdit,
                                         key={s}
                                         type="button"
                                         onClick={() => onUpdate(book.id, { status: s })}
-                                        className={`flex-1 rounded-full px-3 py-2 text-[13px] font-medium transition ${book.status === s ? 'bg-card text-accent-700 glow-accent' : 'text-ink-soft'
+                                        className={`flex-1 whitespace-nowrap rounded-full px-2 py-2 text-[13px] font-medium transition ${book.status === s ? 'bg-card text-accent-700 glow-accent' : 'text-ink-soft'
                                             }`}
                                     >
                                         {STATUS_LABELS[s]}

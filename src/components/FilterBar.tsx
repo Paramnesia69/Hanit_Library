@@ -23,6 +23,7 @@ const STATUS_TABS: Array<{ key: ReadingStatus | 'all'; label: string }> = [
     { key: 'read', label: STATUS_LABELS.read },
     { key: 'reading', label: STATUS_LABELS.reading },
     { key: 'want', label: STATUS_LABELS.want },
+    { key: 'sold', label: STATUS_LABELS.sold },
 ];
 
 const VIEWS: Array<{ key: ViewMode; label: string; icon: typeof LayoutGrid }> = [
@@ -198,7 +199,7 @@ export function FilterBar({ filters, onChange, onReset, facets, view, onViewChan
                                 key={t.key}
                                 type="button"
                                 onClick={() => onChange({ status: t.key })}
-                                className={`press relative rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors ${isActive ? 'text-accent-700' : 'text-ink-soft hover:text-ink'
+                                className={`press relative whitespace-nowrap rounded-full px-2 py-1.5 text-[13px] sm:px-3 font-medium transition-colors ${isActive ? 'text-accent-700' : 'text-ink-soft hover:text-ink'
                                     }`}
                             >
                                 {isActive && (

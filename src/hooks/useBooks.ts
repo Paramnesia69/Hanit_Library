@@ -191,7 +191,8 @@ const collator = new Intl.Collator('he', { numeric: true, sensitivity: 'base' })
 export function filterAndSort(books: Book[], f: Filters): Book[] {
     const q = f.search.trim().toLowerCase();
     let list = books.filter((b) => {
-        if (f.status !== 'all' && b.status !== f.status) return false;
+        // ספרים שנמכרו מוצגים רק בטאב ״נמכר״, לא ב״הכל״
+        if (f.status === 'all' ? b.status === 'sold' : b.status !== f.status) return false;
         if (f.genre && effectiveGenre(b) !== f.genre) return false;
         if (f.floor !== null && parseShelf(b.shelf).floor !== f.floor) return false;
         if (f.author && b.author !== f.author) return false;
